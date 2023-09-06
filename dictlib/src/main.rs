@@ -1,6 +1,9 @@
 use std::collections::BTreeMap;
 
+use compiled_dictionary::CompiledDictionary;
+
 mod compiled_dictionary;
+mod jyutping_splitter;
 
 fn main() {
     let mut defs = TraditionalToDefinitions::default();
@@ -25,21 +28,23 @@ fn main() {
 
     //println!("{} - {} {:?} - {:?}", char, jyutping, def, frequency_data);
 
-    let mut buffer = String::new();
+    let compiled_dictionary = CompiledDictionary::from_dictionary(&dict);
 
-    loop {
-        buffer.clear();
+    //let mut buffer = String::new();
 
-        println!("Query: ");
-        std::io::stdin().read_line(&mut buffer).unwrap();
+    //loop {
+    //    buffer.clear();
 
-        let results = dict.hacky_search(&buffer);
-        println!("{:#?}", results);
-    }
+    //    println!("Query: ");
+    //    std::io::stdin().read_line(&mut buffer).unwrap();
+
+    //    let results = dict.hacky_search(&buffer);
+    //    println!("{:#?}", results);
+    //}
 
 }
 
-struct Dictionary
+pub struct Dictionary
 {
     trad_to_def: TraditionalToDefinitions,
     trad_to_jyutping : TraditionalToJyutping,
@@ -90,7 +95,7 @@ impl Dictionary {
 }
 
 #[derive(Debug)]
-struct SearchResult {
+pub struct SearchResult {
     characters : String,
     jyutping : String,
     definitions : Vec<String>,
