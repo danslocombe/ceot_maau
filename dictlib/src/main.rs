@@ -30,9 +30,17 @@ fn main() {
 
     let compiled_dictionary = CompiledDictionary::from_dictionary(dict);
 
-    let matches = compiled_dictionary.search_single("ga");
+    let mut buffer = String::new();
 
-    println!("{:#?}", matches);
+    loop {
+        buffer.clear();
+
+        println!("Query: ");
+        std::io::stdin().read_line(&mut buffer).unwrap();
+
+        let matches = compiled_dictionary.search_single(&buffer.trim());
+        println!("{:#?}", matches);
+    }
 
     //let mut buffer = String::new();
 
