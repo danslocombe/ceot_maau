@@ -95,10 +95,10 @@ impl CompiledDictionary {
 }
 
 pub struct QueryTerms {
-    pub jyutping_matches: Vec<JyutpingMatches>,
+    pub jyutping_terms: Vec<JyutpingQueryTerm>,
 }
 
-pub struct JyutpingMatches {
+pub struct JyutpingQueryTerm {
     pub matches: BitSet,
     pub tone: Option<u8>,
     pub match_bit_to_match_cost: Vec<(usize, u32)>,
@@ -120,14 +120,14 @@ impl MatchCostInfo {
 impl CompiledDictionary {
     pub fn search(&self, s : &str) -> Vec<(MatchCostInfo, &DictionaryEntry)>
     {
-        let mut jyutping_matches = Vec::new();
+        let mut jyutping_terms = Vec::new();
         for query_term in s.split_ascii_whitespace()
         {
-            jyutping_matches.push(self.get_jyutping_matches(query_term));
+            jyutping_terms.push(self.get_jyutping_query_term(query_term));
         }
 
         let query_terms = QueryTerms {
-            jyutping_matches,
+            jyutping_terms,
         };
 
         let mut matches: Vec<(MatchCostInfo, &DictionaryEntry)> = Vec::new();
@@ -149,6 +149,15 @@ impl CompiledDictionary {
                 //    break;
                 //}
             }
+            else if let Some(match_cost) = self.matches_query_english(x, s)
+            {
+                let cost_info = MatchCostInfo {
+                    match_cost,
+                    static_cost: x.cost,
+                };
+
+                matches.push((cost_info, x));
+            }
         }
 
         println!("Internal candidates: {}", matches.len());
@@ -164,16 +173,16 @@ impl CompiledDictionary {
 
         let mut entry_jyutping_matches = BitSet::new();
 
-        for jyutping_match in &query_terms.jyutping_matches
+        for jyutping_term in &query_terms.jyutping_terms
         {
             let mut term_match = false;
 
             for (i, entry_jyutping) in entry.jyutpings.iter().enumerate()
             {
-                if (jyutping_match.matches.contains(entry_jyutping.base as usize))
+                if (jyutping_term.matches.contains(entry_jyutping.base as usize))
                 {
                     let mut term_match_cost = 0;
-                    for (match_bit, cost) in &jyutping_match.match_bit_to_match_cost {
+                    for (match_bit, cost) in &jyutping_term.match_bit_to_match_cost {
                         if (*match_bit == entry_jyutping.base as usize) {
                             term_match_cost = *cost;
                             // Break out of finding term_match_cost.
@@ -181,7 +190,7 @@ impl CompiledDictionary {
                         }
                     }
 
-                    if let Some(t) = jyutping_match.tone
+                    if let Some(t) = jyutping_term.tone
                     {
                         if t == entry_jyutping.tone
                         {
@@ -220,7 +229,32 @@ impl CompiledDictionary {
         Some(match_cost)
     }
 
-    pub fn get_jyutping_matches(&self, mut s : &str) -> JyutpingMatches
+    pub fn matches_query_english(&self, entry: &DictionaryEntry, s : &str) -> Option<u32>
+    {
+        // Make sure we prefer jyutping matches
+        let mut cost: u32 = 1_000;
+
+        // @Perf
+        'outer: for split in s.split_ascii_whitespace()
+        {
+            for (i, def) in entry.english_definitions.iter().enumerate()
+            {
+                if let Some(pos) = def.find(split) {
+                    cost += i as u32 * 1_000;
+                    cost += pos as u32 * 100;
+                    continue 'outer;
+                }
+            }
+
+            // No match on this split
+            return None;
+        }
+
+        Some(cost)
+    }
+
+
+    pub fn get_jyutping_query_term(&self, mut s : &str) -> JyutpingQueryTerm
     {
         let mut tone : Option<u8> = None;
 
@@ -235,14 +269,6 @@ impl CompiledDictionary {
 
         let mut matches = BitSet::new();
         let mut match_bit_to_match_cost = Vec::new();
-
-        //for (i, jyutping) in self.jyutping_store.base_strings
-        //    for jyutping_word in jyutping {
-        //        if self.jyutping_store.matches(*jyutping_word, s, None) {
-        //            matches.insert(i);
-        //        }
-        //    }
-        //}
 
         for (i, jyutping_string) in self.jyutping_store.base_strings.iter().enumerate()
         {
@@ -264,7 +290,7 @@ impl CompiledDictionary {
             }
         }
 
-        JyutpingMatches {
+        JyutpingQueryTerm {
             matches,
             tone,
             match_bit_to_match_cost,
