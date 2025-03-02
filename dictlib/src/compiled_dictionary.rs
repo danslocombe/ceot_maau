@@ -96,6 +96,7 @@ impl CompiledDictionary {
 
 pub struct QueryTerms {
     pub jyutping_terms: Vec<JyutpingQueryTerm>,
+    pub traditional_terms: Vec<u16>,
 }
 
 pub struct JyutpingQueryTerm {
@@ -126,8 +127,17 @@ impl CompiledDictionary {
             jyutping_terms.push(self.get_jyutping_query_term(query_term));
         }
 
+        let mut traditional_terms = Vec::new();
+        for c in s.chars()
+        {
+            if let Some(c_id) = self.character_store.char_to_index(c) {
+                traditional_terms.push(c_id);
+            }
+        }
+
         let query_terms = QueryTerms {
             jyutping_terms,
+            traditional_terms,
         };
 
         let mut matches: Vec<(MatchCostInfo, &DictionaryEntry)> = Vec::new();
@@ -158,6 +168,20 @@ impl CompiledDictionary {
 
                 matches.push((cost_info, x));
             }
+            else
+            {
+                if (!query_terms.traditional_terms.is_empty())
+                {
+                    if (self.matches_query_traditional(x, &query_terms)) {
+                        let cost_info = MatchCostInfo {
+                            match_cost: 0,
+                            static_cost: x.cost,
+                        };
+
+                        matches.push((cost_info, x));
+                    }
+                }
+            }
         }
 
         println!("Internal candidates: {}", matches.len());
@@ -169,6 +193,10 @@ impl CompiledDictionary {
 
     pub fn matches_query_jyutping(&self, entry: &DictionaryEntry, query_terms : &QueryTerms) -> Option<u32>
     {
+        if (entry.jyutpings.len() < query_terms.jyutping_terms.len()) {
+            return None;
+        }
+
         let mut match_cost = 0;
 
         let mut entry_jyutping_matches = BitSet::new();
@@ -253,6 +281,18 @@ impl CompiledDictionary {
         Some(cost)
     }
 
+    pub fn matches_query_traditional(&self, entry: &DictionaryEntry, query_terms : &QueryTerms) -> bool
+    {
+        for c_id in query_terms.traditional_terms.iter()
+        {
+            if (!entry.characters.contains(c_id))
+            {
+                return false
+            }
+        }
+
+        true
+    }
 
     pub fn get_jyutping_query_term(&self, mut s : &str) -> JyutpingQueryTerm
     {
@@ -288,6 +328,19 @@ impl CompiledDictionary {
                 matches.insert(i);
                 continue;
             }
+
+            /*
+            // Too noisy
+
+            let dist = crate::string_search::prefix_levenshtein_ascii(s, &jyutping_string);
+            if (dist < 2) {
+                let match_cost = dist as u32 * 10_000;
+                println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
+                match_bit_to_match_cost.push((i, match_cost));
+                matches.insert(i);
+                continue;
+            }
+            */
         }
 
         JyutpingQueryTerm {

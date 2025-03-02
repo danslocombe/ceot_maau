@@ -12,6 +12,7 @@ mod jyutping_splitter;
 mod data_writer;
 mod data_reader;
 mod vbyte;
+mod string_search;
 
 #[derive(Debug, Clone, Copy)]
 pub struct OffsetString {
