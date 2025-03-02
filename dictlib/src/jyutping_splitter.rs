@@ -1,4 +1,4 @@
-use std::str::{Chars, CharIndices};
+use std::str::CharIndices;
 
 pub struct JyutpingSplitter<'a>
 {

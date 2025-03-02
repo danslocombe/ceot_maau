@@ -34,6 +34,11 @@ impl<T: std::io::Write> DataWriter<T> {
         Ok(())
     }
 
+    pub fn write_f32(&mut self, data: f32) -> std::io::Result<()> {
+        let _count = self.inner.write_f32::<LittleEndian>(data)?;
+        Ok(())
+    }
+
     pub fn write_vbyte(&mut self, data: u64) -> std::io::Result<()> {
         let (length, encoded) = crate::vbyte::encode_vbyte(data);
 
@@ -73,7 +78,7 @@ impl<T: std::io::Write> DataWriter<T> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    //use super::*;
 
     //#[test]
     //fn write_read_vbyte() {

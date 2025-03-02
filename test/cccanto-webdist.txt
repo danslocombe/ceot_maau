@@ -1,0 +1,13 @@
+# CC-Canto
+# A Cantonese dictionary for everyone
+# Version 2017-02-02
+# 
+# Copyright (c) 2015-17 Pleco Inc.
+# Distributed under a Creative Commons Attribution-Share Alike 3.0 license (http://creativecommons.org/licenses/by-sa/3.0/)
+#
+# For more information + to submit feedback, see our website at cccanto.org
+#
+# This dictionary is intended to be used in conjunction with the (also open-source) Chinese dictionary CC-CEDICT
+# See mdbg.net to download CC-CEDICT, see cccanto.org to download an open-source list of Cantonese readings for CC-CEDICT
+#
+虎 虎 [hu3] {fu2} /(slang) wife (who is savage and mean usually)/

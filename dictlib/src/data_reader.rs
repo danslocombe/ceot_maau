@@ -53,6 +53,15 @@ impl<'a> DataReader<'a> {
     }
 
     #[inline]
+    pub fn read_f32(&mut self) -> f32 {
+        let mut cursor = std::io::Cursor::new(&self.data[0..]);
+        cursor.set_position(self.position as u64);
+        let data = cursor.read_f32::<LittleEndian>().unwrap();
+        self.position += std::mem::size_of::<f32>();
+        data
+    }
+
+    #[inline]
     pub fn read_bytes_len(&mut self, len: usize) -> &'a [u8] {
         let slice = &self.data[self.position..self.position + len];
         self.position += len;

@@ -1,3 +1,6 @@
+#![allow(dead_code)]
+#![allow(unused_parens)]
+
 use std::{collections::BTreeMap, io::Read};
 
 use compiled_dictionary::CompiledDictionary;
@@ -18,18 +21,42 @@ pub struct OffsetString {
 
 fn main() {
     let mut defs = TraditionalToDefinitions::default();
-    defs.parse_cedict("../cedict_ts.u8");
 
-    let mut trad_to_jyutping = TraditionalToJyutping::parse("../cccedict-canto-readings-150923.txt");
-    let mut trad_to_frequency = TraditionalToFrequencies::parse("../frequencies.txt");
+    let test_set = false;
 
-    defs.parse_ccanto(&mut trad_to_jyutping, &mut trad_to_frequency, "../cccanto-webdist.txt");
+    let (data_path, print_debug) = if test_set {
+        ("../test", true)
+    }
+    else {
+        ("../full", false)
+    };
+
+    // Cedict is
+    // Traditional / Pinyin / English Definition.
+    defs.parse_cedict(&format!("{}/cedict_ts.u8", data_path));
+
+    if (print_debug) {
+        println!("Defs0\n{:#?}", defs);
+    }
+
+    let mut trad_to_jyutping = TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
+    let mut trad_to_frequency = TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
+
+    defs.parse_ccanto(&mut trad_to_jyutping, &mut trad_to_frequency, &format!("{}/cccanto-webdist.txt", data_path));
+
+    if (print_debug) {
+        println!("Defs1\n{:#?}", defs);
+    }
 
     let dict = Dictionary {
         trad_to_def : defs,
         trad_to_jyutping,
         trad_to_frequency,
     };
+
+    if print_debug {
+        println!("Data\n{:#?}", dict);
+    }
 
     //let char = "人";
 
@@ -39,19 +66,23 @@ fn main() {
 
     //println!("{} - {} {:?} - {:?}", char, jyutping, def, frequency_data);
 
-    let write_path = "../test.jyp_dict";
+    //let hacky_results = dict.hacky_search("fu2");
+    //println!("fu2 results: \n{:#?}", hacky_results);
+    //return;
+
+    let write_path = format!("{}/test.jyp_dict", data_path);
     
     {
-        let mut compiled_dictionary = CompiledDictionary::from_dictionary(dict);
+        let compiled_dictionary = CompiledDictionary::from_dictionary(dict);
 
-        println!("Writing to {}", write_path);
-        let mut data_writer = data_writer::DataWriter::new(write_path);
+        println!("Writing to {}", &write_path);
+        let mut data_writer = data_writer::DataWriter::new(&write_path);
         compiled_dictionary.serialize(&mut data_writer).unwrap();
         println!("Writing done!");
     }
 
     let compiled_dictionary = {
-        println!("Reading from {}", write_path);
+        println!("Reading from {}", &write_path);
         let mut f = std::fs::File::open(write_path).unwrap();
         let mut buffer = Vec::new();
         f.read_to_end(&mut buffer).unwrap();
@@ -59,6 +90,10 @@ fn main() {
         let mut data_reader = data_reader::DataReader::new(&buffer[..]);
         CompiledDictionary::deserialize(&mut data_reader)
     };
+
+    if (print_debug) {
+        println!("Compiled Dictionary\n{:#?}", compiled_dictionary);
+    }
 
     let mut buffer = String::new();
 
@@ -91,6 +126,7 @@ fn main() {
 
 }
 
+#[derive(Debug)]
 pub struct Dictionary
 {
     trad_to_def: TraditionalToDefinitions,
@@ -135,7 +171,7 @@ impl Dictionary {
             }
         }
 
-        results.sort_by(|x, y| (1.0 * x.cost()).total_cmp(&(1.0 * y.cost())));
+        results.sort_by(|x, y| x.cost().cmp(&y.cost()));
 
         results.into_iter().take(10).collect()
     }
@@ -150,8 +186,8 @@ pub struct SearchResult {
 }
 
 impl SearchResult {
-    pub fn cost(&self) -> f64 {
-        let mut sum = 0.0;
+    pub fn cost(&self) -> u32 {
+        let mut sum = 0;
         for freq in &self.frequency_data {
             sum += freq.cost;
         }
@@ -160,7 +196,7 @@ impl SearchResult {
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 struct TraditionalToDefinitions
 {
     inner : BTreeMap<String, Vec<String>>,
@@ -279,6 +315,7 @@ impl TraditionalToDefinitions
     }
 }
 
+#[derive(Debug)]
 struct TraditionalToJyutping
 {
     inner : BTreeMap<String, String>,
@@ -351,6 +388,7 @@ impl TraditionalToJyutping
     }
 }
 
+#[derive(Debug)]
 struct TraditionalToFrequencies
 {
     inner : BTreeMap<char, FrequencyData>,
@@ -377,7 +415,7 @@ impl TraditionalToFrequencies
                 index : self.inner.len() as i32 + 1,
                 count: 0,
                 frequency: 0.0,
-                cost: 10000.0,
+                cost: 64_000,
             }
         }
     }
@@ -386,7 +424,8 @@ impl TraditionalToFrequencies
         for c in characters.chars() {
             if self.inner.get(&c).is_none() {
                 // HACK
-                self.inner.insert(c, FrequencyData { count: 1, frequency: 0.001, cost: 2.0, index: 10_000 });
+                //self.inner.insert(c, FrequencyData { count: 1, frequency: 0.001, cost: 2.0, index: 10_000 });
+                self.inner.insert(c, FrequencyData { count: 1, frequency: 0.001, cost: 10_000, index: 10_000 });
             }
         }
     }
@@ -412,7 +451,7 @@ impl TraditionalToFrequencies
             let (index_str, rest) = line.split_once('\t').unwrap();
             let (character, rest) = rest.split_once('\t').unwrap();
             let (count_str, rest) = rest.split_once('\t').unwrap();
-            let (cumulative_frequency_percentile_str, rest) = rest.split_once('\t').unwrap();
+            let (cumulative_frequency_percentile_str, _rest) = rest.split_once('\t').unwrap();
 
             let index : i32 = index_str.parse().unwrap();
             let count : i32 = count_str.parse().unwrap();
@@ -421,7 +460,8 @@ impl TraditionalToFrequencies
             let frequency = (cumulative_frequency_percentile - last_cumulative_frequency_percentile) / 100.0;
             last_cumulative_frequency_percentile = cumulative_frequency_percentile;
 
-            let cost = -frequency.ln();
+            let cost = -1_000.0 * frequency.ln();
+            let cost = cost.clamp(1.0, 64_000.0) as u32;
 
             let data = FrequencyData {
                 count, frequency, index, cost,
@@ -443,6 +483,6 @@ struct FrequencyData
 {
     count : i32,
     frequency : f64,
-    cost : f64,
+    cost : u32,
     index : i32,
 }

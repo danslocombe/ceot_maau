@@ -1,9 +1,10 @@
-use std::collections::{HashSet, BTreeSet};
+use std::collections::BTreeSet;
 
 use bit_set::BitSet;
 
 use crate::{Dictionary, jyutping_splitter::JyutpingSplitter, data_writer::DataWriter, data_reader::DataReader};
 
+#[derive(Debug)]
 pub struct CompiledDictionary
 {
     character_store : CharacterStore,
@@ -42,8 +43,8 @@ impl CompiledDictionary {
             }
         }
 
-        let mut all_characters_list : Vec<char> = all_characters.into_iter().collect();
-        let mut all_jyutping_words_list : Vec<String> = all_jyutping_words.into_iter().collect();
+        let all_characters_list : Vec<char> = all_characters.into_iter().collect();
+        let all_jyutping_words_list : Vec<String> = all_jyutping_words.into_iter().collect();
 
         let character_store = CharacterStore::from_chars(all_characters_list);
         let jyutping_store = JyutpingStore::from_strings(all_jyutping_words_list);
@@ -56,15 +57,14 @@ impl CompiledDictionary {
 
         for (traditional_chars, definitions) in dict.trad_to_def.inner
         {
-            let mut cost : f32 = 0.0;
+            let mut cost : u32 = 0;
 
             let mut char_indexes = Vec::new();
 
             for character in traditional_chars.chars()
             {
                 char_indexes.push(character_store.char_to_index(character).expect(&format!("Could not find match for {}", character)));
-
-                cost += dict.trad_to_frequency.get_or_default(character).cost as f32;
+                cost += dict.trad_to_frequency.get_or_default(character).cost;
             }
 
             let mut jyutpings = Vec::new();
@@ -84,7 +84,7 @@ impl CompiledDictionary {
             });
         }
 
-        entries.sort_by(|x, y| x.cost.total_cmp(&y.cost));
+        entries.sort_by(|x, y| x.cost.cmp(&y.cost));
 
         Self {
             character_store,
@@ -105,7 +105,7 @@ impl CompiledDictionary {
 
         let mut matches = Vec::new();
 
-        let max = 10;
+        let max = 8;
         for x in &self.entries
         {
             if (self.matches_query(x, &jyutping_matches))
@@ -241,6 +241,8 @@ impl CompiledDictionary {
                 entry.english_definitions.push(def.to_owned());
             }
 
+            entry.cost = reader.read_u32();
+
             entries.push(entry);
         }
 
@@ -294,13 +296,15 @@ impl CompiledDictionary {
                 //writer.write_u32(100);
                 writer.write_string(def)?;
             }
+
+            writer.write_u32(e.cost)?;
         }
 
         Ok(())
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 struct CharacterStore
 {
     characters : Vec<char>,
@@ -323,7 +327,7 @@ impl CharacterStore
     }
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 struct JyutpingStore
 {
     base_strings : Vec<String>,
@@ -392,7 +396,7 @@ pub struct DictionaryEntry
     // TODO struct of array members here
     jyutpings : Vec<Jyutping>,
     english_definitions : Vec<String>,
-    cost : f32,
+    cost : u32,
 }
 
 pub struct Result
@@ -409,7 +413,7 @@ pub struct DisplayDictionaryEntry
     characters : String,
     jyutping : String,
     english_definitions : Vec<String>,
-    cost : f32,
+    cost : u32,
 }
 
 impl DisplayDictionaryEntry
