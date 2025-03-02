@@ -94,8 +94,31 @@ impl CompiledDictionary {
     }
 }
 
+pub struct QueryTerms {
+    pub jyutping_matches: Vec<JyutpingMatches>,
+}
+
+pub struct JyutpingMatches {
+    pub matches: BitSet,
+    pub tone: Option<u8>,
+    pub match_bit_to_match_cost: Vec<(usize, u32)>,
+}
+
+#[derive(Debug)]
+pub struct MatchCostInfo
+{
+    match_cost: u32,
+    static_cost: u32,
+}
+
+impl MatchCostInfo {
+    pub fn total(&self) -> u32 {
+        self.match_cost + self.static_cost
+    }
+}
+
 impl CompiledDictionary {
-    pub fn search(&self, s : &str) -> Vec<&DictionaryEntry>
+    pub fn search(&self, s : &str) -> Vec<(MatchCostInfo, &DictionaryEntry)>
     {
         let mut jyutping_matches = Vec::new();
         for query_term in s.split_ascii_whitespace()
@@ -103,45 +126,77 @@ impl CompiledDictionary {
             jyutping_matches.push(self.get_jyutping_matches(query_term));
         }
 
-        let mut matches = Vec::new();
+        let query_terms = QueryTerms {
+            jyutping_matches,
+        };
 
-        let max = 8;
+        let mut matches: Vec<(MatchCostInfo, &DictionaryEntry)> = Vec::new();
+
+        //let max = 16;
         for x in &self.entries
         {
-            if (self.matches_query(x, &jyutping_matches))
+            if let Some(match_cost) = self.matches_query_jyutping(x, &query_terms)
             {
-                matches.push(x);
+                let cost_info = MatchCostInfo {
+                    match_cost,
+                    static_cost: x.cost,
+                };
 
-                if (matches.len() >= max)
-                {
-                    break;
-                }
+                matches.push((cost_info, x));
+
+                //if (matches.len() >= max)
+                //{
+                //    break;
+                //}
             }
         }
+
+        println!("Internal candidates: {}", matches.len());
+        matches.sort_by(|(x, _), (y, _)| x.total().cmp(&y.total()));
+        matches.truncate(8);
 
         matches
     }
 
-    pub fn matches_query(&self, entry: &DictionaryEntry, query_terms : &[(BitSet, Option<u8>)]) -> bool
+    pub fn matches_query_jyutping(&self, entry: &DictionaryEntry, query_terms : &QueryTerms) -> Option<u32>
     {
-        for (bitset, tone) in query_terms
+        let mut match_cost = 0;
+
+        let mut entry_jyutping_matches = BitSet::new();
+
+        for jyutping_match in &query_terms.jyutping_matches
         {
             let mut term_match = false;
 
-            for j in &entry.jyutpings
+            for (i, entry_jyutping) in entry.jyutpings.iter().enumerate()
             {
-                if (bitset.contains(j.base as usize))
+                if (jyutping_match.matches.contains(entry_jyutping.base as usize))
                 {
-                    if let Some(t) = tone
-                    {
-                        if *t == j.tone {
-                            term_match = true;
+                    let mut term_match_cost = 0;
+                    for (match_bit, cost) in &jyutping_match.match_bit_to_match_cost {
+                        if (*match_bit == entry_jyutping.base as usize) {
+                            term_match_cost = *cost;
+                            // Break out of finding term_match_cost.
                             break;
+                        }
+                    }
+
+                    if let Some(t) = jyutping_match.tone
+                    {
+                        if t == entry_jyutping.tone
+                        {
+                            term_match = true;
                         }
                     }
                     else
                     {
                         term_match = true;
+                    }
+
+                    if (term_match)
+                    {
+                        match_cost += term_match_cost;
+                        entry_jyutping_matches.insert(i);
                         break;
                     }
                 }
@@ -149,14 +204,23 @@ impl CompiledDictionary {
 
             if (!term_match)
             {
-                return false;
+                return None;
             }
         }
 
-        true
+        //let additional_terms = entry.jyutpings.len() - query_terms.jyutping_matches.len();
+        //match_cost += additional_terms as u32 * 10_000;
+
+        for i in 0..entry.jyutpings.len() {
+            if (!entry_jyutping_matches.contains(i)) {
+                match_cost += ((entry.jyutpings.len() + 1) - i) as u32 * 10_000;
+            }
+        }
+
+        Some(match_cost)
     }
 
-    pub fn get_jyutping_matches(&self, mut s : &str) -> (BitSet, Option<u8>)
+    pub fn get_jyutping_matches(&self, mut s : &str) -> JyutpingMatches
     {
         let mut tone : Option<u8> = None;
 
@@ -170,6 +234,7 @@ impl CompiledDictionary {
         }
 
         let mut matches = BitSet::new();
+        let mut match_bit_to_match_cost = Vec::new();
 
         //for (i, jyutping) in self.jyutping_store.base_strings
         //    for jyutping_word in jyutping {
@@ -181,14 +246,29 @@ impl CompiledDictionary {
 
         for (i, jyutping_string) in self.jyutping_store.base_strings.iter().enumerate()
         {
-            if (jyutping_string.contains(s))
+            if (jyutping_string.eq_ignore_ascii_case(s))
             {
                 println!("'{}' matches {}", s, jyutping_string);
                 matches.insert(i);
+                continue;
+            }
+
+            // Do we need to handle casing?
+            if (jyutping_string.contains(s))
+            {
+                let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
+                println!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
+                match_bit_to_match_cost.push((i, match_cost));
+                matches.insert(i);
+                continue;
             }
         }
 
-        (matches, tone)
+        JyutpingMatches {
+            matches,
+            tone,
+            match_bit_to_match_cost,
+        }
     }
 
     pub fn deserialize(reader : &mut DataReader) -> Self {

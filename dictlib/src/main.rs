@@ -105,10 +105,10 @@ fn main() {
 
         let matches = compiled_dictionary.search(&buffer.trim());
 
-        for m in matches
+        for (match_cost_info, m) in matches
         {
             let display = DisplayDictionaryEntry::from_entry(m, &compiled_dictionary);
-            println!("{:#?}", display);
+            println!("(Match Cost {:?}) - {:#?}", match_cost_info, display);
         }
     }
 
