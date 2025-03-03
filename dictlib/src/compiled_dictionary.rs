@@ -263,11 +263,13 @@ impl CompiledDictionary {
         let mut cost: u32 = 1_000;
 
         // @Perf
+        // Really we should keep all the english text in a big block
+        // then we could do a search over it in its entirety.
         'outer: for split in s.split_ascii_whitespace()
         {
             for (i, def) in entry.english_definitions.iter().enumerate()
             {
-                if let Some(pos) = def.find(split) {
+                if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, def) {
                     cost += i as u32 * 1_000;
                     cost += pos as u32 * 100;
                     continue 'outer;
@@ -319,8 +321,7 @@ impl CompiledDictionary {
                 continue;
             }
 
-            // Do we need to handle casing?
-            if (jyutping_string.contains(s))
+            if let Some(_) = crate::string_search::string_indexof_linear_ignorecase(s, &jyutping_string)
             {
                 let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
                 println!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);

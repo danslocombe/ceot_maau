@@ -1,3 +1,4 @@
+use core::hash;
 use std::i32;
 
 pub fn local_levenshtein_ascii(query: &str, target: &str) -> i32
@@ -109,6 +110,46 @@ pub fn _prefix_levenshtein_bs(query: &[u8], target: &[u8]) -> i32
     min_dist
 }
 
+pub fn string_indexof_linear_ignorecase(needle: &str, haystack: &str) -> Option<usize> {
+    //var i: usize = start_index;
+    //const end = haystack.len - needle.len;
+    //while (i <= end) : (i += 1) {
+    //    if (eql(T, haystack[i .. i + needle.len], needle)) return i;
+    //}
+    //return null;
+
+    //if haystack.len() < needle.len() {
+    //    return None;
+    //}
+
+    //let end = haystack.len() - needle.len();
+
+    //for (i, _char) in haystack.char_indices() {
+    //    if (i > end) {
+    //        break;
+    //    }
+
+    let needle_bs = needle.as_bytes();
+    let haystack_bs = haystack.as_bytes();
+
+    if (haystack_bs.len() < needle_bs.len()) {
+        return None;
+    }
+
+    let end = haystack_bs.len() - needle_bs.len();
+
+    for i in 0..end {
+        // Not actually correct, but good enough
+        // the eq_ignore_ascii_case can trigger weird stuff as it may
+        // lowercase a non-ascii char.
+        if needle.as_bytes().eq_ignore_ascii_case(&(haystack.as_bytes()[i..i+needle.len()])) {
+            return Some(i);
+        }
+    }
+
+    None
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -134,5 +175,15 @@ mod tests {
         assert_eq!(1, prefix_levenshtein_ascii("ike", "hike"));
         assert_eq!(1, prefix_levenshtein_ascii("ik", "hike"));
         assert_eq!(1, prefix_levenshtein_ascii("bai", "baai"));
+    }
+
+    #[test]
+    fn test_string_indexof()
+    {
+        assert_eq!(None, string_indexof_linear_ignorecase("hello", "there"));
+        assert_eq!(Some(1), string_indexof_linear_ignorecase("hello", " hello  "));
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("helLO", "😭 hello  "));
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("hello", "😭 HeLLo  "));
+        assert_eq!(Some(9), string_indexof_linear_ignorecase("😭", "oh thats 😭 hello  "));
     }
 }
