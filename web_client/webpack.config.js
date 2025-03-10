@@ -9,19 +9,19 @@ module.exports = {
   entry: {
     index: "./js/bootstrap.js"
   },
+  experiments: {
+      asyncWebAssembly: true
+  },
   output: {
     path: dist,
     filename: "[name].js"
   },
   devServer: {
-    contentBase: dist,
+    static: dist,
   },
   plugins: [
     new CopyPlugin([
       path.resolve(__dirname, "static")
-    ]),
-    new CopyPlugin([
-      path.resolve(__dirname, "../data")
     ]),
 
     new WasmPackPlugin({
