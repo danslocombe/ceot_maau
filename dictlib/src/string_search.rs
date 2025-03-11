@@ -120,7 +120,7 @@ pub fn string_indexof_linear_ignorecase(needle: &str, haystack: &str) -> Option<
 
     let end = haystack_bs.len() - needle_bs.len();
 
-    for i in 0..end {
+    for i in 0..=end {
         // Not actually correct, but good enough
         // the eq_ignore_ascii_case can trigger weird stuff as it may
         // lowercase a non-ascii char.
@@ -191,5 +191,8 @@ mod tests {
         assert_eq!(Some(5), string_indexof_linear_ignorecase("helLO", "😭 hello  "));
         assert_eq!(Some(5), string_indexof_linear_ignorecase("hello", "😭 HeLLo  "));
         assert_eq!(Some(9), string_indexof_linear_ignorecase("😭", "oh thats 😭 hello  "));
+
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("one two", "test one two"));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("one two", "one two"));
     }
 }
