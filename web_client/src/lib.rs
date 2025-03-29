@@ -1,4 +1,4 @@
-use dictlib::{compiled_dictionary::{CompiledDictionary, DisplayDictionaryEntry}, data_reader::DataReader, DebugLogger};
+use dictlib::{compiled_dictionary::{CompiledDictionary, DisplayDictionaryEntry, MatchType}, data_reader::DataReader, DebugLogger};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
 
@@ -50,14 +50,15 @@ impl JyutpingSearch {
         let results = self.dict.search(prefix);
 
         let mut display_results = Vec::new();
-        for (match_info, entry) in results
+        for m in results
         {
-            let display_entry = DisplayDictionaryEntry::from_entry(entry, &self.dict);
+            let display_entry = self.dict.get_diplay_entry(m.entry_id);
             display_results.push(DisplayResult
             {
-                cost: match_info.total(),
-                match_cost: match_info.match_cost,
-                static_cost: match_info.static_cost,
+                cost: m.cost_info.total(),
+                match_cost: m.cost_info.match_cost,
+                static_cost: m.cost_info.static_cost,
+                match_type: m.match_type,
                 
                 display_entry,
             })
@@ -76,6 +77,7 @@ struct DisplayResult
     pub cost: u32,
     pub match_cost: u32,
     pub static_cost: u32,
+    pub match_type: MatchType,
 
     pub display_entry: DisplayDictionaryEntry,
 }

@@ -154,7 +154,7 @@ impl MatchCostInfo {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub enum MatchType {
     Jyutping,
     Traditional,
