@@ -1,0 +1,48 @@
+V4
+
+Writing Header
+Writing Version = 4
+Writing Characters, length = 12422
+Characters bytes = 37253
+Writing Jyutping, length = 716
+Jyutping bytes = 5268
+Writing entries, 155952 entries
+Entries bytes = 4040334
+Writing english data, length = 6527409
+English data bytes = 6527413
+Writing english data starts, length = 275205
+English starts bytes = 1030734
+Writing done!
+
+
+V5
+// Reduce size of objects within entry
+Writing Header
+Writing Version = 5
+Writing Characters, length = 12422
+Characters bytes = 37253
+Writing Jyutping, length = 716
+Jyutping bytes = 5268
+Writing entries, 155952 entries
+Entries bytes = 3596311
+Writing english data, length = 6527409
+English data bytes = 6527413
+Writing english data starts, length = 275205
+English starts bytes = 1030734
+Writing done!
+
+V6
+// Lots of delta encoding in entry
+Writing Header
+Writing Version = 6
+Writing Characters, length = 12422
+Characters bytes = 37253
+Writing Jyutping, length = 716
+Jyutping bytes = 5268
+Writing entries, 155952 entries
+Entries bytes = 2505408
+Writing english data, length = 6527409
+English data bytes = 6527413
+Writing english data starts, length = 275205
+English starts bytes = 979222
+Writing done!

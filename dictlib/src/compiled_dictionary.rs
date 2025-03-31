@@ -20,10 +20,10 @@ pub struct CompiledDictionary
 
 pub const FILE_HEADER: &[u8] = b"jyp_dict";
 pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
-pub const CURRENT_VERSION: u32 = 4;
+pub const CURRENT_VERSION: u32 = 6;
 
 impl CompiledDictionary {
-    pub fn from_dictionary(dict : Dictionary) -> Self {
+    pub fn from_dictionary(mut dict : Dictionary) -> Self {
         let mut all_characters : BTreeSet<char> = BTreeSet::new();
         let mut all_jyutping_words : BTreeSet<String> = BTreeSet::new();
 
@@ -56,6 +56,8 @@ impl CompiledDictionary {
         debug_log!("Individual characters {}, Individual jyutping words {}", character_store.characters.len(), jyutping_store.base_strings.len());
         //println!("{:#?}", character_store.characters);
         //println!("{:#?}", jyutping_store.base_strings);
+
+        dict.entries.sort_by(|x, y| x.cost.cmp(&y.cost));
 
         let mut entries = Vec::new();
 
@@ -96,8 +98,6 @@ impl CompiledDictionary {
         }
 
         english_data_starts.push(english_data.len() as u32);
-
-        entries.sort_by(|x, y| x.cost.cmp(&y.cost));
 
         Self {
             character_store,
@@ -449,26 +449,31 @@ impl CompiledDictionary {
         let entry_count = reader.read_u32();
         let mut entries = Vec::with_capacity(entry_count as usize);
 
-        for _ in 0..entry_count {
+        let mut english_start = 0;
+        let mut prev_cost = 0;
+        for entry_id in 0..entry_count {
             let mut entry = CompiledDictionaryEntry::default();
 
             let char_count = reader.read_u8();
             for _ in 0..char_count {
-                entry.characters.push(reader.read_vbyte() as u16);
+                entry.characters.push(reader.read_u16() as u16);
             }
 
             let jyutping_count = reader.read_u8();
             entry.jyutping.reserve(jyutping_count as usize);
             for _ in 0..jyutping_count {
-                let base = reader.read_vbyte() as u16;
+                let base = reader.read_u16() as u16;
                 let tone = reader.read_u8();
                 entry.jyutping.push(Jyutping { base, tone });
             }
 
-            entry.english_start = reader.read_u32();
-            entry.english_end = reader.read_u32();
+            entry.english_start = english_start;
+            entry.english_end = english_start + reader.read_u8() as u32;
+            english_start = entry.english_end;
 
-            entry.cost = reader.read_u32();
+            let cost_delta = reader.read_vbyte() as u32;
+            entry.cost = prev_cost + cost_delta;
+            prev_cost = entry.cost;
 
             entries.push(entry);
         }
@@ -547,26 +552,31 @@ impl CompiledDictionary {
 
             println!("Writing entries, {} entries", self.entries.len());
             writer.write_u32(self.entries.len() as u32)?;
-            for e in &self.entries
+            let mut prev_english_start = 0;
+            let mut prev_cost = 0;
+            for (i, e) in self.entries.iter().enumerate()
             {
                 assert!(e.characters.len() < 256);
                 writer.write_u8(e.characters.len() as u8)?;
                 for c in &e.characters
                 {
-                    writer.write_vbyte(*c as u64)?;
+                    writer.write_u16(*c)?;
                 }
 
                 assert!(e.jyutping.len() < 256);
                 writer.write_u8(e.jyutping.len() as u8)?;
                 for j in &e.jyutping {
-                    writer.write_vbyte(j.base as u64)?;
+                    writer.write_u16(j.base)?;
                     writer.write_u8(j.tone)?;
                 }
 
-                writer.write_u32(e.english_start as u32)?;
-                writer.write_u32(e.english_end as u32)?;
+                assert!(prev_english_start <= e.english_start);
+                prev_english_start = e.english_start;
+                writer.write_u8((e.english_end - e.english_start) as u8)?;
 
-                writer.write_u32(e.cost)?;
+                let cost_delta = e.cost - prev_cost;
+                writer.write_vbyte(cost_delta as u64)?;
+                prev_cost = e.cost;
             }
 
             let bytes = writer.write_len - start;
