@@ -508,52 +508,95 @@ impl CompiledDictionary {
 
     pub fn serialize<T : std::io::Write>(&self, writer : &mut DataWriter<T>) -> std::io::Result<()>
     {
+        println!("Writing Header");
         writer.write_bytes(FILE_HEADER)?;
+        println!("Writing Version = {}", CURRENT_VERSION);
         writer.write_u32(CURRENT_VERSION)?;
 
-        writer.write_u32(self.character_store.characters.len() as u32)?;
-        for c in &self.character_store.characters
         {
-            writer.write_utf8(*c)?;
-        }
-
-        writer.write_u32(self.jyutping_store.base_strings.len() as u32)?;
-        for j in &self.jyutping_store.base_strings
-        {
-            writer.write_string(j)?;
-        }
-
-        writer.write_u32(self.entries.len() as u32)?;
-        for e in &self.entries
-        {
-            assert!(e.characters.len() < 256);
-            writer.write_u8(e.characters.len() as u8)?;
-            for c in &e.characters
+            let start = writer.write_len;
+            let characters_len = self.character_store.characters.len() as u32;
+            writer.write_u32(characters_len)?;
+            println!("Writing Characters, length = {}", characters_len);
+            for c in &self.character_store.characters
             {
-                writer.write_vbyte(*c as u64)?;
+                writer.write_utf8(*c)?;
             }
 
-            assert!(e.jyutping.len() < 256);
-            writer.write_u8(e.jyutping.len() as u8)?;
-            for j in &e.jyutping {
-                writer.write_vbyte(j.base as u64)?;
-                writer.write_u8(j.tone)?;
+            let bytes = writer.write_len - start;
+            println!("Characters bytes = {}", bytes);
+        }
+
+        {
+            let start = writer.write_len;
+
+            let juytping_strings_len = self.jyutping_store.base_strings.len() as u32;
+            writer.write_u32(juytping_strings_len)?;
+            println!("Writing Jyutping, length = {}", juytping_strings_len);
+            for j in &self.jyutping_store.base_strings
+            {
+                writer.write_string(j)?;
             }
 
-            writer.write_u32(e.english_start as u32)?;
-            writer.write_u32(e.english_end as u32)?;
+            let bytes = writer.write_len - start;
+            println!("Jyutping bytes = {}", bytes);
+        }
 
-            writer.write_u32(e.cost)?;
+        {
+            let start = writer.write_len;
+
+            println!("Writing entries, {} entries", self.entries.len());
+            writer.write_u32(self.entries.len() as u32)?;
+            for e in &self.entries
+            {
+                assert!(e.characters.len() < 256);
+                writer.write_u8(e.characters.len() as u8)?;
+                for c in &e.characters
+                {
+                    writer.write_vbyte(*c as u64)?;
+                }
+
+                assert!(e.jyutping.len() < 256);
+                writer.write_u8(e.jyutping.len() as u8)?;
+                for j in &e.jyutping {
+                    writer.write_vbyte(j.base as u64)?;
+                    writer.write_u8(j.tone)?;
+                }
+
+                writer.write_u32(e.english_start as u32)?;
+                writer.write_u32(e.english_end as u32)?;
+
+                writer.write_u32(e.cost)?;
+            }
+
+            let bytes = writer.write_len - start;
+            println!("Entries bytes = {}", bytes);
         }
 
         writer.write_bytes(ENGLISH_BLOB_HEADER)?;
 
-        writer.write_bytes_and_length(&self.english_data)?;
-
-        writer.write_u32(self.english_data_starts.len() as u32)?;
-        for start in &self.english_data_starts
         {
-            writer.write_vbyte(*start as u64)?;
+            let start = writer.write_len;
+
+            println!("Writing english data, length = {}", self.english_data.len());
+            writer.write_bytes_and_length(&self.english_data)?;
+
+            let bytes = writer.write_len - start;
+            println!("English data bytes = {}", bytes);
+        }
+
+        {
+            let start = writer.write_len;
+
+            println!("Writing english data starts, length = {}", self.english_data_starts.len());
+            writer.write_u32(self.english_data_starts.len() as u32)?;
+            for start in &self.english_data_starts
+            {
+                writer.write_vbyte(*start as u64)?;
+            }
+
+            let bytes = writer.write_len - start;
+            println!("English starts bytes = {}", bytes);
         }
 
         // End padding
