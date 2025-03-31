@@ -20,7 +20,7 @@ pub struct CompiledDictionary
 
 pub const FILE_HEADER: &[u8] = b"jyp_dict";
 pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
-pub const CURRENT_VERSION: u32 = 6;
+pub const CURRENT_VERSION: u32 = 7;
 
 impl CompiledDictionary {
     pub fn from_dictionary(mut dict : Dictionary) -> Self {
@@ -462,9 +462,7 @@ impl CompiledDictionary {
             let jyutping_count = reader.read_u8();
             entry.jyutping.reserve(jyutping_count as usize);
             for _ in 0..jyutping_count {
-                let base = reader.read_u16() as u16;
-                let tone = reader.read_u8();
-                entry.jyutping.push(Jyutping { base, tone });
+                entry.jyutping.push(Jyutping::unpack(reader.read_u16()));
             }
 
             entry.english_start = english_start;
@@ -487,9 +485,13 @@ impl CompiledDictionary {
 
         let starts_count = reader.read_u32() as usize;
         let mut english_data_starts = Vec::with_capacity(starts_count);
+
+        let mut prev_start = 0;
         for _ in 0..starts_count
         {
-            let start = reader.read_vbyte();
+            let delta = reader.read_vbyte();
+            let start = prev_start + delta;
+            prev_start = start;
             english_data_starts.push(start as u32);
         }
 
@@ -556,6 +558,7 @@ impl CompiledDictionary {
             let mut prev_cost = 0;
             for (i, e) in self.entries.iter().enumerate()
             {
+                // ~1mb
                 assert!(e.characters.len() < 256);
                 writer.write_u8(e.characters.len() as u8)?;
                 for c in &e.characters
@@ -563,13 +566,14 @@ impl CompiledDictionary {
                     writer.write_u16(*c)?;
                 }
 
+                // ~1.3mb
                 assert!(e.jyutping.len() < 256);
                 writer.write_u8(e.jyutping.len() as u8)?;
                 for j in &e.jyutping {
-                    writer.write_u16(j.base)?;
-                    writer.write_u8(j.tone)?;
+                    writer.write_u16(j.pack())?;
                 }
 
+                // ~0.3mb
                 assert!(prev_english_start <= e.english_start);
                 prev_english_start = e.english_start;
                 writer.write_u8((e.english_end - e.english_start) as u8)?;
@@ -599,10 +603,13 @@ impl CompiledDictionary {
             let start = writer.write_len;
 
             println!("Writing english data starts, length = {}", self.english_data_starts.len());
+            let mut prev_start = 0;
             writer.write_u32(self.english_data_starts.len() as u32)?;
             for start in &self.english_data_starts
             {
-                writer.write_vbyte(*start as u64)?;
+                let delta = *start - prev_start;
+                prev_start = *start;
+                writer.write_vbyte(delta as u64)?;
             }
 
             let bytes = writer.write_len - start;
@@ -700,6 +707,33 @@ pub struct Jyutping
     pub tone : u8,
 }
 
+impl Jyutping {
+    pub fn pack(self) -> u16 {
+        const K : u16 = 1 << 13;
+        assert!(self.base < K);
+
+        assert!(self.tone <= 6);
+        let packed_base_with_tone = self.base | ((self.tone as u16) << 13);
+        packed_base_with_tone
+    }
+
+    pub fn unpack(packed: u16) -> Self {
+        let base = packed & 0x0FFF;
+        let tone = (packed & 0xE000) >> 13;
+        if (tone > 6) {
+            panic!("Bad tone {} - base {}, packed {:#01x}", tone, base, packed);
+        }
+        assert!(tone <= 6);
+        let base = base as u16;
+        let tone = tone as u8;
+
+        Self {
+            base,
+            tone,
+        }
+    }
+}
+
 
 #[derive(Debug, Clone, Default)]
 pub struct CompiledDictionaryEntry
@@ -764,6 +798,35 @@ impl DisplayDictionaryEntry
             jyutping,
             english_definitions,
             cost : entry.cost,
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Jyutping;
+
+    #[test]
+    pub fn pack_unpack() {
+
+        for j in [Jyutping{
+            tone: 2,
+            base: 1024,
+        }, Jyutping {
+            tone: 1,
+            base: 10,
+        }, Jyutping {
+            tone: 6,
+            base: 0,
+        }, Jyutping {
+            tone: 5,
+            base: 251,
+        }] {
+            let packed = j.pack();
+            let unpacked = Jyutping::unpack(packed);
+
+            assert_eq!(unpacked.tone, j.tone);
+            assert_eq!(unpacked.base, j.base);
         }
     }
 }
