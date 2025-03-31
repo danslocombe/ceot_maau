@@ -130,7 +130,7 @@ function render(prefix, results_string) {
             similar_elem.setAttribute("class", "card-item");
 
             let english_elem = document.createElement("span");
-            english_elem.setAttribute("class", "item-english");
+            english_elem.setAttribute("class", "item-english indent");
             english_elem.innerHTML = english;
 
             //let toki_elem = document.createElement("span");

@@ -174,7 +174,8 @@ impl Dictionary {
                 jyutping_count += 1;
             }
 
-            let cost = (10_000 + jyutping_count * 1_000) as u32;
+            let mut cost = (10_000 + jyutping_count * 1_000) as u32;
+            cost += cost_heuristic(&definitions.inner);
 
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
@@ -243,6 +244,8 @@ impl Dictionary {
             for c in traditional.chars() {
                 cost += trad_to_frequency.get_or_default(c).cost;
             }
+
+            cost += cost_heuristic(&definitions.inner);
             
             //println!("{} - {:?}", traditional, definitions);
             self.entries.push(DictionaryEntry {
@@ -255,6 +258,38 @@ impl Dictionary {
 
         println!("Read {} dictionary entries from {}", {self.entries.len() - size_at_start}, path);
     }
+}
+
+fn cost_heuristic(english_definitions: &[String]) -> u32
+{
+    let from_number_of_defs: u32 = 1000 - english_definitions.len().min(10) as u32 * 100;
+
+    let mut from_abbr = 0;
+    for def in english_definitions {
+        if (def.contains("abbr. for")) {
+            from_abbr += from_number_of_defs;
+        }
+    }
+
+    // Has classifier is good
+    let mut has_classifier = false;
+    for def in english_definitions {
+        if (def.contains("M:") || def.contains("CL:")) {
+            has_classifier = true;
+        }
+    }
+
+    let from_classifier = if has_classifier { 0 } else { 5000 };
+
+    // Surname is bad
+    let mut from_surname = 0;
+    for def in english_definitions {
+        if (def.contains("surname") || def.contains("Surname")) {
+            from_surname += 2000;
+        }
+    }
+
+    from_number_of_defs + from_abbr + from_classifier + from_surname
 }
 
 #[derive(Debug)]
