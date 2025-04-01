@@ -213,8 +213,16 @@ impl CompiledDictionary {
                 let force_english = false;
                 if (s.len() > 2 || force_english)
                 {
-                    if let Some(match_cost) = self.matches_query_english(x, s)
+                    if let Some(mut match_cost) = self.matches_query_english(x, s)
                     {
+                        for c in s.chars() {
+                            if (!c.is_ascii()) {
+                                // Non-ascii match, probably a chinese character
+                                // match within an english description
+                                match_cost += 5_000;
+                            }
+                        }
+
                         let cost_info = MatchCostInfo {
                             match_cost,
                             static_cost: x.cost,
@@ -333,9 +341,6 @@ impl CompiledDictionary {
         let start = self.english_data_starts[entry.english_start as usize] as usize;
         let end = self.english_data_starts[entry.english_end as usize] as usize;
         let block = &self.english_data[start..end];
-        let block_str = unsafe {
-            str::from_utf8_unchecked(block)
-        };
 
         for split in s.split_ascii_whitespace()
         {
@@ -352,9 +357,22 @@ impl CompiledDictionary {
 
             // @FIXME entry boundaries etc.
 
-            if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, block_str) {
+            if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, block) {
                 //cost += i as u32 * 1_000;
                 cost += pos as u32 * 100;
+
+                if (pos == 0)  {
+                    continue;
+                }
+
+                let start_c = block[pos-1];
+                if (start_c.is_ascii_whitespace() || start_c == b'-')
+                {
+                    continue;
+                }
+
+                // Match in the middle of a word
+                cost += 5_000;
                 continue;
             }
 
@@ -403,7 +421,7 @@ impl CompiledDictionary {
                 continue;
             }
 
-            if let Some(_) = crate::string_search::string_indexof_linear_ignorecase(s, &jyutping_string)
+            if let Some(_) = crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes())
             {
                 let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
                 debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);

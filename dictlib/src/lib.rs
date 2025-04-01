@@ -1,5 +1,6 @@
 #![allow(dead_code)]
 #![allow(unused_parens)]
+#![allow(static_mut_refs)]
 
 use std::collections::BTreeMap;
 

@@ -110,9 +110,8 @@ pub fn _prefix_levenshtein_bs(query: &[u8], target: &[u8]) -> i32
     min_dist
 }
 
-pub fn string_indexof_linear_ignorecase(needle: &str, haystack: &str) -> Option<usize> {
+pub fn string_indexof_linear_ignorecase(needle: &str, haystack_bs: &[u8]) -> Option<usize> {
     let needle_bs = needle.as_bytes();
-    let haystack_bs = haystack.as_bytes();
 
     if (haystack_bs.len() < needle_bs.len()) {
         return None;
@@ -186,13 +185,13 @@ mod tests {
     #[test]
     fn test_string_indexof()
     {
-        assert_eq!(None, string_indexof_linear_ignorecase("hello", "there"));
-        assert_eq!(Some(1), string_indexof_linear_ignorecase("hello", " hello  "));
-        assert_eq!(Some(5), string_indexof_linear_ignorecase("helLO", "😭 hello  "));
-        assert_eq!(Some(5), string_indexof_linear_ignorecase("hello", "😭 HeLLo  "));
-        assert_eq!(Some(9), string_indexof_linear_ignorecase("😭", "oh thats 😭 hello  "));
+        assert_eq!(None, string_indexof_linear_ignorecase("hello", "there".as_bytes()));
+        assert_eq!(Some(1), string_indexof_linear_ignorecase("hello", " hello  ".as_bytes()));
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("helLO", "😭 hello  ".as_bytes()));
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("hello", "😭 HeLLo  ".as_bytes()));
+        assert_eq!(Some(9), string_indexof_linear_ignorecase("😭", "oh thats 😭 hello  ".as_bytes()));
 
-        assert_eq!(Some(5), string_indexof_linear_ignorecase("one two", "test one two"));
-        assert_eq!(Some(0), string_indexof_linear_ignorecase("one two", "one two"));
+        assert_eq!(Some(5), string_indexof_linear_ignorecase("one two", "test one two".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("one two", "one two".as_bytes()));
     }
 }
