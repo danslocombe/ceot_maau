@@ -219,7 +219,7 @@ impl CompiledDictionary {
                             if (!c.is_ascii()) {
                                 // Non-ascii match, probably a chinese character
                                 // match within an english description
-                                match_cost += 5_000;
+                                match_cost += 8_000;
                             }
                         }
 
