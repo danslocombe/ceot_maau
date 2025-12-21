@@ -133,6 +133,8 @@ pub struct JyutpingQueryTerm {
     pub matches: BitSet,
     pub tone: Option<u8>,
     pub match_bit_to_match_cost: Vec<(usize, u32)>,
+    pub query_string: String, // The original query string (without tone digit)
+    pub query_with_tone_len: usize, // Length of original query including tone digit
 }
 
 #[derive(Debug, Serialize)]
@@ -448,9 +450,18 @@ impl CompiledDictionary {
                         pos += 1; // tone digit
                         pos += 1; // space separator
                     }
-                    let base_len = self.jyutping_store.base_strings[entry_jyutping.base as usize].len();
-                    let total_len = base_len + 1; // include tone digit
-                    spans.push((1, pos, pos + total_len)); // field 1 is jyutping
+                    
+                    // Highlight the matched base portion
+                    let base_match_len = jyutping_term.query_string.len();
+                    spans.push((1, pos, pos + base_match_len)); // field 1 is jyutping
+                    
+                    // If the query included a tone digit, also highlight the tone
+                    if jyutping_term.tone.is_some() {
+                        let base_len = self.jyutping_store.base_strings[entry_jyutping.base as usize].len();
+                        let tone_pos = pos + base_len;
+                        spans.push((1, tone_pos, tone_pos + 1)); // highlight the tone digit
+                    }
+                    
                     break;
                 }
             }
@@ -501,6 +512,7 @@ impl CompiledDictionary {
     pub fn get_jyutping_query_term(&self, mut s : &str) -> JyutpingQueryTerm
     {
         let mut tone : Option<u8> = None;
+        let original_len = s.len();
 
         let bs = s.as_bytes();
         if (bs.len() > 0)
@@ -550,6 +562,8 @@ impl CompiledDictionary {
             matches,
             tone,
             match_bit_to_match_cost,
+            query_string: s.to_string(),
+            query_with_tone_len: original_len,
         }
     }
 
@@ -1161,7 +1175,7 @@ mod tests {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
         
-        // Query for "lou" should match first syllable
+        // Query for "lou" (without tone) should match first syllable
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("lou")],
             traditional_terms: vec![],
@@ -1179,11 +1193,39 @@ mod tests {
         let display = dict.get_diplay_entry(0);
         let matched_text = &display.jyutping[start..end];
         
-        // The matched span should point to "lou5" in "lou5 si1"
-        // NOT just "lou" - it should include the tone
-        assert_eq!(matched_text, "lou5", 
-            "Expected span to cover 'lou5' in '{}', got '{}' (span: {}..{})", 
+        // The matched span should highlight only the typed portion "lou" (no tone)
+        assert_eq!(matched_text, "lou", 
+            "Expected span to cover only typed 'lou' in '{}', got '{}' (span: {}..{})", 
             display.jyutping, matched_text, start, end);
+    }
+
+    #[test]
+    fn test_jyutping_matched_spans_single_syllable_with_tone() {
+        let dict = create_test_dict();
+        let entry = &dict.entries[0];
+        
+        // Query for "lou5" (with tone) should match first syllable
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![dict.get_jyutping_query_term("lou5")],
+            traditional_terms: vec![],
+        };
+
+        let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
+        
+        // Should have two spans: one for base, one for tone
+        assert_eq!(spans.len(), 2);
+        
+        let display = dict.get_diplay_entry(0);
+        
+        // First span should cover the base "lou"
+        let (field_idx1, start1, end1) = spans[0];
+        assert_eq!(field_idx1, 1);
+        assert_eq!(&display.jyutping[start1..end1], "lou");
+        
+        // Second span should cover the tone digit "5"
+        let (field_idx2, start2, end2) = spans[1];
+        assert_eq!(field_idx2, 1);
+        assert_eq!(&display.jyutping[start2..end2], "5");
     }
 
     #[test]
@@ -1207,9 +1249,9 @@ mod tests {
         let display = dict.get_diplay_entry(0);
         let matched_text = &display.jyutping[start..end];
         
-        // Should match "si1" in "lou5 si1"
-        assert_eq!(matched_text, "si1",
-            "Expected span to cover 'si1' in '{}', got '{}' (span: {}..{})", 
+        // Should match only the typed portion "si" in "lou5 si1"
+        assert_eq!(matched_text, "si",
+            "Expected span to cover only typed 'si' in '{}', got '{}' (span: {}..{})", 
             display.jyutping, matched_text, start, end);
     }
 
@@ -1233,13 +1275,13 @@ mod tests {
         
         let display = dict.get_diplay_entry(0);
         
-        // First span should cover "lou5"
+        // First span should cover only typed "lou"
         let (_, start1, end1) = spans[0];
-        assert_eq!(&display.jyutping[start1..end1], "lou5");
+        assert_eq!(&display.jyutping[start1..end1], "lou");
         
-        // Second span should cover "si1"
+        // Second span should cover only typed "si"
         let (_, start2, end2) = spans[1];
-        assert_eq!(&display.jyutping[start2..end2], "si1");
+        assert_eq!(&display.jyutping[start2..end2], "si");
     }
 
     #[test]
@@ -1263,9 +1305,9 @@ mod tests {
         let display = dict.get_diplay_entry(1);
         let matched_text = &display.jyutping[start..end];
         
-        // Even though we searched for "saa", the span should highlight the full syllable "saang1"
-        assert_eq!(matched_text, "saang1",
-            "Substring match 'saa' should highlight full syllable 'saang1' in '{}', got '{}' (span: {}..{})", 
+        // We searched for "saa", so only "saa" should be highlighted, not the full syllable
+        assert_eq!(matched_text, "saa",
+            "Substring match 'saa' should highlight only typed 'saa' in '{}', got '{}' (span: {}..{})", 
             display.jyutping, matched_text, start, end);
     }
 
@@ -1290,10 +1332,75 @@ mod tests {
         let display = dict.get_diplay_entry(1);
         let matched_text = &display.jyutping[start..end];
         
-        // Prefix match "ho" should highlight full syllable "hok6"
-        assert_eq!(matched_text, "hok6",
-            "Prefix match 'ho' should highlight full syllable 'hok6' in '{}', got '{}' (span: {}..{})", 
+        // Prefix match "ho" should highlight only the typed portion "ho"
+        assert_eq!(matched_text, "ho",
+            "Prefix match 'ho' should highlight only typed 'ho' in '{}', got '{}' (span: {}..{})", 
             display.jyutping, matched_text, start, end);
+    }
+
+    #[test]
+    fn test_jyutping_matched_spans_prefix_with_tone() {
+        let dict = create_test_dict();
+        let entry = &dict.entries[1];
+        
+        // Query with exact match and tone "hok6"
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![dict.get_jyutping_query_term("hok6")],
+            traditional_terms: vec![],
+        };
+
+        let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
+        
+        // Should have two spans: one for base, one for tone
+        assert_eq!(spans.len(), 2);
+        
+        let display = dict.get_diplay_entry(1);
+        
+        // First span covers "hok"
+        let (_, start1, end1) = spans[0];
+        assert_eq!(&display.jyutping[start1..end1], "hok");
+        
+        // Second span covers "6"
+        let (_, start2, end2) = spans[1];
+        assert_eq!(&display.jyutping[start2..end2], "6");
+    }
+
+    #[test]
+    fn test_jyutping_matched_spans_partial_with_tone() {
+        let dict = create_test_dict();
+        // Use entry 1 which has "hok6 saang1"
+        // We'll create a custom entry that has "hon5" to better test the case
+        // Actually, let's use "saang1" and query "saa1" which we already have
+        // Or better, let's conceptually test with what we have
+        // Query "saa1" against "saang1" should highlight "saa" and "1" separately
+        let entry = &dict.entries[1];
+        
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![dict.get_jyutping_query_term("saa1")],
+            traditional_terms: vec![],
+        };
+
+        let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
+        
+        // Should have 2 spans for the partial match with tone
+        assert_eq!(spans.len(), 2, "Partial match with tone should produce 2 spans");
+        
+        let display = dict.get_diplay_entry(1);
+        
+        // First span should cover only the matched portion "saa"
+        let (_, start1, end1) = spans[0];
+        let matched_base = &display.jyutping[start1..end1];
+        assert_eq!(matched_base, "saa", "First span should highlight matched base 'saa'");
+        
+        // Second span should cover the tone "1" 
+        let (_, start2, end2) = spans[1];
+        let matched_tone = &display.jyutping[start2..end2];
+        assert_eq!(matched_tone, "1", "Second span should highlight tone digit '1'");
+        
+        // Verify the unmatched portion "ng" is between the two spans
+        assert!(end1 < start2, "There should be a gap between base and tone spans");
+        let gap = &display.jyutping[end1..start2];
+        assert_eq!(gap, "ng", "Gap between spans should be the unmatched 'ng'");
     }
 
     #[test]
@@ -1309,14 +1416,18 @@ mod tests {
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
         
-        assert_eq!(spans.len(), 1);
-        let (_, start, end) = spans[0];
+        // Should have two spans: one for "saa", one for "1"
+        assert_eq!(spans.len(), 2);
         
         let display = dict.get_diplay_entry(1);
-        let matched_text = &display.jyutping[start..end];
         
-        // Should still highlight the full syllable
-        assert_eq!(matched_text, "saang1");
+        // First span covers "saa" (the matched base portion)
+        let (_, start1, end1) = spans[0];
+        assert_eq!(&display.jyutping[start1..end1], "saa");
+        
+        // Second span covers "1" (the tone digit)
+        let (_, start2, end2) = spans[1];
+        assert_eq!(&display.jyutping[start2..end2], "1");
     }
 
     #[test]
@@ -1339,10 +1450,9 @@ mod tests {
         let display = dict.get_diplay_entry(1);
         let highlighted = &display.jyutping[start..end];
         
-        // The highlighted portion should be the full syllable "saang1"
-        // not just the matched substring "saa"
-        assert_eq!(highlighted, "saang1", 
-            "Substring search 'saa' should highlight full syllable 'saang1'");
+        // The highlighted portion should be only the typed substring "saa"
+        assert_eq!(highlighted, "saa", 
+            "Substring search 'saa' should highlight only typed 'saa'");
     }
 
     #[test]
@@ -1362,8 +1472,8 @@ mod tests {
         let display = dict.get_diplay_entry(1);
         let highlighted = &display.jyutping[start..end];
         
-        assert_eq!(highlighted, "hok6",
-            "Prefix search 'ho' should highlight full syllable 'hok6'");
+        assert_eq!(highlighted, "ho",
+            "Prefix search 'ho' should highlight only typed 'ho'");
     }
 
     #[test]
@@ -1381,13 +1491,13 @@ mod tests {
         
         let display = dict.get_diplay_entry(1);
         
-        // First span should highlight "hok6"
+        // First span should highlight only typed "ho"
         let (_, start1, end1) = results[0].matched_spans[0];
-        assert_eq!(&display.jyutping[start1..end1], "hok6");
+        assert_eq!(&display.jyutping[start1..end1], "ho");
         
-        // Second span should highlight "saang1"
+        // Second span should highlight only typed "saa"
         let (_, start2, end2) = results[0].matched_spans[1];
-        assert_eq!(&display.jyutping[start2..end2], "saang1");
+        assert_eq!(&display.jyutping[start2..end2], "saa");
     }
 
     #[test]
