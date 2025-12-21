@@ -75,6 +75,53 @@ function get_class_by_source(source) {
     }
 }
 
+// Highlight matching text based on matched spans
+// matched_spans is an array of [field_index, start_pos, end_pos]
+// field_index: 0=traditional, 1=jyutping, 2+=english definitions
+function highlightText(text, matched_spans, field_index) {
+    // Find spans that match this field
+    const relevant_spans = matched_spans.filter(span => span[0] === field_index);
+    
+    if (relevant_spans.length === 0) {
+        return escapeHtml(text);
+    }
+    
+    // Sort spans by start position
+    relevant_spans.sort((a, b) => a[1] - b[1]);
+    
+    // Build highlighted text
+    let result = '';
+    let last_pos = 0;
+    
+    for (let span of relevant_spans) {
+        const start = span[1];
+        const end = span[2];
+        
+        // Add text before the match
+        if (start > last_pos) {
+            result += escapeHtml(text.substring(last_pos, start));
+        }
+        
+        // Add highlighted match
+        result += '<mark class="hit-highlight">' + escapeHtml(text.substring(start, end)) + '</mark>';
+        last_pos = end;
+    }
+    
+    // Add remaining text
+    if (last_pos < text.length) {
+        result += escapeHtml(text.substring(last_pos));
+    }
+    
+    return result;
+}
+
+// Escape HTML special characters
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function get_class_by_source_toki(source) {
     if (source === "Generated") {
         return "generated";
@@ -114,7 +161,7 @@ function render(prefix, results_string) {
 
         let title_traditional = document.createElement("h2");
         title_traditional.setAttribute("class", "title");
-        title_traditional.innerHTML = result.display_entry.characters
+        title_traditional.innerHTML = highlightText(result.display_entry.characters, result.match_obj.matched_spans, 0);
         traditional_elem.appendChild(title_traditional);
 
         let jyutping_elem = document.createElement("span");
@@ -126,7 +173,7 @@ function render(prefix, results_string) {
             title_jyutping.setAttribute("class", "title");
             title_jyutping.setAttribute("title", result.display_entry.entry_source);
             //title_jyutping.innerHTML = jyutping;
-            title_jyutping.innerHTML = result.display_entry.jyutping;
+            title_jyutping.innerHTML = highlightText(result.display_entry.jyutping, result.match_obj.matched_spans, 1);
             jyutping_elem.appendChild(title_jyutping);
         }
 
@@ -135,13 +182,14 @@ function render(prefix, results_string) {
 
         card.appendChild(title);
 
-        for (let english of result.display_entry.english_definitions) {
+        for (let i = 0; i < result.display_entry.english_definitions.length; i++) {
+            let english = result.display_entry.english_definitions[i];
             let similar_elem = document.createElement("li");
             similar_elem.setAttribute("class", "card-item");
 
             let english_elem = document.createElement("span");
             english_elem.setAttribute("class", "item-english indent");
-            english_elem.innerHTML = english;
+            english_elem.innerHTML = highlightText(english, result.match_obj.matched_spans, 2 + i);
 
             //let toki_elem = document.createElement("span");
             //toki_elem.setAttribute("class", "item-toki-pona " + get_class_by_source(similar.source));

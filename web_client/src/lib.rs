@@ -57,6 +57,7 @@ impl JyutpingSearch {
             {
                 match_obj: m,
                 display_entry,
+                query: prefix.to_string(),
             })
         }
 
@@ -69,6 +70,7 @@ struct DisplayResult
 {
     pub match_obj: Match,
     pub display_entry: DisplayDictionaryEntry,
+    pub query: String,
 }
 
 pub struct HitHighlight
