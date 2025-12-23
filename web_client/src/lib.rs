@@ -37,6 +37,8 @@ pub struct JyutpingSearch
 impl JyutpingSearch {
     #[wasm_bindgen(constructor)]
     pub fn new(compiled_data : Vec<u8>) -> Self {
+        console_error_panic_hook::set_once();
+        
         log!("Hello, received {} bytes", compiled_data.len());
         dictlib::set_debug_logger(Box::new(ConsoleLogger{}));
         let mut data_reader = DataReader::new(&compiled_data);

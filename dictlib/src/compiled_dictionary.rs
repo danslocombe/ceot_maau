@@ -283,7 +283,7 @@ impl CompiledDictionary {
         if query_terms.jyutping_terms.is_empty() {
             return None;
         }
-        
+
         if (entry.jyutping.len() < query_terms.jyutping_terms.len()) {
             return None;
         }
@@ -438,7 +438,7 @@ impl CompiledDictionary {
 
     pub fn get_jyutping_matched_spans(&self, entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Vec<(usize, usize, usize)> {
         let mut spans = Vec::new();
-        
+
         for (jyutping_idx, entry_jyutping) in entry.jyutping.iter().enumerate() {
             for jyutping_term in &query_terms.jyutping_terms {
                 if jyutping_term.matches.contains(entry_jyutping.base as usize) {
@@ -450,7 +450,7 @@ impl CompiledDictionary {
                         pos += 1; // tone digit
                         pos += 1; // space separator
                     }
-                    
+
                     // Highlight the matched base portion using actual matched length
                     // For exact/substring matches, this equals query length
                     // For Levenshtein matches, this uses the actual dictionary entry length
@@ -460,29 +460,29 @@ impl CompiledDictionary {
                         .map(|(_, len)| *len)
                         .unwrap_or(jyutping_term.query_string_without_tone.len());
                     spans.push((1, pos, pos + base_match_len)); // field 1 is jyutping
-                    
+
                     // If the query included a tone digit, also highlight the tone
                     if jyutping_term.tone.is_some() {
                         let base_len = self.jyutping_store.base_strings[entry_jyutping.base as usize].len();
                         let tone_pos = pos + base_len;
                         spans.push((1, tone_pos, tone_pos + 1)); // highlight the tone digit
                     }
-                    
+
                     break;
                 }
             }
         }
-        
+
         spans
     }
 
     pub fn get_english_matched_spans(&self, entry: &CompiledDictionaryEntry, query: &str) -> Vec<(usize, usize, usize)> {
         let mut spans = Vec::new();
-        
+
         if entry.english_start == entry.english_end {
             return spans;
         }
-        
+
         for def_idx in entry.english_start..entry.english_end {
             let start = self.english_data_starts[def_idx as usize] as usize;
             let end = if def_idx + 1 < self.english_data_starts.len() as u32 {
@@ -491,7 +491,7 @@ impl CompiledDictionary {
                 self.english_data.len()
             };
             let def_bytes = &self.english_data[start..end];
-            
+
             for split in query.split_ascii_whitespace() {
                 if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, def_bytes) {
                     let field_idx = 2 + (def_idx - entry.english_start) as usize;
@@ -499,19 +499,19 @@ impl CompiledDictionary {
                 }
             }
         }
-        
+
         spans
     }
 
     pub fn get_traditional_matched_spans(&self, entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Vec<(usize, usize, usize)> {
         let mut spans = Vec::new();
-        
+
         for (char_idx, char_id) in entry.characters.iter().enumerate() {
             if query_terms.traditional_terms.contains(char_id) {
                 spans.push((0, char_idx, char_idx + 1)); // field 0 is traditional
             }
         }
-        
+
         spans
     }
 
@@ -575,8 +575,8 @@ impl CompiledDictionary {
 
     pub fn deserialize(reader : &mut DataReader) -> Self {
         let header = reader.read_bytes_len(8);
-        debug_log!("Header '{}'", std::str::from_utf8(header).expect("Not utf8"));
-        assert!(header == FILE_HEADER);
+        debug_log!("Header '{}'", std::str::from_utf8(header).expect("Header not utf8"));
+        assert_eq!(header, FILE_HEADER);
 
         let version = reader.read_u32();
         debug_log!("Version {}", version);
@@ -1054,7 +1054,7 @@ mod tests {
     fn test_display_entry_format() {
         let dict = create_test_dict();
         let display = dict.get_diplay_entry(0);
-        
+
         // Verify the jyutping display format includes tone numbers
         assert_eq!(display.jyutping, "lou5 si1");
         assert_eq!(display.characters, "老師");
@@ -1063,12 +1063,12 @@ mod tests {
     #[test]
     fn test_jyutping_query_term_exact_match() {
         let dict = create_test_dict();
-        
+
         // Test exact match (case insensitive)
         let query_term = dict.get_jyutping_query_term("lou");
         assert!(query_term.matches.contains(1)); // "lou" is at index 1
         assert_eq!(query_term.tone, None);
-        
+
         // Should have no match cost for exact match
         assert_eq!(query_term.match_bit_to_match_cost.len(), 0);
     }
@@ -1076,7 +1076,7 @@ mod tests {
     #[test]
     fn test_jyutping_query_term_with_tone() {
         let dict = create_test_dict();
-        
+
         // Test query with tone digit
         let query_term = dict.get_jyutping_query_term("lou5");
         assert!(query_term.matches.contains(1)); // "lou" is at index 1
@@ -1086,16 +1086,16 @@ mod tests {
     #[test]
     fn test_jyutping_query_term_substring_match() {
         let dict = create_test_dict();
-        
+
         // Test substring match: "saa" should match "saang"
         let query_term = dict.get_jyutping_query_term("saa");
         assert!(query_term.matches.contains(2)); // "saang" is at index 2
-        
+
         // Should have a match cost penalty
         let cost_entry = query_term.match_bit_to_match_cost.iter()
             .find(|(idx, _)| *idx == 2);
         assert!(cost_entry.is_some(), "Should have cost entry for substring match");
-        
+
         // Cost should be (len("saang") - len("saa")) * 6000 = 2 * 6000 = 12000
         let (_, cost) = cost_entry.unwrap();
         assert_eq!(*cost, 12_000);
@@ -1104,16 +1104,16 @@ mod tests {
     #[test]
     fn test_jyutping_query_term_prefix_match() {
         let dict = create_test_dict();
-        
+
         // Test prefix match: "ho" should match "hok"
         let query_term = dict.get_jyutping_query_term("ho");
         assert!(query_term.matches.contains(0)); // "hok" is at index 0
-        
+
         // Should have a match cost penalty for partial match
         let cost_entry = query_term.match_bit_to_match_cost.iter()
             .find(|(idx, _)| *idx == 0);
         assert!(cost_entry.is_some());
-        
+
         // Cost should be (len("hok") - len("ho")) * 6000 = 1 * 6000 = 6000
         let (_, cost) = cost_entry.unwrap();
         assert_eq!(*cost, 6_000);
@@ -1122,11 +1122,11 @@ mod tests {
     #[test]
     fn test_jyutping_query_term_case_insensitive() {
         let dict = create_test_dict();
-        
+
         // Test case insensitive matching
         let query_term = dict.get_jyutping_query_term("LOU");
         assert!(query_term.matches.contains(1));
-        
+
         let query_term2 = dict.get_jyutping_query_term("LoU");
         assert!(query_term2.matches.contains(1));
     }
@@ -1134,14 +1134,14 @@ mod tests {
     #[test]
     fn test_jyutping_substring_match_integration() {
         let dict = create_test_dict();
-        
+
         // Search with substring should find entries
         let results = dict.search("saa");
-        
+
         assert!(results.len() > 0, "Should find results for substring 'saa' matching 'saang'");
         assert_eq!(results[0].entry_id, 1); // Should match the 學生 entry with saang1
         assert!(matches!(results[0].match_type, MatchType::Jyutping));
-        
+
         // Verify the cost is higher than exact match (due to substring penalty)
         assert!(results[0].cost_info.term_match_cost > 0);
     }
@@ -1149,10 +1149,10 @@ mod tests {
     #[test]
     fn test_jyutping_prefix_match_integration() {
         let dict = create_test_dict();
-        
+
         // Search with prefix
         let results = dict.search("ho");
-        
+
         assert!(results.len() > 0, "Should find results for prefix 'ho' matching 'hok'");
         assert_eq!(results[0].entry_id, 1); // Should match the 學生 entry with hok6
         assert!(matches!(results[0].match_type, MatchType::Jyutping));
@@ -1161,17 +1161,17 @@ mod tests {
     #[test]
     fn test_jyutping_no_false_matches() {
         let dict = create_test_dict();
-        
+
         // Query that doesn't match anything
         let query_term = dict.get_jyutping_query_term("xyz");
         assert_eq!(query_term.matches.len(), 0, "Should not match non-existent jyutping");
-        
+
         // Search should return no jyutping matches
         let results = dict.search("xyz");
-        
+
         // May have English matches, but no jyutping matches
         for result in results {
-            assert!(!matches!(result.match_type, MatchType::Jyutping), 
+            assert!(!matches!(result.match_type, MatchType::Jyutping),
                 "Should not have jyutping match for non-existent syllable");
         }
     }
@@ -1180,7 +1180,7 @@ mod tests {
     fn test_jyutping_matched_spans_single_syllable() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         // Query for "lou" (without tone) should match first syllable
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("lou")],
@@ -1188,20 +1188,20 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         // Should have one span
         assert_eq!(spans.len(), 1);
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 1); // field 1 is jyutping
-        
+
         // Extract the matched substring from display string
         let display = dict.get_diplay_entry(0);
         let matched_text = &display.jyutping[start..end];
-        
+
         // The matched span should highlight only the typed portion "lou" (no tone)
-        assert_eq!(matched_text, "lou", 
-            "Expected span to cover only typed 'lou' in '{}', got '{}' (span: {}..{})", 
+        assert_eq!(matched_text, "lou",
+            "Expected span to cover only typed 'lou' in '{}', got '{}' (span: {}..{})",
             display.jyutping, matched_text, start, end);
     }
 
@@ -1209,7 +1209,7 @@ mod tests {
     fn test_jyutping_matched_spans_single_syllable_with_tone() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         // Query for "lou5" (with tone) should match first syllable
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("lou5")],
@@ -1217,17 +1217,17 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         // Should have two spans: one for base, one for tone
         assert_eq!(spans.len(), 2);
-        
+
         let display = dict.get_diplay_entry(0);
-        
+
         // First span should cover the base "lou"
         let (field_idx1, start1, end1) = spans[0];
         assert_eq!(field_idx1, 1);
         assert_eq!(&display.jyutping[start1..end1], "lou");
-        
+
         // Second span should cover the tone digit "5"
         let (field_idx2, start2, end2) = spans[1];
         assert_eq!(field_idx2, 1);
@@ -1238,7 +1238,7 @@ mod tests {
     fn test_jyutping_matched_spans_second_syllable() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         // Query for "si" should match second syllable
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("si")],
@@ -1246,18 +1246,18 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         assert_eq!(spans.len(), 1);
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 1);
-        
+
         let display = dict.get_diplay_entry(0);
         let matched_text = &display.jyutping[start..end];
-        
+
         // Should match only the typed portion "si" in "lou5 si1"
         assert_eq!(matched_text, "si",
-            "Expected span to cover only typed 'si' in '{}', got '{}' (span: {}..{})", 
+            "Expected span to cover only typed 'si' in '{}', got '{}' (span: {}..{})",
             display.jyutping, matched_text, start, end);
     }
 
@@ -1265,7 +1265,7 @@ mod tests {
     fn test_jyutping_matched_spans_multiple_syllables() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         // Query for both syllables
         let query_terms = QueryTerms {
             jyutping_terms: vec![
@@ -1276,15 +1276,15 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         assert_eq!(spans.len(), 2);
-        
+
         let display = dict.get_diplay_entry(0);
-        
+
         // First span should cover only typed "lou"
         let (_, start1, end1) = spans[0];
         assert_eq!(&display.jyutping[start1..end1], "lou");
-        
+
         // Second span should cover only typed "si"
         let (_, start2, end2) = spans[1];
         assert_eq!(&display.jyutping[start2..end2], "si");
@@ -1294,7 +1294,7 @@ mod tests {
     fn test_jyutping_matched_spans_substring_match() {
         let dict = create_test_dict();
         let entry = &dict.entries[1]; // 學生 with "hok6 saang1"
-        
+
         // Query with substring "saa" should match "saang"
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("saa")],
@@ -1302,18 +1302,18 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         assert_eq!(spans.len(), 1, "Should have one matched span for substring match");
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 1); // field 1 is jyutping
-        
+
         let display = dict.get_diplay_entry(1);
         let matched_text = &display.jyutping[start..end];
-        
+
         // We searched for "saa", so only "saa" should be highlighted, not the full syllable
         assert_eq!(matched_text, "saa",
-            "Substring match 'saa' should highlight only typed 'saa' in '{}', got '{}' (span: {}..{})", 
+            "Substring match 'saa' should highlight only typed 'saa' in '{}', got '{}' (span: {}..{})",
             display.jyutping, matched_text, start, end);
     }
 
@@ -1321,7 +1321,7 @@ mod tests {
     fn test_jyutping_matched_spans_prefix_match() {
         let dict = create_test_dict();
         let entry = &dict.entries[1]; // 學生 with "hok6 saang1"
-        
+
         // Query with prefix "ho" should match "hok"
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("ho")],
@@ -1329,18 +1329,18 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         assert_eq!(spans.len(), 1);
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 1);
-        
+
         let display = dict.get_diplay_entry(1);
         let matched_text = &display.jyutping[start..end];
-        
+
         // Prefix match "ho" should highlight only the typed portion "ho"
         assert_eq!(matched_text, "ho",
-            "Prefix match 'ho' should highlight only typed 'ho' in '{}', got '{}' (span: {}..{})", 
+            "Prefix match 'ho' should highlight only typed 'ho' in '{}', got '{}' (span: {}..{})",
             display.jyutping, matched_text, start, end);
     }
 
@@ -1348,7 +1348,7 @@ mod tests {
     fn test_jyutping_matched_spans_prefix_with_tone() {
         let dict = create_test_dict();
         let entry = &dict.entries[1];
-        
+
         // Query with exact match and tone "hok6"
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("hok6")],
@@ -1356,16 +1356,16 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         // Should have two spans: one for base, one for tone
         assert_eq!(spans.len(), 2);
-        
+
         let display = dict.get_diplay_entry(1);
-        
+
         // First span covers "hok"
         let (_, start1, end1) = spans[0];
         assert_eq!(&display.jyutping[start1..end1], "hok");
-        
+
         // Second span covers "6"
         let (_, start2, end2) = spans[1];
         assert_eq!(&display.jyutping[start2..end2], "6");
@@ -1380,29 +1380,29 @@ mod tests {
         // Or better, let's conceptually test with what we have
         // Query "saa1" against "saang1" should highlight "saa" and "1" separately
         let entry = &dict.entries[1];
-        
+
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("saa1")],
             traditional_terms: vec![],
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         // Should have 2 spans for the partial match with tone
         assert_eq!(spans.len(), 2, "Partial match with tone should produce 2 spans");
-        
+
         let display = dict.get_diplay_entry(1);
-        
+
         // First span should cover only the matched portion "saa"
         let (_, start1, end1) = spans[0];
         let matched_base = &display.jyutping[start1..end1];
         assert_eq!(matched_base, "saa", "First span should highlight matched base 'saa'");
-        
-        // Second span should cover the tone "1" 
+
+        // Second span should cover the tone "1"
         let (_, start2, end2) = spans[1];
         let matched_tone = &display.jyutping[start2..end2];
         assert_eq!(matched_tone, "1", "Second span should highlight tone digit '1'");
-        
+
         // Verify the unmatched portion "ng" is between the two spans
         assert!(end1 < start2, "There should be a gap between base and tone spans");
         let gap = &display.jyutping[end1..start2];
@@ -1413,7 +1413,7 @@ mod tests {
     fn test_jyutping_matched_spans_substring_with_tone() {
         let dict = create_test_dict();
         let entry = &dict.entries[1];
-        
+
         // Query with substring and tone should still work
         let query_terms = QueryTerms {
             jyutping_terms: vec![dict.get_jyutping_query_term("saa1")],
@@ -1421,16 +1421,16 @@ mod tests {
         };
 
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
-        
+
         // Should have two spans: one for "saa", one for "1"
         assert_eq!(spans.len(), 2);
-        
+
         let display = dict.get_diplay_entry(1);
-        
+
         // First span covers "saa" (the matched base portion)
         let (_, start1, end1) = spans[0];
         assert_eq!(&display.jyutping[start1..end1], "saa");
-        
+
         // Second span covers "1" (the tone digit)
         let (_, start2, end2) = spans[1];
         assert_eq!(&display.jyutping[start2..end2], "1");
@@ -1439,45 +1439,45 @@ mod tests {
     #[test]
     fn test_jyutping_substring_highlighting_integration() {
         let dict = create_test_dict();
-        
+
         // Search with substring
         let results = dict.search("saa");
-        
+
         assert!(results.len() > 0, "Should find results for substring");
         assert_eq!(results[0].entry_id, 1);
         assert!(matches!(results[0].match_type, MatchType::Jyutping));
-        
+
         // Verify the highlighting span is correct
         assert_eq!(results[0].matched_spans.len(), 1);
         let (field_idx, start, end) = results[0].matched_spans[0];
-        
+
         assert_eq!(field_idx, 1);
-        
+
         let display = dict.get_diplay_entry(1);
         let highlighted = &display.jyutping[start..end];
-        
+
         // The highlighted portion should be only the typed substring "saa"
-        assert_eq!(highlighted, "saa", 
+        assert_eq!(highlighted, "saa",
             "Substring search 'saa' should highlight only typed 'saa'");
     }
 
     #[test]
     fn test_jyutping_prefix_highlighting_integration() {
         let dict = create_test_dict();
-        
+
         // Search with prefix
         let results = dict.search("ho");
-        
+
         assert!(results.len() > 0, "Should find results for prefix");
         assert_eq!(results[0].entry_id, 1);
-        
+
         // Verify the highlighting span covers the full syllable
         let (field_idx, start, end) = results[0].matched_spans[0];
         assert_eq!(field_idx, 1);
-        
+
         let display = dict.get_diplay_entry(1);
         let highlighted = &display.jyutping[start..end];
-        
+
         assert_eq!(highlighted, "ho",
             "Prefix search 'ho' should highlight only typed 'ho'");
     }
@@ -1485,22 +1485,22 @@ mod tests {
     #[test]
     fn test_jyutping_multiple_substring_matches() {
         let dict = create_test_dict();
-        
+
         // Search with two substring queries
         let results = dict.search("ho saa");
-        
+
         assert!(results.len() > 0);
         assert_eq!(results[0].entry_id, 1); // 學生 with "hok6 saang1"
-        
+
         // Should have two highlighted spans
         assert_eq!(results[0].matched_spans.len(), 2);
-        
+
         let display = dict.get_diplay_entry(1);
-        
+
         // First span should highlight only typed "ho"
         let (_, start1, end1) = results[0].matched_spans[0];
         assert_eq!(&display.jyutping[start1..end1], "ho");
-        
+
         // Second span should highlight only typed "saa"
         let (_, start2, end2) = results[0].matched_spans[1];
         assert_eq!(&display.jyutping[start2..end2], "saa");
@@ -1510,17 +1510,17 @@ mod tests {
     fn test_english_matched_spans() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         let spans = dict.get_english_matched_spans(entry, "teach");
-        
+
         assert_eq!(spans.len(), 1);
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 2); // First english definition is field 2
-        
+
         let display = dict.get_diplay_entry(0);
         let matched_text = &display.english_definitions[0][start..end];
-        
+
         assert_eq!(matched_text, "teach");
     }
 
@@ -1528,21 +1528,21 @@ mod tests {
     fn test_traditional_matched_spans() {
         let dict = create_test_dict();
         let entry = &dict.entries[0];
-        
+
         let query_terms = QueryTerms {
             jyutping_terms: vec![],
             traditional_terms: vec![3], // 老 is at index 3 in sorted character_store
         };
 
         let spans = dict.get_traditional_matched_spans(entry, &query_terms);
-        
+
         assert_eq!(spans.len(), 1);
         let (field_idx, start, end) = spans[0];
-        
+
         assert_eq!(field_idx, 0); // field 0 is traditional
         assert_eq!(start, 0); // First character in entry
         assert_eq!(end, 1);
-        
+
         let display = dict.get_diplay_entry(0);
         let chars: Vec<char> = display.characters.chars().collect();
         assert_eq!(chars[start], '老');
@@ -1551,14 +1551,14 @@ mod tests {
     #[test]
     fn test_integration_jyutping_search() {
         let dict = create_test_dict();
-        
+
         // Search for "lou" should return the teacher entry
         let results = dict.search("lou");
-        
+
         assert!(results.len() > 0, "Should find at least one result");
         assert_eq!(results[0].entry_id, 0);
         assert!(matches!(results[0].match_type, MatchType::Jyutping));
-        
+
         // Verify the spans are valid
         let display = dict.get_diplay_entry(results[0].entry_id);
         for (field_idx, start, end) in &results[0].matched_spans {
@@ -1578,13 +1578,13 @@ mod tests {
     #[test]
     fn test_integration_english_search() {
         let dict = create_test_dict();
-        
+
         let results = dict.search("student");
-        
+
         assert!(results.len() > 0);
         assert_eq!(results[0].entry_id, 1);
         assert!(matches!(results[0].match_type, MatchType::English));
-        
+
         // Verify english spans
         let display = dict.get_diplay_entry(results[0].entry_id);
         for (field_idx, start, end) in &results[0].matched_spans {
@@ -1603,25 +1603,25 @@ mod tests {
     #[test]
     fn test_integration_traditional_search() {
         let dict = create_test_dict();
-        
+
         // First verify the character is in the store
         let char_id = dict.character_store.char_to_index('老');
         eprintln!("Character '老' has id: {:?}", char_id);
         eprintln!("Entry 0 characters: {:?}", dict.entries[0].characters);
-        
+
         let results = dict.search("老");
-        
+
         // Debug: print what we got
         eprintln!("Search for '老' returned {} results", results.len());
         for (i, r) in results.iter().enumerate() {
-            eprintln!("Result {}: entry_id={}, match_type={:?}, spans={:?}", 
+            eprintln!("Result {}: entry_id={}, match_type={:?}, spans={:?}",
                 i, r.entry_id, r.match_type, r.matched_spans);
         }
-        
+
         assert!(results.len() > 0, "Should find at least one result for '老'");
         assert_eq!(results[0].entry_id, 0);
         assert!(matches!(results[0].match_type, MatchType::Traditional));
-        
+
         // Verify traditional spans point to the character
         let display = dict.get_diplay_entry(results[0].entry_id);
         for (field_idx, start, end) in &results[0].matched_spans {
