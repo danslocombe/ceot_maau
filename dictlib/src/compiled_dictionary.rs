@@ -6,7 +6,7 @@ use bit_set::BitSet;
 use serde::Serialize;
 
 use crate::EntrySource;
-use crate::{data_reader::DataReader, data_writer::DataWriter, debug_logline, jyutping_splitter::JyutpingSplitter, Dictionary};
+use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, Dictionary};
 
 #[derive(Debug)]
 pub struct CompiledDictionary
@@ -133,8 +133,8 @@ pub struct JyutpingQueryTerm {
     pub matches: BitSet,
     pub tone: Option<u8>,
     pub match_bit_to_match_cost: Vec<(usize, u32)>,
-    pub query_string: String, // The original query string (without tone digit)
-    pub query_with_tone_len: usize, // Length of original query including tone digit
+    pub match_bit_to_match_length: Vec<(usize, usize)>, // Maps match bit index to actual matched string length
+    pub query_string_without_tone: String,
 }
 
 #[derive(Debug, Serialize)]
@@ -451,8 +451,14 @@ impl CompiledDictionary {
                         pos += 1; // space separator
                     }
                     
-                    // Highlight the matched base portion
-                    let base_match_len = jyutping_term.query_string.len();
+                    // Highlight the matched base portion using actual matched length
+                    // For exact/substring matches, this equals query length
+                    // For Levenshtein matches, this uses the actual dictionary entry length
+                    let base_match_len = jyutping_term.match_bit_to_match_length
+                        .iter()
+                        .find(|(idx, _)| *idx == entry_jyutping.base as usize)
+                        .map(|(_, len)| *len)
+                        .unwrap_or(jyutping_term.query_string_without_tone.len());
                     spans.push((1, pos, pos + base_match_len)); // field 1 is jyutping
                     
                     // If the query included a tone digit, also highlight the tone
@@ -512,7 +518,6 @@ impl CompiledDictionary {
     pub fn get_jyutping_query_term(&self, mut s : &str) -> JyutpingQueryTerm
     {
         let mut tone : Option<u8> = None;
-        let original_len = s.len();
 
         let bs = s.as_bytes();
         if (bs.len() > 0)
@@ -525,6 +530,7 @@ impl CompiledDictionary {
 
         let mut matches = BitSet::new();
         let mut match_bit_to_match_cost = Vec::new();
+        let mut match_bit_to_match_length = Vec::new();
 
         for (i, jyutping_string) in self.jyutping_store.base_strings.iter().enumerate()
         {
@@ -532,6 +538,7 @@ impl CompiledDictionary {
             {
                 debug_log!("'{}' matches {}", s, jyutping_string);
                 matches.insert(i);
+                match_bit_to_match_length.push((i, jyutping_string.len()));
                 continue;
             }
 
@@ -540,30 +547,29 @@ impl CompiledDictionary {
                 let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
                 debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
+                match_bit_to_match_length.push((i, jyutping_string.len()));
                 matches.insert(i);
                 continue;
             }
 
-            /*
             // Too noisy
-
             let dist = crate::string_search::prefix_levenshtein_ascii(s, &jyutping_string);
             if (dist < 2) {
                 let match_cost = dist as u32 * 10_000;
                 println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
+                match_bit_to_match_length.push((i, jyutping_string.len()));
                 matches.insert(i);
                 continue;
             }
-            */
         }
 
         JyutpingQueryTerm {
             matches,
             tone,
             match_bit_to_match_cost,
-            query_string: s.to_string(),
-            query_with_tone_len: original_len,
+            match_bit_to_match_length,
+            query_string_without_tone: s.to_string(),
         }
     }
 
