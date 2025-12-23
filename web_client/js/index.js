@@ -12,12 +12,15 @@ var explanation = document.getElementById("explanation");
 
 var debug = url_params.get('debug') === '1';
 
-Promise.all(
-    [
-        fetch("test.jyp_dict").then(x => x.arrayBuffer()),
-    ]
-)
-.then(([data]) => {
+fetch("test.jyp_dict")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to fetch dictionary blob: ${response.status} ${response.statusText}`);
+        }
+        return response.arrayBuffer();
+  })
+  .then(data => {
+    console.log("Got dictionary blob {} bytes", data.byteLength);
     const data_array = new Uint8Array(data);
     toki_sama = new JyutpingSearch(data_array);
     console.log("Finished search init!");
@@ -32,7 +35,7 @@ Promise.all(
         if (prefix.length > 0) {
             render(prefix, toki_sama.search(prefix));
             explanation.hidden = true;
-            
+
             // Update URL query parameter
             const newUrl = new URL(window.location);
             newUrl.searchParams.set('q', prefix);
@@ -41,7 +44,7 @@ Promise.all(
         else {
             textfield.setAttribute("placeholder", "");
             explanation.hidden = false;
-            
+
             // Remove query parameter when search is empty
             const newUrl = new URL(window.location);
             newUrl.searchParams.delete('q');
@@ -51,13 +54,12 @@ Promise.all(
 
     textfield.addEventListener('input', (e) => input_function(e.target.value));
 
-    var query = url_params.get('q');
     if (query)
     {
         input_function(query);
         textfield.value = query;
     }
-})
+});
 
 // Get colouring classes for different translation sources
 function get_class_by_source(source) {
@@ -81,37 +83,37 @@ function get_class_by_source(source) {
 function highlightText(text, matched_spans, field_index) {
     // Find spans that match this field
     const relevant_spans = matched_spans.filter(span => span[0] === field_index);
-    
+
     if (relevant_spans.length === 0) {
         return escapeHtml(text);
     }
-    
+
     // Sort spans by start position
     relevant_spans.sort((a, b) => a[1] - b[1]);
-    
+
     // Build highlighted text
     let result = '';
     let last_pos = 0;
-    
+
     for (let span of relevant_spans) {
         const start = span[1];
         const end = span[2];
-        
+
         // Add text before the match
         if (start > last_pos) {
             result += escapeHtml(text.substring(last_pos, start));
         }
-        
+
         // Add highlighted match
         result += '<mark class="hit-highlight">' + escapeHtml(text.substring(start, end)) + '</mark>';
         last_pos = end;
     }
-    
+
     // Add remaining text
     if (last_pos < text.length) {
         result += escapeHtml(text.substring(last_pos));
     }
-    
+
     return result;
 }
 
@@ -152,7 +154,7 @@ function render(prefix, results_string) {
     for (let result of results) {
         let title = document.createElement("li");
         title.setAttribute("class", "card-item");
-        
+
         let source = result.display_entry.entry_source;
         let source_class = get_class_by_source(source);
 
@@ -218,11 +220,11 @@ function render(prefix, results_string) {
         if (debug) {
             let debug_elem = document.createElement("div");
             debug_elem.setAttribute("class", "debug-info");
-            
+
             let json_elem = document.createElement("pre");
             json_elem.innerText = JSON.stringify(result, null, 2);
             debug_elem.appendChild(json_elem);
-            
+
             card.appendChild(debug_elem);
         }
     }
