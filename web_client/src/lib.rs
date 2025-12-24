@@ -1,4 +1,4 @@
-use dictlib::{DebugLogger, compiled_dictionary::{CompiledDictionary, DisplayDictionaryEntry, Match, MatchType}, data_reader::DataReader};
+use dictlib::{DebugLogger, compiled_dictionary::{CompiledDictionary, Match}, data_reader::DataReader, rendered_result::RenderedResult};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
 
@@ -54,11 +54,11 @@ impl JyutpingSearch {
         let mut display_results = Vec::new();
         for m in results
         {
-            let display_entry = self.dict.get_display_entry(m.entry_id);
+            let rendered = RenderedResult::from_match(&m, &self.dict);
             display_results.push(DisplayResult
             {
                 match_obj: m,
-                display_entry,
+                rendered_entry: rendered,
                 query: prefix.to_string(),
             })
         }
@@ -71,6 +71,6 @@ impl JyutpingSearch {
 struct DisplayResult
 {
     pub match_obj: Match,
-    pub display_entry: DisplayDictionaryEntry,
+    pub rendered_entry: RenderedResult,
     pub query: String,
 }

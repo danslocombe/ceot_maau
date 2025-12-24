@@ -27,6 +27,7 @@ pub mod data_writer;
 pub mod data_reader;
 pub mod vbyte;
 pub mod string_search;
+pub mod rendered_result;
 
 static mut DEBUG_LOGGER : Option<Box<dyn DebugLogger>> = None;
 

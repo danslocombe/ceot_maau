@@ -152,7 +152,7 @@ function render(prefix, results_string) {
         let title = document.createElement("li");
         title.setAttribute("class", "card-item");
 
-        let source = result.display_entry.entry_source;
+        let source = result.rendered_entry.entry_source;
         let source_class = get_class_by_source(source);
 
         let traditional_elem = document.createElement("span");
@@ -160,11 +160,8 @@ function render(prefix, results_string) {
 
         let title_traditional = document.createElement("h2");
         title_traditional.setAttribute("class", "title");
-        let traditional = result.display_entry.characters;
-        if (result.match_obj.match_type === "Traditional") {
-            traditional = highlightText(traditional, result.match_obj.matched_spans);
-        }
-        title_traditional.innerHTML = traditional;
+        // Use pre-highlighted characters (already contains HTML markup)
+        title_traditional.innerHTML = result.rendered_entry.characters;
         traditional_elem.appendChild(title_traditional);
 
         let jyutping_elem = document.createElement("span");
@@ -173,13 +170,10 @@ function render(prefix, results_string) {
         {
             let title_jyutping = document.createElement("h3");
             title_jyutping.setAttribute("class", "title");
-            title_jyutping.setAttribute("title", result.display_entry.entry_source);
+            title_jyutping.setAttribute("title", result.rendered_entry.entry_source);
 
-            let jyutping = result.display_entry.jyutping;
-            if (result.match_obj.match_type === "Jyutping") {
-              jyutping = highlightText(jyutping, result.match_obj.matched_spans)
-            }
-            title_jyutping.innerHTML = jyutping;
+            // Use pre-highlighted jyutping (already contains HTML markup)
+            title_jyutping.innerHTML = result.rendered_entry.jyutping;
             jyutping_elem.appendChild(title_jyutping);
         }
 
@@ -188,17 +182,16 @@ function render(prefix, results_string) {
 
         card.appendChild(title);
 
-        for (let i = 0; i < result.display_entry.english_definitions.length; i++) {
-            let english = result.display_entry.english_definitions[i];
+        for (let i = 0; i < result.rendered_entry.english_definitions.length; i++) {
+            let english = result.rendered_entry.english_definitions[i];
             let similar_elem = document.createElement("li");
             similar_elem.setAttribute("class", "card-item");
 
             let english_elem = document.createElement("span");
             english_elem.setAttribute("class", "item-english indent");
 
-            // TODO highlight
+            // Use pre-highlighted english (already contains HTML markup)
             english_elem.innerHTML = english;
-            //english_elem.innerHTML = highlightText(english, result.match_obj.matched_spans);
 
             similar_elem.appendChild(english_elem);
 
