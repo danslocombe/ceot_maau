@@ -543,7 +543,7 @@ impl CompiledDictionary {
         {
             if (jyutping_string.eq_ignore_ascii_case(s))
             {
-                debug_log!("'{}' matches {}", s, jyutping_string);
+                //debug_log!("'{}' matches {}", s, jyutping_string);
                 matches.insert(i);
                 match_bit_to_match_length.push((i, s.len())); // Highlight only the query length for exact matches
                 continue;
@@ -552,7 +552,7 @@ impl CompiledDictionary {
             if crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes()).is_some()
             {
                 let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
-                debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
+                //debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
                 match_bit_to_match_length.push((i, s.len())); // Highlight only the query length for substring matches
                 matches.insert(i);
@@ -563,7 +563,7 @@ impl CompiledDictionary {
             let dist = crate::string_search::prefix_levenshtein_ascii(s, jyutping_string);
             if (dist < 2) {
                 let match_cost = dist as u32 * 10_000;
-                println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
+                //println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
                 match_bit_to_match_length.push((i, s.len())); // Highlight only the query length for fuzzy matches
                 matches.insert(i);
@@ -862,7 +862,7 @@ impl Jyutping {
         assert!(self.base < K);
 
         assert!(self.tone <= 6);
-        
+
         self.base | ((self.tone as u16) << 13)
     }
 
