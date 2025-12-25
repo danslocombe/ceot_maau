@@ -78,18 +78,18 @@ impl RenderedResult {
             let plain_text = unsafe { std::str::from_utf8_unchecked(blob) };
 
             let mut filtered_modified_matches = Vec::with_capacity(matched_spans.len());
-            for (span_start_abs, span_end_abs) in matched_spans {
-                if (*span_start_abs < start)
+            for &(span_start_abs, span_end_abs) in matched_spans {
+                if (span_start_abs < start)
                 {
                     continue;
                 }
 
-                if (*span_end_abs > end)
+                if (span_end_abs > end)
                 {
                     continue;
                 }
 
-                filtered_modified_matches.push((*span_start_abs - start, *span_end_abs - start));
+                filtered_modified_matches.push((span_start_abs - start, span_end_abs - start));
             }
 
             let highlighted = Self::apply_highlights(plain_text, &filtered_modified_matches);
@@ -111,10 +111,7 @@ impl RenderedResult {
         let mut result = String::new();
         let mut last_pos = 0;
 
-        for (start, end) in matched_spans {
-            let start = *start;
-            let end = *end;
-
+        for &(start, end) in matched_spans {
             // Add text before the match
             if start > last_pos {
                 result.push_str(&Self::escape_html(&text[last_pos..start]));
