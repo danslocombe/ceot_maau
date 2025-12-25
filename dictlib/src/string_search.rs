@@ -20,8 +20,7 @@ pub fn _local_levenshtein_bs(query: &[u8], target: &[u8]) -> i32
     let n = query.len() + 1;
     let m = target.len() + 1;
 
-    let mut matrix: Vec<i32> = Vec::new();
-    matrix.resize(n * m, 0);
+    let mut matrix: Vec<i32> = vec![0; n * m];
 
     for i in 0..n {
         matrix[i*m] = i as i32;
@@ -72,8 +71,7 @@ pub fn _prefix_levenshtein_bs(query: &[u8], target: &[u8]) -> i32
     let n = query.len() + 1;
     let m = target.len() + 1;
 
-    let mut matrix: Vec<i32> = Vec::new();
-    matrix.resize(n * m, 0);
+    let mut matrix: Vec<i32> = vec![0; n * m];
 
     for i in 0..m {
         matrix[i] = i as i32;
@@ -135,7 +133,7 @@ pub fn string_indexof_linear_ignorecase(needle: &str, haystack_bs: &[u8]) -> Opt
 
         for j in 0..needle_bs.len()
         {
-            let c0 = unsafe { needle_bs.as_ptr().offset(j as isize).read() };
+            let c0 = unsafe { needle_bs.as_ptr().add(j).read() };
             let c1 = unsafe { haystack_bs.as_ptr().offset(i as isize + j as isize).read() };
 
             if (!c0.eq_ignore_ascii_case(&c1))

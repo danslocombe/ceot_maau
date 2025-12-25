@@ -24,7 +24,7 @@ impl<'a> Iterator for JyutpingSplitter<'a>
     fn next(&mut self) -> Option<Self::Item>
     {
         let mut start = self.current;
-        while let Some((i, x)) = self.char_iter.next()
+        for (i, x) in self.char_iter.by_ref()
         {
             if (!x.is_ascii() || x.is_ascii_whitespace() || x.is_ascii_punctuation())
             {

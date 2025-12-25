@@ -20,31 +20,31 @@ impl DataWriter<std::fs::File> {
 impl<T: std::io::Write> DataWriter<T> {
     pub fn write_u8(&mut self, data: u8) -> std::io::Result<()> {
         self.write_len += 1;
-        let _count = self.inner.write_u8(data)?;
+        self.inner.write_u8(data)?;
         Ok(())
     }
 
     pub fn write_u16(&mut self, data: u16) -> std::io::Result<()> {
         self.write_len += 2;
-        let _count = self.inner.write_u16::<LittleEndian>(data)?;
+        self.inner.write_u16::<LittleEndian>(data)?;
         Ok(())
     }
 
     pub fn write_u32(&mut self, data: u32) -> std::io::Result<()> {
         self.write_len += 4;
-        let _count = self.inner.write_u32::<LittleEndian>(data)?;
+        self.inner.write_u32::<LittleEndian>(data)?;
         Ok(())
     }
 
     pub fn write_u64(&mut self, data: u64) -> std::io::Result<()> {
         self.write_len += 8;
-        let _count = self.inner.write_u64::<LittleEndian>(data)?;
+        self.inner.write_u64::<LittleEndian>(data)?;
         Ok(())
     }
 
     pub fn write_f32(&mut self, data: f32) -> std::io::Result<()> {
         self.write_len += 4;
-        let _count = self.inner.write_f32::<LittleEndian>(data)?;
+        self.inner.write_f32::<LittleEndian>(data)?;
         Ok(())
     }
 
@@ -71,7 +71,7 @@ impl<T: std::io::Write> DataWriter<T> {
     }
 
     pub fn write_bytes(&mut self, bytes: &[u8]) -> std::io::Result<()> {
-        self.write_len += bytes.len() as usize;
+        self.write_len += bytes.len();
         self.inner.write_all(bytes)?;
         Ok(())
     }

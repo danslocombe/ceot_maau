@@ -80,7 +80,7 @@ impl CompiledDictionary {
             let mut char_indexes = Vec::new();
             for character in entry.traditional.chars()
             {
-                char_indexes.push(character_store.char_to_index(character).expect(&format!("Could not find match for {}", character)));
+                char_indexes.push(character_store.char_to_index(character).unwrap_or_else(|| panic!("Could not find match for {}", character)));
                 //cost += dict.trad_to_frequency.get_or_default(character).cost;
             }
 
@@ -530,7 +530,7 @@ impl CompiledDictionary {
         if (bs.len() > 0)
         {
             if bs[bs.len() - 1].is_ascii_digit() {
-                tone = Some(bs[bs.len() - 1] as u8 - '0' as u8);
+                tone = Some(bs[bs.len() - 1] - b'0');
                 s = unsafe { std::str::from_utf8_unchecked(&bs[0..bs.len()-1])};
             }
         }
@@ -549,7 +549,7 @@ impl CompiledDictionary {
                 continue;
             }
 
-            if let Some(_) = crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes())
+            if crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes()).is_some()
             {
                 let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
                 debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
@@ -560,7 +560,7 @@ impl CompiledDictionary {
             }
 
             // Too noisy
-            let dist = crate::string_search::prefix_levenshtein_ascii(s, &jyutping_string);
+            let dist = crate::string_search::prefix_levenshtein_ascii(s, jyutping_string);
             if (dist < 2) {
                 let match_cost = dist as u32 * 10_000;
                 println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
@@ -615,7 +615,7 @@ impl CompiledDictionary {
 
             let char_count = reader.read_u8();
             for _ in 0..char_count {
-                entry.characters.push(reader.read_u16() as u16);
+                entry.characters.push(reader.read_u16());
             }
 
             let jyutping_count = reader.read_u8();
@@ -668,7 +668,7 @@ impl CompiledDictionary {
         let mut writer = BufWriter::new(file);
         for entry in &self.entries {
             let e = DisplayDictionaryEntry::from_entry(entry, self);
-            write!(writer, "{:#?}\n", e).unwrap();
+            writeln!(writer, "{:#?}", e).unwrap();
         }
     }
 
@@ -830,7 +830,7 @@ impl JyutpingStore {
         let last = bs[bs.len() - 1];
         assert!(last.is_ascii_digit());
 
-        let tone = last - ('0' as u8);
+        let tone = last - b'0';
         let without_tone = unsafe { std::str::from_utf8_unchecked(&bs[0..bs.len()-1]) };
 
         self.get_with_tone(without_tone, tone)
@@ -838,7 +838,7 @@ impl JyutpingStore {
 
     pub fn get_with_tone(&self, word : &str, tone : u8) -> Option<Jyutping>
     {
-        self.base_strings.binary_search_by(|x| (&x[..]).cmp(word)).map(|x| Jyutping
+        self.base_strings.binary_search_by(|x| x[..].cmp(word)).map(|x| Jyutping
             {
                 base: x as u16,
                 tone,
@@ -871,8 +871,8 @@ impl Jyutping {
         assert!(self.base < K);
 
         assert!(self.tone <= 6);
-        let packed_base_with_tone = self.base | ((self.tone as u16) << 13);
-        packed_base_with_tone
+        
+        self.base | ((self.tone as u16) << 13)
     }
 
     pub fn unpack(packed: u16) -> Self {
@@ -882,7 +882,7 @@ impl Jyutping {
             panic!("Bad tone {} - base {}, packed {:#01x}", tone, base, packed);
         }
         assert!(tone <= 6);
-        let base = base as u16;
+        let base = base;
         let tone = tone as u8;
 
         Self {
@@ -956,7 +956,7 @@ impl DisplayDictionaryEntry
             }
 
             jyutping.push_str(&dict.jyutping_store.base_strings[j.base as usize]);
-            jyutping.push((j.tone + '0' as u8) as char);
+            jyutping.push((j.tone + b'0') as char);
         }
 
         let mut english_definitions = Vec::with_capacity(entry.english_end as usize - entry.english_start as usize);
