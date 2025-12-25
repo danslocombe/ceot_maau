@@ -379,11 +379,9 @@ impl TraditionalToFrequencies
 
     pub fn add_canto(&mut self, characters: &str) {
         for c in characters.chars() {
-            if self.inner.get(&c).is_none() {
-                // HACK
-                //self.inner.insert(c, FrequencyData { count: 1, frequency: 0.001, cost: 2.0, index: 10_000 });
-                self.inner.insert(c, FrequencyData { count: 1, frequency: 0.001, cost: 10_000, index: 10_000 });
-            }
+            // HACK
+            //self.inner.entry(c).or_insert(FrequencyData { count: 1, frequency: 0.001, cost: 2.0, index: 10_000 });
+            self.inner.entry(c).or_insert(FrequencyData { count: 1, frequency: 0.001, cost: 10_000, index: 10_000 });
         }
     }
 

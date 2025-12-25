@@ -610,8 +610,10 @@ impl CompiledDictionary {
         let mut english_start = 0;
         let mut prev_cost = 0;
         for _ in 0..entry_count {
-            let mut entry = CompiledDictionaryEntry::default();
-            entry.flags = reader.read_u8();
+            let mut entry = CompiledDictionaryEntry {
+                flags: reader.read_u8(),
+                ..Default::default()
+            };
 
             let char_count = reader.read_u8();
             for _ in 0..char_count {
@@ -844,17 +846,6 @@ impl JyutpingStore {
                 tone,
             }).ok()
     }
-
-    //pub fn matches(&self, jyutping: Jyutping, base : &str, tone : Option<u8>) -> bool {
-    //    if let Some(t) = tone {
-    //        if (jyutping.tone != t) {
-    //            return false;
-    //        }
-    //    }
-
-    //    let base_str = &self.base_strings[jyutping.base as usize];
-    //    base_str.contains(base)
-    //}
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -882,7 +873,6 @@ impl Jyutping {
             panic!("Bad tone {} - base {}, packed {:#01x}", tone, base, packed);
         }
         assert!(tone <= 6);
-        let base = base;
         let tone = tone as u8;
 
         Self {
