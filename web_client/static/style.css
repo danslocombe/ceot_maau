@@ -101,9 +101,7 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 }
 
 .entry-label.search:before {
-	background: url('toki-sama.png') no-repeat;
-	background-size: 100%;
-	animation: none;
+	display: none;
 }
 
 .entry-label.loaded:before {
@@ -140,7 +138,7 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 	max-width: calc(100% - 48px - 1rem);
 }
 
-.card-item .item-toki-pona-blaaaaaah {
+.card-item .item-jyutping-blaaaaaah {
 	height: 20px;
 	cursor: pointer;
 }

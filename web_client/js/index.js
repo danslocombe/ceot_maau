@@ -5,7 +5,7 @@ import { JyutpingSearch } from "../pkg/index.js"
 const query_string = window.location.search;
 const url_params = new URLSearchParams(query_string);
 var query = url_params.get('q');
-var toki_sama;
+var jyutping_search;
 var textfield = document.getElementById("entry");
 var resultsfield = document.getElementById("results");
 var explanation = document.getElementById("explanation");
@@ -22,7 +22,7 @@ fetch("test.jyp_dict")
   .then(data => {
     console.log("Got dictionary blob {} bytes", data.byteLength);
     const data_array = new Uint8Array(data);
-    toki_sama = new JyutpingSearch(data_array);
+    jyutping_search = new JyutpingSearch(data_array);
     console.log("Finished search init!");
 
     textfield.removeAttribute("disabled");
@@ -33,7 +33,7 @@ fetch("test.jyp_dict")
         resultsfield.innerHTML = "";
 
         if (prefix.length > 0) {
-            render(prefix, toki_sama.search(prefix));
+            render(prefix, jyutping_search.search(prefix));
             explanation.hidden = true;
 
             // Update URL query parameter
@@ -121,21 +121,6 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function get_class_by_source_toki(source) {
-    if (source === "Generated") {
-        return "generated";
-    }
-    else if (source === "NimiPu") {
-        return "nimi-pu";
-    }
-    else if (source === "Compounds") {
-        return "compounds";
-    }
-    else {
-        return "";
-    }
-}
-
 // Render a search result
 function render(prefix, results_string) {
     const results = JSON.parse(results_string)
@@ -165,7 +150,7 @@ function render(prefix, results_string) {
         traditional_elem.appendChild(title_traditional);
 
         let jyutping_elem = document.createElement("span");
-        jyutping_elem.setAttribute("class", "item-toki-pona");
+        jyutping_elem.setAttribute("class", "item-jyutping");
 
         {
             let title_jyutping = document.createElement("h3");
@@ -224,14 +209,4 @@ function render(prefix, results_string) {
     }
 
     resultsfield.appendChild(card);
-}
-
-function highlight_completion(prefix, full) {
-    let res = prefix;
-    const completion =full.substring(prefix.length);
-    res += "<b>";
-    res += completion;
-    res += "</b>";
-
-    return res;
 }
