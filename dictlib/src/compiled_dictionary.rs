@@ -487,6 +487,8 @@ impl CompiledDictionary {
             return spans;
         }
 
+        //let first_start = self.english_data_starts[entry.english_start as usize] as usize;
+
         for def_idx in entry.english_start..entry.english_end {
             let start = self.english_data_starts[def_idx as usize] as usize;
             let end = if def_idx + 1 < self.english_data_starts.len() as u32 {
@@ -499,7 +501,8 @@ impl CompiledDictionary {
             for split in query.split_ascii_whitespace() {
                 if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, def_bytes) {
                     //let field_idx = 2 + (def_idx - entry.english_start) as usize;
-                    spans.push((pos, pos + split.len()));
+                    //let pos = pos + first_start;
+                    spans.push((start + pos, start + pos + split.len()));
                 }
             }
         }

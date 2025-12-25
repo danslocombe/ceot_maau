@@ -47,11 +47,13 @@ impl RenderedResult {
             jyutping = Self::apply_highlights(&jyutping, &match_result.matched_spans);
         }
 
-        let english_definitions = if let MatchType::Jyutping = match_result.match_type {
+        let english_definitions = if let MatchType::English = match_result.match_type {
             Self::build_english_definitions_with_highlights(entry, dict, &match_result.matched_spans)
         } else {
             Self::build_english_definitions(entry, dict)
         };
+
+        //let english_definitions = Self::build_english_definitions(entry, dict);
 
         Self {
             characters,
@@ -71,6 +73,7 @@ impl RenderedResult {
             let end = dict.english_data_starts[i as usize + 1] as usize;
             let blob = &dict.english_data[start..end];
             let def = unsafe { std::str::from_utf8_unchecked(blob) }.to_owned();
+            //let def = unsafe { std::str::from_utf8(blob).expect("Error got a non-utf8 blob (nohh)") }.to_owned();
             english_definitions.push(def);
         }
         english_definitions
@@ -85,14 +88,32 @@ impl RenderedResult {
             entry.english_end as usize - entry.english_start as usize
         );
 
+        //let mut first_start = dict.english_data_starts[i as usize] as usize;
+
         for i in entry.english_start..entry.english_end {
             let start = dict.english_data_starts[i as usize] as usize;
             let end = dict.english_data_starts[i as usize + 1] as usize;
             let blob = &dict.english_data[start..end];
             let plain_text = unsafe { std::str::from_utf8_unchecked(blob) };
+            //let plain_text = unsafe { std::str::from_utf8(blob).expect("Error got a non-utf8 blob (hh)") };
 
-            // Apply highlights for this definition
-            let highlighted = Self::apply_highlights(plain_text, matched_spans);
+            // @Perf
+            let mut filtered_modified_matches = Vec::with_capacity(matched_spans.len());
+            for (span_start_abs, span_end_abs) in matched_spans {
+                if (*span_start_abs < start)
+                {
+                    continue;
+                }
+
+                if (*span_end_abs > end)
+                {
+                    continue;
+                }
+
+                filtered_modified_matches.push((*span_start_abs - start, *span_end_abs - start));
+            }
+
+            let highlighted = Self::apply_highlights(plain_text, &filtered_modified_matches);
             english_definitions.push(highlighted);
         }
 
