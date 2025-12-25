@@ -2,6 +2,12 @@
 #![allow(unused_parens)]
 #![allow(static_mut_refs)]
 
+#![allow(clippy::collapsible_if)]
+#![allow(clippy::collapsible_else_if)]
+#![allow(clippy::len_zero)]
+#![allow(clippy::identity_op)]
+#![allow(clippy::needless_range_loop)]
+
 use std::collections::BTreeMap;
 
 use jyutping_splitter::JyutpingSplitter;
