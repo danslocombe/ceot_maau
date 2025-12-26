@@ -189,4 +189,98 @@ mod tests {
         assert_eq!(Some(5), string_indexof_linear_ignorecase("one two", "test one two".as_bytes()));
         assert_eq!(Some(0), string_indexof_linear_ignorecase("one two", "one two".as_bytes()));
     }
+
+    #[test]
+    fn test_string_indexof_case_variations()
+    {
+        // All uppercase needle, lowercase haystack
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("HELLO", "hello world".as_bytes()));
+        
+        // All lowercase needle, uppercase haystack
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("hello", "HELLO WORLD".as_bytes()));
+        
+        // Mixed case variations
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("HeLLo", "hEllO WORLD".as_bytes()));
+        assert_eq!(Some(6), string_indexof_linear_ignorecase("WoRlD", "HELLO world".as_bytes()));
+        
+        // Single character matches
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("A", "apple".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("a", "Apple".as_bytes()));
+        assert_eq!(Some(3), string_indexof_linear_ignorecase("Z", "quiz".as_bytes()));
+    }
+
+    #[test]
+    fn test_string_indexof_edge_cases()
+    {
+        // Empty needle - should match at start
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("", "hello".as_bytes()));
+        
+        // Empty haystack with non-empty needle
+        assert_eq!(None, string_indexof_linear_ignorecase("hello", "".as_bytes()));
+        
+        // Both empty
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("", "".as_bytes()));
+        
+        // Needle longer than haystack
+        assert_eq!(None, string_indexof_linear_ignorecase("hello world", "hi".as_bytes()));
+        
+        // Exact match
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("test", "test".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("TeSt", "tEsT".as_bytes()));
+        
+        // Match at the very end
+        assert_eq!(Some(7), string_indexof_linear_ignorecase("end", "at the end".as_bytes()));
+        assert_eq!(Some(7), string_indexof_linear_ignorecase("END", "at the end".as_bytes()));
+    }
+
+    #[test]
+    fn test_string_indexof_ascii_boundaries()
+    {
+        // Test letters at ASCII boundaries
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("A", "a".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("Z", "z".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("a", "A".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("z", "Z".as_bytes()));
+        
+        // Mixed with numbers and symbols (should not be affected by case)
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("a1b", "A1B".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("test@123", "TEST@123".as_bytes()));
+        
+        // Numbers and symbols don't have case
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("123", "123".as_bytes()));
+        assert_eq!(None, string_indexof_linear_ignorecase("123", "456".as_bytes()));
+    }
+
+    #[test]
+    fn test_string_indexof_repeated_patterns()
+    {
+        // First occurrence should be returned
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("ab", "ababab".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("AB", "ababab".as_bytes()));
+        
+        // Multiple occurrences, case insensitive
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("hi", "hi HI hi".as_bytes()));
+        assert_eq!(Some(0), string_indexof_linear_ignorecase("HI", "hi HI hi".as_bytes()));
+        
+        // Pattern with repeating characters
+        assert_eq!(Some(2), string_indexof_linear_ignorecase("aaa", "bbaaabbb".as_bytes()));
+        assert_eq!(Some(2), string_indexof_linear_ignorecase("AAA", "bbaaabbb".as_bytes()));
+    }
+
+    #[test]
+    fn test_string_indexof_longer_strings()
+    {
+        // Longer realistic test cases
+        let haystack = "The Quick Brown Fox Jumps Over The Lazy Dog";
+        assert_eq!(Some(4), string_indexof_linear_ignorecase("quick", haystack.as_bytes()));
+        assert_eq!(Some(4), string_indexof_linear_ignorecase("QUICK", haystack.as_bytes()));
+        assert_eq!(Some(16), string_indexof_linear_ignorecase("fox", haystack.as_bytes()));
+        assert_eq!(Some(35), string_indexof_linear_ignorecase("lazy dog", haystack.as_bytes()));
+        
+        // Not found in longer string
+        assert_eq!(None, string_indexof_linear_ignorecase("cat", haystack.as_bytes()));
+        
+        // Partial match should not succeed
+        assert_eq!(None, string_indexof_linear_ignorecase("foxes", haystack.as_bytes()));
+    }
 }
