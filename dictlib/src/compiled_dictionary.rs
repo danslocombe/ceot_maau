@@ -23,6 +23,16 @@ pub const FILE_HEADER: &[u8] = b"jyp_dict";
 pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
 pub const CURRENT_VERSION: u32 = 8;
 
+const OUT_OF_ORDER_INVERSION_PENALTY: u32 = 8_000;
+const UNMATCHED_JYUTPING_PENALTY: u32 = 10_000;
+const JYUTPING_PARTIAL_MATCH_PENALTY_K : u32 = 12_000;
+const JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K: u32 = 20_000;
+
+const ENGLISH_BASE_PENALTY: u32 = 1_000;
+const NON_ASCII_MATCH_IN_ENGLISH_PENALTY: u32 = 8_000;
+const ENGLISH_POS_OFFSET_PENALTY_K: u32 = 100;
+const ENGLISH_MIDDLE_OF_WORD_PENALTY: u32 = 5_000;
+
 impl CompiledDictionary {
     pub fn from_builder(mut dict : Builder) -> Self {
         let mut all_characters : BTreeSet<char> = BTreeSet::new();
@@ -245,7 +255,7 @@ impl CompiledDictionary {
                             if (!c.is_ascii()) {
                                 // Non-ascii match, probably a chinese character
                                 // match within an english description
-                                match_cost += 8_000;
+                                match_cost += NON_ASCII_MATCH_IN_ENGLISH_PENALTY;
                             }
                         }
 
@@ -370,7 +380,6 @@ impl CompiledDictionary {
         for i in 0..matched_positions.len() {
             for j in (i + 1)..matched_positions.len() {
                 if matched_positions[i] > matched_positions[j] {
-                    const OUT_OF_ORDER_INVERSION_PENALTY: u32 = 5000;
                     inversion_cost += OUT_OF_ORDER_INVERSION_PENALTY;
                 }
             }
@@ -379,7 +388,7 @@ impl CompiledDictionary {
         let mut unmatched_position_cost = 0u32;
         for i in 0..entry.jyutping.len() {
             if (!entry_jyutping_matches.contains(i)) {
-                unmatched_position_cost += ((entry.jyutping.len() + 1) - i) as u32 * 10_000;
+                unmatched_position_cost += ((entry.jyutping.len() + 1) - i) as u32 * UNMATCHED_JYUTPING_PENALTY;
             }
         }
 
@@ -394,7 +403,7 @@ impl CompiledDictionary {
     pub fn matches_query_english(&self, entry: &CompiledDictionaryEntry, s : &str) -> Option<u32>
     {
         // Make sure we prefer jyutping matches
-        let mut cost: u32 = 1_000;
+        let mut cost: u32 = ENGLISH_BASE_PENALTY;
 
         // @Perf do search over enterity instead of individual entries.
 
@@ -424,7 +433,7 @@ impl CompiledDictionary {
 
             if let Some(pos) = crate::string_search::string_indexof_linear_ignorecase(split, block) {
                 //cost += i as u32 * 1_000;
-                cost += pos as u32 * 100;
+                cost += pos as u32 * ENGLISH_POS_OFFSET_PENALTY_K;
 
                 if (pos == 0)  {
                     continue;
@@ -437,7 +446,7 @@ impl CompiledDictionary {
                 }
 
                 // Match in the middle of a word
-                cost += 5_000;
+                cost += ENGLISH_MIDDLE_OF_WORD_PENALTY;
                 continue;
             }
 
@@ -572,7 +581,7 @@ impl CompiledDictionary {
 
             if crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes()).is_some()
             {
-                let match_cost = (jyutping_string.len() - s.len()) as u32 * 6_000;
+                let match_cost = (jyutping_string.len() - s.len()) as u32 * JYUTPING_PARTIAL_MATCH_PENALTY_K;
                 //debug_log!("'{}' matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
                 match_bit_to_match_length.push((i, s.len())); // Highlight only the query length for substring matches
@@ -583,7 +592,7 @@ impl CompiledDictionary {
             // Too noisy
             let dist = crate::string_search::prefix_levenshtein_ascii(s, jyutping_string);
             if (dist < 2) {
-                let match_cost = dist as u32 * 10_000;
+                let match_cost = dist as u32 * JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K;
                 //println!("'{}' fuzzy matches {} with cost {}", s, jyutping_string, match_cost);
                 match_bit_to_match_cost.push((i, match_cost));
                 match_bit_to_match_length.push((i, s.len())); // Highlight only the query length for fuzzy matches
