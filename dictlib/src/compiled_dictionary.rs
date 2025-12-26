@@ -5,7 +5,7 @@ use std::io::Write;
 use bit_set::BitSet;
 use serde::Serialize;
 
-use crate::EntrySource;
+use crate::{EntrySource, Stopwatch};
 use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, Dictionary};
 
 #[derive(Debug)]
@@ -174,14 +174,33 @@ pub struct Match
     pub matched_spans: Vec<(usize, usize)>,
 }
 
+#[derive(Debug, Default, Serialize)]
+pub struct Timings {
+    pub jyutping_pre_ms: i32,
+    pub traditional_pre_ms: i32,
+
+    pub full_match: i32,
+    pub rank: i32,
+}
+
+#[derive(Debug, Default, Serialize)]
+pub struct SearchResult {
+    pub matches : Vec<Match>,
+    pub timings: Timings,
+}
+
 impl CompiledDictionary {
-    pub fn search(&self, s : &str) -> Vec<Match>
+    pub fn search(&self, s : &str, stopwatch: Box<dyn Stopwatch>) -> SearchResult
     {
+        let mut result = SearchResult::default();
+
         let mut jyutping_terms = Vec::new();
         for query_term in s.split_ascii_whitespace()
         {
             jyutping_terms.push(self.get_jyutping_query_term(query_term));
         }
+
+        result.timings.jyutping_pre_ms = stopwatch.elapsed_ms();
 
         let mut traditional_terms = Vec::new();
         for c in s.chars()
@@ -191,6 +210,8 @@ impl CompiledDictionary {
             }
         }
 
+        result.timings.traditional_pre_ms = stopwatch.elapsed_ms();
+
         let query_terms = QueryTerms {
             jyutping_terms,
             traditional_terms,
@@ -198,7 +219,6 @@ impl CompiledDictionary {
 
         let mut matches: Vec<Match> = Vec::new();
 
-        //let max = 16;
         for (i, x) in self.entries.iter().enumerate()
         {
             if let Some(mut cost_info) = self.matches_jyutping_term(x, &query_terms)
@@ -213,11 +233,6 @@ impl CompiledDictionary {
                     entry_id: i,
                     matched_spans,
                 });
-
-                //if (matches.len() >= max)
-                //{
-                //    break;
-                //}
             }
             else
             {
@@ -275,11 +290,17 @@ impl CompiledDictionary {
             }
         }
 
+        result.timings.full_match = stopwatch.elapsed_ms();
+
         debug_log!("Internal candidates: {}", matches.len());
         matches.sort_by(|(x), (y)| x.cost_info.total().cmp(&y.cost_info.total()));
         matches.truncate(8);
 
-        matches
+        result.timings.rank = stopwatch.elapsed_ms();
+
+        result.matches = matches;
+
+        result
     }
 
     pub fn matches_jyutping_term(&self, entry: &CompiledDictionaryEntry, query_terms : &QueryTerms) -> Option<MatchCostInfo> {

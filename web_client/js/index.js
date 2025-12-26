@@ -123,7 +123,9 @@ function escapeHtml(text) {
 
 // Render a search result
 function render(prefix, results_string) {
-    const results = JSON.parse(results_string)
+    const search_result = JSON.parse(results_string)
+    const results = search_result.results;
+    console.log(search_result.timings)
 
     if (results.length == 0) {
         return;

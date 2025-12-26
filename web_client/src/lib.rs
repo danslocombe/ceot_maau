@@ -1,12 +1,16 @@
-use dictlib::{DebugLogger, compiled_dictionary::{CompiledDictionary, Match}, data_reader::DataReader, rendered_result::RenderedResult};
+use dictlib::{DebugLogger, Stopwatch, compiled_dictionary::{CompiledDictionary, Match, Timings}, data_reader::DataReader, rendered_result::RenderedResult};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
+
+use crate::wasm_instant::WasmInstant;
 
 macro_rules! log {
     ( $( $t:tt )* ) => {
         web_sys::console::log_1(&format!( $( $t )* ).into());
     }
 }
+
+mod wasm_instant;
 
 struct ConsoleLogger
 {
@@ -49,10 +53,11 @@ impl JyutpingSearch {
     }
 
     pub fn search(&self, prefix : &str) -> String {
-        let results = self.dict.search(prefix);
+        let stopwatch = Box::new(WasmStopwatch::new());
+        let results = self.dict.search(prefix, stopwatch);
 
         let mut display_results = Vec::new();
-        for m in results
+        for m in results.matches
         {
             let rendered = RenderedResult::from_match(&m, &self.dict);
             display_results.push(DisplayResult
@@ -63,7 +68,12 @@ impl JyutpingSearch {
             })
         }
 
-        serde_json::to_string(&display_results).unwrap()
+        let dr = DisplaySearchResult {
+            results: display_results,
+            timings: results.timings,
+        };
+
+        serde_json::to_string(&dr).unwrap()
     }
 }
 
@@ -73,4 +83,28 @@ struct DisplayResult
     pub match_obj: Match,
     pub rendered_entry: RenderedResult,
     pub query: String,
+}
+
+#[derive(Serialize)]
+struct DisplaySearchResult
+{
+    results: Vec<DisplayResult>,
+    timings: Timings,
+}
+
+pub struct WasmStopwatch {
+    start: WasmInstant,
+}
+
+impl WasmStopwatch {
+    pub fn new() -> Self {
+        WasmStopwatch { start: WasmInstant::now() }
+    }
+}
+
+impl Stopwatch for WasmStopwatch {
+    fn elapsed_ms(&self) -> i32 {
+        let now = WasmInstant::now();
+        now.duration_since(self.start).as_millis() as i32
+    }
 }

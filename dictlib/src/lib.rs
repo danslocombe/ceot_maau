@@ -59,6 +59,10 @@ pub trait DebugLogger {
     fn log_error(&self, logline: &str);
 }
 
+pub trait Stopwatch {
+    fn elapsed_ms(&self) -> i32;
+}
+
 #[derive(Debug, Clone, Copy)]
 pub struct OffsetString {
     pub start: u32,
