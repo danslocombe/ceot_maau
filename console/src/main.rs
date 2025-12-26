@@ -5,13 +5,13 @@ use std::io::Write;
 use std::io::Read;
 
 use dictlib::compiled_dictionary::CompiledDictionary;
-
 use dictlib::*;
 
 fn main() {
-    let build = false;
+    let args : Vec<String> = std::env::args().collect();
 
-    let test_set = false;
+    let build = args.iter().any(|x| x.eq_ignore_ascii_case("build"));
+    let test_set = args.iter().any(|x| x.eq_ignore_ascii_case("test_set"));
 
     let (data_path, print_debug) = if test_set {
         ("../test", true)
@@ -25,59 +25,37 @@ fn main() {
 
     if (build)
     {
-        let mut dict = dictlib::builder::Builder::default();
-
+        println!("Building...");
+        let mut builder = dictlib::builder::Builder::default();
         let trad_to_frequency = dictlib::builder::TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
 
         // Cedict is
         // Traditional / Pinyin / English Definition.
-        dict.parse_cedict(&format!("{}/cedict_ts.u8", data_path), &trad_to_frequency);
+        builder.parse_cedict(&format!("{}/cedict_ts.u8", data_path), &trad_to_frequency);
 
         let trad_to_jyutping = dictlib::builder::TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
-        // @TODO
-        dict.annotate(&trad_to_jyutping);
+        builder.annotate(&trad_to_jyutping);
 
-        dict.parse_ccanto(&format!("{}/cccanto-webdist.txt", data_path));
-
-        //for (trad, jyut) in &dict.trad_to_jyutping.inner {
-        //    if (jyut.len() > 1)
-        //    {
-        //        println!("Multi entry {:?} - {:?}", trad, jyut);
-        //    }
-        //}
+        builder.parse_ccanto(&format!("{}/cccanto-webdist.txt", data_path));
 
         if print_debug {
-            println!("Data\n{:#?}", dict);
+            println!("Data\n{:#?}", builder);
         }
-
-        //let char = "人";
-
-        //let frequency_data = trad_to_frequency.inner.get(char).unwrap();
-        //let jyutping = trad_to_jyutping.inner.get(char).unwrap();
-        //let def = trad_to_def.inner.get(char).unwrap();
-
-        //println!("{} - {} {:?} - {:?}", char, jyutping, def, frequency_data);
-
-        //let hacky_results = dict.hacky_search("fu2");
-        //println!("fu2 results: \n{:#?}", hacky_results);
-        //return;
 
         let write_path = format!("{}/test.jyp_dict", data_path);
 
+        let built_dictionary = CompiledDictionary::from_builder(builder);
+
+        let dump_entries = false;
+        if (dump_entries)
         {
-            let compiled_dictionary = CompiledDictionary::from_dictionary(dict);
-
-            let dump_entries = true;
-            if (dump_entries)
-            {
-                compiled_dictionary.dump_entries("entries_dump.txt");
-            }
-
-            println!("Writing to {}", &write_path);
-            let mut data_writer = data_writer::DataWriter::new(&write_path);
-            compiled_dictionary.serialize(&mut data_writer).unwrap();
-            println!("Writing done!");
+            built_dictionary.dump_entries("entries_dump.txt");
         }
+
+        println!("Writing to {}", &write_path);
+        let mut data_writer = data_writer::DataWriter::new(&write_path);
+        built_dictionary.serialize(&mut data_writer).unwrap();
+        println!("Writing done!");
     }
 
     let compiled_dictionary = {
@@ -114,17 +92,4 @@ fn main() {
             println!("(Match {:?})\n{:#?}", m, display);
         }
     }
-
-    //let mut buffer = String::new();
-
-    //loop {
-    //    buffer.clear();
-
-    //    println!("Query: ");
-    //    std::io::stdin().read_line(&mut buffer).unwrap();
-
-    //    let results = dict.hacky_search(&buffer);
-    //    println!("{:#?}", results);
-    //}
-
 }

@@ -24,7 +24,7 @@ pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
 pub const CURRENT_VERSION: u32 = 8;
 
 impl CompiledDictionary {
-    pub fn from_dictionary(mut dict : Builder) -> Self {
+    pub fn from_builder(mut dict : Builder) -> Self {
         let mut all_characters : BTreeSet<char> = BTreeSet::new();
         let mut all_jyutping_words : BTreeSet<String> = BTreeSet::new();
 
