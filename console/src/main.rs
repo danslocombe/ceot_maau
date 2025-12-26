@@ -25,15 +25,15 @@ fn main() {
 
     if (build)
     {
-        let mut dict = Dictionary::default();
+        let mut dict = dictlib::builder::Builder::default();
 
-        let trad_to_frequency = TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
+        let trad_to_frequency = dictlib::builder::TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
 
         // Cedict is
         // Traditional / Pinyin / English Definition.
         dict.parse_cedict(&format!("{}/cedict_ts.u8", data_path), &trad_to_frequency);
 
-        let trad_to_jyutping = TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
+        let trad_to_jyutping = dictlib::builder::TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
         // @TODO
         dict.annotate(&trad_to_jyutping);
 

@@ -6,7 +6,7 @@ use bit_set::BitSet;
 use serde::Serialize;
 
 use crate::{EntrySource, Stopwatch};
-use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, Dictionary};
+use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, builder::Builder};
 
 #[derive(Debug)]
 pub struct CompiledDictionary
@@ -24,7 +24,7 @@ pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
 pub const CURRENT_VERSION: u32 = 8;
 
 impl CompiledDictionary {
-    pub fn from_dictionary(mut dict : Dictionary) -> Self {
+    pub fn from_dictionary(mut dict : Builder) -> Self {
         let mut all_characters : BTreeSet<char> = BTreeSet::new();
         let mut all_jyutping_words : BTreeSet<String> = BTreeSet::new();
 
