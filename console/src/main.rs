@@ -105,9 +105,10 @@ fn main() {
         std::io::stdin().read_line(&mut buffer).unwrap();
         println!("\n\n");
 
-        let matches = compiled_dictionary.search(&buffer.trim());
+        let stopwatch = Box::new(NativeStopwatch::new());
+        let result = compiled_dictionary.search(&buffer.trim(), stopwatch);
 
-        for m in matches
+        for m in result.matches
         {
             let display = compiled_dictionary.get_diplay_entry(m.entry_id);
             println!("(Match {:?})\n{:#?}", m, display);

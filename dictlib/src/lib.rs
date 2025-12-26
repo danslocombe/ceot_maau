@@ -8,7 +8,7 @@
 #![allow(clippy::identity_op)]
 #![allow(clippy::needless_range_loop)]
 
-use std::collections::BTreeMap;
+use std::{collections::BTreeMap, time::Instant};
 
 use jyutping_splitter::JyutpingSplitter;
 use serde::Serialize;
@@ -61,6 +61,24 @@ pub trait DebugLogger {
 
 pub trait Stopwatch {
     fn elapsed_ms(&self) -> i32;
+}
+
+pub struct NativeStopwatch {
+    start : Instant,
+}
+
+impl NativeStopwatch {
+    pub fn new() -> Self {
+        Self {
+            start: Instant::now(),
+        }
+    }
+}
+
+impl Stopwatch for NativeStopwatch {
+    fn elapsed_ms(&self) -> i32 {
+        Instant::now().duration_since(self.start).as_millis() as i32
+    }
 }
 
 #[derive(Debug, Clone, Copy)]
