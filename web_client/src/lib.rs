@@ -1,4 +1,4 @@
-use dictlib::{DebugLogger, Stopwatch, compiled_dictionary::{CompiledDictionary, Match, MatchWithHitInfo, Timings}, data_reader::DataReader, rendered_result::RenderedResult};
+use dictlib::{DebugLogger, Stopwatch, compiled_dictionary::CompiledDictionary, data_reader::DataReader, rendered_result::RenderedResult, search::{MatchWithHitInfo, Timings}};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
 

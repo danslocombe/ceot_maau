@@ -1205,10 +1205,23 @@ pub mod tests {
         let res = dict.search("aa baa", Box::new(TestStopwatch));
         assert_eq!(1, res.matches.len());
         assert_eq!(0, res.matches[0].match_obj.cost_info.total());
+        assert_eq!(2, res.matches[0].matched_spans.len());
+        assert_eq!((0, 2), res.matches[0].matched_spans[0]);
+        assert_eq!((4, 7), res.matches[0].matched_spans[1]);
+
+        let res = dict.search("aa ba", Box::new(TestStopwatch));
+        assert_eq!(1, res.matches.len());
+        assert_eq!(0, res.matches[0].match_obj.cost_info.total());
+        assert_eq!(2, res.matches[0].matched_spans.len());
+        assert_eq!((0, 2), res.matches[0].matched_spans[0]);
+        assert_eq!((4, 6), res.matches[0].matched_spans[1]);
 
         // Should be exact match
         let res = dict.search("aa3 baa1", Box::new(TestStopwatch));
         assert_eq!(1, res.matches.len());
         assert_eq!(0, res.matches[0].match_obj.cost_info.total());
+        assert_eq!(2, res.matches[0].matched_spans.len());
+        assert_eq!((0, 3), res.matches[0].matched_spans[0]);
+        assert_eq!((4, 8), res.matches[0].matched_spans[1]);
     }
 }

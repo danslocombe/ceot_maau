@@ -92,7 +92,7 @@ impl CompiledDictionary {
     }
 }
 
-#[derive(Default, Clone)]
+#[derive(Debug, Default, Clone)]
 pub struct JyutpingMatchPath {
     inner: Vec<JyutpingMatchPathElem>,
 }
@@ -137,13 +137,15 @@ impl Eq for JyutpingMatchPath {
 
 impl PartialOrd for JyutpingMatchPath {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        self.cost().partial_cmp(&other.cost())
+        //self.cost().partial_cmp(&other.cost())
+        other.cost().partial_cmp(&self.cost())
     }
 }
 
 impl Ord for JyutpingMatchPath {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.cost().cmp(&other.cost())
+        //self.cost().cmp(&other.cost())
+        other.cost().cmp(&self.cost())
     }
 }
 

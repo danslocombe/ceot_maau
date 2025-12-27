@@ -51,9 +51,9 @@ impl JyutpingQueryTerm {
                 continue;
             }
 
-            if crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes()).is_some()
+            if let Some(idx) = crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes())
             {
-                let match_cost = (jyutping_string.len() - s.len()) as u32 * JYUTPING_PARTIAL_MATCH_PENALTY_K;
+                let match_cost = idx as u32 * JYUTPING_PARTIAL_MATCH_PENALTY_K;
                 match_bit_to_match_cost.push((i as i32, match_cost));
                 matches.insert(i);
                 continue;
