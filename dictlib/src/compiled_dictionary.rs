@@ -525,6 +525,7 @@ impl DisplayDictionaryEntry
 #[cfg(test)]
 pub mod tests {
     use crate::Stopwatch;
+    use crate::search::{QueryTerms, MatchType, JyutpingQueryTerm};
 
     use super::*;
 
@@ -628,7 +629,7 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Test exact match (case insensitive)
-        let query_term = dict.get_jyutping_query_term("lou");
+        let query_term = JyutpingQueryTerm::create("lou", &dict.jyutping_store);
         assert!(query_term.matches.contains(1)); // "lou" is at index 1
         assert_eq!(query_term.tone, None);
 
@@ -641,7 +642,7 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Test query with tone digit
-        let query_term = dict.get_jyutping_query_term("lou5");
+        let query_term = JyutpingQueryTerm::create("lou5", &dict.jyutping_store);
         assert!(query_term.matches.contains(1)); // "lou" is at index 1
         assert_eq!(query_term.tone, Some(5));
     }
@@ -651,7 +652,7 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Test substring match: "saa" should match "saang"
-        let query_term = dict.get_jyutping_query_term("saa");
+        let query_term = JyutpingQueryTerm::create("saa", &dict.jyutping_store);
         assert!(query_term.matches.contains(2)); // "saang" is at index 2
 
         // Should have a match cost penalty
@@ -669,7 +670,7 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Test prefix match: "ho" should match "hok"
-        let query_term = dict.get_jyutping_query_term("ho");
+        let query_term = JyutpingQueryTerm::create("ho", &dict.jyutping_store);
         assert!(query_term.matches.contains(0)); // "hok" is at index 0
 
         // Should have a match cost penalty for partial match
@@ -687,10 +688,10 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Test case insensitive matching
-        let query_term = dict.get_jyutping_query_term("LOU");
+        let query_term = JyutpingQueryTerm::create("LOU", &dict.jyutping_store);
         assert!(query_term.matches.contains(1));
 
-        let query_term2 = dict.get_jyutping_query_term("LoU");
+        let query_term2 = JyutpingQueryTerm::create("LoU", &dict.jyutping_store);
         assert!(query_term2.matches.contains(1));
     }
 
@@ -702,11 +703,11 @@ pub mod tests {
         let results = dict.search("saa", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0, "Should find results for substring 'saa' matching 'saang'");
-        assert_eq!(results[0].entry_id, 1); // Should match the 學生 entry with saang1
-        assert!(matches!(results[0].match_type, MatchType::Jyutping));
+        assert_eq!(results[0].match_obj.entry_id, 1); // Should match the 學生 entry with saang1
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
 
         // Verify the cost is higher than exact match (due to substring penalty)
-        assert!(results[0].cost_info.term_match_cost > 0);
+        assert!(results[0].match_obj.cost_info.term_match_cost > 0);
     }
 
     #[test]
@@ -717,8 +718,8 @@ pub mod tests {
         let results = dict.search("ho", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0, "Should find results for prefix 'ho' matching 'hok'");
-        assert_eq!(results[0].entry_id, 1); // Should match the 學生 entry with hok6
-        assert!(matches!(results[0].match_type, MatchType::Jyutping));
+        assert_eq!(results[0].match_obj.entry_id, 1); // Should match the 學生 entry with hok6
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
     }
 
     #[test]
@@ -726,7 +727,7 @@ pub mod tests {
         let dict = create_test_dict();
 
         // Query that doesn't match anything
-        let query_term = dict.get_jyutping_query_term("xyz");
+        let query_term = JyutpingQueryTerm::create("xyz", &dict.jyutping_store);
         assert_eq!(query_term.matches.len(), 0, "Should not match non-existent jyutping");
 
         // Search should return no jyutping matches
@@ -734,7 +735,7 @@ pub mod tests {
 
         // May have English matches, but no jyutping matches
         for result in results {
-            assert!(!matches!(result.match_type, MatchType::Jyutping),
+            assert!(!matches!(result.match_obj.match_type, MatchType::Jyutping),
                 "Should not have jyutping match for non-existent syllable");
         }
     }
@@ -746,7 +747,7 @@ pub mod tests {
 
         // Query for "lou" (without tone) should match first syllable
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("lou")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("lou", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -774,7 +775,7 @@ pub mod tests {
 
         // Query for "lou5" (with tone) should match first syllable
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("lou5")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("lou5", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -801,7 +802,7 @@ pub mod tests {
 
         // Query for "si" should match second syllable
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("si")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("si", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -828,8 +829,8 @@ pub mod tests {
         // Query for both syllables
         let query_terms = QueryTerms {
             jyutping_terms: vec![
-                dict.get_jyutping_query_term("lou"),
-                dict.get_jyutping_query_term("si"),
+                JyutpingQueryTerm::create("lou", &dict.jyutping_store),
+                JyutpingQueryTerm::create("si", &dict.jyutping_store),
             ],
             traditional_terms: vec![],
         };
@@ -856,7 +857,7 @@ pub mod tests {
 
         // Query with substring "saa" should match "saang"
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("saa")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("saa", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -882,7 +883,7 @@ pub mod tests {
 
         // Query with prefix "ho" should match "hok"
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("ho")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("ho", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -908,7 +909,7 @@ pub mod tests {
 
         // Query with exact match and tone "hok6"
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("hok6")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("hok6", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -939,7 +940,7 @@ pub mod tests {
         let entry = &dict.entries[1];
 
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("saa1")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("saa1", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -973,7 +974,7 @@ pub mod tests {
 
         // Query with substring and tone should still work
         let query_terms = QueryTerms {
-            jyutping_terms: vec![dict.get_jyutping_query_term("saa1")],
+            jyutping_terms: vec![JyutpingQueryTerm::create("saa1", &dict.jyutping_store)],
             traditional_terms: vec![],
         };
 
@@ -1001,8 +1002,8 @@ pub mod tests {
         let results = dict.search("saa", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0, "Should find results for substring");
-        assert_eq!(results[0].entry_id, 1);
-        assert!(matches!(results[0].match_type, MatchType::Jyutping));
+        assert_eq!(results[0].match_obj.entry_id, 1);
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
 
         // Verify the highlighting span is correct
         assert_eq!(results[0].matched_spans.len(), 1);
@@ -1025,7 +1026,7 @@ pub mod tests {
         let results = dict.search("ho", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0, "Should find results for prefix");
-        assert_eq!(results[0].entry_id, 1);
+        assert_eq!(results[0].match_obj.entry_id, 1);
 
         // Verify the highlighting span covers the full syllable
         let (start, end) = results[0].matched_spans[0];
@@ -1045,7 +1046,7 @@ pub mod tests {
         let results = dict.search("ho saa", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0);
-        assert_eq!(results[0].entry_id, 1); // 學生 with "hok6 saang1"
+        assert_eq!(results[0].match_obj.entry_id, 1); // 學生 with "hok6 saang1"
 
         // Should have two highlighted spans
         assert_eq!(results[0].matched_spans.len(), 2);
@@ -1108,11 +1109,11 @@ pub mod tests {
         let results = dict.search("lou", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0, "Should find at least one result");
-        assert_eq!(results[0].entry_id, 0);
-        assert!(matches!(results[0].match_type, MatchType::Jyutping));
+        assert_eq!(results[0].match_obj.entry_id, 0);
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
 
         // Verify the spans are valid
-        let display = dict.get_diplay_entry(results[0].entry_id);
+        let display = dict.get_diplay_entry(results[0].match_obj.entry_id);
         // For Jyutping matches, spans refer to positions in the jyutping string
         for (start, end) in &results[0].matched_spans {
             assert!(*start < display.jyutping.len());
@@ -1129,8 +1130,8 @@ pub mod tests {
         let results = dict.search("student", Box::new(TestStopwatch)).matches;
 
         assert!(results.len() > 0);
-        assert_eq!(results[0].entry_id, 1);
-        assert!(matches!(results[0].match_type, MatchType::English));
+        assert_eq!(results[0].match_obj.entry_id, 1);
+        assert!(matches!(results[0].match_obj.match_type, MatchType::English));
 
         // Verify english spans - spans now refer to positions within the concatenated english data
         // For English matches, we just verify the spans are valid within the english data
@@ -1152,15 +1153,15 @@ pub mod tests {
         eprintln!("Search for '老' returned {} results", results.len());
         for (i, r) in results.iter().enumerate() {
             eprintln!("Result {}: entry_id={}, match_type={:?}, spans={:?}",
-                i, r.entry_id, r.match_type, r.matched_spans);
+                i, r.match_obj.entry_id, r.match_obj.match_type, r.matched_spans);
         }
 
         assert!(results.len() > 0, "Should find at least one result for '老'");
-        assert_eq!(results[0].entry_id, 0);
-        assert!(matches!(results[0].match_type, MatchType::Traditional));
+        assert_eq!(results[0].match_obj.entry_id, 0);
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Traditional));
 
         // Verify traditional spans point to the character
-        let display = dict.get_diplay_entry(results[0].entry_id);
+        let display = dict.get_diplay_entry(results[0].match_obj.entry_id);
         // For Traditional matches, spans refer to character positions
         for (start, end) in &results[0].matched_spans {
             let chars: Vec<char> = display.characters.chars().collect();

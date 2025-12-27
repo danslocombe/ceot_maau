@@ -143,7 +143,6 @@ pub struct JyutpingMatchPathElem {
 
 pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Option<JyutpingMatchPath> {
     let n = query_terms.jyutping_terms.len();
-    let m = entry.jyutping.len();
 
     let mut queue : BinaryHeap<JyutpingMatchPath> = BinaryHeap::new();
     queue.push(JyutpingMatchPath::with_capacity(n));

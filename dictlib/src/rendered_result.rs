@@ -176,6 +176,7 @@ impl RenderedResult {
 mod tests {
     use super::*;
     use crate::compiled_dictionary::tests::create_test_dict;
+    use crate::search::MatchType;
 
     struct TestStopwatch;
 
@@ -250,7 +251,7 @@ mod tests {
         assert!(results.len() > 0);
 
         let result = &results[0];
-        assert!(matches!(result.match_type, MatchType::Jyutping));
+        assert!(matches!(result.match_obj.match_type, MatchType::Jyutping));
 
         // Create rendered result with highlighting
         let rendered = RenderedResult::from_match(result, &dict);
@@ -309,7 +310,7 @@ mod tests {
         assert!(results.len() > 0);
 
         let result = &results[0];
-        assert_eq!(result.entry_id, 1); // 學生 entry
+        assert_eq!(result.match_obj.entry_id, 1); // 學生 entry
 
         let rendered = RenderedResult::from_match(result, &dict);
 
@@ -329,7 +330,7 @@ mod tests {
         assert!(results.len() > 0);
 
         let result = &results[0];
-        assert!(matches!(result.match_type, MatchType::Traditional));
+        assert!(matches!(result.match_obj.match_type, MatchType::Traditional));
 
         let rendered = RenderedResult::from_match(result, &dict);
 
@@ -372,7 +373,7 @@ mod tests {
         assert!(results.len() > 0);
 
         let result = &results[0];
-        assert!(matches!(result.match_type, MatchType::English));
+        assert!(matches!(result.match_obj.match_type, MatchType::English));
 
         let rendered = RenderedResult::from_match(result, &dict);
 
@@ -449,7 +450,7 @@ mod tests {
         let rendered = RenderedResult::from_match(result, &dict);
 
         // Cost should be preserved from the dictionary entry
-        assert_eq!(rendered.cost, dict.entries[result.entry_id].cost);
+        assert_eq!(rendered.cost, dict.entries[result.match_obj.entry_id].cost);
     }
 
     #[test]
@@ -463,6 +464,6 @@ mod tests {
         let rendered = RenderedResult::from_match(result, &dict);
 
         // Entry source should be preserved
-        assert_eq!(rendered.entry_source, dict.entries[result.entry_id].get_source());
+        assert_eq!(rendered.entry_source, dict.entries[result.match_obj.entry_id].get_source());
     }
 }
