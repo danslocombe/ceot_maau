@@ -281,8 +281,7 @@ mod tests {
         let rendered = RenderedResult::from_match(result, &dict);
 
         // Should highlight both base and tone
-        assert!(rendered.jyutping.contains("<mark class=\"hit-highlight\">lou</mark>"));
-        assert!(rendered.jyutping.contains("<mark class=\"hit-highlight\">5</mark>"));
+        assert!(rendered.jyutping.contains("<mark class=\"hit-highlight\">lou5</mark>"));
     }
 
     #[test]

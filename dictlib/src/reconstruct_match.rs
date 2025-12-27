@@ -8,7 +8,6 @@ use crate::string_search::string_indexof_linear_ignorecase;
 impl CompiledDictionary {
     pub fn get_jyutping_matched_spans(&self, entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Vec<(usize, usize)> {
         let mut spans = Vec::new();
-
         let mut start: usize = 0;
 
         if let Some(best_match) = get_jyutping_best_match(entry, query_terms) {
@@ -26,11 +25,25 @@ impl CompiledDictionary {
                     if let Some(idx) = string_indexof_linear_ignorecase(&query_string, target_string.as_bytes()) {
                         spans.push((start + idx, start + idx + query_string.len()));
                     }
+                    else if let Some(t) = query_term.tone && t == entry_jyutping.tone {
+                        // Ok that didn't work, try and split non-tone part and tone part and get something
+                        let q = &query_term.string_no_tone;
+                        if let Some(idx) = string_indexof_linear_ignorecase(q, target_string.as_bytes()) {
+                            spans.push((start + idx, start + idx + q.len()));
+                        }
+
+                        // At least highlight the tone
+                        spans.push((start + target_string.len() - 1, start + target_string.len()));
+                    }
                 }
 
                 start += target_string.len();
                 start += 1;
             }
+        }
+        else {
+            // We shouldnt really get here ever
+            debug_assert!(false);
         }
 
         spans
@@ -186,6 +199,8 @@ pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &Qu
                 target_index: i as u32,
                 cost: term_match_cost,
             });
+
+            queue.push(cloned);
         }
     }
 

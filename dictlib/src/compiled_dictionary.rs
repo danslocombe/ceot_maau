@@ -525,7 +525,7 @@ impl DisplayDictionaryEntry
 #[cfg(test)]
 pub mod tests {
     use crate::Stopwatch;
-    use crate::search::{QueryTerms, MatchType, JyutpingQueryTerm};
+    use crate::search::{JYUTPING_PARTIAL_MATCH_PENALTY_K, JyutpingQueryTerm, MatchType, QueryTerms};
 
     use super::*;
 
@@ -660,9 +660,8 @@ pub mod tests {
             .find(|(idx, _)| *idx == 2);
         assert!(cost_entry.is_some(), "Should have cost entry for substring match");
 
-        // Cost should be (len("saang") - len("saa")) * 6000 = 2 * 6000 = 12000
         let (_, cost) = cost_entry.unwrap();
-        assert_eq!(*cost, 12_000);
+        assert_eq!(*cost, 2 * JYUTPING_PARTIAL_MATCH_PENALTY_K);
     }
 
     #[test]
@@ -678,9 +677,8 @@ pub mod tests {
             .find(|(idx, _)| *idx == 0);
         assert!(cost_entry.is_some());
 
-        // Cost should be (len("hok") - len("ho")) * 6000 = 1 * 6000 = 6000
         let (_, cost) = cost_entry.unwrap();
-        assert_eq!(*cost, 6_000);
+        assert_eq!(*cost, JYUTPING_PARTIAL_MATCH_PENALTY_K);
     }
 
     #[test]
@@ -782,17 +780,13 @@ pub mod tests {
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
 
         // Should have two spans: one for base, one for tone
-        assert_eq!(spans.len(), 2);
+        assert_eq!(spans.len(), 1);
 
         let display = dict.get_diplay_entry(0);
 
         // First span should cover the base "lou"
         let (start1, end1) = spans[0];
-        assert_eq!(&display.jyutping[start1..end1], "lou");
-
-        // Second span should cover the tone digit "5"
-        let (start2, end2) = spans[1];
-        assert_eq!(&display.jyutping[start2..end2], "5");
+        assert_eq!(&display.jyutping[start1..end1], "lou5");
     }
 
     #[test]
@@ -916,17 +910,13 @@ pub mod tests {
         let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
 
         // Should have two spans: one for base, one for tone
-        assert_eq!(spans.len(), 2);
+        assert_eq!(spans.len(), 1);
 
         let display = dict.get_diplay_entry(1);
 
         // First span covers "hok"
         let (start1, end1) = spans[0];
-        assert_eq!(&display.jyutping[start1..end1], "hok");
-
-        // Second span covers "6"
-        let (start2, end2) = spans[1];
-        assert_eq!(&display.jyutping[start2..end2], "6");
+        assert_eq!(&display.jyutping[start1..end1], "hok6");
     }
 
     #[test]
