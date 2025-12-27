@@ -1,30 +1,35 @@
+use std::collections::BinaryHeap;
+
 use crate::compiled_dictionary::*;
 use crate::search::*;
+use crate::string_search::string_indexof_linear_ignorecase;
+
 
 impl CompiledDictionary {
     pub fn get_jyutping_matched_spans(&self, entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Vec<(usize, usize)> {
         let mut spans = Vec::new();
 
-        // What do we want
-        // We have a series of query terms: q0, q1, ... qn
-        // And a series of entry terms: e0, e1, ... em
-        // We want to find the "best" map from query terms into entry terms
-        // ie the mapping that minimises some cost function.
-        //
-        // Once we have that we can determine the matched spans
+        let mut start: usize = 0;
 
-        struct Mapping {
-            inner: Vec<(u16, u16)>,
-        }
+        if let Some(best_match) = get_jyutping_best_match(entry, query_terms) {
+            for (i, entry_jyutping) in entry.jyutping.iter().enumerate() {
+                let target_string = self.jyutping_store.get_string(*entry_jyutping);
 
-        let mut mappings : Vec<(Mapping, u32)> = Vec::new();
+                for (j, x) in best_match.inner.iter().enumerate() {
+                    if (x.target_index != i as u32) {
+                        continue;
+                    }
 
-        // N^2 how bad is that?
+                    let query_term = &query_terms.jyutping_terms[j];
+                    let query_string = query_term.string_with_tone();
 
-        for (jyutping_id, entry_jyutping) in entry.jyutping.iter().enumerate() {
-            for query_jyutping in &query_terms.jyutping_terms {
-                if query_jyutping.matches.contains(entry_jyutping.base as usize) {
+                    if let Some(idx) = string_indexof_linear_ignorecase(&query_string, target_string.as_bytes()) {
+                        spans.push((start + idx, start + idx + query_string.len()));
+                    }
                 }
+
+                start += target_string.len();
+                start += 1;
             }
         }
 
@@ -72,4 +77,118 @@ impl CompiledDictionary {
 
         spans
     }
+}
+
+#[derive(Default, Clone)]
+pub struct JyutpingMatchPath {
+    inner: Vec<JyutpingMatchPathElem>,
+}
+
+impl JyutpingMatchPath {
+    pub fn with_capacity(cap : usize) -> Self {
+        Self {
+            inner: Vec::with_capacity(cap)
+        }
+    }
+}
+
+impl JyutpingMatchPath {
+    pub fn contains_entry_index(&self, entry_index: u32) -> bool {
+        for e in &self.inner {
+            if (e.target_index == entry_index) {
+                return true;
+            }
+        }
+
+        false
+    }
+
+    pub fn cost(&self) -> u32 {
+        let mut sum = 0;
+        for e in &self.inner {
+            sum += e.cost;
+        }
+
+        sum
+    }
+}
+
+impl PartialEq for JyutpingMatchPath {
+    fn eq(&self, other: &Self) -> bool {
+        self.cost() == other.cost()
+    }
+}
+
+impl Eq for JyutpingMatchPath {
+}
+
+impl PartialOrd for JyutpingMatchPath {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        self.cost().partial_cmp(&other.cost())
+    }
+}
+
+impl Ord for JyutpingMatchPath {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.cost().cmp(&other.cost())
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct JyutpingMatchPathElem {
+    target_jyutping: Jyutping,
+    target_index: u32,
+    cost: u32,
+}
+
+pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &QueryTerms) -> Option<JyutpingMatchPath> {
+    let n = query_terms.jyutping_terms.len();
+    let m = entry.jyutping.len();
+
+    let mut queue : BinaryHeap<JyutpingMatchPath> = BinaryHeap::new();
+    queue.push(JyutpingMatchPath::with_capacity(n));
+
+    while let Some(x) = queue.pop() {
+        debug_assert!(x.inner.len() <= n);
+        if (x.inner.len() == n) {
+            // Done!
+            return Some(x);
+        }
+
+        for (i, entry_jyutping) in entry.jyutping.iter().enumerate() {
+            if x.contains_entry_index(i as u32) {
+                // Already don this one
+                continue;
+            }
+
+            let query_match = &query_terms.jyutping_terms[x.inner.len()];
+            if (!query_match.matches.contains(entry_jyutping.base as usize)) {
+                // No match
+                continue;
+            }
+
+            if let Some(tone) = query_match.tone {
+                if (tone != entry_jyutping.tone) {
+                    continue;
+                }
+            }
+
+            let mut term_match_cost = 0;
+            for (match_bit, cost) in &query_match.match_bit_to_match_cost {
+                if (*match_bit == entry_jyutping.base as i32) {
+                    term_match_cost = *cost;
+                    break;
+                }
+            }
+
+            let mut cloned = x.clone();
+            cloned.inner.push(JyutpingMatchPathElem {
+                target_jyutping: *entry_jyutping,
+                target_index: i as u32,
+                cost: term_match_cost,
+            });
+        }
+    }
+
+    Default::default()
 }

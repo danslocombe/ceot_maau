@@ -76,6 +76,17 @@ impl JyutpingQueryTerm {
             match_bit_to_match_cost,
         }
     }
+
+    pub fn string_with_tone(&self) -> String
+    {
+        let mut string = String::with_capacity(self.string_no_tone.len() + if self.tone.is_some() { 1 } else { 0 });
+        string.push_str(&self.string_no_tone);
+        if let Some(t) = self.tone {
+            string.push((t + b'0') as char);
+        }
+
+        string
+    }
 }
 
 #[derive(Debug, Clone, Copy, Serialize)]

@@ -60,8 +60,8 @@ impl RenderedResult {
                 if !jyutping.is_empty() {
                     jyutping.push(' ');
                 }
-                jyutping.push_str(&dict.jyutping_store.base_strings[j.base as usize]);
-                jyutping.push((j.tone + b'0') as char);
+
+                jyutping.push_str(&dict.jyutping_store.get_string(*j));
             }
             jyutping
         };

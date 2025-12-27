@@ -368,6 +368,14 @@ impl JyutpingStore {
         }
     }
 
+    pub fn get_string(&self, j: Jyutping) -> String {
+        let str = &self.base_strings[j.base as usize];
+        let mut string = String::with_capacity(str.len() + 1);
+        string.push_str(str);
+        string.push((j.tone + b'0') as char);
+        string
+    }
+
     pub fn get(&self, word_with_tone : &str) -> Option<Jyutping>
     {
         let bs = word_with_tone.as_bytes();
@@ -392,10 +400,10 @@ impl JyutpingStore {
     }
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Jyutping
 {
-    // TODO merge to single u16
+    // @Perf merge to single u16, don't need all the bits for base
     pub base : u16,
     pub tone : u8,
 }
