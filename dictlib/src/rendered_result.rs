@@ -50,7 +50,7 @@ impl RenderedResult {
                     (byte_start, byte_end)
                 })
                 .collect();
-            characters = Self::apply_highlights(&characters, &byte_spans);
+            characters = apply_highlights(&characters, &byte_spans);
         }
 
         let mut jyutping =
@@ -67,13 +67,13 @@ impl RenderedResult {
         };
 
         if let MatchType::Jyutping = match_result.match_obj.match_type {
-            jyutping = Self::apply_highlights(&jyutping, &match_result.matched_spans);
+            jyutping = apply_highlights(&jyutping, &match_result.matched_spans);
         }
 
         let english_definitions = if let MatchType::English = match_result.match_obj.match_type {
-            Self::build_english_definitions_with_highlights(entry, dict, &match_result.matched_spans)
+            build_english_definitions_with_highlights(entry, dict, &match_result.matched_spans)
         } else {
-            Self::build_english_definitions_with_highlights(entry, dict, &[])
+            build_english_definitions_with_highlights(entry, dict, &[])
         };
 
         Self {
@@ -84,92 +84,91 @@ impl RenderedResult {
             entry_source: entry.get_source(),
         }
     }
+}
 
-    fn build_english_definitions_with_highlights(
-        entry: &CompiledDictionaryEntry,
-        dict: &CompiledDictionary,
-        matched_spans: &[(usize, usize)]
-    ) -> Vec<String> {
-        let mut english_definitions = Vec::with_capacity(
-            entry.english_end as usize - entry.english_start as usize
-        );
+fn build_english_definitions_with_highlights(
+    entry: &CompiledDictionaryEntry,
+    dict: &CompiledDictionary,
+    matched_spans: &[(usize, usize)]
+) -> Vec<String> {
+    let mut english_definitions = Vec::with_capacity(
+        entry.english_end as usize - entry.english_start as usize
+    );
 
-        for i in entry.english_start..entry.english_end {
-            let start = dict.english_data_starts[i as usize] as usize;
-            let end = dict.english_data_starts[i as usize + 1] as usize;
-            let blob = &dict.english_data[start..end];
-            let plain_text = unsafe { std::str::from_utf8_unchecked(blob) };
+    for i in entry.english_start..entry.english_end {
+        let start = dict.english_data_starts[i as usize] as usize;
+        let end = dict.english_data_starts[i as usize + 1] as usize;
+        let blob = &dict.english_data[start..end];
+        let plain_text = unsafe { std::str::from_utf8_unchecked(blob) };
 
-            let mut filtered_modified_matches = Vec::with_capacity(matched_spans.len());
-            for &(span_start_abs, span_end_abs) in matched_spans {
-                if (span_start_abs < start)
-                {
-                    continue;
-                }
-
-                if (span_end_abs > end)
-                {
-                    continue;
-                }
-
-                filtered_modified_matches.push((span_start_abs - start, span_end_abs - start));
+        let mut filtered_modified_matches = Vec::with_capacity(matched_spans.len());
+        for &(span_start_abs, span_end_abs) in matched_spans {
+            if (span_start_abs < start)
+            {
+                continue;
             }
 
-            let highlighted = Self::apply_highlights(plain_text, &filtered_modified_matches);
-            english_definitions.push(highlighted);
-        }
-
-        english_definitions
-    }
-
-    /// Apply HTML highlighting markup to text based on matched spans
-    /// Spans are (start, end) positions in the text
-    fn apply_highlights(text: &str, matched_spans: &[(usize, usize)]) -> String {
-        if matched_spans.is_empty() {
-            return Self::escape_html(text);
-        }
-
-        debug_assert!(matched_spans.is_sorted_by_key(|(x, _)| x));
-
-        let mut result = String::new();
-        let mut last_pos = 0;
-
-        for &(start, end) in matched_spans {
-            // Add text before the match
-            if start > last_pos {
-                result.push_str(&Self::escape_html(&text[last_pos..start]));
+            if (span_end_abs > end)
+            {
+                continue;
             }
 
-            // Add highlighted match
-            result.push_str("<mark class=\"hit-highlight\">");
-            result.push_str(&Self::escape_html(&text[start..end]));
-            result.push_str("</mark>");
-
-            last_pos = end;
+            filtered_modified_matches.push((span_start_abs - start, span_end_abs - start));
         }
 
-        // Add remaining text
-        if last_pos < text.len() {
-            result.push_str(&Self::escape_html(&text[last_pos..]));
+        let highlighted = apply_highlights(plain_text, &filtered_modified_matches);
+        english_definitions.push(highlighted);
+    }
+
+    english_definitions
+}
+
+/// Apply HTML highlighting markup to text based on matched spans
+/// Spans are (start, end) positions in the text
+fn apply_highlights(text: &str, matched_spans: &[(usize, usize)]) -> String {
+    if matched_spans.is_empty() {
+        return escape_html(text);
+    }
+
+    debug_assert!(matched_spans.is_sorted_by_key(|(x, _)| x));
+
+    let mut result = String::new();
+    let mut last_pos = 0;
+
+    for &(start, end) in matched_spans {
+        // Add text before the match
+        if start > last_pos {
+            result.push_str(&escape_html(&text[last_pos..start]));
         }
 
-        result
+        // Add highlighted match
+        result.push_str("<mark class=\"hit-highlight\">");
+        result.push_str(&escape_html(&text[start..end]));
+        result.push_str("</mark>");
+
+        last_pos = end;
     }
 
-    /// Escape HTML special characters to prevent XSS
-    fn escape_html(text: &str) -> String {
-        text.chars()
-            .map(|c| match c {
-                '<' => "&lt;".to_string(),
-                '>' => "&gt;".to_string(),
-                '&' => "&amp;".to_string(),
-                '"' => "&quot;".to_string(),
-                '\'' => "&#x27;".to_string(),
-                _ => c.to_string(),
-            })
-            .collect()
+    // Add remaining text
+    if last_pos < text.len() {
+        result.push_str(&escape_html(&text[last_pos..]));
     }
 
+    result
+}
+
+/// Escape HTML special characters to prevent XSS
+fn escape_html(text: &str) -> String {
+    text.chars()
+        .map(|c| match c {
+            '<' => "&lt;".to_string(),
+            '>' => "&gt;".to_string(),
+            '&' => "&amp;".to_string(),
+            '"' => "&quot;".to_string(),
+            '\'' => "&#x27;".to_string(),
+            _ => c.to_string(),
+        })
+        .collect()
 }
 
 #[cfg(test)]
@@ -189,17 +188,17 @@ mod tests {
     #[test]
     fn test_escape_html() {
         assert_eq!(
-            RenderedResult::escape_html("<script>alert('xss')</script>"),
+            escape_html("<script>alert('xss')</script>"),
             "&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;"
         );
 
         assert_eq!(
-            RenderedResult::escape_html("a & b"),
+            escape_html("a & b"),
             "a &amp; b"
         );
 
         assert_eq!(
-            RenderedResult::escape_html("normal text"),
+            escape_html("normal text"),
             "normal text"
         );
     }
@@ -208,7 +207,7 @@ mod tests {
     fn test_apply_highlights_single_span() {
         let text = "hello world";
         let spans = vec![(0, 5)];
-        let result = RenderedResult::apply_highlights(text, &spans);
+        let result = apply_highlights(text, &spans);
         assert_eq!(result, "<mark class=\"hit-highlight\">hello</mark> world");
     }
 
@@ -216,7 +215,7 @@ mod tests {
     fn test_apply_highlights_multiple_spans() {
         let text = "hello world";
         let spans = vec![(0, 5), (6, 11)];
-        let result = RenderedResult::apply_highlights(text, &spans);
+        let result = apply_highlights(text, &spans);
         assert_eq!(
             result,
             "<mark class=\"hit-highlight\">hello</mark> <mark class=\"hit-highlight\">world</mark>"
@@ -227,7 +226,7 @@ mod tests {
     fn test_apply_highlights_no_spans() {
         let text = "hello world";
         let spans = vec![];
-        let result = RenderedResult::apply_highlights(text, &spans);
+        let result = apply_highlights(text, &spans);
         assert_eq!(result, "hello world");
     }
 
@@ -235,7 +234,7 @@ mod tests {
     fn test_apply_highlights_with_html_chars() {
         let text = "<tag> & more";
         let spans = vec![(0, 5)];
-        let result = RenderedResult::apply_highlights(text, &spans);
+        let result = apply_highlights(text, &spans);
         assert_eq!(
             result,
             "<mark class=\"hit-highlight\">&lt;tag&gt;</mark> &amp; more"
@@ -394,6 +393,23 @@ mod tests {
     }
 
     #[test]
+    fn test_from_match_english_highlighting_duplicate() {
+        let dict = create_test_dict();
+
+        // Search for English word
+        let results = dict.search("teacher teacher", Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0);
+
+        let result = &results[0];
+        assert!(matches!(result.match_obj.match_type, MatchType::English));
+        assert_eq!("", format!("{:?}", result.matched_spans));
+
+        let rendered = RenderedResult::from_match(result, &dict);
+        assert_eq!(1, rendered.english_definitions.len());
+        assert_eq!("<mark class=\"hit-highlight\">teacher</mark>", rendered.english_definitions[0]);
+    }
+
+    #[test]
     fn test_from_match_english_html_escaping() {
         // Test that HTML in english definitions is properly escaped even with highlighting
         let dict = create_test_dict();
@@ -464,5 +480,14 @@ mod tests {
 
         // Entry source should be preserved
         assert_eq!(rendered.entry_source, dict.entries[result.match_obj.entry_id].get_source());
+    }
+
+    #[test]
+    fn english_definition_hh() {
+        let dict = create_test_dict();
+        let entry = &dict.entries[0];
+        let xs = build_english_definitions_with_highlights(entry, &dict, &[(0, 5)]);
+        assert_eq!(1, xs.len());
+        assert_eq!("<mark class=\"hit-highlight\">teach</mark>er", xs[0]);
     }
 }

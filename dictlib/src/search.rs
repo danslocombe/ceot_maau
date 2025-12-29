@@ -7,6 +7,7 @@ use serde::Serialize;
 use crate::Stopwatch;
 
 use crate::compiled_dictionary::*;
+use crate::reconstruct_match::merge_overlapping_match_spans;
 
 pub const OUT_OF_ORDER_INVERSION_PENALTY: u32 = 8_000;
 pub const UNMATCHED_JYUTPING_PENALTY: u32 = 10_000;
@@ -232,11 +233,13 @@ impl CompiledDictionary {
         for m in matches
         {
             let entry = &self.entries[m.entry_id];
-            let matched_spans = match m.match_type {
+            let mut matched_spans = match m.match_type {
                 MatchType::Jyutping => self.get_jyutping_matched_spans(entry, &query_terms),
                 MatchType::Traditional => self.get_traditional_matched_spans(entry, &query_terms),
                 MatchType::English => self.get_english_matched_spans(entry, s),
             };
+
+            matched_spans = merge_overlapping_match_spans(matched_spans);
 
             matches_with_hit_info.push(MatchWithHitInfo {
                 match_obj: m,

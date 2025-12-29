@@ -208,3 +208,8 @@ pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &Qu
 
     Default::default()
 }
+
+pub fn merge_overlapping_match_spans(xs: Vec<(usize, usize)>) -> Vec<(usize, usize)>
+{
+    xs
+}
