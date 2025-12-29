@@ -191,11 +191,13 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 }
 
 .hit-highlight {
-	background-color: #fef08a;
-	color: #854d0e;
-	font-weight: 600;
-	padding: 2px 4px;
-	border-radius: 4px;
+	background-color: #fffad2;
+	color: #51310e;
+	padding: 0;
+	border-radius: 2px;
+	font-size: inherit;
+	line-height: inherit;
+	font-family: inherit;
 }
 
 .input-container {
