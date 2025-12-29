@@ -209,7 +209,100 @@ pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &Qu
     Default::default()
 }
 
-pub fn merge_overlapping_match_spans(xs: Vec<(usize, usize)>) -> Vec<(usize, usize)>
+pub fn merge_overlapping_match_spans(mut xs: Vec<(usize, usize)>) -> Vec<(usize, usize)>
 {
-    xs
+    if xs.is_empty() {
+        return xs;
+    }
+
+    // Sort by start position, then by end position
+    xs.sort_unstable();
+
+    let mut merged = Vec::with_capacity(xs.len());
+    let (mut current_start, mut current_end) = xs[0];
+
+    for &(start, end) in xs.iter().skip(1) {
+        // Check if spans overlap or touch (end is inclusive, so end + 1 would be adjacent)
+        if start <= current_end + 1 {
+            // Merge by extending the current span
+            current_end = current_end.max(end);
+        } else {
+            // No overlap, push current and start a new span
+            merged.push((current_start, current_end));
+            (current_start, current_end) = (start, end);
+        }
+    }
+
+    merged.push((current_start, current_end));
+    merged
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_merge_overlapping_match_spans_empty() {
+        let spans = vec![];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_single() {
+        let spans = vec![(5, 10)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(5, 10)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_no_overlap() {
+        let spans = vec![(1, 3), (5, 7), (10, 15)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 3), (5, 7), (10, 15)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_with_overlap() {
+        let spans = vec![(1, 5), (3, 8), (10, 15)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 8), (10, 15)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_complete_overlap() {
+        let spans = vec![(1, 10), (3, 5)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 10)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_adjacent() {
+        // Adjacent spans should be merged since end is inclusive
+        // (1,3) and (4,6) are adjacent
+        let spans = vec![(1, 3), (4, 6)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 6)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_duplicates() {
+        let spans = vec![(5, 10), (5, 10), (7, 12)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(5, 12)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_unsorted() {
+        let spans = vec![(10, 15), (1, 5), (3, 8)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 8), (10, 15)]);
+    }
+
+    #[test]
+    fn test_merge_overlapping_match_spans_all_merge() {
+        let spans = vec![(1, 3), (2, 5), (4, 7), (6, 10)];
+        let result = merge_overlapping_match_spans(spans);
+        assert_eq!(result, vec![(1, 10)]);
+    }
 }

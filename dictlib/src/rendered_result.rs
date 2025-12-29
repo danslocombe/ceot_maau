@@ -396,13 +396,14 @@ mod tests {
     fn test_from_match_english_highlighting_duplicate() {
         let dict = create_test_dict();
 
-        // Search for English word
+        // Search for English word with duplicate - should merge overlapping spans
         let results = dict.search("teacher teacher", Box::new(TestStopwatch)).matches;
         assert!(results.len() > 0);
 
         let result = &results[0];
         assert!(matches!(result.match_obj.match_type, MatchType::English));
-        assert_eq!("", format!("{:?}", result.matched_spans));
+        // Should have exactly one merged span (the duplicate "teacher" searches should be merged)
+        assert_eq!(1, result.matched_spans.len(), "Duplicate search terms should result in merged spans");
 
         let rendered = RenderedResult::from_match(result, &dict);
         assert_eq!(1, rendered.english_definitions.len());
