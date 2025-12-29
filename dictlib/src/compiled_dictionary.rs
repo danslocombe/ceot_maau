@@ -525,7 +525,7 @@ impl DisplayDictionaryEntry
 #[cfg(test)]
 pub mod tests {
     use crate::Stopwatch;
-    use crate::search::{JYUTPING_PARTIAL_MATCH_PENALTY_K, JyutpingQueryTerm, MatchType, QueryTerms};
+    use crate::search::{JYUTPING_COMPLETION_PENALTY_K, JYUTPING_PARTIAL_MATCH_PENALTY_K, JyutpingQueryTerm, MatchType, QueryTerms};
 
     use super::*;
 
@@ -661,7 +661,7 @@ pub mod tests {
         assert!(cost_entry.is_some(), "Should have cost entry for substring match");
 
         let (_, cost) = cost_entry.unwrap();
-        assert_eq!(*cost, 2 * JYUTPING_PARTIAL_MATCH_PENALTY_K);
+        assert_eq!(*cost, 2 * JYUTPING_COMPLETION_PENALTY_K);
     }
 
     #[test]
@@ -678,7 +678,7 @@ pub mod tests {
         assert!(cost_entry.is_some());
 
         let (_, cost) = cost_entry.unwrap();
-        assert_eq!(*cost, JYUTPING_PARTIAL_MATCH_PENALTY_K);
+        assert_eq!(*cost, JYUTPING_COMPLETION_PENALTY_K);
     }
 
     #[test]
@@ -1211,7 +1211,7 @@ pub mod tests {
 
         let res = dict.search("aa ba", Box::new(TestStopwatch));
         assert_eq!(1, res.matches.len());
-        assert_eq!(0, res.matches[0].match_obj.cost_info.total());
+        assert_eq!(2500, res.matches[0].match_obj.cost_info.total());
         assert_eq!(2, res.matches[0].matched_spans.len());
         assert_eq!((0, 2), res.matches[0].matched_spans[0]);
         assert_eq!((4, 6), res.matches[0].matched_spans[1]);
