@@ -150,11 +150,6 @@ a, .card .legend .word, .card-item .item-title .asterisk {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
-
 .card-item {
 	display: flex;
 	flex: 1 1 auto;

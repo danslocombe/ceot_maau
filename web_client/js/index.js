@@ -78,7 +78,6 @@ function get_class_by_source(source) {
 function render(prefix, results_string) {
     const search_result = JSON.parse(results_string)
     const results = search_result.results;
-    console.log(search_result.timings)
 
     if (results.length == 0) {
         return;
@@ -87,6 +86,20 @@ function render(prefix, results_string) {
     // Card element for all results
     var card = document.createElement("ul");
     card.setAttribute("class", "card");
+
+    if (debug) {
+        let debug_elem = document.createElement("div");
+        debug_elem.setAttribute("class", "debug-info");
+
+        let json_elem = document.createElement("pre");
+        json_elem.innerText = JSON.stringify(search_result.timings, null, 2);
+        debug_elem.appendChild(json_elem);
+
+        card.appendChild(debug_elem);
+
+        const hr_elem = document.createElement("hr");
+        card.appendChild(hr_elem);
+    }
 
     for (let result of results) {
         let title = document.createElement("li");
