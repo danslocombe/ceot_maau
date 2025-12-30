@@ -213,3 +213,32 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 .jyutping-link:active, .character-link:active {
 	opacity: 0.5;
 }
+
+.load-more-btn {
+	width: 100%;
+	padding: 0.75rem 1.5rem;
+	margin-bottom: 1rem;
+	background-color: #6366f1;
+	color: white;
+	border: none;
+	border-radius: 0.75rem;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.load-more-btn:hover {
+	background-color: #4f46e5;
+	box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.load-more-btn:active {
+	background-color: #4338ca;
+}
+
+@media (min-width: 468px) {
+	.load-more-btn {
+		width: 26rem;
+	}
+}

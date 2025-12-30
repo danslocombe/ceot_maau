@@ -12,6 +12,10 @@ var explanation = document.getElementById("explanation");
 
 var debug = url_params.get('debug') === '1';
 
+// Track current search state
+var currentQuery = "";
+var currentMaxResults = 12;
+
 fetch("full.jyp_dict", { cache: 'force-cache' })
     .then(response => {
         if (!response.ok) {
@@ -33,8 +37,14 @@ fetch("full.jyp_dict", { cache: 'force-cache' })
         resultsfield.innerHTML = "";
 
         if (prefix.length > 0) {
-            const max_results = 12;
-            render(prefix, jyutping_search.search(prefix, max_results));
+            // Reset max_results if query changed
+            if (currentQuery !== prefix) {
+                currentQuery = prefix;
+                currentMaxResults = 12;
+            }
+            
+            const results_string = jyutping_search.search(prefix, currentMaxResults);
+            render(prefix, results_string);
             explanation.hidden = true;
 
             // Update URL query parameter
@@ -45,6 +55,8 @@ fetch("full.jyp_dict", { cache: 'force-cache' })
         else {
             textfield.setAttribute("placeholder", "");
             explanation.hidden = false;
+            currentQuery = "";
+            currentMaxResults = 12;
 
             // Remove query parameter when search is empty
             const newUrl = new URL(window.location);
@@ -178,6 +190,23 @@ function render(prefix, results_string) {
     }
 
     resultsfield.appendChild(card);
+    
+    // Add "Load More" button only if we got the max number of results (meaning there might be more)
+    if (results.length === currentMaxResults) {
+        var loadMoreBtn = document.createElement("button");
+        loadMoreBtn.setAttribute("class", "load-more-btn");
+        loadMoreBtn.innerText = "More";
+        loadMoreBtn.onclick = () => {
+            currentMaxResults *= 2;
+            const input_function_for_load_more = () => {
+                resultsfield.innerHTML = "";
+                const results_string = jyutping_search.search(currentQuery, currentMaxResults);
+                render(currentQuery, results_string);
+            };
+            input_function_for_load_more();
+        };
+        resultsfield.appendChild(loadMoreBtn);
+    }
 }
 
 // Helper function to make jyutping terms clickable
