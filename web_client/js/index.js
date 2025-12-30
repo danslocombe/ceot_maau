@@ -26,7 +26,7 @@ fetch("full.jyp_dict", { cache: 'force-cache' })
     console.log("Finished search init!");
 
     textfield.removeAttribute("disabled");
-    textfield.setAttribute("placeholder", "teacher");
+    textfield.setAttribute("placeholder", "lou5 si1, teacher, 老師, ...");
     textfield.focus();
 
     const input_function = prefix => {
