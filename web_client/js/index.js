@@ -16,9 +16,9 @@ var debug = url_params.get('debug') === '1';
 var currentQuery = "";
 var currentMaxResults = 12;
 
-const current_dictionary_file_server = "full.jyp_dict";
+const current_index_filename = "full.jyp_dict";
 
-loadDictionary(current_dictionary_file_server)
+loadDictionary(current_index_filename)
   .then(data => {
     console.log("Got dictionary blob", data.byteLength, "bytes");
     const data_array = new Uint8Array(data);
@@ -73,10 +73,10 @@ loadDictionary(current_dictionary_file_server)
 // Get colouring classes for different translation sources
 function get_class_by_source(source) {
     if (source === "CEDict") {
-        return "generated";
+        return "ce-dict";
     }
     else if (source === "CCanto") {
-        return "nimi-pu";
+        return "cc-canto";
     }
     else {
         return "";
