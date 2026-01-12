@@ -16,15 +16,11 @@ var debug = url_params.get('debug') === '1';
 var currentQuery = "";
 var currentMaxResults = 12;
 
-fetch("full.jyp_dict", { cache: 'force-cache' })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Failed to fetch dictionary blob: ${response.status} ${response.statusText}`);
-        }
-        return response.arrayBuffer();
-  })
+const current_dictionary_file_server = "full.jyp_dict";
+
+loadDictionary(current_dictionary_file_server)
   .then(data => {
-    console.log("Got dictionary blob {} bytes", data.byteLength);
+    console.log("Got dictionary blob", data.byteLength, "bytes");
     const data_array = new Uint8Array(data);
     jyutping_search = new JyutpingSearch(data_array);
     console.log("Finished search init!");
@@ -44,7 +40,7 @@ fetch("full.jyp_dict", { cache: 'force-cache' })
             }
             
             const results_string = jyutping_search.search(prefix, currentMaxResults);
-            render(prefix, results_string);
+            render(results_string);
             explanation.hidden = true;
 
             // Update URL query parameter
@@ -88,7 +84,7 @@ function get_class_by_source(source) {
 }
 
 // Render a search result
-function render(prefix, results_string) {
+function render(results_string) {
     const search_result = JSON.parse(results_string)
     const results = search_result.results;
 
@@ -371,4 +367,77 @@ function wrapCharacters(sourceNode, targetNode) {
     for (let child of sourceNode.childNodes) {
         processNode(child);
     }
+}
+
+async function loadDictionary(filename) {
+    try {
+        const db = await openDB();
+        const cached = await getCachedDict(db, filename);
+        
+        if (cached) {
+            console.log("Using cached dictionary from IndexedDB");
+            return cached;
+        }
+    } catch (err) {
+        console.warn("IndexedDB access failed, falling back to network:", err);
+    }
+    
+    console.log("Fetching dictionary from network");
+    const response = await fetch(filename, { cache: 'force-cache' });
+    if (!response.ok) {
+        throw new Error(`Failed to fetch dictionary blob: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.arrayBuffer();
+    
+    try {
+        const db = await openDB();
+        await cacheDict(db, filename, data);
+        console.log("Dictionary cached in IndexedDB");
+    } catch (err) {
+        console.warn("Failed to cache dictionary in IndexedDB:", err);
+    }
+    
+    return data;
+}
+
+const DB_STORE_NAME = 'jyut';
+
+function openDB() {
+    return new Promise((resolve, reject) => {
+        const DB_NAME = 'jyutping_dict_cache';
+        const DB_VERSION = 1;
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve(request.result);
+        
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains(DB_STORE_NAME)) {
+                db.createObjectStore(DB_STORE_NAME);
+            }
+        };
+    });
+}
+
+function getCachedDict(db, filename) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([DB_STORE_NAME], 'readonly');
+        const store = transaction.objectStore(DB_STORE_NAME);
+        const request = store.get(filename);
+        
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve(request.result);
+    });
+}
+
+function cacheDict(db, filename, data) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([DB_STORE_NAME], 'readwrite');
+        const store = transaction.objectStore(DB_STORE_NAME);
+        const request = store.put(data, filename);
+        
+        request.onerror = () => reject(request.error);
+        request.onsuccess = () => resolve();
+    });
 }
