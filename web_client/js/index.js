@@ -123,7 +123,8 @@ function render(results_string) {
         let title_traditional = document.createElement("h2");
         title_traditional.setAttribute("class", "title");
         // Use pre-highlighted characters (already contains HTML markup)
-        title_traditional.innerHTML = makeCharactersClickable(result.rendered_entry.characters);
+        const characterNodes = makeCharactersClickable(result.rendered_entry.characters);
+        title_traditional.appendChild(characterNodes);
         traditional_elem.appendChild(title_traditional);
 
         let jyutping_elem = document.createElement("span");
@@ -135,7 +136,8 @@ function render(results_string) {
             title_jyutping.setAttribute("title", result.rendered_entry.entry_source);
 
             // Use pre-highlighted jyutping (already contains HTML markup)
-            title_jyutping.innerHTML = makeJyutpingClickable(result.rendered_entry.jyutping);
+            const jyutpingNodes = makeJyutpingClickable(result.rendered_entry.jyutping);
+            title_jyutping.appendChild(jyutpingNodes);
             jyutping_elem.appendChild(title_jyutping);
         }
 
@@ -205,15 +207,42 @@ function render(results_string) {
     }
 }
 
+// Helper function to create a clickable character link
+function createCharacterLink(char) {
+    const link = document.createElement('a');
+    link.href = '#';
+    link.className = 'character-link';
+    link.textContent = char;
+    link.onclick = (e) => {
+        e.preventDefault();
+        textfield.value = char;
+        textfield.dispatchEvent(new Event('input'));
+    };
+    return link;
+}
+
+// Helper function to create a clickable jyutping link
+function createJyutpingLink(searchTerm) {
+    const link = document.createElement('a');
+    link.href = '#';
+    link.className = 'jyutping-link';
+    link.onclick = (e) => {
+        e.preventDefault();
+        textfield.value = searchTerm;
+        textfield.dispatchEvent(new Event('input'));
+    };
+    return link;
+}
+
 // Helper function to make jyutping terms clickable
 function makeJyutpingClickable(jyutpingHtml) {
     const container = document.createElement('div');
     container.innerHTML = jyutpingHtml;
     
-    const result = document.createElement('div');
+    const result = document.createElement('span');
     wrapJyutpingSyllables(container, result);
     
-    return result.innerHTML;
+    return result;
 }
 
 // Helper function to make traditional characters clickable
@@ -221,10 +250,10 @@ function makeCharactersClickable(charactersHtml) {
     const container = document.createElement('div');
     container.innerHTML = charactersHtml;
     
-    const result = document.createElement('div');
+    const result = document.createElement('span');
     wrapCharacters(container, result);
     
-    return result.innerHTML;
+    return result;
 }
 
 // Wrap jyutping syllables in links, preserving markup like <mark> tags
@@ -234,8 +263,13 @@ function wrapJyutpingSyllables(sourceNode, targetNode) {
     
     function flushLink() {
         if (currentLink && currentText.trim().length > 0) {
-            currentLink.href = `?q=${encodeURIComponent(currentText.trim())}`;
-            targetNode.appendChild(currentLink);
+            const searchTerm = currentText.trim();
+            const link = createJyutpingLink(searchTerm);
+            // Copy content from currentLink to the new link
+            while (currentLink.firstChild) {
+                link.appendChild(currentLink.firstChild);
+            }
+            targetNode.appendChild(link);
             currentLink = null;
             currentText = '';
         }
@@ -250,8 +284,7 @@ function wrapJyutpingSyllables(sourceNode, targetNode) {
                 if (part.trim().length > 0) {
                     // Start a new link if needed
                     if (!currentLink) {
-                        currentLink = document.createElement('a');
-                        currentLink.className = 'jyutping-link';
+                        currentLink = document.createElement('span');
                     }
                     currentLink.appendChild(document.createTextNode(part));
                     currentText += part;
@@ -311,11 +344,7 @@ function wrapCharacters(sourceNode, targetNode) {
         if (node.nodeType === Node.TEXT_NODE) {
             const text = node.textContent;
             for (let char of text) {
-                const link = document.createElement('a');
-                link.href = `?q=${encodeURIComponent(char)}`;
-                link.className = 'character-link';
-                link.textContent = char;
-                targetNode.appendChild(link);
+                targetNode.appendChild(createCharacterLink(char));
             }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             // For character wrapping, we need to wrap content within marks
@@ -328,11 +357,7 @@ function wrapCharacters(sourceNode, targetNode) {
             for (let child of node.childNodes) {
                 if (child.nodeType === Node.TEXT_NODE) {
                     for (let char of child.textContent) {
-                        const link = document.createElement('a');
-                        link.href = `?q=${encodeURIComponent(char)}`;
-                        link.className = 'character-link';
-                        link.textContent = char;
-                        clonedElement.appendChild(link);
+                        clonedElement.appendChild(createCharacterLink(char));
                     }
                 } else {
                     processNodeIntoElement(child, clonedElement);
@@ -346,11 +371,7 @@ function wrapCharacters(sourceNode, targetNode) {
     function processNodeIntoElement(node, targetElement) {
         if (node.nodeType === Node.TEXT_NODE) {
             for (let char of node.textContent) {
-                const link = document.createElement('a');
-                link.href = `?q=${encodeURIComponent(char)}`;
-                link.className = 'character-link';
-                link.textContent = char;
-                targetElement.appendChild(link);
+                targetElement.appendChild(createCharacterLink(char));
             }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             const clonedElement = document.createElement(node.tagName);
