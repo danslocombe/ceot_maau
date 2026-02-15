@@ -228,6 +228,16 @@ impl CompiledDictionary {
         debug_log!("Internal candidates: {}", result.internal_candidates);
 
         matches.sort_by(|(x), (y)| x.cost_info.total().cmp(&y.cost_info.total()));
+
+        // Deduplicate: keep only the best-scoring match per unique character sequence
+        {
+            let mut seen_characters = std::collections::HashSet::new();
+            matches.retain(|m| {
+                let chars = &self.entries[m.entry_id].characters;
+                seen_characters.insert(chars.clone())
+            });
+        }
+
         matches.truncate(max_results);
 
         result.timings.rank = stopwatch.elapsed_ms();

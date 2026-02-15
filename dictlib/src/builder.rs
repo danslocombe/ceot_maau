@@ -1,5 +1,5 @@
 use std::collections::BTreeMap;
-use crate::{EntrySource, JyutpingSplitter, StringVecSet};
+use crate::{EntrySource, StringVecSet};
 
 #[derive(Debug, Default)]
 pub struct Builder
@@ -12,7 +12,7 @@ pub const MAX_STATIC_COST_F : f32 = 7_000.0;
 pub const MAX_STATIC_COST   : u32 = 7_000;
 
 impl Builder {
-    pub fn parse_ccanto(&mut self, path : &str)
+    pub fn parse_ccanto(&mut self, path : &str, trad_to_frequency : &TraditionalToFrequencies)
     {
         let size_at_start = self.entries.len();
 
@@ -62,13 +62,12 @@ impl Builder {
                 definitions.add_clone(def);
             }
 
-            //trad_to_frequency.add_canto(&traditional);
-            let mut jyutping_count = 0;
-            for _ in JyutpingSplitter::new(jyutping) {
-                jyutping_count += 1;
+            // Use frequency-based cost (same as CEDict) so CCanto entries
+            // are directly comparable in ranking
+            let mut cost = 0u32;
+            for c in traditional.chars() {
+                cost += trad_to_frequency.get_or_default(c).cost;
             }
-
-            let mut cost = (15_000 + jyutping_count * 1_000) as u32;
             cost += cost_heuristic(&definitions.inner);
 
             self.entries.push(DictionaryEntry {

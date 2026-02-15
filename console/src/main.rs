@@ -50,7 +50,7 @@ fn main() {
         let trad_to_jyutping = dictlib::builder::TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
         builder.annotate(&trad_to_jyutping);
 
-        builder.parse_ccanto(&format!("{}/cccanto-webdist.txt", data_path));
+        builder.parse_ccanto(&format!("{}/cccanto-webdist.txt", data_path), &trad_to_frequency);
 
         if print_debug {
             println!("Data\n{:#?}", builder);
