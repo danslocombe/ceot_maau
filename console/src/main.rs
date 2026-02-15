@@ -13,6 +13,19 @@ fn main() {
     let build = args.iter().any(|x| x.eq_ignore_ascii_case("build"));
     let test_set = args.iter().any(|x| x.eq_ignore_ascii_case("test_set"));
     let no_query = args.iter().any(|x| x.eq_ignore_ascii_case("no_query"));
+    
+    // Check for single query parameter --query "search term"
+    let single_query = args.iter()
+        .position(|x| x.eq_ignore_ascii_case("--query"))
+        .and_then(|i| args.get(i + 1))
+        .map(|s| s.clone());
+    
+    // Check for limit parameter --limit N
+    let limit = args.iter()
+        .position(|x| x.eq_ignore_ascii_case("--limit"))
+        .and_then(|i| args.get(i + 1))
+        .and_then(|s| s.parse::<usize>().ok())
+        .unwrap_or(5); // Default to 5 results
 
     let (data_path, name, print_debug) = if test_set {
         ("../test", "test", true)
@@ -82,6 +95,24 @@ fn main() {
         return;
     }
 
+    // Handle single query mode
+    if let Some(query) = single_query {
+        println!("=====================");
+        println!("Query: {}", query);
+        println!("\n");
+
+        let stopwatch = Box::new(NativeStopwatch::new());
+        let result = compiled_dictionary.search(&query.trim(), limit, stopwatch);
+
+        for m in result.matches
+        {
+            let display = compiled_dictionary.get_diplay_entry(m.match_obj.entry_id);
+            println!("(Match {:?})\n{:#?}", m, display);
+        }
+        return;
+    }
+
+    // Interactive mode
     loop {
         buffer.clear();
 
@@ -92,7 +123,7 @@ fn main() {
         println!("\n\n");
 
         let stopwatch = Box::new(NativeStopwatch::new());
-        let result = compiled_dictionary.search(&buffer.trim(), 5, stopwatch);
+        let result = compiled_dictionary.search(&buffer.trim(), limit, stopwatch);
 
         for m in result.matches
         {
