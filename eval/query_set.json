@@ -1,109 +1,8367 @@
 [
-  {"id": 1, "query": "ngo5", "category": "single_tone", "description": "I/me - most common pronoun", "expected_characters": ["我"], "expected_jyutping": ["ngo5"], "accept_top_n": 3},
-  {"id": 2, "query": "nei5", "category": "single_tone", "description": "you - common pronoun", "expected_characters": ["你"], "expected_jyutping": ["nei5"], "accept_top_n": 3},
-  {"id": 3, "query": "hai6", "category": "single_tone", "description": "to be", "expected_characters": ["係"], "expected_jyutping": ["hai6"], "accept_top_n": 3},
-  {"id": 4, "query": "lo3", "category": "single_tone", "description": "Cantonese sentence particle", "expected_characters": ["咯", "囉"], "expected_jyutping": ["lo3"], "accept_top_n": 3},
-  {"id": 5, "query": "ge3", "category": "single_tone", "description": "possessive/nominalizer particle", "expected_characters": ["嘅"], "expected_jyutping": ["ge3"], "accept_top_n": 3},
-  {"id": 6, "query": "aa3", "category": "single_tone", "description": "question particle / prefix", "expected_characters": ["阿", "呀"], "expected_jyutping": ["aa3"], "accept_top_n": 3},
-  {"id": 7, "query": "m4", "category": "single_tone", "description": "not/negation", "expected_characters": ["唔"], "expected_jyutping": ["m4"], "accept_top_n": 3},
-  {"id": 8, "query": "di1", "category": "single_tone", "description": "some/a bit", "expected_characters": ["啲"], "expected_jyutping": ["di1"], "accept_top_n": 3},
-  {"id": 9, "query": "go3", "category": "single_tone", "description": "classifier/that", "expected_characters": ["個", "嗰"], "expected_jyutping": ["go3"], "accept_top_n": 3},
-  {"id": 10, "query": "zou6", "category": "single_tone", "description": "to do", "expected_characters": ["做"], "expected_jyutping": ["zou6"], "accept_top_n": 3},
-  {"id": 11, "query": "jat1", "category": "single_tone", "description": "one", "expected_characters": ["一"], "expected_jyutping": ["jat1"], "accept_top_n": 3},
-  {"id": 12, "query": "gin3", "category": "single_tone", "description": "to see", "expected_characters": ["見"], "expected_jyutping": ["gin3"], "accept_top_n": 3},
-  {"id": 13, "query": "sik1", "category": "single_tone", "description": "to eat / to know", "expected_characters": ["食", "識"], "expected_jyutping": ["sik1"], "accept_top_n": 3},
-  {"id": 14, "query": "hou2", "category": "single_tone", "description": "good/very", "expected_characters": ["好"], "expected_jyutping": ["hou2"], "accept_top_n": 3},
-  {"id": 15, "query": "mat1", "category": "single_tone", "description": "what (mat not standard jyutping base)", "expected_characters": ["乜"], "expected_jyutping": ["mat1"], "accept_top_n": 10},
-  {"id": 16, "query": "gam2", "category": "single_tone", "description": "so/like that", "expected_characters": ["咁"], "expected_jyutping": ["gam2"], "accept_top_n": 3},
-  {"id": 17, "query": "dou1", "category": "single_tone", "description": "all/also/arrive", "expected_characters": ["都", "到"], "expected_jyutping": ["dou1"], "accept_top_n": 3},
-  {"id": 18, "query": "lei4", "category": "single_tone", "description": "to come (Cantonese)", "expected_characters": ["嚟", "來"], "expected_jyutping": ["lei4", "lai4", "lei4"], "accept_top_n": 3},
-  {"id": 19, "query": "heoi3", "category": "single_tone", "description": "to go", "expected_characters": ["去"], "expected_jyutping": ["heoi3"], "accept_top_n": 3},
-  {"id": 20, "query": "waa6", "category": "single_tone", "description": "to say/speak (Cantonese)", "expected_characters": ["話"], "expected_jyutping": ["waa6"], "accept_top_n": 3},
-  {"id": 21, "query": "gong2", "category": "single_tone", "description": "to speak/talk", "expected_characters": ["講"], "expected_jyutping": ["gong2"], "accept_top_n": 3},
-  {"id": 22, "query": "tai2", "category": "single_tone", "description": "to look/see", "expected_characters": ["睇"], "expected_jyutping": ["tai2"], "accept_top_n": 3},
-  {"id": 23, "query": "jam2", "category": "single_tone", "description": "to drink", "expected_characters": ["飲"], "expected_jyutping": ["jam2"], "accept_top_n": 3},
-  {"id": 24, "query": "faan1", "category": "single_tone", "description": "to return", "expected_characters": ["返", "翻"], "expected_jyutping": ["faan1"], "accept_top_n": 3},
-  {"id": 25, "query": "zyu6", "category": "single_tone", "description": "to live/reside", "expected_characters": ["住"], "expected_jyutping": ["zyu6"], "accept_top_n": 3},
-  {"id": 26, "query": "bin1", "category": "single_tone", "description": "which/where", "expected_characters": ["邊"], "expected_jyutping": ["bin1"], "accept_top_n": 3},
-  {"id": 27, "query": "dim2", "category": "single_tone", "description": "how", "expected_characters": ["點"], "expected_jyutping": ["dim2"], "accept_top_n": 3},
-  {"id": 28, "query": "zoi3", "category": "single_tone", "description": "again", "expected_characters": ["再"], "expected_jyutping": ["zoi3"], "accept_top_n": 3},
-  {"id": 29, "query": "daai6", "category": "single_tone", "description": "big", "expected_characters": ["大"], "expected_jyutping": ["daai6"], "accept_top_n": 3},
-  {"id": 30, "query": "siu2", "category": "single_tone", "description": "small/few", "expected_characters": ["小", "少"], "expected_jyutping": ["siu2"], "accept_top_n": 3},
-
-  {"id": 31, "query": "ngo", "category": "single_no_tone", "description": "I/me without tone", "expected_characters": ["我"], "expected_jyutping": ["ngo5"], "accept_top_n": 3},
-  {"id": 32, "query": "nei", "category": "single_no_tone", "description": "you without tone", "expected_characters": ["你"], "expected_jyutping": ["nei5"], "accept_top_n": 3},
-  {"id": 33, "query": "hai", "category": "single_no_tone", "description": "to be without tone", "expected_characters": ["係", "海", "嗨"], "expected_jyutping": ["hai6", "hoi2"], "accept_top_n": 5},
-  {"id": 34, "query": "hou", "category": "single_no_tone", "description": "good without tone", "expected_characters": ["好"], "expected_jyutping": ["hou2"], "accept_top_n": 3},
-  {"id": 35, "query": "gam", "category": "single_no_tone", "description": "so/like that without tone", "expected_characters": ["咁", "金", "感"], "expected_jyutping": ["gam2", "gam1", "gam2"], "accept_top_n": 5},
-  {"id": 36, "query": "sik", "category": "single_no_tone", "description": "eat/know without tone", "expected_characters": ["食", "識", "色"], "expected_jyutping": ["sik1", "sik6"], "accept_top_n": 5},
-  {"id": 37, "query": "dim", "category": "single_no_tone", "description": "how/store without tone", "expected_characters": ["點", "店"], "expected_jyutping": ["dim2", "dim3"], "accept_top_n": 3},
-  {"id": 38, "query": "lok", "category": "single_no_tone", "description": "down/fall without tone", "expected_characters": ["落"], "expected_jyutping": ["lok6"], "accept_top_n": 5},
-  {"id": 39, "query": "jau", "category": "single_no_tone", "description": "have/again without tone", "expected_characters": ["有", "又", "油"], "expected_jyutping": ["jau5", "jau6"], "accept_top_n": 5},
-  {"id": 40, "query": "dou", "category": "single_no_tone", "description": "all/also without tone", "expected_characters": ["都", "到", "道"], "expected_jyutping": ["dou1", "dou3", "dou6"], "accept_top_n": 5},
-
-  {"id": 41, "query": "nei5 hou2", "category": "multi_syllable", "description": "hello (you good)", "expected_characters": ["你好"], "expected_jyutping": ["nei5 hou2"], "accept_top_n": 1},
-  {"id": 42, "query": "m4 goi1", "category": "multi_syllable", "description": "excuse me/thanks", "expected_characters": ["唔該"], "expected_jyutping": ["m4 goi1"], "accept_top_n": 1},
-  {"id": 43, "query": "do1 ze6", "category": "multi_syllable", "description": "thank you", "expected_characters": ["多謝"], "expected_jyutping": ["do1 ze6"], "accept_top_n": 1},
-  {"id": 44, "query": "hou2 leng3", "category": "multi_syllable", "description": "very pretty (may not exist as entry)", "expected_characters": ["好靚", "好冷"], "expected_jyutping": ["hou2 leng3", "hou2 laang5"], "accept_top_n": 5},
-  {"id": 45, "query": "sik6 faan6", "category": "multi_syllable", "description": "eat rice/have a meal", "expected_characters": ["食飯"], "expected_jyutping": ["sik6 faan6"], "accept_top_n": 1},
-  {"id": 46, "query": "gong2 jyut6 jyu5", "category": "multi_syllable", "description": "speak Cantonese (exact entry may not exist)", "expected_characters": ["講粵語", "廣東話", "廣州撐粵語行動"], "expected_jyutping": ["gong2 jyut6 jyu5"], "accept_top_n": 3},
-  {"id": 47, "query": "dim2 gaai2", "category": "multi_syllable", "description": "how come/explain", "expected_characters": ["點解"], "expected_jyutping": ["dim2 gaai2"], "accept_top_n": 1},
-  {"id": 48, "query": "m4 hou2", "category": "multi_syllable", "description": "don't/not good", "expected_characters": ["唔好"], "expected_jyutping": ["m4 hou2"], "accept_top_n": 3},
-  {"id": 49, "query": "zoi3 gin3", "category": "multi_syllable", "description": "goodbye", "expected_characters": ["再見"], "expected_jyutping": ["zoi3 gin3"], "accept_top_n": 1},
-  {"id": 50, "query": "dak1 m4 dak1", "category": "multi_syllable", "description": "OK or not OK (colloquial, may not be entry)", "expected_characters": ["得唔得"], "expected_jyutping": ["dak1 m4 dak1"], "definition_contains": ["得"], "accept_top_n": 5},
-  {"id": 51, "query": "gei2 do1", "category": "multi_syllable", "description": "how many/much", "expected_characters": ["幾多"], "expected_jyutping": ["gei2 do1"], "accept_top_n": 1},
-  {"id": 52, "query": "sei2 m4 sei2", "category": "multi_syllable", "description": "dead or not (colloquial, may not be entry)", "expected_characters": ["死唔死"], "expected_jyutping": ["sei2 m4 sei2"], "definition_contains": ["死"], "accept_top_n": 5},
-  {"id": 53, "query": "jat1 jat6", "category": "multi_syllable", "description": "one day", "expected_characters": ["一日"], "expected_jyutping": ["jat1 jat6"], "accept_top_n": 3},
-  {"id": 54, "query": "bat1 gwo3", "category": "multi_syllable", "description": "however/but", "expected_characters": ["不過"], "expected_jyutping": ["bat1 gwo3"], "accept_top_n": 1},
-  {"id": 55, "query": "ji4 gaa1", "category": "multi_syllable", "description": "now", "expected_characters": ["而家"], "expected_jyutping": ["ji4 gaa1"], "accept_top_n": 1},
-  {"id": 56, "query": "jyu4 gwo2", "category": "multi_syllable", "description": "if", "expected_characters": ["如果"], "expected_jyutping": ["jyu4 gwo2"], "accept_top_n": 1},
-  {"id": 57, "query": "ting1 jat6", "category": "multi_syllable", "description": "tomorrow", "expected_characters": ["聽日"], "expected_jyutping": ["ting1 jat6"], "accept_top_n": 1},
-  {"id": 58, "query": "cam4 jat6", "category": "multi_syllable", "description": "yesterday", "expected_characters": ["尋日", "琴日"], "expected_jyutping": ["cam4 jat6"], "accept_top_n": 3},
-  {"id": 59, "query": "gam1 jat6", "category": "multi_syllable", "description": "today", "expected_characters": ["今日"], "expected_jyutping": ["gam1 jat6"], "accept_top_n": 1},
-  {"id": 60, "query": "hou2 ci5", "category": "multi_syllable", "description": "seems like", "expected_characters": ["好似"], "expected_jyutping": ["hou2 ci5"], "accept_top_n": 3},
-
-  {"id": 61, "query": "leng3", "category": "cantonese_vocab", "description": "pretty/beautiful (Canto)", "expected_characters": ["靚"], "expected_jyutping": ["leng3"], "accept_top_n": 3},
-  {"id": 62, "query": "mou5", "category": "cantonese_vocab", "description": "don't have (Canto)", "expected_characters": ["冇"], "expected_jyutping": ["mou5"], "accept_top_n": 3},
-  {"id": 63, "query": "je5", "category": "cantonese_vocab", "description": "thing/stuff (Canto)", "expected_characters": ["嘢"], "expected_jyutping": ["je5"], "accept_top_n": 3},
-  {"id": 64, "query": "gam3", "category": "cantonese_vocab", "description": "so/like this (Canto)", "expected_characters": ["噉", "咁"], "expected_jyutping": ["gam3"], "accept_top_n": 3},
-  {"id": 65, "query": "saai3", "category": "cantonese_vocab", "description": "all/completely (Canto)", "expected_characters": ["晒"], "expected_jyutping": ["saai3"], "accept_top_n": 3},
-  {"id": 66, "query": "maai4", "category": "cantonese_vocab", "description": "to come close/also (Canto)", "expected_characters": ["埋"], "expected_jyutping": ["maai4"], "accept_top_n": 3},
-  {"id": 67, "query": "zek3", "category": "cantonese_vocab", "description": "classifier for animals/one (Canto)", "expected_characters": ["隻"], "expected_jyutping": ["zek3"], "accept_top_n": 3},
-  {"id": 68, "query": "keoi5", "category": "cantonese_vocab", "description": "he/she/it (Canto)", "expected_characters": ["佢"], "expected_jyutping": ["keoi5"], "accept_top_n": 1},
-  {"id": 69, "query": "fan3", "category": "cantonese_vocab", "description": "to sleep (Canto)", "expected_characters": ["瞓"], "expected_jyutping": ["fan3"], "accept_top_n": 5},
-  {"id": 70, "query": "zan1", "category": "cantonese_vocab", "description": "real/really (Canto)", "expected_characters": ["真"], "expected_jyutping": ["zan1"], "accept_top_n": 3},
-
-  {"id": 71, "query": "ng", "category": "partial_prefix", "description": "prefix for ng- syllables", "expected_characters": ["五", "我", "吳", "鵝", "唔"], "expected_jyutping": ["ng5", "ngo5", "ngo4", "ng4"], "accept_top_n": 5},
-  {"id": 72, "query": "ho", "category": "partial_prefix", "description": "prefix for ho- syllables", "expected_characters": ["好", "何", "可"], "expected_jyutping": ["hou2", "ho4", "ho2"], "accept_top_n": 5},
-  {"id": 73, "query": "ne", "category": "partial_prefix", "description": "prefix for ne- syllables", "expected_characters": ["你", "呢"], "expected_jyutping": ["nei5", "ne1", "ni1"], "accept_top_n": 5},
-  {"id": 74, "query": "ge", "category": "partial_prefix", "description": "prefix for ge- syllables", "expected_characters": ["嘅", "個"], "expected_jyutping": ["ge3", "go3"], "accept_top_n": 5},
-  {"id": 75, "query": "si", "category": "partial_prefix", "description": "prefix for si- syllables", "expected_characters": ["是", "時", "事", "四"], "expected_jyutping": ["si6", "si4", "si5"], "accept_top_n": 5},
-  {"id": 76, "query": "gw", "category": "partial_prefix", "description": "prefix for gw- syllables", "expected_characters": ["國", "過"], "expected_jyutping": ["gwok3", "gwo3"], "accept_top_n": 5},
-  {"id": 77, "query": "zo", "category": "partial_prefix", "description": "prefix for zo- syllables", "expected_characters": ["做", "坐", "左"], "expected_jyutping": ["zou6", "zo6", "zo2"], "accept_top_n": 5},
-  {"id": 78, "query": "ja", "category": "partial_prefix", "description": "prefix for ja- syllables", "expected_characters": ["也"], "expected_jyutping": ["jaa5"], "accept_top_n": 5},
-  {"id": 79, "query": "heoi", "category": "partial_prefix", "description": "prefix for heoi3 (go)", "expected_characters": ["去"], "expected_jyutping": ["heoi3"], "accept_top_n": 5},
-  {"id": 80, "query": "gon", "category": "partial_prefix", "description": "prefix for gong", "expected_characters": ["講", "港", "工"], "expected_jyutping": ["gong2", "gong2", "gong1"], "accept_top_n": 5},
-
-  {"id": 81, "query": "hello", "category": "english", "description": "English greeting", "expected_characters": ["你好", "哈囉"], "expected_jyutping": [], "definition_contains": ["hello"], "accept_top_n": 3},
-  {"id": 82, "query": "water", "category": "english", "description": "English water", "expected_characters": ["水"], "expected_jyutping": ["seoi2"], "definition_contains": ["water"], "accept_top_n": 3},
-  {"id": 83, "query": "eat", "category": "english", "description": "English eat", "expected_characters": ["食", "吃"], "expected_jyutping": ["sik6"], "definition_contains": ["eat"], "accept_top_n": 3},
-  {"id": 84, "query": "good", "category": "english", "description": "English good", "expected_characters": ["好"], "expected_jyutping": ["hou2"], "definition_contains": ["good"], "accept_top_n": 5},
-  {"id": 85, "query": "person", "category": "english", "description": "English person", "expected_characters": ["人"], "expected_jyutping": ["jan4"], "definition_contains": ["person"], "accept_top_n": 3},
-  {"id": 86, "query": "house", "category": "english", "description": "English house", "expected_characters": ["屋"], "expected_jyutping": ["uk1"], "definition_contains": ["house"], "accept_top_n": 5},
-  {"id": 87, "query": "money", "category": "english", "description": "English money", "expected_characters": ["錢"], "expected_jyutping": ["cin2"], "definition_contains": ["money"], "accept_top_n": 3},
-  {"id": 88, "query": "big", "category": "english", "description": "English big", "expected_characters": ["大"], "expected_jyutping": ["daai6"], "definition_contains": ["big"], "accept_top_n": 3},
-  {"id": 89, "query": "see", "category": "english", "description": "English see", "expected_characters": ["見", "看", "睇"], "expected_jyutping": ["gin3", "hon3", "tai2"], "definition_contains": ["see"], "accept_top_n": 5},
-  {"id": 90, "query": "beautiful", "category": "english", "description": "English beautiful", "expected_characters": ["美", "靚", "漂亮"], "expected_jyutping": ["mei5", "leng3"], "definition_contains": ["beautiful"], "accept_top_n": 5},
-
-  {"id": 91, "query": "咯", "category": "character", "description": "lo particle character search", "expected_characters": ["咯"], "expected_jyutping": ["lo3", "lo1", "ge1"], "accept_top_n": 3},
-  {"id": 92, "query": "嘅", "category": "character", "description": "ge possessive character search", "expected_characters": ["嘅"], "expected_jyutping": ["ge3"], "accept_top_n": 1},
-  {"id": 93, "query": "食", "category": "character", "description": "eat character search", "expected_characters": ["食"], "expected_jyutping": ["sik6"], "accept_top_n": 3},
-  {"id": 94, "query": "好", "category": "character", "description": "good character search", "expected_characters": ["好"], "expected_jyutping": ["hou2", "hou3"], "accept_top_n": 3},
-  {"id": 95, "query": "你好", "category": "character", "description": "hello multi-char search", "expected_characters": ["你好"], "expected_jyutping": ["nei5 hou2"], "accept_top_n": 3},
-
-  {"id": 96, "query": "aa", "category": "edge_case", "description": "very short input", "expected_characters": ["阿", "呀", "啊"], "expected_jyutping": ["aa3", "aa1"], "accept_top_n": 5},
-  {"id": 97, "query": "m", "category": "edge_case", "description": "single letter m", "expected_characters": ["唔"], "expected_jyutping": ["m4"], "accept_top_n": 5},
-  {"id": 98, "query": "ng5", "category": "edge_case", "description": "ng with tone - five", "expected_characters": ["五", "伍"], "expected_jyutping": ["ng5"], "accept_top_n": 3},
-  {"id": 99, "query": "gwong2 dung1 waa2", "category": "edge_case", "description": "Cantonese language (3 syllables)", "expected_characters": ["廣東話"], "expected_jyutping": ["gwong2 dung1 waa2"], "accept_top_n": 1},
-  {"id": 100, "query": "jyut6 jyu5", "category": "edge_case", "description": "Cantonese language", "expected_characters": ["粵語"], "expected_jyutping": ["jyut6 jyu5"], "accept_top_n": 1}
+  {
+    "id": 1,
+    "query": "ngo5",
+    "category": "single_tone",
+    "description": "I/me - most common pronoun",
+    "expected_characters": [
+      "我"
+    ],
+    "expected_jyutping": [
+      "ngo5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 2,
+    "query": "nei5",
+    "category": "single_tone",
+    "description": "you - common pronoun",
+    "expected_characters": [
+      "你"
+    ],
+    "expected_jyutping": [
+      "nei5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 3,
+    "query": "hai6",
+    "category": "single_tone",
+    "description": "to be",
+    "expected_characters": [
+      "係"
+    ],
+    "expected_jyutping": [
+      "hai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 4,
+    "query": "lo3",
+    "category": "single_tone",
+    "description": "Cantonese sentence particle",
+    "expected_characters": [
+      "咯",
+      "囉"
+    ],
+    "expected_jyutping": [
+      "lo3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 5,
+    "query": "ge3",
+    "category": "single_tone",
+    "description": "possessive/nominalizer particle",
+    "expected_characters": [
+      "嘅"
+    ],
+    "expected_jyutping": [
+      "ge3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 6,
+    "query": "aa3",
+    "category": "single_tone",
+    "description": "question particle / prefix",
+    "expected_characters": [
+      "阿",
+      "呀"
+    ],
+    "expected_jyutping": [
+      "aa3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 7,
+    "query": "m4",
+    "category": "single_tone",
+    "description": "not/negation",
+    "expected_characters": [
+      "唔"
+    ],
+    "expected_jyutping": [
+      "m4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 8,
+    "query": "di1",
+    "category": "single_tone",
+    "description": "some/a bit",
+    "expected_characters": [
+      "啲"
+    ],
+    "expected_jyutping": [
+      "di1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 9,
+    "query": "go3",
+    "category": "single_tone",
+    "description": "classifier/that",
+    "expected_characters": [
+      "個",
+      "嗰"
+    ],
+    "expected_jyutping": [
+      "go3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 10,
+    "query": "zou6",
+    "category": "single_tone",
+    "description": "to do",
+    "expected_characters": [
+      "做"
+    ],
+    "expected_jyutping": [
+      "zou6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 11,
+    "query": "jat1",
+    "category": "single_tone",
+    "description": "one",
+    "expected_characters": [
+      "一"
+    ],
+    "expected_jyutping": [
+      "jat1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 12,
+    "query": "gin3",
+    "category": "single_tone",
+    "description": "to see",
+    "expected_characters": [
+      "見"
+    ],
+    "expected_jyutping": [
+      "gin3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 13,
+    "query": "sik1",
+    "category": "single_tone",
+    "description": "to eat / to know",
+    "expected_characters": [
+      "食",
+      "識"
+    ],
+    "expected_jyutping": [
+      "sik1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 14,
+    "query": "hou2",
+    "category": "single_tone",
+    "description": "good/very",
+    "expected_characters": [
+      "好"
+    ],
+    "expected_jyutping": [
+      "hou2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 15,
+    "query": "mat1",
+    "category": "single_tone",
+    "description": "what (mat not standard jyutping base)",
+    "expected_characters": [
+      "乜"
+    ],
+    "expected_jyutping": [
+      "mat1"
+    ],
+    "accept_top_n": 10
+  },
+  {
+    "id": 16,
+    "query": "gam2",
+    "category": "single_tone",
+    "description": "so/like that",
+    "expected_characters": [
+      "咁"
+    ],
+    "expected_jyutping": [
+      "gam2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 17,
+    "query": "dou1",
+    "category": "single_tone",
+    "description": "all/also/arrive",
+    "expected_characters": [
+      "都",
+      "到"
+    ],
+    "expected_jyutping": [
+      "dou1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 18,
+    "query": "lei4",
+    "category": "single_tone",
+    "description": "to come (Cantonese)",
+    "expected_characters": [
+      "嚟",
+      "來"
+    ],
+    "expected_jyutping": [
+      "lei4",
+      "lai4",
+      "lei4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 19,
+    "query": "heoi3",
+    "category": "single_tone",
+    "description": "to go",
+    "expected_characters": [
+      "去"
+    ],
+    "expected_jyutping": [
+      "heoi3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 20,
+    "query": "waa6",
+    "category": "single_tone",
+    "description": "to say/speak (Cantonese)",
+    "expected_characters": [
+      "話"
+    ],
+    "expected_jyutping": [
+      "waa6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 21,
+    "query": "gong2",
+    "category": "single_tone",
+    "description": "to speak/talk",
+    "expected_characters": [
+      "講"
+    ],
+    "expected_jyutping": [
+      "gong2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 22,
+    "query": "tai2",
+    "category": "single_tone",
+    "description": "to look/see",
+    "expected_characters": [
+      "睇"
+    ],
+    "expected_jyutping": [
+      "tai2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 23,
+    "query": "jam2",
+    "category": "single_tone",
+    "description": "to drink",
+    "expected_characters": [
+      "飲"
+    ],
+    "expected_jyutping": [
+      "jam2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 24,
+    "query": "faan1",
+    "category": "single_tone",
+    "description": "to return",
+    "expected_characters": [
+      "返",
+      "翻"
+    ],
+    "expected_jyutping": [
+      "faan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 25,
+    "query": "zyu6",
+    "category": "single_tone",
+    "description": "to live/reside",
+    "expected_characters": [
+      "住"
+    ],
+    "expected_jyutping": [
+      "zyu6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 26,
+    "query": "bin1",
+    "category": "single_tone",
+    "description": "which/where",
+    "expected_characters": [
+      "邊"
+    ],
+    "expected_jyutping": [
+      "bin1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 27,
+    "query": "dim2",
+    "category": "single_tone",
+    "description": "how",
+    "expected_characters": [
+      "點"
+    ],
+    "expected_jyutping": [
+      "dim2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 28,
+    "query": "zoi3",
+    "category": "single_tone",
+    "description": "again",
+    "expected_characters": [
+      "再"
+    ],
+    "expected_jyutping": [
+      "zoi3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 29,
+    "query": "daai6",
+    "category": "single_tone",
+    "description": "big",
+    "expected_characters": [
+      "大"
+    ],
+    "expected_jyutping": [
+      "daai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 30,
+    "query": "siu2",
+    "category": "single_tone",
+    "description": "small/few",
+    "expected_characters": [
+      "小",
+      "少"
+    ],
+    "expected_jyutping": [
+      "siu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 31,
+    "query": "ngo",
+    "category": "single_no_tone",
+    "description": "I/me without tone",
+    "expected_characters": [
+      "我"
+    ],
+    "expected_jyutping": [
+      "ngo5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 32,
+    "query": "nei",
+    "category": "single_no_tone",
+    "description": "you without tone",
+    "expected_characters": [
+      "你"
+    ],
+    "expected_jyutping": [
+      "nei5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 33,
+    "query": "hai",
+    "category": "single_no_tone",
+    "description": "to be without tone",
+    "expected_characters": [
+      "係",
+      "海",
+      "嗨"
+    ],
+    "expected_jyutping": [
+      "hai6",
+      "hoi2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 34,
+    "query": "hou",
+    "category": "single_no_tone",
+    "description": "good without tone",
+    "expected_characters": [
+      "好"
+    ],
+    "expected_jyutping": [
+      "hou2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 35,
+    "query": "gam",
+    "category": "single_no_tone",
+    "description": "so/like that without tone",
+    "expected_characters": [
+      "咁",
+      "金",
+      "感"
+    ],
+    "expected_jyutping": [
+      "gam2",
+      "gam1",
+      "gam2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 36,
+    "query": "sik",
+    "category": "single_no_tone",
+    "description": "eat/know without tone",
+    "expected_characters": [
+      "食",
+      "識",
+      "色"
+    ],
+    "expected_jyutping": [
+      "sik1",
+      "sik6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 37,
+    "query": "dim",
+    "category": "single_no_tone",
+    "description": "how/store without tone",
+    "expected_characters": [
+      "點",
+      "店"
+    ],
+    "expected_jyutping": [
+      "dim2",
+      "dim3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 38,
+    "query": "lok",
+    "category": "single_no_tone",
+    "description": "down/fall without tone",
+    "expected_characters": [
+      "落"
+    ],
+    "expected_jyutping": [
+      "lok6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 39,
+    "query": "jau",
+    "category": "single_no_tone",
+    "description": "have/again without tone",
+    "expected_characters": [
+      "有",
+      "又",
+      "油"
+    ],
+    "expected_jyutping": [
+      "jau5",
+      "jau6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 40,
+    "query": "dou",
+    "category": "single_no_tone",
+    "description": "all/also without tone",
+    "expected_characters": [
+      "都",
+      "到",
+      "道"
+    ],
+    "expected_jyutping": [
+      "dou1",
+      "dou3",
+      "dou6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 41,
+    "query": "nei5 hou2",
+    "category": "multi_syllable",
+    "description": "hello (you good)",
+    "expected_characters": [
+      "你好"
+    ],
+    "expected_jyutping": [
+      "nei5 hou2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 42,
+    "query": "m4 goi1",
+    "category": "multi_syllable",
+    "description": "excuse me/thanks",
+    "expected_characters": [
+      "唔該"
+    ],
+    "expected_jyutping": [
+      "m4 goi1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 43,
+    "query": "do1 ze6",
+    "category": "multi_syllable",
+    "description": "thank you",
+    "expected_characters": [
+      "多謝"
+    ],
+    "expected_jyutping": [
+      "do1 ze6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 44,
+    "query": "hou2 leng3",
+    "category": "multi_syllable",
+    "description": "very pretty (may not exist as entry)",
+    "expected_characters": [
+      "好靚",
+      "好冷"
+    ],
+    "expected_jyutping": [
+      "hou2 leng3",
+      "hou2 laang5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 45,
+    "query": "sik6 faan6",
+    "category": "multi_syllable",
+    "description": "eat rice/have a meal",
+    "expected_characters": [
+      "食飯"
+    ],
+    "expected_jyutping": [
+      "sik6 faan6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 46,
+    "query": "gong2 jyut6 jyu5",
+    "category": "multi_syllable",
+    "description": "speak Cantonese (exact entry may not exist)",
+    "expected_characters": [
+      "講粵語",
+      "廣東話",
+      "廣州撐粵語行動"
+    ],
+    "expected_jyutping": [
+      "gong2 jyut6 jyu5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 47,
+    "query": "dim2 gaai2",
+    "category": "multi_syllable",
+    "description": "how come/explain",
+    "expected_characters": [
+      "點解"
+    ],
+    "expected_jyutping": [
+      "dim2 gaai2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 48,
+    "query": "m4 hou2",
+    "category": "multi_syllable",
+    "description": "don't/not good",
+    "expected_characters": [
+      "唔好"
+    ],
+    "expected_jyutping": [
+      "m4 hou2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 49,
+    "query": "zoi3 gin3",
+    "category": "multi_syllable",
+    "description": "goodbye",
+    "expected_characters": [
+      "再見"
+    ],
+    "expected_jyutping": [
+      "zoi3 gin3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 50,
+    "query": "dak1 m4 dak1",
+    "category": "multi_syllable",
+    "description": "OK or not OK (colloquial, may not be entry)",
+    "expected_characters": [
+      "得唔得"
+    ],
+    "expected_jyutping": [
+      "dak1 m4 dak1"
+    ],
+    "definition_contains": [
+      "得"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 51,
+    "query": "gei2 do1",
+    "category": "multi_syllable",
+    "description": "how many/much",
+    "expected_characters": [
+      "幾多"
+    ],
+    "expected_jyutping": [
+      "gei2 do1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 52,
+    "query": "sei2 m4 sei2",
+    "category": "multi_syllable",
+    "description": "dead or not (colloquial, may not be entry)",
+    "expected_characters": [
+      "死唔死"
+    ],
+    "expected_jyutping": [
+      "sei2 m4 sei2"
+    ],
+    "definition_contains": [
+      "死"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 53,
+    "query": "jat1 jat6",
+    "category": "multi_syllable",
+    "description": "one day",
+    "expected_characters": [
+      "一日"
+    ],
+    "expected_jyutping": [
+      "jat1 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 54,
+    "query": "bat1 gwo3",
+    "category": "multi_syllable",
+    "description": "however/but",
+    "expected_characters": [
+      "不過"
+    ],
+    "expected_jyutping": [
+      "bat1 gwo3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 55,
+    "query": "ji4 gaa1",
+    "category": "multi_syllable",
+    "description": "now",
+    "expected_characters": [
+      "而家"
+    ],
+    "expected_jyutping": [
+      "ji4 gaa1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 56,
+    "query": "jyu4 gwo2",
+    "category": "multi_syllable",
+    "description": "if",
+    "expected_characters": [
+      "如果"
+    ],
+    "expected_jyutping": [
+      "jyu4 gwo2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 57,
+    "query": "ting1 jat6",
+    "category": "multi_syllable",
+    "description": "tomorrow",
+    "expected_characters": [
+      "聽日"
+    ],
+    "expected_jyutping": [
+      "ting1 jat6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 58,
+    "query": "cam4 jat6",
+    "category": "multi_syllable",
+    "description": "yesterday",
+    "expected_characters": [
+      "尋日",
+      "琴日"
+    ],
+    "expected_jyutping": [
+      "cam4 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 59,
+    "query": "gam1 jat6",
+    "category": "multi_syllable",
+    "description": "today",
+    "expected_characters": [
+      "今日"
+    ],
+    "expected_jyutping": [
+      "gam1 jat6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 60,
+    "query": "hou2 ci5",
+    "category": "multi_syllable",
+    "description": "seems like",
+    "expected_characters": [
+      "好似"
+    ],
+    "expected_jyutping": [
+      "hou2 ci5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 61,
+    "query": "leng3",
+    "category": "cantonese_vocab",
+    "description": "pretty/beautiful (Canto)",
+    "expected_characters": [
+      "靚"
+    ],
+    "expected_jyutping": [
+      "leng3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 62,
+    "query": "mou5",
+    "category": "cantonese_vocab",
+    "description": "don't have (Canto)",
+    "expected_characters": [
+      "冇"
+    ],
+    "expected_jyutping": [
+      "mou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 63,
+    "query": "je5",
+    "category": "cantonese_vocab",
+    "description": "thing/stuff (Canto)",
+    "expected_characters": [
+      "嘢"
+    ],
+    "expected_jyutping": [
+      "je5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 64,
+    "query": "gam3",
+    "category": "cantonese_vocab",
+    "description": "so/like this (Canto)",
+    "expected_characters": [
+      "噉",
+      "咁"
+    ],
+    "expected_jyutping": [
+      "gam3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 65,
+    "query": "saai3",
+    "category": "cantonese_vocab",
+    "description": "all/completely (Canto)",
+    "expected_characters": [
+      "晒"
+    ],
+    "expected_jyutping": [
+      "saai3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 66,
+    "query": "maai4",
+    "category": "cantonese_vocab",
+    "description": "to come close/also (Canto)",
+    "expected_characters": [
+      "埋"
+    ],
+    "expected_jyutping": [
+      "maai4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 67,
+    "query": "zek3",
+    "category": "cantonese_vocab",
+    "description": "classifier for animals/one (Canto)",
+    "expected_characters": [
+      "隻"
+    ],
+    "expected_jyutping": [
+      "zek3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 68,
+    "query": "keoi5",
+    "category": "cantonese_vocab",
+    "description": "he/she/it (Canto)",
+    "expected_characters": [
+      "佢"
+    ],
+    "expected_jyutping": [
+      "keoi5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 69,
+    "query": "fan3",
+    "category": "cantonese_vocab",
+    "description": "to sleep (Canto)",
+    "expected_characters": [
+      "瞓"
+    ],
+    "expected_jyutping": [
+      "fan3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 70,
+    "query": "zan1",
+    "category": "cantonese_vocab",
+    "description": "real/really (Canto)",
+    "expected_characters": [
+      "真"
+    ],
+    "expected_jyutping": [
+      "zan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 71,
+    "query": "ng",
+    "category": "partial_prefix",
+    "description": "prefix for ng- syllables",
+    "expected_characters": [
+      "五",
+      "我",
+      "吳",
+      "鵝",
+      "唔"
+    ],
+    "expected_jyutping": [
+      "ng5",
+      "ngo5",
+      "ngo4",
+      "ng4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 72,
+    "query": "ho",
+    "category": "partial_prefix",
+    "description": "prefix for ho- syllables",
+    "expected_characters": [
+      "好",
+      "何",
+      "可"
+    ],
+    "expected_jyutping": [
+      "hou2",
+      "ho4",
+      "ho2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 73,
+    "query": "ne",
+    "category": "partial_prefix",
+    "description": "prefix for ne- syllables",
+    "expected_characters": [
+      "你",
+      "呢"
+    ],
+    "expected_jyutping": [
+      "nei5",
+      "ne1",
+      "ni1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 74,
+    "query": "ge",
+    "category": "partial_prefix",
+    "description": "prefix for ge- syllables",
+    "expected_characters": [
+      "嘅",
+      "個"
+    ],
+    "expected_jyutping": [
+      "ge3",
+      "go3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 75,
+    "query": "si",
+    "category": "partial_prefix",
+    "description": "prefix for si- syllables",
+    "expected_characters": [
+      "是",
+      "時",
+      "事",
+      "四"
+    ],
+    "expected_jyutping": [
+      "si6",
+      "si4",
+      "si5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 76,
+    "query": "gw",
+    "category": "partial_prefix",
+    "description": "prefix for gw- syllables",
+    "expected_characters": [
+      "國",
+      "過"
+    ],
+    "expected_jyutping": [
+      "gwok3",
+      "gwo3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 77,
+    "query": "zo",
+    "category": "partial_prefix",
+    "description": "prefix for zo- syllables",
+    "expected_characters": [
+      "做",
+      "坐",
+      "左"
+    ],
+    "expected_jyutping": [
+      "zou6",
+      "zo6",
+      "zo2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 78,
+    "query": "ja",
+    "category": "partial_prefix",
+    "description": "prefix for ja- syllables",
+    "expected_characters": [
+      "也"
+    ],
+    "expected_jyutping": [
+      "jaa5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 79,
+    "query": "heoi",
+    "category": "partial_prefix",
+    "description": "prefix for heoi3 (go)",
+    "expected_characters": [
+      "去"
+    ],
+    "expected_jyutping": [
+      "heoi3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 80,
+    "query": "gon",
+    "category": "partial_prefix",
+    "description": "prefix for gong",
+    "expected_characters": [
+      "講",
+      "港",
+      "工"
+    ],
+    "expected_jyutping": [
+      "gong2",
+      "gong2",
+      "gong1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 81,
+    "query": "hello",
+    "category": "english",
+    "description": "English greeting",
+    "expected_characters": [
+      "你好",
+      "哈囉"
+    ],
+    "expected_jyutping": [],
+    "definition_contains": [
+      "hello"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 82,
+    "query": "water",
+    "category": "english",
+    "description": "English water",
+    "expected_characters": [
+      "水"
+    ],
+    "expected_jyutping": [
+      "seoi2"
+    ],
+    "definition_contains": [
+      "water"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 83,
+    "query": "eat",
+    "category": "english",
+    "description": "English eat",
+    "expected_characters": [
+      "食",
+      "吃"
+    ],
+    "expected_jyutping": [
+      "sik6"
+    ],
+    "definition_contains": [
+      "eat"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 84,
+    "query": "good",
+    "category": "english",
+    "description": "English good",
+    "expected_characters": [
+      "好"
+    ],
+    "expected_jyutping": [
+      "hou2"
+    ],
+    "definition_contains": [
+      "good"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 85,
+    "query": "person",
+    "category": "english",
+    "description": "English person",
+    "expected_characters": [
+      "人"
+    ],
+    "expected_jyutping": [
+      "jan4"
+    ],
+    "definition_contains": [
+      "person"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 86,
+    "query": "house",
+    "category": "english",
+    "description": "English house",
+    "expected_characters": [
+      "屋"
+    ],
+    "expected_jyutping": [
+      "uk1"
+    ],
+    "definition_contains": [
+      "house"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 87,
+    "query": "money",
+    "category": "english",
+    "description": "English money",
+    "expected_characters": [
+      "錢"
+    ],
+    "expected_jyutping": [
+      "cin2"
+    ],
+    "definition_contains": [
+      "money"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 88,
+    "query": "big",
+    "category": "english",
+    "description": "English big",
+    "expected_characters": [
+      "大"
+    ],
+    "expected_jyutping": [
+      "daai6"
+    ],
+    "definition_contains": [
+      "big"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 89,
+    "query": "see",
+    "category": "english",
+    "description": "English see",
+    "expected_characters": [
+      "見",
+      "看",
+      "睇"
+    ],
+    "expected_jyutping": [
+      "gin3",
+      "hon3",
+      "tai2"
+    ],
+    "definition_contains": [
+      "see"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 90,
+    "query": "beautiful",
+    "category": "english",
+    "description": "English beautiful",
+    "expected_characters": [
+      "美",
+      "靚",
+      "漂亮"
+    ],
+    "expected_jyutping": [
+      "mei5",
+      "leng3"
+    ],
+    "definition_contains": [
+      "beautiful"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 91,
+    "query": "咯",
+    "category": "character",
+    "description": "lo particle character search",
+    "expected_characters": [
+      "咯"
+    ],
+    "expected_jyutping": [
+      "lo3",
+      "lo1",
+      "ge1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 92,
+    "query": "嘅",
+    "category": "character",
+    "description": "ge possessive character search",
+    "expected_characters": [
+      "嘅"
+    ],
+    "expected_jyutping": [
+      "ge3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 93,
+    "query": "食",
+    "category": "character",
+    "description": "eat character search",
+    "expected_characters": [
+      "食"
+    ],
+    "expected_jyutping": [
+      "sik6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 94,
+    "query": "好",
+    "category": "character",
+    "description": "good character search",
+    "expected_characters": [
+      "好"
+    ],
+    "expected_jyutping": [
+      "hou2",
+      "hou3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 95,
+    "query": "你好",
+    "category": "character",
+    "description": "hello multi-char search",
+    "expected_characters": [
+      "你好"
+    ],
+    "expected_jyutping": [
+      "nei5 hou2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 96,
+    "query": "aa",
+    "category": "edge_case",
+    "description": "very short input",
+    "expected_characters": [
+      "阿",
+      "呀",
+      "啊"
+    ],
+    "expected_jyutping": [
+      "aa3",
+      "aa1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 97,
+    "query": "m",
+    "category": "edge_case",
+    "description": "single letter m",
+    "expected_characters": [
+      "唔"
+    ],
+    "expected_jyutping": [
+      "m4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 98,
+    "query": "ng5",
+    "category": "edge_case",
+    "description": "ng with tone - five",
+    "expected_characters": [
+      "五",
+      "伍"
+    ],
+    "expected_jyutping": [
+      "ng5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 99,
+    "query": "gwong2 dung1 waa2",
+    "category": "edge_case",
+    "description": "Cantonese language (3 syllables)",
+    "expected_characters": [
+      "廣東話"
+    ],
+    "expected_jyutping": [
+      "gwong2 dung1 waa2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 100,
+    "query": "jyut6 jyu5",
+    "category": "edge_case",
+    "description": "Cantonese language",
+    "expected_characters": [
+      "粵語"
+    ],
+    "expected_jyutping": [
+      "jyut6 jyu5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 101,
+    "query": "sam1",
+    "category": "single_tone",
+    "description": "heart/mind",
+    "expected_characters": [
+      "心",
+      "三"
+    ],
+    "expected_jyutping": [
+      "sam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 102,
+    "query": "sei3",
+    "category": "single_tone",
+    "description": "four",
+    "expected_characters": [
+      "四",
+      "世"
+    ],
+    "expected_jyutping": [
+      "sei3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 103,
+    "query": "ng5",
+    "category": "single_tone",
+    "description": "five",
+    "expected_characters": [
+      "五",
+      "伍"
+    ],
+    "expected_jyutping": [
+      "ng5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 104,
+    "query": "luk6",
+    "category": "single_tone",
+    "description": "six/land",
+    "expected_characters": [
+      "六",
+      "陸",
+      "綠"
+    ],
+    "expected_jyutping": [
+      "luk6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 105,
+    "query": "cat1",
+    "category": "single_tone",
+    "description": "seven",
+    "expected_characters": [
+      "七",
+      "漆"
+    ],
+    "expected_jyutping": [
+      "cat1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 106,
+    "query": "baat3",
+    "category": "single_tone",
+    "description": "eight",
+    "expected_characters": [
+      "八"
+    ],
+    "expected_jyutping": [
+      "baat3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 107,
+    "query": "gau2",
+    "category": "single_tone",
+    "description": "nine/dog",
+    "expected_characters": [
+      "九",
+      "狗"
+    ],
+    "expected_jyutping": [
+      "gau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 108,
+    "query": "sap6",
+    "category": "single_tone",
+    "description": "ten",
+    "expected_characters": [
+      "十"
+    ],
+    "expected_jyutping": [
+      "sap6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 109,
+    "query": "jan4",
+    "category": "single_tone",
+    "description": "person/people",
+    "expected_characters": [
+      "人"
+    ],
+    "expected_jyutping": [
+      "jan4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 110,
+    "query": "neoi5",
+    "category": "single_tone",
+    "description": "female/woman",
+    "expected_characters": [
+      "女"
+    ],
+    "expected_jyutping": [
+      "neoi5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 111,
+    "query": "naam4",
+    "category": "single_tone",
+    "description": "male/south",
+    "expected_characters": [
+      "男",
+      "南"
+    ],
+    "expected_jyutping": [
+      "naam4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 112,
+    "query": "gaa1",
+    "category": "single_tone",
+    "description": "home/family",
+    "expected_characters": [
+      "家",
+      "加"
+    ],
+    "expected_jyutping": [
+      "gaa1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 113,
+    "query": "hok6",
+    "category": "single_tone",
+    "description": "learn/study",
+    "expected_characters": [
+      "學"
+    ],
+    "expected_jyutping": [
+      "hok6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 114,
+    "query": "nin4",
+    "category": "single_tone",
+    "description": "year",
+    "expected_characters": [
+      "年"
+    ],
+    "expected_jyutping": [
+      "nin4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 115,
+    "query": "jyut6",
+    "category": "single_tone",
+    "description": "month/Cantonese",
+    "expected_characters": [
+      "月",
+      "粵"
+    ],
+    "expected_jyutping": [
+      "jyut6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 116,
+    "query": "ming4",
+    "category": "single_tone",
+    "description": "bright/clear",
+    "expected_characters": [
+      "明",
+      "名"
+    ],
+    "expected_jyutping": [
+      "ming4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 117,
+    "query": "san1",
+    "category": "single_tone",
+    "description": "new/body",
+    "expected_characters": [
+      "新",
+      "身",
+      "申"
+    ],
+    "expected_jyutping": [
+      "san1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 118,
+    "query": "loi4",
+    "category": "single_tone",
+    "description": "come",
+    "expected_characters": [
+      "來",
+      "黎"
+    ],
+    "expected_jyutping": [
+      "loi4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 119,
+    "query": "tung4",
+    "category": "single_tone",
+    "description": "same/with",
+    "expected_characters": [
+      "同",
+      "銅",
+      "童"
+    ],
+    "expected_jyutping": [
+      "tung4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 120,
+    "query": "gwong2",
+    "category": "single_tone",
+    "description": "wide/Canton",
+    "expected_characters": [
+      "廣",
+      "光"
+    ],
+    "expected_jyutping": [
+      "gwong2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 121,
+    "query": "zung1",
+    "category": "single_tone",
+    "description": "middle/clock",
+    "expected_characters": [
+      "中",
+      "鐘",
+      "終"
+    ],
+    "expected_jyutping": [
+      "zung1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 122,
+    "query": "seoi2",
+    "category": "single_tone",
+    "description": "water",
+    "expected_characters": [
+      "水"
+    ],
+    "expected_jyutping": [
+      "seoi2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 123,
+    "query": "fo2",
+    "category": "single_tone",
+    "description": "fire",
+    "expected_characters": [
+      "火",
+      "伙"
+    ],
+    "expected_jyutping": [
+      "fo2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 124,
+    "query": "saan1",
+    "category": "single_tone",
+    "description": "mountain",
+    "expected_characters": [
+      "山"
+    ],
+    "expected_jyutping": [
+      "saan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 125,
+    "query": "tin1",
+    "category": "single_tone",
+    "description": "sky/heaven/day",
+    "expected_characters": [
+      "天"
+    ],
+    "expected_jyutping": [
+      "tin1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 126,
+    "query": "dei6",
+    "category": "single_tone",
+    "description": "earth/ground",
+    "expected_characters": [
+      "地"
+    ],
+    "expected_jyutping": [
+      "dei6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 127,
+    "query": "fung1",
+    "category": "single_tone",
+    "description": "wind/style",
+    "expected_characters": [
+      "風",
+      "封",
+      "瘋"
+    ],
+    "expected_jyutping": [
+      "fung1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 128,
+    "query": "jyu5",
+    "category": "single_tone",
+    "description": "rain/language",
+    "expected_characters": [
+      "雨",
+      "語"
+    ],
+    "expected_jyutping": [
+      "jyu5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 129,
+    "query": "faa1",
+    "category": "single_tone",
+    "description": "flower",
+    "expected_characters": [
+      "花",
+      "華"
+    ],
+    "expected_jyutping": [
+      "faa1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 130,
+    "query": "syu4",
+    "category": "single_tone",
+    "description": "tree/book",
+    "expected_characters": [
+      "樹",
+      "書"
+    ],
+    "expected_jyutping": [
+      "syu4",
+      "syu1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 131,
+    "query": "muk6",
+    "category": "single_tone",
+    "description": "wood/tree",
+    "expected_characters": [
+      "木",
+      "目",
+      "牧"
+    ],
+    "expected_jyutping": [
+      "muk6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 132,
+    "query": "gam1",
+    "category": "single_tone",
+    "description": "gold/today",
+    "expected_characters": [
+      "金",
+      "今"
+    ],
+    "expected_jyutping": [
+      "gam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 133,
+    "query": "ngaan5",
+    "category": "single_tone",
+    "description": "eye",
+    "expected_characters": [
+      "眼"
+    ],
+    "expected_jyutping": [
+      "ngaan5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 134,
+    "query": "hau2",
+    "category": "single_tone",
+    "description": "mouth",
+    "expected_characters": [
+      "口"
+    ],
+    "expected_jyutping": [
+      "hau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 135,
+    "query": "sau2",
+    "category": "single_tone",
+    "description": "hand",
+    "expected_characters": [
+      "手",
+      "守",
+      "首"
+    ],
+    "expected_jyutping": [
+      "sau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 136,
+    "query": "goek3",
+    "category": "single_tone",
+    "description": "foot/leg",
+    "expected_characters": [
+      "腳"
+    ],
+    "expected_jyutping": [
+      "goek3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 137,
+    "query": "tau4",
+    "category": "single_tone",
+    "description": "head",
+    "expected_characters": [
+      "頭",
+      "投",
+      "偷"
+    ],
+    "expected_jyutping": [
+      "tau4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 138,
+    "query": "ji5",
+    "category": "single_tone",
+    "description": "ear/two",
+    "expected_characters": [
+      "耳",
+      "二"
+    ],
+    "expected_jyutping": [
+      "ji5",
+      "ji6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 139,
+    "query": "ce1",
+    "category": "single_tone",
+    "description": "car/vehicle",
+    "expected_characters": [
+      "車"
+    ],
+    "expected_jyutping": [
+      "ce1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 140,
+    "query": "syun4",
+    "category": "single_tone",
+    "description": "boat/ship",
+    "expected_characters": [
+      "船"
+    ],
+    "expected_jyutping": [
+      "syun4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 141,
+    "query": "fei1",
+    "category": "single_tone",
+    "description": "fly",
+    "expected_characters": [
+      "飛",
+      "非"
+    ],
+    "expected_jyutping": [
+      "fei1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 142,
+    "query": "maau1",
+    "category": "single_tone",
+    "description": "cat",
+    "expected_characters": [
+      "貓"
+    ],
+    "expected_jyutping": [
+      "maau1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 143,
+    "query": "gau2",
+    "category": "single_tone",
+    "description": "dog/nine",
+    "expected_characters": [
+      "狗",
+      "九"
+    ],
+    "expected_jyutping": [
+      "gau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 144,
+    "query": "jyu2",
+    "category": "single_tone",
+    "description": "fish",
+    "expected_characters": [
+      "魚"
+    ],
+    "expected_jyutping": [
+      "jyu2",
+      "jyu4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 145,
+    "query": "niu5",
+    "category": "single_tone",
+    "description": "bird",
+    "expected_characters": [
+      "鳥"
+    ],
+    "expected_jyutping": [
+      "niu5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 146,
+    "query": "baak6",
+    "category": "single_tone",
+    "description": "white/hundred",
+    "expected_characters": [
+      "白",
+      "百"
+    ],
+    "expected_jyutping": [
+      "baak6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 147,
+    "query": "hak1",
+    "category": "single_tone",
+    "description": "black",
+    "expected_characters": [
+      "黑"
+    ],
+    "expected_jyutping": [
+      "hak1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 148,
+    "query": "hung4",
+    "category": "single_tone",
+    "description": "red",
+    "expected_characters": [
+      "紅"
+    ],
+    "expected_jyutping": [
+      "hung4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 149,
+    "query": "wong4",
+    "category": "single_tone",
+    "description": "yellow/surname",
+    "expected_characters": [
+      "黃"
+    ],
+    "expected_jyutping": [
+      "wong4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 150,
+    "query": "laam4",
+    "category": "single_tone",
+    "description": "blue/basket",
+    "expected_characters": [
+      "藍",
+      "籃"
+    ],
+    "expected_jyutping": [
+      "laam4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 151,
+    "query": "luk6",
+    "category": "single_tone",
+    "description": "green/six",
+    "expected_characters": [
+      "綠",
+      "六",
+      "陸"
+    ],
+    "expected_jyutping": [
+      "luk6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 152,
+    "query": "cin2",
+    "category": "single_tone",
+    "description": "money",
+    "expected_characters": [
+      "錢",
+      "淺"
+    ],
+    "expected_jyutping": [
+      "cin2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 153,
+    "query": "faan6",
+    "category": "single_tone",
+    "description": "rice (cooked)",
+    "expected_characters": [
+      "飯",
+      "犯"
+    ],
+    "expected_jyutping": [
+      "faan6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 154,
+    "query": "caa4",
+    "category": "single_tone",
+    "description": "tea",
+    "expected_characters": [
+      "茶"
+    ],
+    "expected_jyutping": [
+      "caa4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 155,
+    "query": "zau2",
+    "category": "single_tone",
+    "description": "wine/alcohol/run",
+    "expected_characters": [
+      "酒",
+      "走"
+    ],
+    "expected_jyutping": [
+      "zau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 156,
+    "query": "tong4",
+    "category": "single_tone",
+    "description": "sugar/hall",
+    "expected_characters": [
+      "糖",
+      "堂",
+      "唐"
+    ],
+    "expected_jyutping": [
+      "tong4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 157,
+    "query": "jit6",
+    "category": "single_tone",
+    "description": "hot/heat",
+    "expected_characters": [
+      "熱"
+    ],
+    "expected_jyutping": [
+      "jit6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 158,
+    "query": "dung3",
+    "category": "single_tone",
+    "description": "cold/freeze",
+    "expected_characters": [
+      "凍"
+    ],
+    "expected_jyutping": [
+      "dung3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 159,
+    "query": "faai3",
+    "category": "single_tone",
+    "description": "fast/quick",
+    "expected_characters": [
+      "快"
+    ],
+    "expected_jyutping": [
+      "faai3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 160,
+    "query": "maan6",
+    "category": "single_tone",
+    "description": "slow/ten thousand",
+    "expected_characters": [
+      "慢",
+      "萬"
+    ],
+    "expected_jyutping": [
+      "maan6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 161,
+    "query": "gou1",
+    "category": "single_tone",
+    "description": "tall/high",
+    "expected_characters": [
+      "高"
+    ],
+    "expected_jyutping": [
+      "gou1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 162,
+    "query": "dai1",
+    "category": "single_tone",
+    "description": "low",
+    "expected_characters": [
+      "低"
+    ],
+    "expected_jyutping": [
+      "dai1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 163,
+    "query": "coeng4",
+    "category": "single_tone",
+    "description": "long/often",
+    "expected_characters": [
+      "長",
+      "常"
+    ],
+    "expected_jyutping": [
+      "coeng4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 164,
+    "query": "dyun2",
+    "category": "single_tone",
+    "description": "short",
+    "expected_characters": [
+      "短"
+    ],
+    "expected_jyutping": [
+      "dyun2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 165,
+    "query": "fei4",
+    "category": "single_tone",
+    "description": "fat",
+    "expected_characters": [
+      "肥"
+    ],
+    "expected_jyutping": [
+      "fei4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 166,
+    "query": "sau3",
+    "category": "single_tone",
+    "description": "thin/slim",
+    "expected_characters": [
+      "瘦"
+    ],
+    "expected_jyutping": [
+      "sau3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 167,
+    "query": "gau6",
+    "category": "single_tone",
+    "description": "old (things)",
+    "expected_characters": [
+      "舊"
+    ],
+    "expected_jyutping": [
+      "gau6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 168,
+    "query": "cing1",
+    "category": "single_tone",
+    "description": "clear/green",
+    "expected_characters": [
+      "清",
+      "青"
+    ],
+    "expected_jyutping": [
+      "cing1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 169,
+    "query": "maai5",
+    "category": "single_tone",
+    "description": "buy",
+    "expected_characters": [
+      "買"
+    ],
+    "expected_jyutping": [
+      "maai5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 170,
+    "query": "maai6",
+    "category": "single_tone",
+    "description": "sell",
+    "expected_characters": [
+      "賣"
+    ],
+    "expected_jyutping": [
+      "maai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 171,
+    "query": "bei2",
+    "category": "single_tone",
+    "description": "give/compare",
+    "expected_characters": [
+      "比",
+      "俾"
+    ],
+    "expected_jyutping": [
+      "bei2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 172,
+    "query": "wan2",
+    "category": "single_tone",
+    "description": "find/look for",
+    "expected_characters": [
+      "搵",
+      "揾"
+    ],
+    "expected_jyutping": [
+      "wan2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 173,
+    "query": "paau2",
+    "category": "single_tone",
+    "description": "run",
+    "expected_characters": [
+      "跑"
+    ],
+    "expected_jyutping": [
+      "paau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 174,
+    "query": "co5",
+    "category": "single_tone",
+    "description": "sit",
+    "expected_characters": [
+      "坐"
+    ],
+    "expected_jyutping": [
+      "co5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 175,
+    "query": "kei5",
+    "category": "single_tone",
+    "description": "stand",
+    "expected_characters": [
+      "企"
+    ],
+    "expected_jyutping": [
+      "kei5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 176,
+    "query": "se2",
+    "category": "single_tone",
+    "description": "write",
+    "expected_characters": [
+      "寫"
+    ],
+    "expected_jyutping": [
+      "se2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 177,
+    "query": "duk6",
+    "category": "single_tone",
+    "description": "read/poison",
+    "expected_characters": [
+      "讀",
+      "毒",
+      "獨"
+    ],
+    "expected_jyutping": [
+      "duk6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 178,
+    "query": "sing1",
+    "category": "single_tone",
+    "description": "star/surname",
+    "expected_characters": [
+      "星",
+      "聲",
+      "升"
+    ],
+    "expected_jyutping": [
+      "sing1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 179,
+    "query": "hoeng1",
+    "category": "single_tone",
+    "description": "fragrant/Hong Kong",
+    "expected_characters": [
+      "香",
+      "鄉"
+    ],
+    "expected_jyutping": [
+      "hoeng1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 180,
+    "query": "gong2",
+    "category": "single_tone",
+    "description": "harbour/speak",
+    "expected_characters": [
+      "港",
+      "講"
+    ],
+    "expected_jyutping": [
+      "gong2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 181,
+    "query": "si4",
+    "category": "single_tone",
+    "description": "time/city",
+    "expected_characters": [
+      "時",
+      "市"
+    ],
+    "expected_jyutping": [
+      "si4",
+      "si5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 182,
+    "query": "din6",
+    "category": "single_tone",
+    "description": "electricity",
+    "expected_characters": [
+      "電"
+    ],
+    "expected_jyutping": [
+      "din6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 183,
+    "query": "waa2",
+    "category": "single_tone",
+    "description": "picture/speech",
+    "expected_characters": [
+      "話",
+      "畫"
+    ],
+    "expected_jyutping": [
+      "waa2",
+      "waa6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 184,
+    "query": "cing4",
+    "category": "single_tone",
+    "description": "feeling/situation",
+    "expected_characters": [
+      "情",
+      "成"
+    ],
+    "expected_jyutping": [
+      "cing4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 185,
+    "query": "oi3",
+    "category": "single_tone",
+    "description": "love",
+    "expected_characters": [
+      "愛"
+    ],
+    "expected_jyutping": [
+      "oi3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 186,
+    "query": "hei2",
+    "category": "single_tone",
+    "description": "rise/begin",
+    "expected_characters": [
+      "起"
+    ],
+    "expected_jyutping": [
+      "hei2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 187,
+    "query": "lok6",
+    "category": "single_tone",
+    "description": "fall/down",
+    "expected_characters": [
+      "落",
+      "樂"
+    ],
+    "expected_jyutping": [
+      "lok6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 188,
+    "query": "hoi1",
+    "category": "single_tone",
+    "description": "open/start",
+    "expected_characters": [
+      "開"
+    ],
+    "expected_jyutping": [
+      "hoi1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 189,
+    "query": "saan1",
+    "category": "single_tone",
+    "description": "close/mountain",
+    "expected_characters": [
+      "山",
+      "刪"
+    ],
+    "expected_jyutping": [
+      "saan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 190,
+    "query": "ceot1",
+    "category": "single_tone",
+    "description": "go out/exit",
+    "expected_characters": [
+      "出"
+    ],
+    "expected_jyutping": [
+      "ceot1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 191,
+    "query": "jap6",
+    "category": "single_tone",
+    "description": "enter",
+    "expected_characters": [
+      "入"
+    ],
+    "expected_jyutping": [
+      "jap6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 192,
+    "query": "dak1",
+    "category": "single_tone",
+    "description": "can/OK",
+    "expected_characters": [
+      "得",
+      "德"
+    ],
+    "expected_jyutping": [
+      "dak1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 193,
+    "query": "jiu3",
+    "category": "single_tone",
+    "description": "want/need",
+    "expected_characters": [
+      "要"
+    ],
+    "expected_jyutping": [
+      "jiu3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 194,
+    "query": "ho2",
+    "category": "single_tone",
+    "description": "can/possible",
+    "expected_characters": [
+      "可",
+      "何"
+    ],
+    "expected_jyutping": [
+      "ho2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 195,
+    "query": "wui5",
+    "category": "single_tone",
+    "description": "will/can/meeting",
+    "expected_characters": [
+      "會"
+    ],
+    "expected_jyutping": [
+      "wui5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 196,
+    "query": "zung6",
+    "category": "single_tone",
+    "description": "still/yet",
+    "expected_characters": [
+      "仲",
+      "重"
+    ],
+    "expected_jyutping": [
+      "zung6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 197,
+    "query": "sing4",
+    "category": "single_tone",
+    "description": "become/city",
+    "expected_characters": [
+      "成",
+      "城"
+    ],
+    "expected_jyutping": [
+      "sing4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 198,
+    "query": "do1",
+    "category": "single_tone",
+    "description": "many/much",
+    "expected_characters": [
+      "多"
+    ],
+    "expected_jyutping": [
+      "do1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 199,
+    "query": "siu2",
+    "category": "single_tone",
+    "description": "few/small",
+    "expected_characters": [
+      "少",
+      "小"
+    ],
+    "expected_jyutping": [
+      "siu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 200,
+    "query": "cyun4",
+    "category": "single_tone",
+    "description": "whole/complete",
+    "expected_characters": [
+      "全"
+    ],
+    "expected_jyutping": [
+      "cyun4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 201,
+    "query": "zing3",
+    "category": "single_tone",
+    "description": "correct/just",
+    "expected_characters": [
+      "正",
+      "政"
+    ],
+    "expected_jyutping": [
+      "zing3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 202,
+    "query": "cou4",
+    "category": "single_tone",
+    "description": "noisy",
+    "expected_characters": [
+      "嘈",
+      "曹"
+    ],
+    "expected_jyutping": [
+      "cou4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 203,
+    "query": "gwai3",
+    "category": "single_tone",
+    "description": "expensive/noble",
+    "expected_characters": [
+      "貴",
+      "桂"
+    ],
+    "expected_jyutping": [
+      "gwai3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 204,
+    "query": "peng4",
+    "category": "single_tone",
+    "description": "cheap/flat",
+    "expected_characters": [
+      "平",
+      "評"
+    ],
+    "expected_jyutping": [
+      "peng4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 205,
+    "query": "naan4",
+    "category": "single_tone",
+    "description": "difficult",
+    "expected_characters": [
+      "難"
+    ],
+    "expected_jyutping": [
+      "naan4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 206,
+    "query": "ji4",
+    "category": "single_tone",
+    "description": "easy/and",
+    "expected_characters": [
+      "而",
+      "兒"
+    ],
+    "expected_jyutping": [
+      "ji4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 207,
+    "query": "gaan1",
+    "category": "single_tone",
+    "description": "between/room",
+    "expected_characters": [
+      "間"
+    ],
+    "expected_jyutping": [
+      "gaan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 208,
+    "query": "lou5",
+    "category": "single_tone",
+    "description": "old (person)/guy",
+    "expected_characters": [
+      "老",
+      "佬"
+    ],
+    "expected_jyutping": [
+      "lou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 209,
+    "query": "zai2",
+    "category": "single_tone",
+    "description": "son/boy",
+    "expected_characters": [
+      "仔"
+    ],
+    "expected_jyutping": [
+      "zai2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 210,
+    "query": "mui1",
+    "category": "single_tone",
+    "description": "younger sister",
+    "expected_characters": [
+      "妹"
+    ],
+    "expected_jyutping": [
+      "mui1",
+      "mui6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 211,
+    "query": "gwo3",
+    "category": "single_tone",
+    "description": "pass/cross",
+    "expected_characters": [
+      "過"
+    ],
+    "expected_jyutping": [
+      "gwo3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 212,
+    "query": "wun6",
+    "category": "single_tone",
+    "description": "change/exchange",
+    "expected_characters": [
+      "換"
+    ],
+    "expected_jyutping": [
+      "wun6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 213,
+    "query": "dong1",
+    "category": "single_tone",
+    "description": "should/east",
+    "expected_characters": [
+      "當",
+      "東"
+    ],
+    "expected_jyutping": [
+      "dong1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 214,
+    "query": "zik1",
+    "category": "single_tone",
+    "description": "immediately/job",
+    "expected_characters": [
+      "即",
+      "職",
+      "織"
+    ],
+    "expected_jyutping": [
+      "zik1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 215,
+    "query": "bo1",
+    "category": "single_tone",
+    "description": "ball/wave",
+    "expected_characters": [
+      "波",
+      "播"
+    ],
+    "expected_jyutping": [
+      "bo1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 216,
+    "query": "paai4",
+    "category": "single_tone",
+    "description": "brand/card",
+    "expected_characters": [
+      "牌",
+      "排"
+    ],
+    "expected_jyutping": [
+      "paai4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 217,
+    "query": "toi2",
+    "category": "single_tone",
+    "description": "table/platform",
+    "expected_characters": [
+      "台",
+      "檯"
+    ],
+    "expected_jyutping": [
+      "toi2",
+      "toi4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 218,
+    "query": "ji6",
+    "category": "single_tone",
+    "description": "two/word",
+    "expected_characters": [
+      "二",
+      "字"
+    ],
+    "expected_jyutping": [
+      "ji6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 219,
+    "query": "saam1",
+    "category": "single_tone",
+    "description": "three/shirt",
+    "expected_characters": [
+      "三",
+      "衫"
+    ],
+    "expected_jyutping": [
+      "saam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 220,
+    "query": "ling4",
+    "category": "single_tone",
+    "description": "zero/spirit",
+    "expected_characters": [
+      "零",
+      "靈"
+    ],
+    "expected_jyutping": [
+      "ling4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 221,
+    "query": "sam",
+    "category": "single_no_tone",
+    "description": "heart without tone",
+    "expected_characters": [
+      "心",
+      "三",
+      "深"
+    ],
+    "expected_jyutping": [
+      "sam1",
+      "saam1",
+      "sam1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 222,
+    "query": "sei",
+    "category": "single_no_tone",
+    "description": "four/die without tone",
+    "expected_characters": [
+      "四",
+      "世",
+      "死"
+    ],
+    "expected_jyutping": [
+      "sei3",
+      "sai3",
+      "sei2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 223,
+    "query": "jan",
+    "category": "single_no_tone",
+    "description": "person without tone",
+    "expected_characters": [
+      "人",
+      "因",
+      "印"
+    ],
+    "expected_jyutping": [
+      "jan4",
+      "jan1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 224,
+    "query": "gaa",
+    "category": "single_no_tone",
+    "description": "home without tone",
+    "expected_characters": [
+      "家",
+      "加",
+      "架",
+      "假"
+    ],
+    "expected_jyutping": [
+      "gaa1",
+      "gaa3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 225,
+    "query": "san",
+    "category": "single_no_tone",
+    "description": "new/body without tone",
+    "expected_characters": [
+      "新",
+      "身",
+      "神",
+      "信"
+    ],
+    "expected_jyutping": [
+      "san1",
+      "san4",
+      "san3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 226,
+    "query": "fung",
+    "category": "single_no_tone",
+    "description": "wind without tone",
+    "expected_characters": [
+      "風",
+      "封",
+      "豐"
+    ],
+    "expected_jyutping": [
+      "fung1",
+      "fung1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 227,
+    "query": "din",
+    "category": "single_no_tone",
+    "description": "electricity without tone",
+    "expected_characters": [
+      "電",
+      "顛",
+      "典"
+    ],
+    "expected_jyutping": [
+      "din6",
+      "din1",
+      "din2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 228,
+    "query": "ce",
+    "category": "single_no_tone",
+    "description": "car without tone",
+    "expected_characters": [
+      "車",
+      "且",
+      "扯"
+    ],
+    "expected_jyutping": [
+      "ce1",
+      "ce2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 229,
+    "query": "sing",
+    "category": "single_no_tone",
+    "description": "star/become without tone",
+    "expected_characters": [
+      "星",
+      "城",
+      "成",
+      "聲"
+    ],
+    "expected_jyutping": [
+      "sing1",
+      "sing4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 230,
+    "query": "ming",
+    "category": "single_no_tone",
+    "description": "bright/name without tone",
+    "expected_characters": [
+      "明",
+      "名",
+      "命"
+    ],
+    "expected_jyutping": [
+      "ming4",
+      "ming6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 231,
+    "query": "cin",
+    "category": "single_no_tone",
+    "description": "money/thousand without tone",
+    "expected_characters": [
+      "錢",
+      "千",
+      "前"
+    ],
+    "expected_jyutping": [
+      "cin2",
+      "cin1",
+      "cin4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 232,
+    "query": "dung",
+    "category": "single_no_tone",
+    "description": "east/cold without tone",
+    "expected_characters": [
+      "東",
+      "冬",
+      "凍",
+      "動"
+    ],
+    "expected_jyutping": [
+      "dung1",
+      "dung3",
+      "dung6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 233,
+    "query": "wong",
+    "category": "single_no_tone",
+    "description": "yellow/king without tone",
+    "expected_characters": [
+      "黃",
+      "王"
+    ],
+    "expected_jyutping": [
+      "wong4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 234,
+    "query": "hung",
+    "category": "single_no_tone",
+    "description": "red/empty without tone",
+    "expected_characters": [
+      "紅",
+      "空",
+      "雄"
+    ],
+    "expected_jyutping": [
+      "hung4",
+      "hung1",
+      "hung4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 235,
+    "query": "gou",
+    "category": "single_no_tone",
+    "description": "tall/high without tone",
+    "expected_characters": [
+      "高",
+      "告",
+      "膏"
+    ],
+    "expected_jyutping": [
+      "gou1",
+      "gou3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 236,
+    "query": "dai",
+    "category": "single_no_tone",
+    "description": "low/big without tone",
+    "expected_characters": [
+      "低",
+      "大",
+      "代"
+    ],
+    "expected_jyutping": [
+      "dai1",
+      "daai6",
+      "doi6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 237,
+    "query": "hoi",
+    "category": "single_no_tone",
+    "description": "open/sea without tone",
+    "expected_characters": [
+      "開",
+      "海"
+    ],
+    "expected_jyutping": [
+      "hoi1",
+      "hoi2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 238,
+    "query": "faan",
+    "category": "single_no_tone",
+    "description": "return/rice without tone",
+    "expected_characters": [
+      "返",
+      "飯",
+      "番",
+      "翻"
+    ],
+    "expected_jyutping": [
+      "faan1",
+      "faan6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 239,
+    "query": "zau",
+    "category": "single_no_tone",
+    "description": "wine/run without tone",
+    "expected_characters": [
+      "酒",
+      "走",
+      "周"
+    ],
+    "expected_jyutping": [
+      "zau2",
+      "zau1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 240,
+    "query": "bei",
+    "category": "single_no_tone",
+    "description": "give/compare without tone",
+    "expected_characters": [
+      "比",
+      "俾",
+      "被",
+      "備"
+    ],
+    "expected_jyutping": [
+      "bei2",
+      "bei6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 241,
+    "query": "caa",
+    "category": "single_no_tone",
+    "description": "tea without tone",
+    "expected_characters": [
+      "茶",
+      "查",
+      "差",
+      "叉"
+    ],
+    "expected_jyutping": [
+      "caa4",
+      "caa1",
+      "caa4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 242,
+    "query": "gwai",
+    "category": "single_no_tone",
+    "description": "expensive without tone",
+    "expected_characters": [
+      "貴",
+      "鬼",
+      "桂",
+      "龜"
+    ],
+    "expected_jyutping": [
+      "gwai3",
+      "gwai2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 243,
+    "query": "tau",
+    "category": "single_no_tone",
+    "description": "head without tone",
+    "expected_characters": [
+      "頭",
+      "投",
+      "偷"
+    ],
+    "expected_jyutping": [
+      "tau4",
+      "tau4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 244,
+    "query": "zou",
+    "category": "single_no_tone",
+    "description": "do/morning without tone",
+    "expected_characters": [
+      "做",
+      "早",
+      "造",
+      "祖"
+    ],
+    "expected_jyutping": [
+      "zou6",
+      "zou2",
+      "zou6",
+      "zou2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 245,
+    "query": "fo",
+    "category": "single_no_tone",
+    "description": "fire/goods without tone",
+    "expected_characters": [
+      "火",
+      "貨",
+      "科"
+    ],
+    "expected_jyutping": [
+      "fo2",
+      "fo3",
+      "fo1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 246,
+    "query": "bo",
+    "category": "single_no_tone",
+    "description": "ball/wave without tone",
+    "expected_characters": [
+      "波",
+      "播",
+      "寶"
+    ],
+    "expected_jyutping": [
+      "bo1",
+      "bo3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 247,
+    "query": "tong",
+    "category": "single_no_tone",
+    "description": "sugar/hall without tone",
+    "expected_characters": [
+      "糖",
+      "堂",
+      "唐",
+      "湯"
+    ],
+    "expected_jyutping": [
+      "tong4",
+      "tong1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 248,
+    "query": "paai",
+    "category": "single_no_tone",
+    "description": "card/row without tone",
+    "expected_characters": [
+      "牌",
+      "排",
+      "派"
+    ],
+    "expected_jyutping": [
+      "paai4",
+      "paai4",
+      "paai3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 249,
+    "query": "wui",
+    "category": "single_no_tone",
+    "description": "will/meeting without tone",
+    "expected_characters": [
+      "會",
+      "回",
+      "匯"
+    ],
+    "expected_jyutping": [
+      "wui5",
+      "wui4",
+      "wui6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 250,
+    "query": "zung",
+    "category": "single_no_tone",
+    "description": "middle/heavy without tone",
+    "expected_characters": [
+      "中",
+      "重",
+      "鐘",
+      "種"
+    ],
+    "expected_jyutping": [
+      "zung1",
+      "zung6",
+      "zung2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 251,
+    "query": "zing",
+    "category": "single_no_tone",
+    "description": "correct/spirit without tone",
+    "expected_characters": [
+      "正",
+      "精",
+      "靜"
+    ],
+    "expected_jyutping": [
+      "zing3",
+      "zing1",
+      "zing6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 252,
+    "query": "gwok",
+    "category": "single_no_tone",
+    "description": "country without tone",
+    "expected_characters": [
+      "國"
+    ],
+    "expected_jyutping": [
+      "gwok3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 253,
+    "query": "tin",
+    "category": "single_no_tone",
+    "description": "sky/field without tone",
+    "expected_characters": [
+      "天",
+      "田",
+      "添"
+    ],
+    "expected_jyutping": [
+      "tin1",
+      "tin4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 254,
+    "query": "mou",
+    "category": "single_no_tone",
+    "description": "don't have without tone",
+    "expected_characters": [
+      "冇",
+      "無",
+      "母",
+      "侮"
+    ],
+    "expected_jyutping": [
+      "mou5",
+      "mou4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 255,
+    "query": "lei",
+    "category": "single_no_tone",
+    "description": "come/inside without tone",
+    "expected_characters": [
+      "嚟",
+      "李",
+      "裏",
+      "梨"
+    ],
+    "expected_jyutping": [
+      "lei4",
+      "lei5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 256,
+    "query": "heoi",
+    "category": "single_no_tone",
+    "description": "go without tone",
+    "expected_characters": [
+      "去",
+      "佢",
+      "區"
+    ],
+    "expected_jyutping": [
+      "heoi3",
+      "keoi5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 257,
+    "query": "sai",
+    "category": "single_no_tone",
+    "description": "small/wash without tone",
+    "expected_characters": [
+      "細",
+      "西",
+      "洗"
+    ],
+    "expected_jyutping": [
+      "sai3",
+      "sai1",
+      "sai2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 258,
+    "query": "gei",
+    "category": "single_no_tone",
+    "description": "how many without tone",
+    "expected_characters": [
+      "幾",
+      "機",
+      "記",
+      "己"
+    ],
+    "expected_jyutping": [
+      "gei2",
+      "gei1",
+      "gei3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 259,
+    "query": "bat",
+    "category": "single_no_tone",
+    "description": "pen/not without tone",
+    "expected_characters": [
+      "筆",
+      "不",
+      "八"
+    ],
+    "expected_jyutping": [
+      "bat1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 260,
+    "query": "keoi",
+    "category": "single_no_tone",
+    "description": "he/she without tone",
+    "expected_characters": [
+      "佢",
+      "去",
+      "拒"
+    ],
+    "expected_jyutping": [
+      "keoi5",
+      "heoi3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 261,
+    "query": "hoeng1 gong2",
+    "category": "multi_syllable",
+    "description": "Hong Kong",
+    "expected_characters": [
+      "香港"
+    ],
+    "expected_jyutping": [
+      "hoeng1 gong2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 262,
+    "query": "zou2 san4",
+    "category": "multi_syllable",
+    "description": "good morning",
+    "expected_characters": [
+      "早晨"
+    ],
+    "expected_jyutping": [
+      "zou2 san4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 263,
+    "query": "baai1 baai3",
+    "category": "multi_syllable",
+    "description": "bye bye",
+    "expected_characters": [
+      "拜拜"
+    ],
+    "expected_jyutping": [
+      "baai1 baai3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 264,
+    "query": "sing1 kei4",
+    "category": "multi_syllable",
+    "description": "week",
+    "expected_characters": [
+      "星期"
+    ],
+    "expected_jyutping": [
+      "sing1 kei4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 265,
+    "query": "dim2 sam1",
+    "category": "multi_syllable",
+    "description": "dim sum",
+    "expected_characters": [
+      "點心"
+    ],
+    "expected_jyutping": [
+      "dim2 sam1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 266,
+    "query": "siu1 maai6",
+    "category": "multi_syllable",
+    "description": "siu mai dumpling",
+    "expected_characters": [
+      "燒賣"
+    ],
+    "expected_jyutping": [
+      "siu1 maai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 267,
+    "query": "coeng2 fan2",
+    "category": "multi_syllable",
+    "description": "rice noodle rolls",
+    "expected_characters": [
+      "腸粉"
+    ],
+    "expected_jyutping": [
+      "coeng2 fan2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 268,
+    "query": "faan1 gung1",
+    "category": "multi_syllable",
+    "description": "go to work",
+    "expected_characters": [
+      "返工"
+    ],
+    "expected_jyutping": [
+      "faan1 gung1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 269,
+    "query": "fong3 gung1",
+    "category": "multi_syllable",
+    "description": "get off work",
+    "expected_characters": [
+      "放工"
+    ],
+    "expected_jyutping": [
+      "fong3 gung1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 270,
+    "query": "sik6 faan6",
+    "category": "multi_syllable",
+    "description": "eat rice/meal",
+    "expected_characters": [
+      "食飯"
+    ],
+    "expected_jyutping": [
+      "sik6 faan6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 271,
+    "query": "jam2 caa4",
+    "category": "multi_syllable",
+    "description": "drink tea/yum cha",
+    "expected_characters": [
+      "飲茶"
+    ],
+    "expected_jyutping": [
+      "jam2 caa4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 272,
+    "query": "gau2 lung4",
+    "category": "multi_syllable",
+    "description": "Kowloon",
+    "expected_characters": [
+      "九龍"
+    ],
+    "expected_jyutping": [
+      "gau2 lung4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 273,
+    "query": "dei6 tit3",
+    "category": "multi_syllable",
+    "description": "MTR/subway",
+    "expected_characters": [
+      "地鐵"
+    ],
+    "expected_jyutping": [
+      "dei6 tit3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 274,
+    "query": "baa1 si2",
+    "category": "multi_syllable",
+    "description": "bus",
+    "expected_characters": [
+      "巴士"
+    ],
+    "expected_jyutping": [
+      "baa1 si2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 275,
+    "query": "din6 waa2",
+    "category": "multi_syllable",
+    "description": "telephone",
+    "expected_characters": [
+      "電話"
+    ],
+    "expected_jyutping": [
+      "din6 waa2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 276,
+    "query": "din6 nou5",
+    "category": "multi_syllable",
+    "description": "computer",
+    "expected_characters": [
+      "電腦"
+    ],
+    "expected_jyutping": [
+      "din6 nou5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 277,
+    "query": "hok6 haau6",
+    "category": "multi_syllable",
+    "description": "school",
+    "expected_characters": [
+      "學校"
+    ],
+    "expected_jyutping": [
+      "hok6 haau6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 278,
+    "query": "ji1 jyun2",
+    "category": "multi_syllable",
+    "description": "hospital",
+    "expected_characters": [
+      "醫院"
+    ],
+    "expected_jyutping": [
+      "ji1 jyun2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 279,
+    "query": "ging2 caat3",
+    "category": "multi_syllable",
+    "description": "police",
+    "expected_characters": [
+      "警察"
+    ],
+    "expected_jyutping": [
+      "ging2 caat3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 280,
+    "query": "lou5 si1",
+    "category": "multi_syllable",
+    "description": "teacher",
+    "expected_characters": [
+      "老師"
+    ],
+    "expected_jyutping": [
+      "lou5 si1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 281,
+    "query": "pang4 jau5",
+    "category": "multi_syllable",
+    "description": "friend",
+    "expected_characters": [
+      "朋友"
+    ],
+    "expected_jyutping": [
+      "pang4 jau5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 282,
+    "query": "gung1 si1",
+    "category": "multi_syllable",
+    "description": "company",
+    "expected_characters": [
+      "公司"
+    ],
+    "expected_jyutping": [
+      "gung1 si1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 283,
+    "query": "hou2 sik6",
+    "category": "multi_syllable",
+    "description": "delicious",
+    "expected_characters": [
+      "好食"
+    ],
+    "expected_jyutping": [
+      "hou2 sik6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 284,
+    "query": "hou2 waan2",
+    "category": "multi_syllable",
+    "description": "fun",
+    "expected_characters": [
+      "好玩"
+    ],
+    "expected_jyutping": [
+      "hou2 waan2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 285,
+    "query": "ji6 sap6",
+    "category": "multi_syllable",
+    "description": "twenty",
+    "expected_characters": [
+      "二十"
+    ],
+    "expected_jyutping": [
+      "ji6 sap6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 286,
+    "query": "jat1 baak3",
+    "category": "multi_syllable",
+    "description": "one hundred",
+    "expected_characters": [
+      "一百"
+    ],
+    "expected_jyutping": [
+      "jat1 baak3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 287,
+    "query": "jat1 cin1",
+    "category": "multi_syllable",
+    "description": "one thousand",
+    "expected_characters": [
+      "一千"
+    ],
+    "expected_jyutping": [
+      "jat1 cin1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 288,
+    "query": "dim2 joeng2",
+    "category": "multi_syllable",
+    "description": "how/what way",
+    "expected_characters": [
+      "點樣"
+    ],
+    "expected_jyutping": [
+      "dim2 joeng2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 289,
+    "query": "bin1 dou6",
+    "category": "multi_syllable",
+    "description": "where",
+    "expected_characters": [
+      "邊度"
+    ],
+    "expected_jyutping": [
+      "bin1 dou6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 290,
+    "query": "gei2 si4",
+    "category": "multi_syllable",
+    "description": "when",
+    "expected_characters": [
+      "幾時"
+    ],
+    "expected_jyutping": [
+      "gei2 si4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 291,
+    "query": "mat1 je5",
+    "category": "multi_syllable",
+    "description": "what thing",
+    "expected_characters": [
+      "乜嘢"
+    ],
+    "expected_jyutping": [
+      "mat1 je5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 292,
+    "query": "dim2 gaai2",
+    "category": "multi_syllable",
+    "description": "why",
+    "expected_characters": [
+      "點解"
+    ],
+    "expected_jyutping": [
+      "dim2 gaai2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 293,
+    "query": "bin1 go3",
+    "category": "multi_syllable",
+    "description": "who/which one",
+    "expected_characters": [
+      "邊個"
+    ],
+    "expected_jyutping": [
+      "bin1 go3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 294,
+    "query": "gei2 noi6",
+    "category": "multi_syllable",
+    "description": "how long (time)",
+    "expected_characters": [
+      "幾耐"
+    ],
+    "expected_jyutping": [
+      "gei2 noi6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 295,
+    "query": "sai3 lou6",
+    "category": "multi_syllable",
+    "description": "child/kid",
+    "expected_characters": [
+      "細路"
+    ],
+    "expected_jyutping": [
+      "sai3 lou6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 296,
+    "query": "hoi1 sam1",
+    "category": "multi_syllable",
+    "description": "happy",
+    "expected_characters": [
+      "開心"
+    ],
+    "expected_jyutping": [
+      "hoi1 sam1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 297,
+    "query": "san1 fu2",
+    "category": "multi_syllable",
+    "description": "hard/laborious",
+    "expected_characters": [
+      "辛苦"
+    ],
+    "expected_jyutping": [
+      "san1 fu2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 298,
+    "query": "ho2 ji5",
+    "category": "multi_syllable",
+    "description": "can/may",
+    "expected_characters": [
+      "可以"
+    ],
+    "expected_jyutping": [
+      "ho2 ji5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 299,
+    "query": "daan6 hai6",
+    "category": "multi_syllable",
+    "description": "but/however",
+    "expected_characters": [
+      "但係"
+    ],
+    "expected_jyutping": [
+      "daan6 hai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 300,
+    "query": "ji1 ging1",
+    "category": "multi_syllable",
+    "description": "already",
+    "expected_characters": [
+      "已經"
+    ],
+    "expected_jyutping": [
+      "ji5 ging1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 301,
+    "query": "jyun4 loi4",
+    "category": "multi_syllable",
+    "description": "originally",
+    "expected_characters": [
+      "原來"
+    ],
+    "expected_jyutping": [
+      "jyun4 loi4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 302,
+    "query": "gei1 wui6",
+    "category": "multi_syllable",
+    "description": "opportunity",
+    "expected_characters": [
+      "機會"
+    ],
+    "expected_jyutping": [
+      "gei1 wui6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 303,
+    "query": "man6 tai4",
+    "category": "multi_syllable",
+    "description": "problem/question",
+    "expected_characters": [
+      "問題"
+    ],
+    "expected_jyutping": [
+      "man6 tai4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 304,
+    "query": "zung1 ji3",
+    "category": "multi_syllable",
+    "description": "like/prefer",
+    "expected_characters": [
+      "鍾意"
+    ],
+    "expected_jyutping": [
+      "zung1 ji3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 305,
+    "query": "gwaan1 hai6",
+    "category": "multi_syllable",
+    "description": "relationship",
+    "expected_characters": [
+      "關係"
+    ],
+    "expected_jyutping": [
+      "gwaan1 hai6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 306,
+    "query": "si4 gaan3",
+    "category": "multi_syllable",
+    "description": "time",
+    "expected_characters": [
+      "時間"
+    ],
+    "expected_jyutping": [
+      "si4 gaan3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 307,
+    "query": "zou2 san4",
+    "category": "multi_syllable",
+    "description": "good morning",
+    "expected_characters": [
+      "早晨"
+    ],
+    "expected_jyutping": [
+      "zou2 san4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 308,
+    "query": "gam1 nin2",
+    "category": "multi_syllable",
+    "description": "this year",
+    "expected_characters": [
+      "今年"
+    ],
+    "expected_jyutping": [
+      "gam1 nin2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 309,
+    "query": "ceot1 heoi3",
+    "category": "multi_syllable",
+    "description": "go out",
+    "expected_characters": [
+      "出去"
+    ],
+    "expected_jyutping": [
+      "ceot1 heoi3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 310,
+    "query": "faan1 lai4",
+    "category": "multi_syllable",
+    "description": "come back",
+    "expected_characters": [
+      "返嚟",
+      "翻嚟"
+    ],
+    "expected_jyutping": [
+      "faan1 lai4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 311,
+    "query": "zou2 can1",
+    "category": "multi_syllable",
+    "description": "breakfast",
+    "expected_characters": [
+      "早餐"
+    ],
+    "expected_jyutping": [
+      "zou2 caan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 312,
+    "query": "aan3 zau3",
+    "category": "multi_syllable",
+    "description": "afternoon",
+    "expected_characters": [
+      "晏晝"
+    ],
+    "expected_jyutping": [
+      "aan3 zau3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 313,
+    "query": "maan5 faan6",
+    "category": "multi_syllable",
+    "description": "dinner",
+    "expected_characters": [
+      "晚飯"
+    ],
+    "expected_jyutping": [
+      "maan5 faan6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 314,
+    "query": "daai6 hok6",
+    "category": "multi_syllable",
+    "description": "university",
+    "expected_characters": [
+      "大學"
+    ],
+    "expected_jyutping": [
+      "daai6 hok6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 315,
+    "query": "zung1 hok6",
+    "category": "multi_syllable",
+    "description": "secondary school",
+    "expected_characters": [
+      "中學"
+    ],
+    "expected_jyutping": [
+      "zung1 hok6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 316,
+    "query": "siu2 hok6",
+    "category": "multi_syllable",
+    "description": "primary school",
+    "expected_characters": [
+      "小學"
+    ],
+    "expected_jyutping": [
+      "siu2 hok6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 317,
+    "query": "daa2 bo1",
+    "category": "multi_syllable",
+    "description": "play ball",
+    "expected_characters": [
+      "打波"
+    ],
+    "expected_jyutping": [
+      "daa2 bo1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 318,
+    "query": "tai2 hei3",
+    "category": "multi_syllable",
+    "description": "watch movie",
+    "expected_characters": [
+      "睇戲"
+    ],
+    "expected_jyutping": [
+      "tai2 hei3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 319,
+    "query": "maai5 je5",
+    "category": "multi_syllable",
+    "description": "buy things/shop",
+    "expected_characters": [
+      "買嘢"
+    ],
+    "expected_jyutping": [
+      "maai5 je5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 320,
+    "query": "zung1 gwok3",
+    "category": "multi_syllable",
+    "description": "China",
+    "expected_characters": [
+      "中國"
+    ],
+    "expected_jyutping": [
+      "zung1 gwok3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 321,
+    "query": "jing1 gwok3",
+    "category": "multi_syllable",
+    "description": "England/UK",
+    "expected_characters": [
+      "英國"
+    ],
+    "expected_jyutping": [
+      "jing1 gwok3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 322,
+    "query": "jat6 bun2",
+    "category": "multi_syllable",
+    "description": "Japan",
+    "expected_characters": [
+      "日本"
+    ],
+    "expected_jyutping": [
+      "jat6 bun2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 323,
+    "query": "toi4 waan1",
+    "category": "multi_syllable",
+    "description": "Taiwan",
+    "expected_characters": [
+      "台灣"
+    ],
+    "expected_jyutping": [
+      "toi4 waan1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 324,
+    "query": "leng3 zai2",
+    "category": "multi_syllable",
+    "description": "handsome boy",
+    "expected_characters": [
+      "靚仔"
+    ],
+    "expected_jyutping": [
+      "leng3 zai2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 325,
+    "query": "leng3 neoi5",
+    "category": "multi_syllable",
+    "description": "pretty girl",
+    "expected_characters": [
+      "靚女"
+    ],
+    "expected_jyutping": [
+      "leng3 neoi5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 326,
+    "query": "lek1 zai2",
+    "category": "multi_syllable",
+    "description": "clever boy",
+    "expected_characters": [
+      "叻仔"
+    ],
+    "expected_jyutping": [
+      "lek1 zai2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 327,
+    "query": "daai6 gaa1",
+    "category": "multi_syllable",
+    "description": "everyone",
+    "expected_characters": [
+      "大家"
+    ],
+    "expected_jyutping": [
+      "daai6 gaa1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 328,
+    "query": "zi6 gei2",
+    "category": "multi_syllable",
+    "description": "oneself",
+    "expected_characters": [
+      "自己"
+    ],
+    "expected_jyutping": [
+      "zi6 gei2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 329,
+    "query": "keoi5 dei6",
+    "category": "multi_syllable",
+    "description": "they/them",
+    "expected_characters": [
+      "佢哋"
+    ],
+    "expected_jyutping": [
+      "keoi5 dei6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 330,
+    "query": "ngo5 dei6",
+    "category": "multi_syllable",
+    "description": "we/us",
+    "expected_characters": [
+      "我哋",
+      "我地"
+    ],
+    "expected_jyutping": [
+      "ngo5 dei6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 331,
+    "query": "m4 sai2",
+    "category": "multi_syllable",
+    "description": "no need",
+    "expected_characters": [
+      "唔使",
+      "唔洗"
+    ],
+    "expected_jyutping": [
+      "m4 sai2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 332,
+    "query": "m4 zi1",
+    "category": "multi_syllable",
+    "description": "don't know",
+    "expected_characters": [
+      "唔知"
+    ],
+    "expected_jyutping": [
+      "m4 zi1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 333,
+    "query": "jau5 mou5",
+    "category": "multi_syllable",
+    "description": "have or not",
+    "expected_characters": [
+      "有冇",
+      "有無"
+    ],
+    "expected_jyutping": [
+      "jau5 mou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 334,
+    "query": "haa5 ci3",
+    "category": "multi_syllable",
+    "description": "next time",
+    "expected_characters": [
+      "下次"
+    ],
+    "expected_jyutping": [
+      "haa5 ci3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 335,
+    "query": "soeng5 min6",
+    "category": "multi_syllable",
+    "description": "above/on top",
+    "expected_characters": [
+      "上面"
+    ],
+    "expected_jyutping": [
+      "soeng5 min6",
+      "soeng6 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 336,
+    "query": "haa5 min6",
+    "category": "multi_syllable",
+    "description": "below/underneath",
+    "expected_characters": [
+      "下面"
+    ],
+    "expected_jyutping": [
+      "haa5 min6",
+      "haa6 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 337,
+    "query": "jat1 ding6",
+    "category": "multi_syllable",
+    "description": "definitely",
+    "expected_characters": [
+      "一定"
+    ],
+    "expected_jyutping": [
+      "jat1 ding6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 338,
+    "query": "zoi3 gin3",
+    "category": "multi_syllable",
+    "description": "goodbye",
+    "expected_characters": [
+      "再見"
+    ],
+    "expected_jyutping": [
+      "zoi3 gin3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 339,
+    "query": "gam2 joeng2",
+    "category": "multi_syllable",
+    "description": "like this",
+    "expected_characters": [
+      "咁樣"
+    ],
+    "expected_jyutping": [
+      "gam2 joeng2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 340,
+    "query": "sou3 hok6",
+    "category": "multi_syllable",
+    "description": "mathematics",
+    "expected_characters": [
+      "數學"
+    ],
+    "expected_jyutping": [
+      "sou3 hok6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 341,
+    "query": "lik6 si2",
+    "category": "multi_syllable",
+    "description": "history",
+    "expected_characters": [
+      "歷史"
+    ],
+    "expected_jyutping": [
+      "lik6 si2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 342,
+    "query": "jing1 man2",
+    "category": "multi_syllable",
+    "description": "English language",
+    "expected_characters": [
+      "英文"
+    ],
+    "expected_jyutping": [
+      "jing1 man2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 343,
+    "query": "zung1 man2",
+    "category": "multi_syllable",
+    "description": "Chinese language",
+    "expected_characters": [
+      "中文"
+    ],
+    "expected_jyutping": [
+      "zung1 man2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 344,
+    "query": "tau4 faat3",
+    "category": "multi_syllable",
+    "description": "hair (head)",
+    "expected_characters": [
+      "頭髮"
+    ],
+    "expected_jyutping": [
+      "tau4 faat3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 345,
+    "query": "hoi2 sin1",
+    "category": "multi_syllable",
+    "description": "seafood",
+    "expected_characters": [
+      "海鮮"
+    ],
+    "expected_jyutping": [
+      "hoi2 sin1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 346,
+    "query": "gaa1 fei1",
+    "category": "multi_syllable",
+    "description": "coffee",
+    "expected_characters": [
+      "咖啡"
+    ],
+    "expected_jyutping": [
+      "gaa1 fei1",
+      "gaa3 fe1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 347,
+    "query": "naai5 caa4",
+    "category": "multi_syllable",
+    "description": "milk tea",
+    "expected_characters": [
+      "奶茶"
+    ],
+    "expected_jyutping": [
+      "naai5 caa4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 348,
+    "query": "gai1 daan2",
+    "category": "multi_syllable",
+    "description": "chicken egg",
+    "expected_characters": [
+      "雞蛋"
+    ],
+    "expected_jyutping": [
+      "gai1 daan2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 349,
+    "query": "ngau4 juk6",
+    "category": "multi_syllable",
+    "description": "beef",
+    "expected_characters": [
+      "牛肉"
+    ],
+    "expected_jyutping": [
+      "ngau4 juk6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 350,
+    "query": "zyu1 juk6",
+    "category": "multi_syllable",
+    "description": "pork",
+    "expected_characters": [
+      "豬肉"
+    ],
+    "expected_jyutping": [
+      "zyu1 juk6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 351,
+    "query": "gai1 juk6",
+    "category": "multi_syllable",
+    "description": "chicken meat",
+    "expected_characters": [
+      "雞肉"
+    ],
+    "expected_jyutping": [
+      "gai1 juk6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 352,
+    "query": "sang1 jat6",
+    "category": "multi_syllable",
+    "description": "birthday",
+    "expected_characters": [
+      "生日"
+    ],
+    "expected_jyutping": [
+      "sang1 jat6",
+      "saang1 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 353,
+    "query": "san1 nin4",
+    "category": "multi_syllable",
+    "description": "new year",
+    "expected_characters": [
+      "新年"
+    ],
+    "expected_jyutping": [
+      "san1 nin4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 354,
+    "query": "sing3 daan3",
+    "category": "multi_syllable",
+    "description": "Christmas",
+    "expected_characters": [
+      "聖誕"
+    ],
+    "expected_jyutping": [
+      "sing3 daan3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 355,
+    "query": "tin1 hei3",
+    "category": "multi_syllable",
+    "description": "weather",
+    "expected_characters": [
+      "天氣"
+    ],
+    "expected_jyutping": [
+      "tin1 hei3"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 356,
+    "query": "lok6 jyu5",
+    "category": "multi_syllable",
+    "description": "raining",
+    "expected_characters": [
+      "落雨"
+    ],
+    "expected_jyutping": [
+      "lok6 jyu5"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 357,
+    "query": "ceoi1 fung1",
+    "category": "multi_syllable",
+    "description": "blow wind",
+    "expected_characters": [
+      "吹風"
+    ],
+    "expected_jyutping": [
+      "ceoi1 fung1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 358,
+    "query": "tai2 syu1",
+    "category": "multi_syllable",
+    "description": "read book",
+    "expected_characters": [
+      "睇書"
+    ],
+    "expected_jyutping": [
+      "tai2 syu1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 359,
+    "query": "fan3 gaau3",
+    "category": "multi_syllable",
+    "description": "sleep",
+    "expected_characters": [
+      "瞓覺"
+    ],
+    "expected_jyutping": [
+      "fan3 gaau3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 360,
+    "query": "sai2 min6",
+    "category": "multi_syllable",
+    "description": "wash face",
+    "expected_characters": [
+      "洗面"
+    ],
+    "expected_jyutping": [
+      "sai2 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 361,
+    "query": "cung1 loeng4",
+    "category": "multi_syllable",
+    "description": "take shower",
+    "expected_characters": [
+      "沖涼"
+    ],
+    "expected_jyutping": [
+      "cung1 loeng4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 362,
+    "query": "tai2 ji1 sang1",
+    "category": "multi_syllable",
+    "description": "see a doctor",
+    "expected_characters": [
+      "睇醫生"
+    ],
+    "expected_jyutping": [
+      "tai2 ji1 sang1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 363,
+    "query": "haang4 gaai1",
+    "category": "multi_syllable",
+    "description": "walk the street/go shopping",
+    "expected_characters": [
+      "行街"
+    ],
+    "expected_jyutping": [
+      "haang4 gaai1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 364,
+    "query": "daa2 din6 waa2",
+    "category": "multi_syllable",
+    "description": "make phone call",
+    "expected_characters": [
+      "打電話"
+    ],
+    "expected_jyutping": [
+      "daa2 din6 waa2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 365,
+    "query": "zou6 je5",
+    "category": "multi_syllable",
+    "description": "do things",
+    "expected_characters": [
+      "做嘢"
+    ],
+    "expected_jyutping": [
+      "zou6 je5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 366,
+    "query": "gung1 jyun2",
+    "category": "multi_syllable",
+    "description": "park/garden",
+    "expected_characters": [
+      "公園"
+    ],
+    "expected_jyutping": [
+      "gung1 jyun2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 367,
+    "query": "caai1 gwun2",
+    "category": "multi_syllable",
+    "description": "restaurant",
+    "expected_characters": [
+      "餐館"
+    ],
+    "expected_jyutping": [
+      "caan1 gun2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 368,
+    "query": "jau4 guk2",
+    "category": "multi_syllable",
+    "description": "post office",
+    "expected_characters": [
+      "郵局"
+    ],
+    "expected_jyutping": [
+      "jau4 guk2"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 369,
+    "query": "gei1 coeng4",
+    "category": "multi_syllable",
+    "description": "airport",
+    "expected_characters": [
+      "機場"
+    ],
+    "expected_jyutping": [
+      "gei1 coeng4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 370,
+    "query": "fo2 ce1",
+    "category": "multi_syllable",
+    "description": "train",
+    "expected_characters": [
+      "火車"
+    ],
+    "expected_jyutping": [
+      "fo2 ce1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 371,
+    "query": "jau5 jat6",
+    "category": "multi_syllable",
+    "description": "one day (someday)",
+    "expected_characters": [
+      "有日"
+    ],
+    "expected_jyutping": [
+      "jau5 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 372,
+    "query": "cin4 min6",
+    "category": "multi_syllable",
+    "description": "in front/ahead",
+    "expected_characters": [
+      "前面"
+    ],
+    "expected_jyutping": [
+      "cin4 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 373,
+    "query": "hau6 min6",
+    "category": "multi_syllable",
+    "description": "behind/at the back",
+    "expected_characters": [
+      "後面"
+    ],
+    "expected_jyutping": [
+      "hau6 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 374,
+    "query": "zo2 min6",
+    "category": "multi_syllable",
+    "description": "left side",
+    "expected_characters": [
+      "左面"
+    ],
+    "expected_jyutping": [
+      "zo2 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 375,
+    "query": "jau6 min6",
+    "category": "multi_syllable",
+    "description": "right side",
+    "expected_characters": [
+      "右面"
+    ],
+    "expected_jyutping": [
+      "jau6 min6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 376,
+    "query": "fei1 gei1",
+    "category": "multi_syllable",
+    "description": "airplane",
+    "expected_characters": [
+      "飛機"
+    ],
+    "expected_jyutping": [
+      "fei1 gei1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 377,
+    "query": "siu2 sam1",
+    "category": "multi_syllable",
+    "description": "be careful",
+    "expected_characters": [
+      "小心"
+    ],
+    "expected_jyutping": [
+      "siu2 sam1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 378,
+    "query": "m4 gam2",
+    "category": "multi_syllable",
+    "description": "dare not",
+    "expected_characters": [
+      "唔敢"
+    ],
+    "expected_jyutping": [
+      "m4 gam2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 379,
+    "query": "hou2 do1",
+    "category": "multi_syllable",
+    "description": "a lot/many",
+    "expected_characters": [
+      "好多"
+    ],
+    "expected_jyutping": [
+      "hou2 do1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 380,
+    "query": "hou2 siu2",
+    "category": "multi_syllable",
+    "description": "very few",
+    "expected_characters": [
+      "好少"
+    ],
+    "expected_jyutping": [
+      "hou2 siu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 381,
+    "query": "laa1",
+    "category": "cantonese_vocab",
+    "description": "sentence particle (Canto)",
+    "expected_characters": [
+      "啦"
+    ],
+    "expected_jyutping": [
+      "laa1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 382,
+    "query": "laa3",
+    "category": "cantonese_vocab",
+    "description": "assertion particle (Canto)",
+    "expected_characters": [
+      "啦"
+    ],
+    "expected_jyutping": [
+      "laa3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 383,
+    "query": "wo3",
+    "category": "cantonese_vocab",
+    "description": "surprise particle (Canto)",
+    "expected_characters": [
+      "喎",
+      "窩"
+    ],
+    "expected_jyutping": [
+      "wo3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 384,
+    "query": "wo5",
+    "category": "cantonese_vocab",
+    "description": "emphatic particle (Canto)",
+    "expected_characters": [
+      "喎"
+    ],
+    "expected_jyutping": [
+      "wo5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 385,
+    "query": "gaa3",
+    "category": "cantonese_vocab",
+    "description": "assertive particle (Canto)",
+    "expected_characters": [
+      "㗎",
+      "架",
+      "假"
+    ],
+    "expected_jyutping": [
+      "gaa3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 386,
+    "query": "me1",
+    "category": "cantonese_vocab",
+    "description": "question particle/carry on back (Canto)",
+    "expected_characters": [
+      "咩",
+      "孭"
+    ],
+    "expected_jyutping": [
+      "me1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 387,
+    "query": "ze1",
+    "category": "cantonese_vocab",
+    "description": "only particle (Canto)",
+    "expected_characters": [
+      "啫"
+    ],
+    "expected_jyutping": [
+      "ze1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 388,
+    "query": "lo2",
+    "category": "cantonese_vocab",
+    "description": "take/get (Canto)",
+    "expected_characters": [
+      "攞",
+      "拎"
+    ],
+    "expected_jyutping": [
+      "lo2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 389,
+    "query": "aai3",
+    "category": "cantonese_vocab",
+    "description": "shout/yell (Canto)",
+    "expected_characters": [
+      "嗌"
+    ],
+    "expected_jyutping": [
+      "aai3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 390,
+    "query": "gaau2",
+    "category": "cantonese_vocab",
+    "description": "mess up/do (Canto)",
+    "expected_characters": [
+      "攪"
+    ],
+    "expected_jyutping": [
+      "gaau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 391,
+    "query": "lek1",
+    "category": "cantonese_vocab",
+    "description": "clever/capable (Canto)",
+    "expected_characters": [
+      "叻"
+    ],
+    "expected_jyutping": [
+      "lek1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 392,
+    "query": "naa2",
+    "category": "cantonese_vocab",
+    "description": "female (Canto)",
+    "expected_characters": [
+      "乸"
+    ],
+    "expected_jyutping": [
+      "naa2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 393,
+    "query": "lou5",
+    "category": "cantonese_vocab",
+    "description": "guy/fellow (Canto)",
+    "expected_characters": [
+      "佬",
+      "老"
+    ],
+    "expected_jyutping": [
+      "lou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 394,
+    "query": "bik1",
+    "category": "cantonese_vocab",
+    "description": "force/squeeze (Canto)",
+    "expected_characters": [
+      "偪",
+      "逼"
+    ],
+    "expected_jyutping": [
+      "bik1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 395,
+    "query": "king1",
+    "category": "cantonese_vocab",
+    "description": "chat (Canto)",
+    "expected_characters": [
+      "傾"
+    ],
+    "expected_jyutping": [
+      "king1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 396,
+    "query": "cou4",
+    "category": "cantonese_vocab",
+    "description": "noisy (Canto)",
+    "expected_characters": [
+      "嘈"
+    ],
+    "expected_jyutping": [
+      "cou4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 397,
+    "query": "dau2",
+    "category": "cantonese_vocab",
+    "description": "fight/compete (Canto)",
+    "expected_characters": [
+      "鬥"
+    ],
+    "expected_jyutping": [
+      "dau2",
+      "dau3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 398,
+    "query": "go2",
+    "category": "cantonese_vocab",
+    "description": "that (Canto)",
+    "expected_characters": [
+      "嗰"
+    ],
+    "expected_jyutping": [
+      "go2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 399,
+    "query": "pek3",
+    "category": "cantonese_vocab",
+    "description": "chop/slash (Canto)",
+    "expected_characters": [
+      "劈"
+    ],
+    "expected_jyutping": [
+      "pek3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 400,
+    "query": "caat3",
+    "category": "cantonese_vocab",
+    "description": "scrub/brush (Canto)",
+    "expected_characters": [
+      "擦",
+      "刷"
+    ],
+    "expected_jyutping": [
+      "caat3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 401,
+    "query": "gwaai3",
+    "category": "cantonese_vocab",
+    "description": "well-behaved (Canto)",
+    "expected_characters": [
+      "乖"
+    ],
+    "expected_jyutping": [
+      "gwaai1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 402,
+    "query": "haam4",
+    "category": "cantonese_vocab",
+    "description": "salty (Canto)",
+    "expected_characters": [
+      "鹹",
+      "咸"
+    ],
+    "expected_jyutping": [
+      "haam4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 403,
+    "query": "laang5",
+    "category": "cantonese_vocab",
+    "description": "cold (Canto)",
+    "expected_characters": [
+      "冷"
+    ],
+    "expected_jyutping": [
+      "laang5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 404,
+    "query": "song2",
+    "category": "cantonese_vocab",
+    "description": "comfortable (Canto)",
+    "expected_characters": [
+      "爽"
+    ],
+    "expected_jyutping": [
+      "song2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 405,
+    "query": "dung3",
+    "category": "cantonese_vocab",
+    "description": "cold/frozen (Canto)",
+    "expected_characters": [
+      "凍"
+    ],
+    "expected_jyutping": [
+      "dung3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 406,
+    "query": "gwaai1",
+    "category": "cantonese_vocab",
+    "description": "well-behaved/obedient",
+    "expected_characters": [
+      "乖"
+    ],
+    "expected_jyutping": [
+      "gwaai1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 407,
+    "query": "ngaam1",
+    "category": "cantonese_vocab",
+    "description": "correct/right (Canto)",
+    "expected_characters": [
+      "啱"
+    ],
+    "expected_jyutping": [
+      "ngaam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 408,
+    "query": "gwai6",
+    "category": "cantonese_vocab",
+    "description": "tired (Canto)",
+    "expected_characters": [
+      "攰"
+    ],
+    "expected_jyutping": [
+      "gwai6",
+      "gui6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 409,
+    "query": "saai1",
+    "category": "cantonese_vocab",
+    "description": "waste (Canto)",
+    "expected_characters": [
+      "嘥"
+    ],
+    "expected_jyutping": [
+      "saai1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 410,
+    "query": "daap3",
+    "category": "cantonese_vocab",
+    "description": "take (transport) (Canto)",
+    "expected_characters": [
+      "搭"
+    ],
+    "expected_jyutping": [
+      "daap3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 411,
+    "query": "gu2",
+    "category": "cantonese_vocab",
+    "description": "guess/estimate (Canto)",
+    "expected_characters": [
+      "估"
+    ],
+    "expected_jyutping": [
+      "gu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 412,
+    "query": "gai2",
+    "category": "cantonese_vocab",
+    "description": "chat/talk (Canto)",
+    "expected_characters": [
+      "偈"
+    ],
+    "expected_jyutping": [
+      "gai2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 413,
+    "query": "duk1",
+    "category": "cantonese_vocab",
+    "description": "poke/prod (Canto)",
+    "expected_characters": [
+      "篤"
+    ],
+    "expected_jyutping": [
+      "duk1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 414,
+    "query": "paau4",
+    "category": "cantonese_vocab",
+    "description": "plane/shave (Canto)",
+    "expected_characters": [
+      "刨"
+    ],
+    "expected_jyutping": [
+      "paau4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 415,
+    "query": "lok6 heoi3",
+    "category": "cantonese_vocab",
+    "description": "go down",
+    "expected_characters": [
+      "落去"
+    ],
+    "expected_jyutping": [
+      "lok6 heoi3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 416,
+    "query": "jat1 cai4",
+    "category": "cantonese_vocab",
+    "description": "together",
+    "expected_characters": [
+      "一齊"
+    ],
+    "expected_jyutping": [
+      "jat1 cai4"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 417,
+    "query": "m4 hai6",
+    "category": "cantonese_vocab",
+    "description": "is not",
+    "expected_characters": [
+      "唔係"
+    ],
+    "expected_jyutping": [
+      "m4 hai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 418,
+    "query": "jau5 liu2",
+    "category": "cantonese_vocab",
+    "description": "has substance/capable",
+    "expected_characters": [
+      "有料"
+    ],
+    "expected_jyutping": [
+      "jau5 liu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 419,
+    "query": "sai2 cin2",
+    "category": "cantonese_vocab",
+    "description": "spend money",
+    "expected_characters": [
+      "洗錢",
+      "使錢"
+    ],
+    "expected_jyutping": [
+      "sai2 cin2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 420,
+    "query": "haang4 wan6",
+    "category": "cantonese_vocab",
+    "description": "lucky/in luck",
+    "expected_characters": [
+      "行運"
+    ],
+    "expected_jyutping": [
+      "haang4 wan6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 421,
+    "query": "gwo3 hoi2",
+    "category": "cantonese_vocab",
+    "description": "cross the sea/go to HK island",
+    "expected_characters": [
+      "過海"
+    ],
+    "expected_jyutping": [
+      "gwo3 hoi2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 422,
+    "query": "hoi1 gung1",
+    "category": "cantonese_vocab",
+    "description": "start work",
+    "expected_characters": [
+      "開工"
+    ],
+    "expected_jyutping": [
+      "hoi1 gung1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 423,
+    "query": "zyun2 tau4",
+    "category": "cantonese_vocab",
+    "description": "turn around/later",
+    "expected_characters": [
+      "轉頭"
+    ],
+    "expected_jyutping": [
+      "zyun2 tau4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 424,
+    "query": "jat1 zan6",
+    "category": "cantonese_vocab",
+    "description": "a moment",
+    "expected_characters": [
+      "一陣"
+    ],
+    "expected_jyutping": [
+      "jat1 zan6"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 425,
+    "query": "ap1",
+    "category": "cantonese_vocab",
+    "description": "talk nonsense (Canto)",
+    "expected_characters": [
+      "噏"
+    ],
+    "expected_jyutping": [
+      "ap1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 426,
+    "query": "zaa3",
+    "category": "cantonese_vocab",
+    "description": "only (Canto particle)",
+    "expected_characters": [
+      "咋"
+    ],
+    "expected_jyutping": [
+      "zaa3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 427,
+    "query": "lai4",
+    "category": "cantonese_vocab",
+    "description": "come (Canto)",
+    "expected_characters": [
+      "嚟"
+    ],
+    "expected_jyutping": [
+      "lai4",
+      "lei4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 428,
+    "query": "maa3",
+    "category": "cantonese_vocab",
+    "description": "particle (Canto)",
+    "expected_characters": [
+      "嘛",
+      "嗎"
+    ],
+    "expected_jyutping": [
+      "maa3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 429,
+    "query": "gau6",
+    "category": "cantonese_vocab",
+    "description": "lump/piece (Canto)",
+    "expected_characters": [
+      "嚿",
+      "舊"
+    ],
+    "expected_jyutping": [
+      "gau6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 430,
+    "query": "zo2",
+    "category": "cantonese_vocab",
+    "description": "aspect particle (done) (Canto)",
+    "expected_characters": [
+      "咗",
+      "左"
+    ],
+    "expected_jyutping": [
+      "zo2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 431,
+    "query": "lou",
+    "category": "partial_prefix",
+    "description": "prefix for lou- syllables",
+    "expected_characters": [
+      "老",
+      "佬",
+      "路"
+    ],
+    "expected_jyutping": [
+      "lou5",
+      "lou6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 432,
+    "query": "gin",
+    "category": "partial_prefix",
+    "description": "prefix for gin- syllables",
+    "expected_characters": [
+      "見",
+      "建"
+    ],
+    "expected_jyutping": [
+      "gin3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 433,
+    "query": "faa",
+    "category": "partial_prefix",
+    "description": "prefix for faa- syllables",
+    "expected_characters": [
+      "花",
+      "華",
+      "法"
+    ],
+    "expected_jyutping": [
+      "faa1",
+      "faat3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 434,
+    "query": "sin",
+    "category": "partial_prefix",
+    "description": "prefix for sin- syllables",
+    "expected_characters": [
+      "先",
+      "新",
+      "仙",
+      "線"
+    ],
+    "expected_jyutping": [
+      "sin1",
+      "sin3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 435,
+    "query": "bei",
+    "category": "partial_prefix",
+    "description": "prefix for bei- syllables",
+    "expected_characters": [
+      "比",
+      "俾",
+      "被"
+    ],
+    "expected_jyutping": [
+      "bei2",
+      "bei6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 436,
+    "query": "daa",
+    "category": "partial_prefix",
+    "description": "prefix for daa- syllables",
+    "expected_characters": [
+      "大",
+      "打"
+    ],
+    "expected_jyutping": [
+      "daai6",
+      "daa2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 437,
+    "query": "wai",
+    "category": "partial_prefix",
+    "description": "prefix for wai- syllables",
+    "expected_characters": [
+      "為",
+      "位",
+      "圍"
+    ],
+    "expected_jyutping": [
+      "wai4",
+      "wai6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 438,
+    "query": "cung",
+    "category": "partial_prefix",
+    "description": "prefix for cung- syllables",
+    "expected_characters": [
+      "從",
+      "蟲",
+      "充"
+    ],
+    "expected_jyutping": [
+      "cung4",
+      "cung1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 439,
+    "query": "maa",
+    "category": "partial_prefix",
+    "description": "prefix for maa- syllables",
+    "expected_characters": [
+      "媽",
+      "馬",
+      "麻"
+    ],
+    "expected_jyutping": [
+      "maa1",
+      "maa5",
+      "maa4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 440,
+    "query": "baa",
+    "category": "partial_prefix",
+    "description": "prefix for baa- syllables",
+    "expected_characters": [
+      "巴",
+      "爸",
+      "吧"
+    ],
+    "expected_jyutping": [
+      "baa1",
+      "baa4",
+      "baa6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 441,
+    "query": "tin",
+    "category": "partial_prefix",
+    "description": "prefix for tin- syllables",
+    "expected_characters": [
+      "天",
+      "田",
+      "添"
+    ],
+    "expected_jyutping": [
+      "tin1",
+      "tin4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 442,
+    "query": "ming",
+    "category": "partial_prefix",
+    "description": "prefix for ming- syllables",
+    "expected_characters": [
+      "明",
+      "名",
+      "命"
+    ],
+    "expected_jyutping": [
+      "ming4",
+      "ming6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 443,
+    "query": "syu",
+    "category": "partial_prefix",
+    "description": "prefix for syu- syllables",
+    "expected_characters": [
+      "書",
+      "樹",
+      "鼠",
+      "數"
+    ],
+    "expected_jyutping": [
+      "syu1",
+      "syu6",
+      "syu2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 444,
+    "query": "hei",
+    "category": "partial_prefix",
+    "description": "prefix for hei- syllables",
+    "expected_characters": [
+      "氣",
+      "起",
+      "器"
+    ],
+    "expected_jyutping": [
+      "hei3",
+      "hei2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 445,
+    "query": "gei",
+    "category": "partial_prefix",
+    "description": "prefix for gei- syllables",
+    "expected_characters": [
+      "幾",
+      "機",
+      "記",
+      "己"
+    ],
+    "expected_jyutping": [
+      "gei2",
+      "gei1",
+      "gei3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 446,
+    "query": "jyu",
+    "category": "partial_prefix",
+    "description": "prefix for jyu- syllables",
+    "expected_characters": [
+      "魚",
+      "雨",
+      "語"
+    ],
+    "expected_jyutping": [
+      "jyu2",
+      "jyu5",
+      "jyu4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 447,
+    "query": "hok",
+    "category": "partial_prefix",
+    "description": "prefix for hok- syllables",
+    "expected_characters": [
+      "學"
+    ],
+    "expected_jyutping": [
+      "hok6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 448,
+    "query": "din",
+    "category": "partial_prefix",
+    "description": "prefix for din- syllables",
+    "expected_characters": [
+      "電",
+      "典",
+      "顛"
+    ],
+    "expected_jyutping": [
+      "din6",
+      "din2",
+      "din1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 449,
+    "query": "zoi",
+    "category": "partial_prefix",
+    "description": "prefix for zoi- syllables",
+    "expected_characters": [
+      "再",
+      "在"
+    ],
+    "expected_jyutping": [
+      "zoi3",
+      "zoi6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 450,
+    "query": "sik",
+    "category": "partial_prefix",
+    "description": "prefix for sik- syllables",
+    "expected_characters": [
+      "食",
+      "識",
+      "色",
+      "式"
+    ],
+    "expected_jyutping": [
+      "sik6",
+      "sik1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 451,
+    "query": "toi",
+    "category": "partial_prefix",
+    "description": "prefix for toi- syllables",
+    "expected_characters": [
+      "台",
+      "檯"
+    ],
+    "expected_jyutping": [
+      "toi4",
+      "toi2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 452,
+    "query": "hou",
+    "category": "partial_prefix",
+    "description": "prefix for hou- syllables",
+    "expected_characters": [
+      "好",
+      "號",
+      "後",
+      "候"
+    ],
+    "expected_jyutping": [
+      "hou2",
+      "hou6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 453,
+    "query": "gwai",
+    "category": "partial_prefix",
+    "description": "prefix for gwai- syllables",
+    "expected_characters": [
+      "貴",
+      "鬼",
+      "桂"
+    ],
+    "expected_jyutping": [
+      "gwai3",
+      "gwai2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 454,
+    "query": "seoi",
+    "category": "partial_prefix",
+    "description": "prefix for seoi- syllables",
+    "expected_characters": [
+      "水",
+      "隨",
+      "雖"
+    ],
+    "expected_jyutping": [
+      "seoi2",
+      "ceoi4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 455,
+    "query": "gung",
+    "category": "partial_prefix",
+    "description": "prefix for gung- syllables",
+    "expected_characters": [
+      "工",
+      "功",
+      "公",
+      "共"
+    ],
+    "expected_jyutping": [
+      "gung1",
+      "gung6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 456,
+    "query": "fei",
+    "category": "partial_prefix",
+    "description": "prefix for fei- syllables",
+    "expected_characters": [
+      "飛",
+      "非",
+      "肥"
+    ],
+    "expected_jyutping": [
+      "fei1",
+      "fei4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 457,
+    "query": "ceoi",
+    "category": "partial_prefix",
+    "description": "prefix for ceoi- syllables",
+    "expected_characters": [
+      "吹",
+      "催"
+    ],
+    "expected_jyutping": [
+      "ceoi1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 458,
+    "query": "ngau",
+    "category": "partial_prefix",
+    "description": "prefix for ngau- syllables",
+    "expected_characters": [
+      "牛"
+    ],
+    "expected_jyutping": [
+      "ngau4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 459,
+    "query": "zing",
+    "category": "partial_prefix",
+    "description": "prefix for zing- syllables",
+    "expected_characters": [
+      "正",
+      "精",
+      "政",
+      "靜"
+    ],
+    "expected_jyutping": [
+      "zing3",
+      "zing1",
+      "zing6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 460,
+    "query": "gwok",
+    "category": "partial_prefix",
+    "description": "prefix for gwok- syllables",
+    "expected_characters": [
+      "國"
+    ],
+    "expected_jyutping": [
+      "gwok3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 461,
+    "query": "gaai",
+    "category": "partial_prefix",
+    "description": "prefix for gaai- syllables",
+    "expected_characters": [
+      "解",
+      "街",
+      "界",
+      "介"
+    ],
+    "expected_jyutping": [
+      "gaai2",
+      "gaai1",
+      "gaai3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 462,
+    "query": "lok",
+    "category": "partial_prefix",
+    "description": "prefix for lok- syllables",
+    "expected_characters": [
+      "落",
+      "樂"
+    ],
+    "expected_jyutping": [
+      "lok6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 463,
+    "query": "bou",
+    "category": "partial_prefix",
+    "description": "prefix for bou- syllables",
+    "expected_characters": [
+      "步",
+      "部",
+      "報",
+      "布"
+    ],
+    "expected_jyutping": [
+      "bou6",
+      "bou3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 464,
+    "query": "jing",
+    "category": "partial_prefix",
+    "description": "prefix for jing- syllables",
+    "expected_characters": [
+      "英",
+      "影",
+      "營"
+    ],
+    "expected_jyutping": [
+      "jing1",
+      "jing2",
+      "jing4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 465,
+    "query": "pou",
+    "category": "partial_prefix",
+    "description": "prefix for pou- syllables",
+    "expected_characters": [
+      "普",
+      "鋪",
+      "舖"
+    ],
+    "expected_jyutping": [
+      "pou2",
+      "pou3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 466,
+    "query": "cin",
+    "category": "partial_prefix",
+    "description": "prefix for cin- syllables",
+    "expected_characters": [
+      "錢",
+      "千",
+      "前"
+    ],
+    "expected_jyutping": [
+      "cin2",
+      "cin1",
+      "cin4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 467,
+    "query": "keoi",
+    "category": "partial_prefix",
+    "description": "prefix for keoi- syllables",
+    "expected_characters": [
+      "佢",
+      "拒",
+      "距"
+    ],
+    "expected_jyutping": [
+      "keoi5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 468,
+    "query": "lai",
+    "category": "partial_prefix",
+    "description": "prefix for lai- syllables",
+    "expected_characters": [
+      "嚟",
+      "利",
+      "禮"
+    ],
+    "expected_jyutping": [
+      "lai4",
+      "lei6",
+      "lai5"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 469,
+    "query": "mou",
+    "category": "partial_prefix",
+    "description": "prefix for mou- syllables",
+    "expected_characters": [
+      "冇",
+      "無",
+      "母",
+      "侮"
+    ],
+    "expected_jyutping": [
+      "mou5",
+      "mou4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 470,
+    "query": "fan",
+    "category": "partial_prefix",
+    "description": "prefix for fan- syllables",
+    "expected_characters": [
+      "返",
+      "翻",
+      "分"
+    ],
+    "expected_jyutping": [
+      "faan1",
+      "fan1",
+      "fan3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 471,
+    "query": "mother",
+    "category": "english",
+    "description": "English mother",
+    "expected_characters": [
+      "母",
+      "媽"
+    ],
+    "definition_contains": [
+      "mother"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 472,
+    "query": "father",
+    "category": "english",
+    "description": "English father",
+    "expected_characters": [
+      "父",
+      "爸"
+    ],
+    "definition_contains": [
+      "father"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 473,
+    "query": "brother",
+    "category": "english",
+    "description": "English brother",
+    "expected_characters": [
+      "兄",
+      "弟"
+    ],
+    "definition_contains": [
+      "brother"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 474,
+    "query": "sister",
+    "category": "english",
+    "description": "English sister",
+    "expected_characters": [
+      "姐",
+      "妹"
+    ],
+    "definition_contains": [
+      "sister"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 475,
+    "query": "rice",
+    "category": "english",
+    "description": "English rice",
+    "expected_characters": [
+      "米",
+      "飯"
+    ],
+    "definition_contains": [
+      "rice"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 476,
+    "query": "fish",
+    "category": "english",
+    "description": "English fish",
+    "expected_characters": [
+      "魚"
+    ],
+    "definition_contains": [
+      "fish"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 477,
+    "query": "chicken",
+    "category": "english",
+    "description": "English chicken",
+    "expected_characters": [
+      "雞"
+    ],
+    "definition_contains": [
+      "chicken"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 478,
+    "query": "tea",
+    "category": "english",
+    "description": "English tea",
+    "expected_characters": [
+      "茶"
+    ],
+    "definition_contains": [
+      "tea"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 479,
+    "query": "coffee",
+    "category": "english",
+    "description": "English coffee",
+    "expected_characters": [
+      "咖啡"
+    ],
+    "definition_contains": [
+      "coffee"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 480,
+    "query": "red",
+    "category": "english",
+    "description": "English red",
+    "expected_characters": [
+      "紅"
+    ],
+    "definition_contains": [
+      "red"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 481,
+    "query": "blue",
+    "category": "english",
+    "description": "English blue",
+    "expected_characters": [
+      "藍"
+    ],
+    "definition_contains": [
+      "blue"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 482,
+    "query": "green",
+    "category": "english",
+    "description": "English green",
+    "expected_characters": [
+      "綠"
+    ],
+    "definition_contains": [
+      "green"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 483,
+    "query": "black",
+    "category": "english",
+    "description": "English black",
+    "expected_characters": [
+      "黑"
+    ],
+    "definition_contains": [
+      "black"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 484,
+    "query": "white",
+    "category": "english",
+    "description": "English white",
+    "expected_characters": [
+      "白"
+    ],
+    "definition_contains": [
+      "white"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 485,
+    "query": "hand",
+    "category": "english",
+    "description": "English hand",
+    "expected_characters": [
+      "手"
+    ],
+    "definition_contains": [
+      "hand"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 486,
+    "query": "head",
+    "category": "english",
+    "description": "English head",
+    "expected_characters": [
+      "頭"
+    ],
+    "definition_contains": [
+      "head"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 487,
+    "query": "mouth",
+    "category": "english",
+    "description": "English mouth",
+    "expected_characters": [
+      "口",
+      "嘴"
+    ],
+    "definition_contains": [
+      "mouth"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 488,
+    "query": "walk",
+    "category": "english",
+    "description": "English walk",
+    "expected_characters": [
+      "行",
+      "走"
+    ],
+    "definition_contains": [
+      "walk"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 489,
+    "query": "sleep",
+    "category": "english",
+    "description": "English sleep",
+    "expected_characters": [
+      "睡",
+      "瞓"
+    ],
+    "definition_contains": [
+      "sleep"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 490,
+    "query": "buy",
+    "category": "english",
+    "description": "English buy",
+    "expected_characters": [
+      "買"
+    ],
+    "definition_contains": [
+      "buy"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 491,
+    "query": "sell",
+    "category": "english",
+    "description": "English sell",
+    "expected_characters": [
+      "賣"
+    ],
+    "definition_contains": [
+      "sell"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 492,
+    "query": "give",
+    "category": "english",
+    "description": "English give",
+    "expected_characters": [
+      "給",
+      "俾"
+    ],
+    "definition_contains": [
+      "give"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 493,
+    "query": "read",
+    "category": "english",
+    "description": "English read",
+    "expected_characters": [
+      "讀",
+      "閱"
+    ],
+    "definition_contains": [
+      "read"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 494,
+    "query": "write",
+    "category": "english",
+    "description": "English write",
+    "expected_characters": [
+      "寫"
+    ],
+    "definition_contains": [
+      "write"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 495,
+    "query": "hot",
+    "category": "english",
+    "description": "English hot",
+    "expected_characters": [
+      "熱"
+    ],
+    "definition_contains": [
+      "hot"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 496,
+    "query": "cold",
+    "category": "english",
+    "description": "English cold",
+    "expected_characters": [
+      "冷",
+      "凍"
+    ],
+    "definition_contains": [
+      "cold"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 497,
+    "query": "fast",
+    "category": "english",
+    "description": "English fast",
+    "expected_characters": [
+      "快"
+    ],
+    "definition_contains": [
+      "fast"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 498,
+    "query": "slow",
+    "category": "english",
+    "description": "English slow",
+    "expected_characters": [
+      "慢"
+    ],
+    "definition_contains": [
+      "slow"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 499,
+    "query": "new",
+    "category": "english",
+    "description": "English new",
+    "expected_characters": [
+      "新"
+    ],
+    "definition_contains": [
+      "new"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 500,
+    "query": "old",
+    "category": "english",
+    "description": "English old",
+    "expected_characters": [
+      "老",
+      "舊"
+    ],
+    "definition_contains": [
+      "old"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 501,
+    "query": "happy",
+    "category": "english",
+    "description": "English happy",
+    "expected_characters": [
+      "開心",
+      "快樂"
+    ],
+    "definition_contains": [
+      "happy"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 502,
+    "query": "school",
+    "category": "english",
+    "description": "English school",
+    "expected_characters": [
+      "學",
+      "校"
+    ],
+    "definition_contains": [
+      "school"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 503,
+    "query": "hospital",
+    "category": "english",
+    "description": "English hospital",
+    "expected_characters": [
+      "醫院"
+    ],
+    "definition_contains": [
+      "hospital"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 504,
+    "query": "morning",
+    "category": "english",
+    "description": "English morning",
+    "expected_characters": [
+      "朝",
+      "早"
+    ],
+    "definition_contains": [
+      "morning"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 505,
+    "query": "night",
+    "category": "english",
+    "description": "English night",
+    "expected_characters": [
+      "夜",
+      "晚"
+    ],
+    "definition_contains": [
+      "night"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 506,
+    "query": "year",
+    "category": "english",
+    "description": "English year",
+    "expected_characters": [
+      "年"
+    ],
+    "definition_contains": [
+      "year"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 507,
+    "query": "month",
+    "category": "english",
+    "description": "English month",
+    "expected_characters": [
+      "月"
+    ],
+    "definition_contains": [
+      "month"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 508,
+    "query": "week",
+    "category": "english",
+    "description": "English week",
+    "expected_characters": [
+      "週",
+      "星期"
+    ],
+    "definition_contains": [
+      "week"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 509,
+    "query": "friend",
+    "category": "english",
+    "description": "English friend",
+    "expected_characters": [
+      "友",
+      "朋友"
+    ],
+    "definition_contains": [
+      "friend"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 510,
+    "query": "child",
+    "category": "english",
+    "description": "English child",
+    "expected_characters": [
+      "子",
+      "兒"
+    ],
+    "definition_contains": [
+      "child"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 511,
+    "query": "teacher",
+    "category": "english",
+    "description": "English teacher",
+    "expected_characters": [
+      "師",
+      "老師"
+    ],
+    "definition_contains": [
+      "teacher"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 512,
+    "query": "student",
+    "category": "english",
+    "description": "English student",
+    "expected_characters": [
+      "生",
+      "學生"
+    ],
+    "definition_contains": [
+      "student"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 513,
+    "query": "doctor",
+    "category": "english",
+    "description": "English doctor",
+    "expected_characters": [
+      "醫",
+      "醫生"
+    ],
+    "definition_contains": [
+      "doctor"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 514,
+    "query": "car",
+    "category": "english",
+    "description": "English car",
+    "expected_characters": [
+      "車"
+    ],
+    "definition_contains": [
+      "car"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 515,
+    "query": "food",
+    "category": "english",
+    "description": "English food",
+    "expected_characters": [
+      "食",
+      "糧"
+    ],
+    "definition_contains": [
+      "food"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 516,
+    "query": "book",
+    "category": "english",
+    "description": "English book",
+    "expected_characters": [
+      "書"
+    ],
+    "definition_contains": [
+      "book"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 517,
+    "query": "love",
+    "category": "english",
+    "description": "English love",
+    "expected_characters": [
+      "愛"
+    ],
+    "definition_contains": [
+      "love"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 518,
+    "query": "work",
+    "category": "english",
+    "description": "English work",
+    "expected_characters": [
+      "工",
+      "作"
+    ],
+    "definition_contains": [
+      "work"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 519,
+    "query": "rain",
+    "category": "english",
+    "description": "English rain",
+    "expected_characters": [
+      "雨"
+    ],
+    "definition_contains": [
+      "rain"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 520,
+    "query": "wind",
+    "category": "english",
+    "description": "English wind",
+    "expected_characters": [
+      "風"
+    ],
+    "definition_contains": [
+      "wind"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 521,
+    "query": "sun",
+    "category": "english",
+    "description": "English sun",
+    "expected_characters": [
+      "日",
+      "太陽"
+    ],
+    "definition_contains": [
+      "sun"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 522,
+    "query": "moon",
+    "category": "english",
+    "description": "English moon",
+    "expected_characters": [
+      "月"
+    ],
+    "definition_contains": [
+      "moon"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 523,
+    "query": "flower",
+    "category": "english",
+    "description": "English flower",
+    "expected_characters": [
+      "花"
+    ],
+    "definition_contains": [
+      "flower"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 524,
+    "query": "mountain",
+    "category": "english",
+    "description": "English mountain",
+    "expected_characters": [
+      "山"
+    ],
+    "definition_contains": [
+      "mountain"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 525,
+    "query": "river",
+    "category": "english",
+    "description": "English river",
+    "expected_characters": [
+      "河",
+      "江"
+    ],
+    "definition_contains": [
+      "river"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 526,
+    "query": "road",
+    "category": "english",
+    "description": "English road",
+    "expected_characters": [
+      "路",
+      "道"
+    ],
+    "definition_contains": [
+      "road"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 527,
+    "query": "telephone",
+    "category": "english",
+    "description": "English telephone",
+    "expected_characters": [
+      "電話"
+    ],
+    "definition_contains": [
+      "telephone"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 528,
+    "query": "police",
+    "category": "english",
+    "description": "English police",
+    "expected_characters": [
+      "警",
+      "警察"
+    ],
+    "definition_contains": [
+      "police"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 529,
+    "query": "thank",
+    "category": "english",
+    "description": "English thank",
+    "expected_characters": [
+      "謝",
+      "多謝"
+    ],
+    "definition_contains": [
+      "thank"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 530,
+    "query": "sorry",
+    "category": "english",
+    "description": "English sorry",
+    "expected_characters": [
+      "對不起"
+    ],
+    "definition_contains": [
+      "sorry"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 531,
+    "query": "人",
+    "category": "character",
+    "description": "person char search",
+    "expected_characters": [
+      "人"
+    ],
+    "expected_jyutping": [
+      "jan4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 532,
+    "query": "大",
+    "category": "character",
+    "description": "big char search",
+    "expected_characters": [
+      "大"
+    ],
+    "expected_jyutping": [
+      "daai6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 533,
+    "query": "小",
+    "category": "character",
+    "description": "small char search",
+    "expected_characters": [
+      "小"
+    ],
+    "expected_jyutping": [
+      "siu2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 534,
+    "query": "天",
+    "category": "character",
+    "description": "sky char search",
+    "expected_characters": [
+      "天"
+    ],
+    "expected_jyutping": [
+      "tin1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 535,
+    "query": "地",
+    "category": "character",
+    "description": "earth char search",
+    "expected_characters": [
+      "地"
+    ],
+    "expected_jyutping": [
+      "dei6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 536,
+    "query": "水",
+    "category": "character",
+    "description": "water char search",
+    "expected_characters": [
+      "水"
+    ],
+    "expected_jyutping": [
+      "seoi2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 537,
+    "query": "火",
+    "category": "character",
+    "description": "fire char search",
+    "expected_characters": [
+      "火"
+    ],
+    "expected_jyutping": [
+      "fo2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 538,
+    "query": "山",
+    "category": "character",
+    "description": "mountain char search",
+    "expected_characters": [
+      "山"
+    ],
+    "expected_jyutping": [
+      "saan1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 539,
+    "query": "日",
+    "category": "character",
+    "description": "day/sun char search",
+    "expected_characters": [
+      "日"
+    ],
+    "expected_jyutping": [
+      "jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 540,
+    "query": "月",
+    "category": "character",
+    "description": "moon/month char search",
+    "expected_characters": [
+      "月"
+    ],
+    "expected_jyutping": [
+      "jyut6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 541,
+    "query": "手",
+    "category": "character",
+    "description": "hand char search",
+    "expected_characters": [
+      "手"
+    ],
+    "expected_jyutping": [
+      "sau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 542,
+    "query": "口",
+    "category": "character",
+    "description": "mouth char search",
+    "expected_characters": [
+      "口"
+    ],
+    "expected_jyutping": [
+      "hau2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 543,
+    "query": "心",
+    "category": "character",
+    "description": "heart char search",
+    "expected_characters": [
+      "心"
+    ],
+    "expected_jyutping": [
+      "sam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 544,
+    "query": "目",
+    "category": "character",
+    "description": "eye char search",
+    "expected_characters": [
+      "目"
+    ],
+    "expected_jyutping": [
+      "muk6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 545,
+    "query": "車",
+    "category": "character",
+    "description": "car char search",
+    "expected_characters": [
+      "車"
+    ],
+    "expected_jyutping": [
+      "ce1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 546,
+    "query": "馬",
+    "category": "character",
+    "description": "horse char search",
+    "expected_characters": [
+      "馬"
+    ],
+    "expected_jyutping": [
+      "maa5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 547,
+    "query": "花",
+    "category": "character",
+    "description": "flower char search",
+    "expected_characters": [
+      "花"
+    ],
+    "expected_jyutping": [
+      "faa1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 548,
+    "query": "魚",
+    "category": "character",
+    "description": "fish char search",
+    "expected_characters": [
+      "魚"
+    ],
+    "expected_jyutping": [
+      "jyu2",
+      "jyu4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 549,
+    "query": "鳥",
+    "category": "character",
+    "description": "bird char search",
+    "expected_characters": [
+      "鳥"
+    ],
+    "expected_jyutping": [
+      "niu5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 550,
+    "query": "學校",
+    "category": "character",
+    "description": "school multi-char",
+    "expected_characters": [
+      "學校"
+    ],
+    "expected_jyutping": [
+      "hok6 haau6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 551,
+    "query": "醫院",
+    "category": "character",
+    "description": "hospital multi-char",
+    "expected_characters": [
+      "醫院"
+    ],
+    "expected_jyutping": [
+      "ji1 jyun2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 552,
+    "query": "巴士",
+    "category": "character",
+    "description": "bus multi-char",
+    "expected_characters": [
+      "巴士"
+    ],
+    "expected_jyutping": [
+      "baa1 si2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 553,
+    "query": "地鐵",
+    "category": "character",
+    "description": "MTR multi-char",
+    "expected_characters": [
+      "地鐵"
+    ],
+    "expected_jyutping": [
+      "dei6 tit3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 554,
+    "query": "電話",
+    "category": "character",
+    "description": "telephone multi-char",
+    "expected_characters": [
+      "電話"
+    ],
+    "expected_jyutping": [
+      "din6 waa2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 555,
+    "query": "電腦",
+    "category": "character",
+    "description": "computer multi-char",
+    "expected_characters": [
+      "電腦"
+    ],
+    "expected_jyutping": [
+      "din6 nou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 556,
+    "query": "警察",
+    "category": "character",
+    "description": "police multi-char",
+    "expected_characters": [
+      "警察"
+    ],
+    "expected_jyutping": [
+      "ging2 caat3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 557,
+    "query": "老師",
+    "category": "character",
+    "description": "teacher multi-char",
+    "expected_characters": [
+      "老師"
+    ],
+    "expected_jyutping": [
+      "lou5 si1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 558,
+    "query": "中國",
+    "category": "character",
+    "description": "China multi-char",
+    "expected_characters": [
+      "中國"
+    ],
+    "expected_jyutping": [
+      "zung1 gwok3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 559,
+    "query": "香港",
+    "category": "character",
+    "description": "Hong Kong multi-char",
+    "expected_characters": [
+      "香港"
+    ],
+    "expected_jyutping": [
+      "hoeng1 gong2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 560,
+    "query": "朋友",
+    "category": "character",
+    "description": "friend multi-char",
+    "expected_characters": [
+      "朋友"
+    ],
+    "expected_jyutping": [
+      "pang4 jau5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 561,
+    "query": "唔該",
+    "category": "character",
+    "description": "excuse me multi-char",
+    "expected_characters": [
+      "唔該"
+    ],
+    "expected_jyutping": [
+      "m4 goi1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 562,
+    "query": "多謝",
+    "category": "character",
+    "description": "thank you multi-char",
+    "expected_characters": [
+      "多謝"
+    ],
+    "expected_jyutping": [
+      "do1 ze6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 563,
+    "query": "飛機",
+    "category": "character",
+    "description": "airplane multi-char",
+    "expected_characters": [
+      "飛機"
+    ],
+    "expected_jyutping": [
+      "fei1 gei1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 564,
+    "query": "公司",
+    "category": "character",
+    "description": "company multi-char",
+    "expected_characters": [
+      "公司"
+    ],
+    "expected_jyutping": [
+      "gung1 si1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 565,
+    "query": "時間",
+    "category": "character",
+    "description": "time multi-char",
+    "expected_characters": [
+      "時間"
+    ],
+    "expected_jyutping": [
+      "si4 gaan3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 566,
+    "query": "開心",
+    "category": "character",
+    "description": "happy multi-char",
+    "expected_characters": [
+      "開心"
+    ],
+    "expected_jyutping": [
+      "hoi1 sam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 567,
+    "query": "今日",
+    "category": "character",
+    "description": "today multi-char",
+    "expected_characters": [
+      "今日"
+    ],
+    "expected_jyutping": [
+      "gam1 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 568,
+    "query": "明天",
+    "category": "character",
+    "description": "tomorrow multi-char",
+    "expected_characters": [
+      "明天"
+    ],
+    "expected_jyutping": [
+      "ming4 tin1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 569,
+    "query": "生日",
+    "category": "character",
+    "description": "birthday multi-char",
+    "expected_characters": [
+      "生日"
+    ],
+    "expected_jyutping": [
+      "saang1 jat6",
+      "sang1 jat6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 570,
+    "query": "新年",
+    "category": "character",
+    "description": "new year multi-char",
+    "expected_characters": [
+      "新年"
+    ],
+    "expected_jyutping": [
+      "san1 nin4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 571,
+    "query": "Nei5",
+    "category": "edge_case",
+    "description": "mixed case capital N",
+    "expected_characters": [
+      "你"
+    ],
+    "expected_jyutping": [
+      "nei5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 572,
+    "query": "HOU2",
+    "category": "edge_case",
+    "description": "all caps",
+    "expected_characters": [
+      "好"
+    ],
+    "expected_jyutping": [
+      "hou2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 573,
+    "query": "s",
+    "category": "edge_case",
+    "description": "single consonant s",
+    "expected_characters": [
+      "市",
+      "事",
+      "色",
+      "是"
+    ],
+    "expected_jyutping": [
+      "si5",
+      "si6",
+      "sik1"
+    ],
+    "accept_top_n": 10
+  },
+  {
+    "id": 574,
+    "query": "g",
+    "category": "edge_case",
+    "description": "single consonant g",
+    "expected_characters": [
+      "個",
+      "國",
+      "家"
+    ],
+    "expected_jyutping": [
+      "go3",
+      "gwok3",
+      "gaa1"
+    ],
+    "accept_top_n": 10
+  },
+  {
+    "id": 575,
+    "query": "l",
+    "category": "edge_case",
+    "description": "single consonant l",
+    "expected_characters": [
+      "老",
+      "來",
+      "路"
+    ],
+    "expected_jyutping": [
+      "lou5",
+      "loi4",
+      "lou6"
+    ],
+    "accept_top_n": 10
+  },
+  {
+    "id": 576,
+    "query": "go",
+    "category": "edge_case",
+    "description": "ambiguous 'go'",
+    "expected_characters": [
+      "個",
+      "角",
+      "哥"
+    ],
+    "expected_jyutping": [
+      "go3",
+      "gok3",
+      "go1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 577,
+    "query": "ga",
+    "category": "edge_case",
+    "description": "ambiguous 'ga'",
+    "expected_characters": [
+      "家",
+      "假",
+      "加",
+      "架"
+    ],
+    "expected_jyutping": [
+      "gaa1",
+      "gaa3"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 578,
+    "query": "la",
+    "category": "edge_case",
+    "description": "ambiguous 'la'",
+    "expected_characters": [
+      "啦",
+      "拉"
+    ],
+    "expected_jyutping": [
+      "laa1",
+      "laai1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 579,
+    "query": "gam1",
+    "category": "edge_case",
+    "description": "gam tone 1 vs 2 vs 3",
+    "expected_characters": [
+      "金",
+      "今"
+    ],
+    "expected_jyutping": [
+      "gam1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 580,
+    "query": "gam2",
+    "category": "edge_case",
+    "description": "gam tone 2 - so/like that",
+    "expected_characters": [
+      "咁",
+      "感"
+    ],
+    "expected_jyutping": [
+      "gam2"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 581,
+    "query": "gam3",
+    "category": "edge_case",
+    "description": "gam tone 3 - so/thus",
+    "expected_characters": [
+      "噉",
+      "咁",
+      "噤"
+    ],
+    "expected_jyutping": [
+      "gam3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 582,
+    "query": "si1",
+    "category": "edge_case",
+    "description": "si tone 1 - silk/private",
+    "expected_characters": [
+      "絲",
+      "私",
+      "師",
+      "司",
+      "思"
+    ],
+    "expected_jyutping": [
+      "si1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 583,
+    "query": "si6",
+    "category": "edge_case",
+    "description": "si tone 6 - is/matter",
+    "expected_characters": [
+      "是",
+      "事",
+      "市"
+    ],
+    "expected_jyutping": [
+      "si6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 584,
+    "query": "ngaang6",
+    "category": "edge_case",
+    "description": "uncommon syllable ngaang",
+    "expected_characters": [
+      "硬"
+    ],
+    "expected_jyutping": [
+      "ngaang6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 585,
+    "query": "gwik1",
+    "category": "edge_case",
+    "description": "uncommon syllable gwik",
+    "expected_characters": [
+      "隙"
+    ],
+    "expected_jyutping": [
+      "gwik1"
+    ],
+    "accept_top_n": 10
+  },
+  {
+    "id": 586,
+    "query": "zoeng1",
+    "category": "edge_case",
+    "description": "common but many homophones",
+    "expected_characters": [
+      "張",
+      "章",
+      "將"
+    ],
+    "expected_jyutping": [
+      "zoeng1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 587,
+    "query": "jau5 mou5",
+    "category": "edge_case",
+    "description": "have or not question",
+    "expected_characters": [
+      "有冇",
+      "有無"
+    ],
+    "expected_jyutping": [
+      "jau5 mou5"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 588,
+    "query": "hai6 m4 hai6",
+    "category": "edge_case",
+    "description": "yes or no question (3 syllable)",
+    "expected_characters": [
+      "係唔係"
+    ],
+    "expected_jyutping": [
+      "hai6 m4 hai6"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 589,
+    "query": "hou2 m4 hou2",
+    "category": "edge_case",
+    "description": "good or not (3 syllable)",
+    "expected_characters": [
+      "好唔好"
+    ],
+    "expected_jyutping": [
+      "hou2 m4 hou2"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 590,
+    "query": "jat1 go3 jan4",
+    "category": "edge_case",
+    "description": "one person (3 syllable)",
+    "expected_characters": [
+      "一個人"
+    ],
+    "expected_jyutping": [
+      "jat1 go3 jan4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 591,
+    "query": "jat1 di1",
+    "category": "edge_case",
+    "description": "a bit/some",
+    "expected_characters": [
+      "一啲"
+    ],
+    "expected_jyutping": [
+      "jat1 di1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 592,
+    "query": "saam1 go3",
+    "category": "edge_case",
+    "description": "three (classifier)",
+    "expected_characters": [
+      "三個"
+    ],
+    "expected_jyutping": [
+      "saam1 go3"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 593,
+    "query": "gaa1 jan4",
+    "category": "edge_case",
+    "description": "family member",
+    "expected_characters": [
+      "家人"
+    ],
+    "expected_jyutping": [
+      "gaa1 jan4"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 594,
+    "query": "daai6 gaa1",
+    "category": "edge_case",
+    "description": "everyone",
+    "expected_characters": [
+      "大家"
+    ],
+    "expected_jyutping": [
+      "daai6 gaa1"
+    ],
+    "accept_top_n": 1
+  },
+  {
+    "id": 595,
+    "query": "aa1",
+    "category": "edge_case",
+    "description": "exclamation particle tone 1",
+    "expected_characters": [
+      "啊",
+      "呀",
+      "阿"
+    ],
+    "expected_jyutping": [
+      "aa1"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 596,
+    "query": "aa4",
+    "category": "edge_case",
+    "description": "question particle tone 4",
+    "expected_characters": [
+      "呀",
+      "啊"
+    ],
+    "expected_jyutping": [
+      "aa4"
+    ],
+    "accept_top_n": 5
+  },
+  {
+    "id": 597,
+    "query": "sap6 ji6",
+    "category": "edge_case",
+    "description": "twelve",
+    "expected_characters": [
+      "十二"
+    ],
+    "expected_jyutping": [
+      "sap6 ji6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 598,
+    "query": "baat3 jyut6",
+    "category": "edge_case",
+    "description": "August",
+    "expected_characters": [
+      "八月"
+    ],
+    "expected_jyutping": [
+      "baat3 jyut6"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 599,
+    "query": "sing1 kei4 jat1",
+    "category": "edge_case",
+    "description": "Monday",
+    "expected_characters": [
+      "星期一"
+    ],
+    "expected_jyutping": [
+      "sing1 kei4 jat1"
+    ],
+    "accept_top_n": 3
+  },
+  {
+    "id": 600,
+    "query": "hou2 do1 ze6",
+    "category": "edge_case",
+    "description": "thank you very much",
+    "expected_characters": [
+      "好多謝"
+    ],
+    "expected_jyutping": [
+      "hou2 do1 ze6"
+    ],
+    "accept_top_n": 5
+  }
 ]
