@@ -8363,5 +8363,726 @@
       "hou2 do1 ze6"
     ],
     "accept_top_n": 5
+  },
+  {
+    "id": 601,
+    "query": "ge",
+    "category": "exact_vs_prefix",
+    "description": "ge (exact) should beat gei (prefix) - currently fails: gei1/機 at 11500 beats ge2/嘅 at 14000",
+    "expected_characters": [
+      "嘅"
+    ],
+    "expected_jyutping": [
+      "ge2",
+      "ge3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 602,
+    "query": "do",
+    "category": "exact_vs_prefix",
+    "description": "do (exact) should beat dou (prefix) - currently fails: dou6/道 at 10391 beats do1/多 at 12995",
+    "expected_characters": [
+      "多"
+    ],
+    "expected_jyutping": [
+      "do1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 603,
+    "query": "mo",
+    "category": "exact_vs_prefix",
+    "description": "mo (exact) should beat mou (prefix) - currently fails: mou6/霧 at 11500 beats mo5/冇 at 12000",
+    "expected_characters": [
+      "冇"
+    ],
+    "expected_jyutping": [
+      "mo5"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 604,
+    "query": "to",
+    "category": "exact_vs_prefix",
+    "description": "to (exact) should beat tou (prefix) - currently fails: tou4/圖 at 11500 beats to1/他 at 11797",
+    "expected_characters": [
+      "他",
+      "它"
+    ],
+    "expected_jyutping": [
+      "to1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 605,
+    "query": "di",
+    "category": "exact_vs_prefix",
+    "description": "di exact matches should occupy top 2 before any dim/dip/diu prefix matches",
+    "expected_characters": [
+      "的",
+      "啲"
+    ],
+    "expected_jyutping": [
+      "di1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 2
+  },
+  {
+    "id": 606,
+    "query": "co",
+    "category": "exact_vs_prefix",
+    "description": "co (exact) should beat cou/coi/cong (prefix) - currently all prefix matches win",
+    "expected_characters": [
+      "初",
+      "搓"
+    ],
+    "expected_jyutping": [
+      "co1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 607,
+    "query": "do1",
+    "category": "exact_vs_prefix",
+    "description": "do1 exact should beat dou1 prefix - currently fails: dou1/刀 at 11500 beats do1/多 at 12995",
+    "expected_characters": [
+      "多"
+    ],
+    "expected_jyutping": [
+      "do1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 608,
+    "query": "do6",
+    "category": "exact_vs_prefix",
+    "description": "do6 exact should beat dou6 prefix - currently fails: dou6/道 at 10391 beats do6/墮 at 14000",
+    "expected_characters": [
+      "墮"
+    ],
+    "expected_jyutping": [
+      "do6"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 609,
+    "query": "do3",
+    "category": "exact_vs_prefix",
+    "description": "do3 exact should beat dou3 prefix",
+    "expected_characters": [
+      "剁"
+    ],
+    "expected_jyutping": [
+      "do3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 610,
+    "query": "si",
+    "category": "exact_vs_prefix",
+    "description": "si (exact) should beat sik/sin/sing (prefix) - currently passes",
+    "expected_characters": [
+      "事"
+    ],
+    "expected_jyutping": [
+      "si6"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 611,
+    "query": "go",
+    "category": "exact_vs_prefix",
+    "description": "go (exact) should beat gok/gon/gou (prefix) - currently passes",
+    "expected_characters": [
+      "歌"
+    ],
+    "expected_jyutping": [
+      "go1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 612,
+    "query": "lo",
+    "category": "exact_vs_prefix",
+    "description": "lo (exact) should beat lou/lok/long (prefix) - currently passes",
+    "expected_characters": [
+      "鑼"
+    ],
+    "expected_jyutping": [
+      "lo4"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 613,
+    "query": "se",
+    "category": "exact_vs_prefix",
+    "description": "se (exact) should beat sei/sek/seon (prefix) - currently passes",
+    "expected_characters": [
+      "蛇"
+    ],
+    "expected_jyutping": [
+      "se4"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 614,
+    "query": "bo",
+    "category": "exact_vs_prefix",
+    "description": "bo (exact) should beat bou/bok/bong (prefix) - currently passes",
+    "expected_characters": [
+      "坡"
+    ],
+    "expected_jyutping": [
+      "bo1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 615,
+    "query": "zo",
+    "category": "exact_vs_prefix",
+    "description": "zo (exact) should beat zou/zok/zoi (prefix) - currently passes",
+    "expected_characters": [
+      "座"
+    ],
+    "expected_jyutping": [
+      "zo6"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 616,
+    "query": "fo",
+    "category": "exact_vs_prefix",
+    "description": "fo (exact) should beat fok/fong (prefix) - currently passes",
+    "expected_characters": [
+      "科",
+      "課"
+    ],
+    "expected_jyutping": [
+      "fo1",
+      "fo3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 617,
+    "query": "so",
+    "category": "exact_vs_prefix",
+    "description": "so (exact) should beat sou/sok/song (prefix) - currently passes",
+    "expected_characters": [
+      "所"
+    ],
+    "expected_jyutping": [
+      "so2"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 618,
+    "query": "no",
+    "category": "exact_vs_prefix",
+    "description": "no (exact) should beat noi/nok (prefix) - currently passes",
+    "expected_characters": [
+      "那"
+    ],
+    "expected_jyutping": [
+      "no5"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 619,
+    "query": "ge3",
+    "category": "exact_vs_prefix",
+    "description": "ge3 exact should beat gei3 prefix - tone helps filter, currently passes",
+    "expected_characters": [
+      "嘅"
+    ],
+    "expected_jyutping": [
+      "ge3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 620,
+    "query": "ge2",
+    "category": "exact_vs_prefix",
+    "description": "ge2 exact should beat gei2 prefix",
+    "expected_characters": [
+      "嘅"
+    ],
+    "expected_jyutping": [
+      "ge2"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 621,
+    "query": "mo5",
+    "category": "exact_vs_prefix",
+    "description": "mo5 exact should beat mou5 prefix - currently passes with tone",
+    "expected_characters": [
+      "冇"
+    ],
+    "expected_jyutping": [
+      "mo5"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 622,
+    "query": "di1",
+    "category": "exact_vs_prefix",
+    "description": "di1 exact should beat dim1/dik1 prefix",
+    "expected_characters": [
+      "的",
+      "啲"
+    ],
+    "expected_jyutping": [
+      "di1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 2
+  },
+  {
+    "id": 623,
+    "query": "to1",
+    "category": "exact_vs_prefix",
+    "description": "to1 exact should beat tou1/tok1 prefix - currently passes with tone",
+    "expected_characters": [
+      "他"
+    ],
+    "expected_jyutping": [
+      "to1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 624,
+    "query": "se1",
+    "category": "exact_vs_prefix",
+    "description": "se1 exact should beat sei1/sek1/seon1 prefix",
+    "expected_characters": [
+      "些"
+    ],
+    "expected_jyutping": [
+      "se1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 625,
+    "query": "da",
+    "category": "exact_vs_prefix",
+    "description": "da - no common exact syllable, all are prefix (dau/daai/daan). Prefix matches are fine here.",
+    "expected_characters": [
+      "豆",
+      "帶",
+      "單"
+    ],
+    "expected_jyutping": [
+      "dau2",
+      "daai3",
+      "daan1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 626,
+    "query": "ba",
+    "category": "exact_vs_prefix",
+    "description": "ba - no common exact syllable, prefix matches (baa/baai/baat) expected",
+    "expected_characters": [
+      "壩",
+      "把",
+      "百",
+      "八",
+      "筆"
+    ],
+    "expected_jyutping": [
+      "baa3",
+      "baat3",
+      "bat1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 627,
+    "query": "ga",
+    "category": "exact_vs_prefix",
+    "description": "ga - no exact syllable, prefix matches (gaa/gaai/gaam) expected",
+    "expected_characters": [
+      "家",
+      "加"
+    ],
+    "expected_jyutping": null,
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 628,
+    "query": "ge do",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: currently ge→gei prefix wins, returning 基多/gei1 do1 instead of exact ge+do compound",
+    "expected_characters": [
+      "基多",
+      "幾多"
+    ],
+    "expected_jyutping": [
+      "gei1 do1",
+      "gei2 do1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 629,
+    "query": "si go",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: both si and go have exact syllables, 詩歌 uses both exactly",
+    "expected_characters": [
+      "詩歌"
+    ],
+    "expected_jyutping": [
+      "si1 go1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 630,
+    "query": "do di",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: do+di should match exact syllables, not dou+dim",
+    "expected_characters": null,
+    "expected_jyutping": [
+      "do1 di1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 5
+  },
+  {
+    "id": 631,
+    "query": "lo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 裸機/lo2 gei1 instead of exact lo+ge",
+    "expected_characters": [
+      "裸機",
+      "鑼機"
+    ],
+    "expected_jyutping": [
+      "lo2 gei1",
+      "lo4 gei1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 632,
+    "query": "zo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 座機/zo6 gei1 instead of exact zo+ge",
+    "expected_characters": [
+      "座機"
+    ],
+    "expected_jyutping": [
+      "zo6 gei1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 633,
+    "query": "so",
+    "category": "exact_vs_prefix",
+    "description": "so exact should beat sou/sok/song prefix - verify 所 stays on top",
+    "expected_characters": [
+      "所"
+    ],
+    "expected_jyutping": [
+      "so2"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 634,
+    "query": "zo2",
+    "category": "exact_vs_prefix",
+    "description": "zo2 exact should beat zou2/zoi2 prefix",
+    "expected_characters": [
+      "座",
+      "左"
+    ],
+    "expected_jyutping": [
+      "zo2"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 635,
+    "query": "bo1",
+    "category": "exact_vs_prefix",
+    "description": "bo1 exact should beat bou1/bok1 prefix",
+    "expected_characters": [
+      "坡",
+      "波"
+    ],
+    "expected_jyutping": [
+      "bo1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 636,
+    "query": "fo1",
+    "category": "exact_vs_prefix",
+    "description": "fo1 exact should beat fok1/fong1 prefix",
+    "expected_characters": [
+      "科"
+    ],
+    "expected_jyutping": [
+      "fo1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 637,
+    "query": "go3",
+    "category": "exact_vs_prefix",
+    "description": "go3 exact should beat gok3/gon3/gong3 prefix - currently fails: gok3/角 at 11500 beats go3/嗰 at 12000",
+    "expected_characters": [
+      "嗰",
+      "各"
+    ],
+    "expected_jyutping": [
+      "go3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 638,
+    "query": "lo3",
+    "category": "exact_vs_prefix",
+    "description": "lo3 exact should beat lok3/long3/lou3 prefix",
+    "expected_characters": [
+      "咯",
+      "囉"
+    ],
+    "expected_jyutping": [
+      "lo3"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 2
+  },
+  {
+    "id": 639,
+    "query": "si6",
+    "category": "exact_vs_prefix",
+    "description": "si6 exact should beat sik6/sin6 prefix",
+    "expected_characters": [
+      "事",
+      "是"
+    ],
+    "expected_jyutping": [
+      "si6"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 640,
+    "query": "si1",
+    "category": "exact_vs_prefix",
+    "description": "si1 exact should beat sik1/sin1/sing1 prefix",
+    "expected_characters": [
+      "絲",
+      "詩",
+      "司"
+    ],
+    "expected_jyutping": [
+      "si1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 641,
+    "query": "go1",
+    "category": "exact_vs_prefix",
+    "description": "go1 exact should beat gon1/gou1/gok1 prefix",
+    "expected_characters": [
+      "歌"
+    ],
+    "expected_jyutping": [
+      "go1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 642,
+    "query": "lo4",
+    "category": "exact_vs_prefix",
+    "description": "lo4 exact should beat lou4/lok4/long4 prefix",
+    "expected_characters": [
+      "鑼"
+    ],
+    "expected_jyutping": [
+      "lo4"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 643,
+    "query": "se4",
+    "category": "exact_vs_prefix",
+    "description": "se4 exact should beat sei4/sek4/seon4 prefix",
+    "expected_characters": [
+      "蛇"
+    ],
+    "expected_jyutping": [
+      "se4"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 644,
+    "query": "do di",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable with tone: exact do1 + exact di1 should beat dou+dim combos",
+    "expected_characters": null,
+    "expected_jyutping": null,
+    "definition_contains": "more",
+    "accept_top_n": 5
+  },
+  {
+    "id": 645,
+    "query": "mo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 磨嘰/mo4 gei1",
+    "expected_characters": [
+      "磨嘰"
+    ],
+    "expected_jyutping": [
+      "mo4 gei1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 3
+  },
+  {
+    "id": 646,
+    "query": "so do",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: both so and do have exact syllables, 所多/so2 do1 should match",
+    "expected_characters": [
+      "所多"
+    ],
+    "expected_jyutping": [
+      "so2 do1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 647,
+    "query": "do2",
+    "category": "exact_vs_prefix",
+    "description": "do2 exact should beat dou2 prefix - currently fails: dou2/島 at 11500",
+    "expected_characters": null,
+    "expected_jyutping": [
+      "do2"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 648,
+    "query": "mo1",
+    "category": "exact_vs_prefix",
+    "description": "mo1 exact should beat mou1 prefix",
+    "expected_characters": [
+      "么",
+      "摩",
+      "魔"
+    ],
+    "expected_jyutping": [
+      "mo1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 649,
+    "query": "co1",
+    "category": "exact_vs_prefix",
+    "description": "co1 exact should beat cou1/coi1/cong1 prefix",
+    "expected_characters": [
+      "初"
+    ],
+    "expected_jyutping": [
+      "co1"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
+  },
+  {
+    "id": 650,
+    "query": "no5",
+    "category": "exact_vs_prefix",
+    "description": "no5 exact should beat noi5/nok5 prefix",
+    "expected_characters": [
+      "那"
+    ],
+    "expected_jyutping": [
+      "no5"
+    ],
+    "definition_contains": null,
+    "accept_top_n": 1
   }
 ]

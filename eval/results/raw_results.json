@@ -38038,5 +38038,3215 @@
       }
     ],
     "match_details": null
+  },
+  {
+    "id": 601,
+    "query": "ge",
+    "category": "exact_vs_prefix",
+    "description": "ge (exact) should beat gei (prefix) - currently fails: gei1/機 at 11500 beats ge2/嘅 at 14000",
+    "passed": false,
+    "reason": "Expected one of ['嘅'] but got ['機'] (jyutping: ['gei1'])",
+    "top_results": [
+      {
+        "characters": "機",
+        "jyutping": "gei1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "嘅",
+        "jyutping": "ge2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "痂",
+        "jyutping": "ge1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "其",
+        "jyutping": "gei1",
+        "total_cost": 15674,
+        "static_cost": 13174,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "己",
+        "jyutping": "gei2",
+        "total_cost": 16148,
+        "static_cost": 13648,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 602,
+    "query": "do",
+    "category": "exact_vs_prefix",
+    "description": "do (exact) should beat dou (prefix) - currently fails: dou6/道 at 10391 beats do1/多 at 12995",
+    "passed": false,
+    "reason": "Expected one of ['多'] but got ['道'] (jyutping: ['dou6'])",
+    "top_results": [
+      {
+        "characters": "道",
+        "jyutping": "dou6",
+        "total_cost": 10391,
+        "static_cost": 7891,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "刀",
+        "jyutping": "dou1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "島",
+        "jyutping": "dou2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "多",
+        "jyutping": "do1",
+        "total_cost": 12995,
+        "static_cost": 12995,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "黨",
+        "jyutping": "dong2",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 603,
+    "query": "mo",
+    "category": "exact_vs_prefix",
+    "description": "mo (exact) should beat mou (prefix) - currently fails: mou6/霧 at 11500 beats mo5/冇 at 12000",
+    "passed": false,
+    "reason": "Expected one of ['冇'] but got ['霧'] (jyutping: ['mou6'])",
+    "top_results": [
+      {
+        "characters": "霧",
+        "jyutping": "mou6",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "冇",
+        "jyutping": "mo5",
+        "total_cost": 12000,
+        "static_cost": 12000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "么",
+        "jyutping": "mo1",
+        "total_cost": 13003,
+        "static_cost": 13003,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "劘",
+        "jyutping": "mo4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "摩",
+        "jyutping": "mo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 604,
+    "query": "to",
+    "category": "exact_vs_prefix",
+    "description": "to (exact) should beat tou (prefix) - currently fails: tou4/圖 at 11500 beats to1/他 at 11797",
+    "passed": false,
+    "reason": "Expected one of ['他', '它'] but got ['圖'] (jyutping: ['tou4'])",
+    "top_results": [
+      {
+        "characters": "圖",
+        "jyutping": "tou4",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "他",
+        "jyutping": "to1",
+        "total_cost": 11797,
+        "static_cost": 11797,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "它",
+        "jyutping": "to1",
+        "total_cost": 13326,
+        "static_cost": 13326,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "堂",
+        "jyutping": "tong4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "糖",
+        "jyutping": "tong4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 605,
+    "query": "di",
+    "category": "exact_vs_prefix",
+    "description": "di exact matches should occupy top 2 before any dim/dip/diu prefix matches",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "的",
+        "jyutping": "di1",
+        "total_cost": 10195,
+        "static_cost": 10195,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "店",
+        "jyutping": "dim3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "蝶",
+        "jyutping": "dip6",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "啲",
+        "jyutping": "di1",
+        "total_cost": 12000,
+        "static_cost": 12000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "屌",
+        "jyutping": "diu2",
+        "total_cost": 14500,
+        "static_cost": 12000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "的",
+      "position": 1
+    }
+  },
+  {
+    "id": 606,
+    "query": "co",
+    "category": "exact_vs_prefix",
+    "description": "co (exact) should beat cou/coi/cong (prefix) - currently all prefix matches win",
+    "passed": false,
+    "reason": "Expected one of ['初', '搓'] but got ['草'] (jyutping: ['cou2'])",
+    "top_results": [
+      {
+        "characters": "草",
+        "jyutping": "cou2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "菜",
+        "jyutping": "coi3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "艸",
+        "jyutping": "cou2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "床",
+        "jyutping": "cong4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "牀",
+        "jyutping": "cong4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 607,
+    "query": "do1",
+    "category": "exact_vs_prefix",
+    "description": "do1 exact should beat dou1 prefix - currently fails: dou1/刀 at 11500 beats do1/多 at 12995",
+    "passed": false,
+    "reason": "Expected one of ['多'] but got ['刀'] (jyutping: ['dou1'])",
+    "top_results": [
+      {
+        "characters": "刀",
+        "jyutping": "dou1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "多",
+        "jyutping": "do1",
+        "total_cost": 12995,
+        "static_cost": 12995,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "哆",
+        "jyutping": "do1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "都",
+        "jyutping": "dou1",
+        "total_cost": 15587,
+        "static_cost": 13087,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "叨",
+        "jyutping": "dou1",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 608,
+    "query": "do6",
+    "category": "exact_vs_prefix",
+    "description": "do6 exact should beat dou6 prefix - currently fails: dou6/道 at 10391 beats do6/墮 at 14000",
+    "passed": false,
+    "reason": "Expected one of ['墮'] but got ['道'] (jyutping: ['dou6'])",
+    "top_results": [
+      {
+        "characters": "道",
+        "jyutping": "dou6",
+        "total_cost": 10391,
+        "static_cost": 7891,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "墮",
+        "jyutping": "do6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "惰",
+        "jyutping": "do6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "隋",
+        "jyutping": "do6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "馱",
+        "jyutping": "do6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 609,
+    "query": "do3",
+    "category": "exact_vs_prefix",
+    "description": "do3 exact should beat dou3 prefix",
+    "passed": false,
+    "reason": "Expected one of ['剁'] but got ['道'] (jyutping: ['dou3'])",
+    "top_results": [
+      {
+        "characters": "道",
+        "jyutping": "dou3",
+        "total_cost": 10391,
+        "static_cost": 7891,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "剁",
+        "jyutping": "do3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "到",
+        "jyutping": "dou3",
+        "total_cost": 14800,
+        "static_cost": 12300,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "妒",
+        "jyutping": "dou3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "斁",
+        "jyutping": "dou3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 610,
+    "query": "si",
+    "category": "exact_vs_prefix",
+    "description": "si (exact) should beat sik/sin/sing (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "事",
+        "jyutping": "si6",
+        "total_cost": 7960,
+        "static_cost": 7960,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "市",
+        "jyutping": "si5",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "絲",
+        "jyutping": "si1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "詩",
+        "jyutping": "si1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "是",
+        "jyutping": "si6",
+        "total_cost": 11303,
+        "static_cost": 11303,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "事",
+      "position": 1
+    }
+  },
+  {
+    "id": 611,
+    "query": "go",
+    "category": "exact_vs_prefix",
+    "description": "go (exact) should beat gok/gon/gou (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "歌",
+        "jyutping": "go1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "杆",
+        "jyutping": "gon1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "肝",
+        "jyutping": "gon1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "膏",
+        "jyutping": "gou1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "角",
+        "jyutping": "gok3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "歌",
+      "position": 1
+    }
+  },
+  {
+    "id": 612,
+    "query": "lo",
+    "category": "exact_vs_prefix",
+    "description": "lo (exact) should beat lou/lok/long (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "鑼",
+        "jyutping": "lo4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "騾",
+        "jyutping": "lo4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "路",
+        "jyutping": "lou6",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "驢",
+        "jyutping": "lou4",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "狼",
+        "jyutping": "long4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "鑼",
+      "position": 1
+    }
+  },
+  {
+    "id": 613,
+    "query": "se",
+    "category": "exact_vs_prefix",
+    "description": "se (exact) should beat sei/sek/seon (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "蛇",
+        "jyutping": "se4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "些",
+        "jyutping": "se1",
+        "total_cost": 13180,
+        "static_cost": 13180,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "信",
+        "jyutping": "seon3",
+        "total_cost": 13733,
+        "static_cost": 8733,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "伩",
+        "jyutping": "seon3",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "城",
+        "jyutping": "seng4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "蛇",
+      "position": 1
+    }
+  },
+  {
+    "id": 614,
+    "query": "bo",
+    "category": "exact_vs_prefix",
+    "description": "bo (exact) should beat bou/bok/bong (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "坡",
+        "jyutping": "bo1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "報",
+        "jyutping": "bou3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "嶓",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "播",
+        "jyutping": "bo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "波",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "坡",
+      "position": 1
+    }
+  },
+  {
+    "id": 615,
+    "query": "zo",
+    "category": "exact_vs_prefix",
+    "description": "zo (exact) should beat zou/zok/zoi (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "座",
+        "jyutping": "zo6",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "佐",
+        "jyutping": "zo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "助",
+        "jyutping": "zo6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "左",
+        "jyutping": "zo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "詛",
+        "jyutping": "zo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "座",
+      "position": 1
+    }
+  },
+  {
+    "id": 616,
+    "query": "fo",
+    "category": "exact_vs_prefix",
+    "description": "fo (exact) should beat fok/fong (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "科",
+        "jyutping": "fo1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "課",
+        "jyutping": "fo3",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "貨",
+        "jyutping": "fo3",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "房",
+        "jyutping": "fong2",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "棵",
+        "jyutping": "fo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "科",
+      "position": 1
+    }
+  },
+  {
+    "id": 617,
+    "query": "so",
+    "category": "exact_vs_prefix",
+    "description": "so (exact) should beat sou/sok/song (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "所",
+        "jyutping": "so2",
+        "total_cost": 7913,
+        "static_cost": 7913,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "鎖",
+        "jyutping": "so2",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "數",
+        "jyutping": "sou3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "些",
+        "jyutping": "so1",
+        "total_cost": 13180,
+        "static_cost": 13180,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "傻",
+        "jyutping": "so4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "所",
+      "position": 1
+    }
+  },
+  {
+    "id": 618,
+    "query": "no",
+    "category": "exact_vs_prefix",
+    "description": "no (exact) should beat noi/nok (prefix) - currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "那",
+        "jyutping": "no5",
+        "total_cost": 12713,
+        "static_cost": 12713,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "娜",
+        "jyutping": "no5",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "懦",
+        "jyutping": "no6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "挪",
+        "jyutping": "no4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "糯",
+        "jyutping": "no6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "那",
+      "position": 1
+    }
+  },
+  {
+    "id": 619,
+    "query": "ge3",
+    "category": "exact_vs_prefix",
+    "description": "ge3 exact should beat gei3 prefix - tone helps filter, currently passes",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "嘅",
+        "jyutping": "ge3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "寄",
+        "jyutping": "gei3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "既",
+        "jyutping": "gei3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "記",
+        "jyutping": "gei3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "徛",
+        "jyutping": "gei3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "嘅",
+      "position": 1
+    }
+  },
+  {
+    "id": 620,
+    "query": "ge2",
+    "category": "exact_vs_prefix",
+    "description": "ge2 exact should beat gei2 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "嘅",
+        "jyutping": "ge2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "己",
+        "jyutping": "gei2",
+        "total_cost": 16148,
+        "static_cost": 13648,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "幾",
+        "jyutping": "gei2",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "掎",
+        "jyutping": "gei2",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "杞",
+        "jyutping": "gei2",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "嘅",
+      "position": 1
+    }
+  },
+  {
+    "id": 621,
+    "query": "mo5",
+    "category": "exact_vs_prefix",
+    "description": "mo5 exact should beat mou5 prefix - currently passes with tone",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "冇",
+        "jyutping": "mo5",
+        "total_cost": 12000,
+        "static_cost": 12000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "嬤",
+        "jyutping": "mo5",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "麼",
+        "jyutping": "mo5",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "麽",
+        "jyutping": "mo5",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "侮",
+        "jyutping": "mou5",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "冇",
+      "position": 1
+    }
+  },
+  {
+    "id": 622,
+    "query": "di1",
+    "category": "exact_vs_prefix",
+    "description": "di1 exact should beat dim1/dik1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "的",
+        "jyutping": "di1",
+        "total_cost": 10195,
+        "static_cost": 10195,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "啲",
+        "jyutping": "di1",
+        "total_cost": 12000,
+        "static_cost": 12000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "丟",
+        "jyutping": "diu1",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "凋",
+        "jyutping": "diu1",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "刁",
+        "jyutping": "diu1",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "的",
+      "position": 1
+    }
+  },
+  {
+    "id": 623,
+    "query": "to1",
+    "category": "exact_vs_prefix",
+    "description": "to1 exact should beat tou1/tok1 prefix - currently passes with tone",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "他",
+        "jyutping": "to1",
+        "total_cost": 11797,
+        "static_cost": 11797,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "它",
+        "jyutping": "to1",
+        "total_cost": 13326,
+        "static_cost": 13326,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "拖",
+        "jyutping": "to1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "佗",
+        "jyutping": "to1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "忉",
+        "jyutping": "tou1",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "他",
+      "position": 1
+    }
+  },
+  {
+    "id": 624,
+    "query": "se1",
+    "category": "exact_vs_prefix",
+    "description": "se1 exact should beat sei1/sek1/seon1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "些",
+        "jyutping": "se1",
+        "total_cost": 13180,
+        "static_cost": 13180,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "賒",
+        "jyutping": "se1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "奓",
+        "jyutping": "se1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "奢",
+        "jyutping": "se1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "畬",
+        "jyutping": "se1",
+        "total_cost": 16000,
+        "static_cost": 16000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "些",
+      "position": 1
+    }
+  },
+  {
+    "id": 625,
+    "query": "da",
+    "category": "exact_vs_prefix",
+    "description": "da - no common exact syllable, all are prefix (dau/daai/daan). Prefix matches are fine here.",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "豆",
+        "jyutping": "dau2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "荳",
+        "jyutping": "dau6",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "單",
+        "jyutping": "daan1",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "帶",
+        "jyutping": "daai3",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "撣",
+        "jyutping": "daan6",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "豆",
+      "position": 1
+    }
+  },
+  {
+    "id": 626,
+    "query": "ba",
+    "category": "exact_vs_prefix",
+    "description": "ba - no common exact syllable, prefix matches (baa/baai/baat) expected",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "壩",
+        "jyutping": "baa3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "筆",
+        "jyutping": "bat1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "不",
+        "jyutping": "bat1",
+        "total_cost": 13959,
+        "static_cost": 11459,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "包",
+        "jyutping": "baau1",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "板",
+        "jyutping": "baan2",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "壩",
+      "position": 1
+    }
+  },
+  {
+    "id": 627,
+    "query": "ga",
+    "category": "exact_vs_prefix",
+    "description": "ga - no exact syllable, prefix matches (gaa/gaai/gaam) expected",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "家",
+        "jyutping": "gaa1",
+        "total_cost": 10439,
+        "static_cost": 7939,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "根",
+        "jyutping": "gan1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "狗",
+        "jyutping": "gau2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "雞",
+        "jyutping": "gai1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "溝",
+        "jyutping": "gau1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "家",
+      "position": 1
+    }
+  },
+  {
+    "id": 628,
+    "query": "ge do",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: currently ge→gei prefix wins, returning 基多/gei1 do1 instead of exact ge+do compound",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "基多",
+        "jyutping": "gei1 do1",
+        "total_cost": 22495,
+        "static_cost": 19995,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "幾多",
+        "jyutping": "gei2 do1",
+        "total_cost": 22495,
+        "static_cost": 19995,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "寰",
+        "jyutping": "waan4",
+        "total_cost": 24900,
+        "static_cost": 14000,
+        "term_match_cost": 10900,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "居多",
+        "jyutping": "geoi1 do1",
+        "total_cost": 24995,
+        "static_cost": 19995,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "鴿",
+        "jyutping": "gap3",
+        "total_cost": 25000,
+        "static_cost": 14000,
+        "term_match_cost": 11000,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "基多",
+      "position": 1
+    }
+  },
+  {
+    "id": 629,
+    "query": "si go",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: both si and go have exact syllables, 詩歌 uses both exactly",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "詩歌",
+        "jyutping": "si1 go1",
+        "total_cost": 16000,
+        "static_cost": 16000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "事乾",
+        "jyutping": "si6 gon1",
+        "total_cost": 22460,
+        "static_cost": 19960,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "事幹",
+        "jyutping": "si6 gon3",
+        "total_cost": 22460,
+        "static_cost": 19960,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "視覺",
+        "jyutping": "si6 gok3",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "視角",
+        "jyutping": "si6 gok3",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "詩歌",
+      "position": 1
+    }
+  },
+  {
+    "id": 630,
+    "query": "do di",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: do+di should match exact syllables, not dou+dim",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "多啲",
+        "jyutping": "do1 di1",
+        "total_cost": 19995,
+        "static_cost": 19995,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "伐",
+        "jyutping": "fat6",
+        "total_cost": 21800,
+        "static_cost": 14000,
+        "term_match_cost": 7800,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "掯",
+        "jyutping": "kang3",
+        "total_cost": 22500,
+        "static_cost": 14000,
+        "term_match_cost": 8500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "寘",
+        "jyutping": "zi3",
+        "total_cost": 23500,
+        "static_cost": 14000,
+        "term_match_cost": 9500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "犬",
+        "jyutping": "hyun2",
+        "total_cost": 24500,
+        "static_cost": 14000,
+        "term_match_cost": 10500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "jyutping",
+      "matched_value": "do1 di1",
+      "position": 1
+    }
+  },
+  {
+    "id": 631,
+    "query": "lo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 裸機/lo2 gei1 instead of exact lo+ge",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "圈",
+        "jyutping": "hyun1",
+        "total_cost": 23500,
+        "static_cost": 9000,
+        "term_match_cost": 14500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "裸機",
+        "jyutping": "lo2 gei1",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "鑼機",
+        "jyutping": "lo4 gei1",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "宿",
+        "jyutping": "sau3",
+        "total_cost": 24300,
+        "static_cost": 14000,
+        "term_match_cost": 10300,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "壽",
+        "jyutping": "sau6",
+        "total_cost": 24300,
+        "static_cost": 14000,
+        "term_match_cost": 10300,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "裸機",
+      "position": 2
+    }
+  },
+  {
+    "id": 632,
+    "query": "zo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 座機/zo6 gei1 instead of exact zo+ge",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "座機",
+        "jyutping": "zo6 gei1",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "芝",
+        "jyutping": "zi1",
+        "total_cost": 25000,
+        "static_cost": 14000,
+        "term_match_cost": 11000,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "吾",
+        "jyutping": "jyu4",
+        "total_cost": 25100,
+        "static_cost": 14000,
+        "term_match_cost": 11100,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "地帶",
+        "jyutping": "dei6 daai3",
+        "total_cost": 25796,
+        "static_cost": 14296,
+        "term_match_cost": 11500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "做忌",
+        "jyutping": "zou6 gei6",
+        "total_cost": 26000,
+        "static_cost": 21000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "座機",
+      "position": 1
+    }
+  },
+  {
+    "id": 633,
+    "query": "so",
+    "category": "exact_vs_prefix",
+    "description": "so exact should beat sou/sok/song prefix - verify 所 stays on top",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "所",
+        "jyutping": "so2",
+        "total_cost": 7913,
+        "static_cost": 7913,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "鎖",
+        "jyutping": "so2",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "數",
+        "jyutping": "sou3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "些",
+        "jyutping": "so1",
+        "total_cost": 13180,
+        "static_cost": 13180,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "傻",
+        "jyutping": "so4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "所",
+      "position": 1
+    }
+  },
+  {
+    "id": 634,
+    "query": "zo2",
+    "category": "exact_vs_prefix",
+    "description": "zo2 exact should beat zou2/zoi2 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "座",
+        "jyutping": "zo2",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "左",
+        "jyutping": "zo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "阻",
+        "jyutping": "zo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "俎",
+        "jyutping": "zo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "咗",
+        "jyutping": "zo2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "座",
+      "position": 1
+    }
+  },
+  {
+    "id": 635,
+    "query": "bo1",
+    "category": "exact_vs_prefix",
+    "description": "bo1 exact should beat bou1/bok1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "坡",
+        "jyutping": "bo1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "嶓",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "波",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "玻",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "菠",
+        "jyutping": "bo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "坡",
+      "position": 1
+    }
+  },
+  {
+    "id": 636,
+    "query": "fo1",
+    "category": "exact_vs_prefix",
+    "description": "fo1 exact should beat fok1/fong1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "科",
+        "jyutping": "fo1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "蝌",
+        "jyutping": "fo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "匚",
+        "jyutping": "fo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "窠",
+        "jyutping": "fo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "薖",
+        "jyutping": "fo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "科",
+      "position": 1
+    }
+  },
+  {
+    "id": 637,
+    "query": "go3",
+    "category": "exact_vs_prefix",
+    "description": "go3 exact should beat gok3/gon3/gong3 prefix - currently fails: gok3/角 at 11500 beats go3/嗰 at 12000",
+    "passed": false,
+    "reason": "Expected one of ['嗰', '各'] but got ['角'] (jyutping: ['gok3'])",
+    "top_results": [
+      {
+        "characters": "角",
+        "jyutping": "gok3",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "嗰",
+        "jyutping": "go3",
+        "total_cost": 12000,
+        "static_cost": 12000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "各",
+        "jyutping": "go3",
+        "total_cost": 13908,
+        "static_cost": 13908,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "腳",
+        "jyutping": "goek3",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "個",
+        "jyutping": "go3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 638,
+    "query": "lo3",
+    "category": "exact_vs_prefix",
+    "description": "lo3 exact should beat lok3/long3/lou3 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "摞",
+        "jyutping": "lo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "咯",
+        "jyutping": "lo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "嘍",
+        "jyutping": "lo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "囉",
+        "jyutping": "lo3",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "洛",
+        "jyutping": "lok3",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "jyutping",
+      "matched_value": "lo3",
+      "position": 1
+    }
+  },
+  {
+    "id": 639,
+    "query": "si6",
+    "category": "exact_vs_prefix",
+    "description": "si6 exact should beat sik6/sin6 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "事",
+        "jyutping": "si6",
+        "total_cost": 7960,
+        "static_cost": 7960,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "是",
+        "jyutping": "si6",
+        "total_cost": 11303,
+        "static_cost": 11303,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "仕",
+        "jyutping": "si6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "侍",
+        "jyutping": "si6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "士",
+        "jyutping": "si6",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "事",
+      "position": 1
+    }
+  },
+  {
+    "id": 640,
+    "query": "si1",
+    "category": "exact_vs_prefix",
+    "description": "si1 exact should beat sik1/sin1/sing1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "絲",
+        "jyutping": "si1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "詩",
+        "jyutping": "si1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "色",
+        "jyutping": "sik1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "斯",
+        "jyutping": "si1",
+        "total_cost": 13688,
+        "static_cost": 13688,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "司",
+        "jyutping": "si1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "絲",
+      "position": 1
+    }
+  },
+  {
+    "id": 641,
+    "query": "go1",
+    "category": "exact_vs_prefix",
+    "description": "go1 exact should beat gon1/gou1/gok1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "歌",
+        "jyutping": "go1",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "杆",
+        "jyutping": "gon1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "肝",
+        "jyutping": "gon1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "膏",
+        "jyutping": "gou1",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "江",
+        "jyutping": "gong1",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "歌",
+      "position": 1
+    }
+  },
+  {
+    "id": 642,
+    "query": "lo4",
+    "category": "exact_vs_prefix",
+    "description": "lo4 exact should beat lou4/lok4/long4 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "鑼",
+        "jyutping": "lo4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "騾",
+        "jyutping": "lo4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "驢",
+        "jyutping": "lou4",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "狼",
+        "jyutping": "long4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "漯",
+        "jyutping": "lo4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "鑼",
+      "position": 1
+    }
+  },
+  {
+    "id": 643,
+    "query": "se4",
+    "category": "exact_vs_prefix",
+    "description": "se4 exact should beat sei4/sek4/seon4 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "蛇",
+        "jyutping": "se4",
+        "total_cost": 9000,
+        "static_cost": 9000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "城",
+        "jyutping": "seng4",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "畬",
+        "jyutping": "se4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "輋",
+        "jyutping": "se4",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "佘",
+        "jyutping": "se4",
+        "total_cost": 16000,
+        "static_cost": 16000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "蛇",
+      "position": 1
+    }
+  },
+  {
+    "id": 644,
+    "query": "do di",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable with tone: exact do1 + exact di1 should beat dou+dim combos",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "多啲",
+        "jyutping": "do1 di1",
+        "total_cost": 19995,
+        "static_cost": 19995,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "伐",
+        "jyutping": "fat6",
+        "total_cost": 21800,
+        "static_cost": 14000,
+        "term_match_cost": 7800,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "掯",
+        "jyutping": "kang3",
+        "total_cost": 22500,
+        "static_cost": 14000,
+        "term_match_cost": 8500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "寘",
+        "jyutping": "zi3",
+        "total_cost": 23500,
+        "static_cost": 14000,
+        "term_match_cost": 9500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "犬",
+        "jyutping": "hyun2",
+        "total_cost": 24500,
+        "static_cost": 14000,
+        "term_match_cost": 10500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "definition",
+      "matched_value": "m",
+      "position": 1
+    }
+  },
+  {
+    "id": 645,
+    "query": "mo ge",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: ge→gei prefix match causes 磨嘰/mo4 gei1",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "月",
+        "jyutping": "jyut6",
+        "total_cost": 21390,
+        "static_cost": 8690,
+        "term_match_cost": 12700,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "猴",
+        "jyutping": "hau4",
+        "total_cost": 22700,
+        "static_cost": 9000,
+        "term_match_cost": 13700,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "磨嘰",
+        "jyutping": "mo4 gei1",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "磨機",
+        "jyutping": "mo4 gei1",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "姨",
+        "jyutping": "ji4",
+        "total_cost": 23900,
+        "static_cost": 14000,
+        "term_match_cost": 9900,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "磨嘰",
+      "position": 3
+    }
+  },
+  {
+    "id": 646,
+    "query": "so do",
+    "category": "exact_vs_prefix",
+    "description": "Multi-syllable: both so and do have exact syllables, 所多/so2 do1 should match",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "所多",
+        "jyutping": "so2 do1",
+        "total_cost": 18908,
+        "static_cost": 18908,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "㕵",
+        "jyutping": "gwok3",
+        "total_cost": 20900,
+        "static_cost": 14000,
+        "term_match_cost": 6900,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "撉",
+        "jyutping": "dan3",
+        "total_cost": 21400,
+        "static_cost": 14000,
+        "term_match_cost": 7400,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "疏導",
+        "jyutping": "so1 dou6",
+        "total_cost": 23500,
+        "static_cost": 21000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "一自",
+        "jyutping": "jat1 zi6",
+        "total_cost": 24405,
+        "static_cost": 16905,
+        "term_match_cost": 7500,
+        "unmatched_position_cost": 0,
+        "match_type": "English",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "所多",
+      "position": 1
+    }
+  },
+  {
+    "id": 647,
+    "query": "do2",
+    "category": "exact_vs_prefix",
+    "description": "do2 exact should beat dou2 prefix - currently fails: dou2/島 at 11500",
+    "passed": false,
+    "reason": "Expected one of None but got ['島'] (jyutping: ['dou2'])",
+    "top_results": [
+      {
+        "characters": "島",
+        "jyutping": "dou2",
+        "total_cost": 11500,
+        "static_cost": 9000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "黨",
+        "jyutping": "dong2",
+        "total_cost": 14000,
+        "static_cost": 9000,
+        "term_match_cost": 5000,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "嚲",
+        "jyutping": "do2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "垛",
+        "jyutping": "do2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "埵",
+        "jyutping": "do2",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": null
+  },
+  {
+    "id": 648,
+    "query": "mo1",
+    "category": "exact_vs_prefix",
+    "description": "mo1 exact should beat mou1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "么",
+        "jyutping": "mo1",
+        "total_cost": 13003,
+        "static_cost": 13003,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "摩",
+        "jyutping": "mo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "魔",
+        "jyutping": "mo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "麼",
+        "jyutping": "mo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "仫",
+        "jyutping": "mo1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "么",
+      "position": 1
+    }
+  },
+  {
+    "id": 649,
+    "query": "co1",
+    "category": "exact_vs_prefix",
+    "description": "co1 exact should beat cou1/coi1/cong1 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "初",
+        "jyutping": "co1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "搓",
+        "jyutping": "co1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "磋",
+        "jyutping": "co1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "芻",
+        "jyutping": "co1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "蹉",
+        "jyutping": "co1",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "初",
+      "position": 1
+    }
+  },
+  {
+    "id": 650,
+    "query": "no5",
+    "category": "exact_vs_prefix",
+    "description": "no5 exact should beat noi5/nok5 prefix",
+    "passed": true,
+    "reason": "",
+    "top_results": [
+      {
+        "characters": "那",
+        "jyutping": "no5",
+        "total_cost": 12713,
+        "static_cost": 12713,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CCanto"
+      },
+      {
+        "characters": "娜",
+        "jyutping": "no5",
+        "total_cost": 14000,
+        "static_cost": 14000,
+        "term_match_cost": 0,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "努",
+        "jyutping": "nou5",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "堖",
+        "jyutping": "nou5",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      },
+      {
+        "characters": "惱",
+        "jyutping": "nou5",
+        "total_cost": 16500,
+        "static_cost": 14000,
+        "term_match_cost": 2500,
+        "unmatched_position_cost": 0,
+        "match_type": "Jyutping",
+        "entry_source": "CEDict"
+      }
+    ],
+    "match_details": {
+      "matched_on": "character",
+      "matched_value": "那",
+      "position": 1
+    }
   }
 ]

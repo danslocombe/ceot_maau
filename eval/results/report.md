@@ -1,12 +1,12 @@
 # Dictionary Ranking Evaluation Report
 
-Generated: 2026-02-15 23:29:01
+Generated: 2026-02-16 00:27:00
 
 ## Summary
 
-- **Total queries**: 600
-- **Passed**: 579 (96.5%)
-- **Failed**: 21 (3.5%)
+- **Total queries**: 650
+- **Passed**: 619 (95.2%)
+- **Failed**: 31 (4.8%)
 
 ## Category Results
 
@@ -21,7 +21,7 @@ Generated: 2026-02-15 23:29:01
 | character | 45 | 45 | 0 | 100% |
 | edge_case | 35 | 30 | 5 | 86% |
 
-## Failed Queries (21)
+## Failed Queries (31)
 
 ### #15: `mat1` (single_tone)
 
@@ -281,18 +281,178 @@ Generated: 2026-02-15 23:29:01
 | 4 | 多謝你咁好介紹 | do1 ze6 nei5 gam3 hou2 gaai3 siu6 | 228761 | 52761 | 0 | 160000 | Jyutping | CCanto |
 | 5 | 好漢做事好漢當 | hou2 hon3 zou6 si6 hou2 hon3 dong1 | 276264 | 53264 | 25000 | 190000 | Jyutping | CEDict |
 
+### #601: `ge` (exact_vs_prefix)
+
+**Description**: ge (exact) should beat gei (prefix) - currently fails: gei1/機 at 11500 beats ge2/嘅 at 14000
+
+**Reason**: Expected one of ['嘅'] but got ['機'] (jyutping: ['gei1'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 機 | gei1 | 11500 | 9000 | 2500 | 0 | Jyutping | CCanto |
+| 2 | 嘅 | ge2 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
+| 3 | 痂 | ge1 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
+| 4 | 其 | gei1 | 15674 | 13174 | 2500 | 0 | Jyutping | CCanto |
+| 5 | 己 | gei2 | 16148 | 13648 | 2500 | 0 | Jyutping | CEDict |
+
+### #602: `do` (exact_vs_prefix)
+
+**Description**: do (exact) should beat dou (prefix) - currently fails: dou6/道 at 10391 beats do1/多 at 12995
+
+**Reason**: Expected one of ['多'] but got ['道'] (jyutping: ['dou6'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 道 | dou6 | 10391 | 7891 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 刀 | dou1 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 3 | 島 | dou2 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 4 | 多 | do1 | 12995 | 12995 | 0 | 0 | Jyutping | CEDict |
+| 5 | 黨 | dong2 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+
+### #603: `mo` (exact_vs_prefix)
+
+**Description**: mo (exact) should beat mou (prefix) - currently fails: mou6/霧 at 11500 beats mo5/冇 at 12000
+
+**Reason**: Expected one of ['冇'] but got ['霧'] (jyutping: ['mou6'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 霧 | mou6 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 冇 | mo5 | 12000 | 12000 | 0 | 0 | Jyutping | CCanto |
+| 3 | 么 | mo1 | 13003 | 13003 | 0 | 0 | Jyutping | CCanto |
+| 4 | 劘 | mo4 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 5 | 摩 | mo1 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+
+### #604: `to` (exact_vs_prefix)
+
+**Description**: to (exact) should beat tou (prefix) - currently fails: tou4/圖 at 11500 beats to1/他 at 11797
+
+**Reason**: Expected one of ['他', '它'] but got ['圖'] (jyutping: ['tou4'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 圖 | tou4 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 他 | to1 | 11797 | 11797 | 0 | 0 | Jyutping | CCanto |
+| 3 | 它 | to1 | 13326 | 13326 | 0 | 0 | Jyutping | CCanto |
+| 4 | 堂 | tong4 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+| 5 | 糖 | tong4 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+
+### #606: `co` (exact_vs_prefix)
+
+**Description**: co (exact) should beat cou/coi/cong (prefix) - currently all prefix matches win
+
+**Reason**: Expected one of ['初', '搓'] but got ['草'] (jyutping: ['cou2'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 草 | cou2 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 菜 | coi3 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 3 | 艸 | cou2 | 11500 | 9000 | 2500 | 0 | Jyutping | CCanto |
+| 4 | 床 | cong4 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+| 5 | 牀 | cong4 | 14000 | 9000 | 5000 | 0 | Jyutping | CCanto |
+
+### #607: `do1` (exact_vs_prefix)
+
+**Description**: do1 exact should beat dou1 prefix - currently fails: dou1/刀 at 11500 beats do1/多 at 12995
+
+**Reason**: Expected one of ['多'] but got ['刀'] (jyutping: ['dou1'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 刀 | dou1 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 多 | do1 | 12995 | 12995 | 0 | 0 | Jyutping | CEDict |
+| 3 | 哆 | do1 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 4 | 都 | dou1 | 15587 | 13087 | 2500 | 0 | Jyutping | CEDict |
+| 5 | 叨 | dou1 | 16500 | 14000 | 2500 | 0 | Jyutping | CEDict |
+
+### #608: `do6` (exact_vs_prefix)
+
+**Description**: do6 exact should beat dou6 prefix - currently fails: dou6/道 at 10391 beats do6/墮 at 14000
+
+**Reason**: Expected one of ['墮'] but got ['道'] (jyutping: ['dou6'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 道 | dou6 | 10391 | 7891 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 墮 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 3 | 惰 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 4 | 隋 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
+| 5 | 馱 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
+
+### #609: `do3` (exact_vs_prefix)
+
+**Description**: do3 exact should beat dou3 prefix
+
+**Reason**: Expected one of ['剁'] but got ['道'] (jyutping: ['dou3'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 道 | dou3 | 10391 | 7891 | 2500 | 0 | Jyutping | CCanto |
+| 2 | 剁 | do3 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
+| 3 | 到 | dou3 | 14800 | 12300 | 2500 | 0 | Jyutping | CEDict |
+| 4 | 妒 | dou3 | 16500 | 14000 | 2500 | 0 | Jyutping | CEDict |
+| 5 | 斁 | dou3 | 16500 | 14000 | 2500 | 0 | Jyutping | CEDict |
+
+### #637: `go3` (exact_vs_prefix)
+
+**Description**: go3 exact should beat gok3/gon3/gong3 prefix - currently fails: gok3/角 at 11500 beats go3/嗰 at 12000
+
+**Reason**: Expected one of ['嗰', '各'] but got ['角'] (jyutping: ['gok3'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 角 | gok3 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 嗰 | go3 | 12000 | 12000 | 0 | 0 | Jyutping | CCanto |
+| 3 | 各 | go3 | 13908 | 13908 | 0 | 0 | Jyutping | CCanto |
+| 4 | 腳 | goek3 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+| 5 | 個 | go3 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+
+### #647: `do2` (exact_vs_prefix)
+
+**Description**: do2 exact should beat dou2 prefix - currently fails: dou2/島 at 11500
+
+**Reason**: Expected one of None but got ['島'] (jyutping: ['dou2'])
+
+**Top results:**
+
+| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
+|---|-----------|----------|------------|--------|------------|-----------|------|--------|
+| 1 | 島 | dou2 | 11500 | 9000 | 2500 | 0 | Jyutping | CEDict |
+| 2 | 黨 | dong2 | 14000 | 9000 | 5000 | 0 | Jyutping | CEDict |
+| 3 | 嚲 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 4 | 垛 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+| 5 | 埵 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+
 ## Pattern Analysis
 
 ### Source Distribution in Top Results
 
-- CCanto as top result: 144
-- CEDict as top result: 450
+- CCanto as top result: 160
+- CEDict as top result: 484
 
 ### Failure Patterns
 
-- Failures where top result has term_match_cost > 0 (partial/fuzzy match winning): 10
+- Failures where top result has term_match_cost > 0 (partial/fuzzy match winning): 20
 - Failures where top result has static_cost > 15000 (high base cost): 9
-- Failures where CEDict partial match beats CCanto exact match: 6
+- Failures where CEDict partial match beats CCanto exact match: 14
 
 ### Cost Distribution in Failures
 
@@ -313,6 +473,15 @@ Generated: 2026-02-15 23:29:01
 | `saam1 go3` | 三個 | 三角 | 22955 | 20455 | CEDict |
 | `daai6 gaa1` | 大家 | 大街 | 16712 | 14212 | CEDict |
 | `hou2 do1 ze6` | 好多謝 | 好得滯 | 65878 | 25878 | CCanto |
+| `ge` | 嘅 | 機 | 11500 | 9000 | CCanto |
+| `do` | 多 | 道 | 10391 | 7891 | CEDict |
+| `mo` | 冇 | 霧 | 11500 | 9000 | CEDict |
+| `to` | 他, 它 | 圖 | 11500 | 9000 | CEDict |
+| `co` | 初, 搓 | 草 | 11500 | 9000 | CEDict |
+| `do1` | 多 | 刀 | 11500 | 9000 | CEDict |
+| `do6` | 墮 | 道 | 10391 | 7891 | CEDict |
+| `do3` | 剁 | 道 | 10391 | 7891 | CCanto |
+| `go3` | 嗰, 各 | 角 | 11500 | 9000 | CEDict |
 
 ## All Results
 
@@ -918,3 +1087,53 @@ Generated: 2026-02-15 23:29:01
 | 598 | `baat3 jyut6` | PASS | 八月 | baat3 jyut6 | 20690 | CEDict |
 | 599 | `sing1 kei4 jat1` | PASS | 星期一 | sing1 kei4 jat1 | 25149 | CEDict |
 | 600 | `hou2 do1 ze6` | FAIL | 好得滯 | hou2 dak1 zai6 | 65878 | CCanto |
+| 601 | `ge` | FAIL | 機 | gei1 | 11500 | CCanto |
+| 602 | `do` | FAIL | 道 | dou6 | 10391 | CEDict |
+| 603 | `mo` | FAIL | 霧 | mou6 | 11500 | CEDict |
+| 604 | `to` | FAIL | 圖 | tou4 | 11500 | CEDict |
+| 605 | `di` | PASS | 的 | di1 | 10195 | CCanto |
+| 606 | `co` | FAIL | 草 | cou2 | 11500 | CEDict |
+| 607 | `do1` | FAIL | 刀 | dou1 | 11500 | CEDict |
+| 608 | `do6` | FAIL | 道 | dou6 | 10391 | CEDict |
+| 609 | `do3` | FAIL | 道 | dou3 | 10391 | CCanto |
+| 610 | `si` | PASS | 事 | si6 | 7960 | CCanto |
+| 611 | `go` | PASS | 歌 | go1 | 9000 | CEDict |
+| 612 | `lo` | PASS | 鑼 | lo4 | 9000 | CEDict |
+| 613 | `se` | PASS | 蛇 | se4 | 9000 | CEDict |
+| 614 | `bo` | PASS | 坡 | bo1 | 9000 | CEDict |
+| 615 | `zo` | PASS | 座 | zo6 | 9000 | CEDict |
+| 616 | `fo` | PASS | 科 | fo1 | 9000 | CEDict |
+| 617 | `so` | PASS | 所 | so2 | 7913 | CEDict |
+| 618 | `no` | PASS | 那 | no5 | 12713 | CCanto |
+| 619 | `ge3` | PASS | 嘅 | ge3 | 14000 | CCanto |
+| 620 | `ge2` | PASS | 嘅 | ge2 | 14000 | CCanto |
+| 621 | `mo5` | PASS | 冇 | mo5 | 12000 | CCanto |
+| 622 | `di1` | PASS | 的 | di1 | 10195 | CCanto |
+| 623 | `to1` | PASS | 他 | to1 | 11797 | CCanto |
+| 624 | `se1` | PASS | 些 | se1 | 13180 | CEDict |
+| 625 | `da` | PASS | 豆 | dau2 | 11500 | CEDict |
+| 626 | `ba` | PASS | 壩 | baa3 | 11500 | CEDict |
+| 627 | `ga` | PASS | 家 | gaa1 | 10439 | CEDict |
+| 628 | `ge do` | PASS | 基多 | gei1 do1 | 22495 | CEDict |
+| 629 | `si go` | PASS | 詩歌 | si1 go1 | 16000 | CEDict |
+| 630 | `do di` | PASS | 多啲 | do1 di1 | 19995 | CCanto |
+| 631 | `lo ge` | PASS | 圈 | hyun1 | 23500 | CEDict |
+| 632 | `zo ge` | PASS | 座機 | zo6 gei1 | 23500 | CEDict |
+| 633 | `so` | PASS | 所 | so2 | 7913 | CEDict |
+| 634 | `zo2` | PASS | 座 | zo2 | 9000 | CCanto |
+| 635 | `bo1` | PASS | 坡 | bo1 | 9000 | CEDict |
+| 636 | `fo1` | PASS | 科 | fo1 | 9000 | CEDict |
+| 637 | `go3` | FAIL | 角 | gok3 | 11500 | CEDict |
+| 638 | `lo3` | PASS | 摞 | lo3 | 14000 | CEDict |
+| 639 | `si6` | PASS | 事 | si6 | 7960 | CCanto |
+| 640 | `si1` | PASS | 絲 | si1 | 9000 | CEDict |
+| 641 | `go1` | PASS | 歌 | go1 | 9000 | CEDict |
+| 642 | `lo4` | PASS | 鑼 | lo4 | 9000 | CEDict |
+| 643 | `se4` | PASS | 蛇 | se4 | 9000 | CEDict |
+| 644 | `do di` | PASS | 多啲 | do1 di1 | 19995 | CCanto |
+| 645 | `mo ge` | PASS | 月 | jyut6 | 21390 | CEDict |
+| 646 | `so do` | PASS | 所多 | so2 do1 | 18908 | CEDict |
+| 647 | `do2` | FAIL | 島 | dou2 | 11500 | CEDict |
+| 648 | `mo1` | PASS | 么 | mo1 | 13003 | CCanto |
+| 649 | `co1` | PASS | 初 | co1 | 14000 | CEDict |
+| 650 | `no5` | PASS | 那 | no5 | 12713 | CCanto |
