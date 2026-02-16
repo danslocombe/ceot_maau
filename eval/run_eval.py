@@ -375,7 +375,7 @@ def generate_report(eval_results: list[dict], test_cases: list[dict]) -> str:
             tc = next((t for t in test_cases if t["id"] == r["id"]), None)
             if tc and r["top_results"]:
                 top = r["top_results"][0]
-                expected = ", ".join(tc.get("expected_characters", []))
+                expected = ", ".join(tc.get("expected_characters") or [])
                 lines.append(
                     f"| `{r['query']}` | {expected} | {top['characters']} | "
                     f"{top['total_cost']} | {top['static_cost']} | {top['entry_source']} |"

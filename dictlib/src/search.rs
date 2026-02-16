@@ -11,6 +11,7 @@ use crate::reconstruct_match::merge_overlapping_match_spans;
 
 pub const OUT_OF_ORDER_INVERSION_PENALTY: u32 = 8_000;
 pub const UNMATCHED_JYUTPING_PENALTY: u32 = 10_000;
+pub const JYUTPING_NON_PERFECT_MATCH: u32 = 1_500;
 pub const JYUTPING_PARTIAL_MATCH_PENALTY_K : u32 = 12_000;
 pub const JYUTPING_COMPLETION_PENALTY_K : u32 = 2_500;
 pub const JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K: u32 = 20_000;
@@ -56,7 +57,8 @@ impl JyutpingQueryTerm {
 
             if let Some(idx) = crate::string_search::string_indexof_linear_ignorecase(s, jyutping_string.as_bytes())
             {
-                let mut match_cost = idx as u32 * JYUTPING_PARTIAL_MATCH_PENALTY_K;
+                let mut match_cost = JYUTPING_NON_PERFECT_MATCH;
+                match_cost += idx as u32 * JYUTPING_PARTIAL_MATCH_PENALTY_K;
                 match_cost += (jyutping_string.len() - s.len()) as u32 * JYUTPING_COMPLETION_PENALTY_K;
                 match_bit_to_match_cost.push((i as i32, match_cost));
                 matches.insert(i);
@@ -66,7 +68,8 @@ impl JyutpingQueryTerm {
             // Warning: Noisy
             let dist = crate::string_search::prefix_levenshtein_ascii(s, jyutping_string);
             if (dist < 2) {
-                let match_cost = dist as u32 * JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K;
+                let mut match_cost = JYUTPING_NON_PERFECT_MATCH;
+                match_cost += dist as u32 * JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K;
                 match_bit_to_match_cost.push((i as i32, match_cost));
                 matches.insert(i);
                 continue;
