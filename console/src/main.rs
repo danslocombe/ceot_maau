@@ -19,7 +19,10 @@ fn main() {
         .position(|x| x.eq_ignore_ascii_case("--query"))
         .and_then(|i| args.get(i + 1))
         .map(|s| s.clone());
-    
+
+    // Check for --batch mode (reads queries from stdin, one per line)
+    let batch = args.iter().any(|x| x.eq_ignore_ascii_case("--batch"));
+
     // Check for limit parameter --limit N
     let limit = args.iter()
         .position(|x| x.eq_ignore_ascii_case("--limit"))
@@ -108,6 +111,43 @@ fn main() {
         {
             let display = compiled_dictionary.get_diplay_entry(m.match_obj.entry_id);
             println!("(Match {:?})\n{:#?}", m, display);
+        }
+        return;
+    }
+
+    // Handle batch mode: read queries from stdin, one per line
+    if batch {
+        let stdin = std::io::stdin();
+        let reader = std::io::BufReader::new(stdin.lock());
+        use std::io::BufRead;
+        for line in reader.lines() {
+            let query = match line {
+                Ok(q) => q,
+                Err(_) => break,
+            };
+            let query = query.trim().to_string();
+            if query.is_empty() {
+                continue;
+            }
+
+            // Catch panics so one bad query doesn't kill the whole batch
+            let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+                println!("=====================");
+                println!("Query: {}", query);
+                println!("\n");
+
+                let stopwatch = Box::new(NativeStopwatch::new());
+                let result = compiled_dictionary.search(&query, limit, stopwatch);
+
+                for m in result.matches {
+                    let display = compiled_dictionary.get_diplay_entry(m.match_obj.entry_id);
+                    println!("(Match {:?})\n{:#?}", m, display);
+                }
+            }));
+            if result.is_err() {
+                eprintln!("PANIC on query: {}", query);
+            }
+            println!("===QUERY_END===");
         }
         return;
     }

@@ -44,6 +44,43 @@ def run_query(query: str, limit: int = 10) -> str:
         return f"ERROR: {e}"
 
 
+def run_batch_queries(queries: list[str], limit: int = 10) -> list[str]:
+    """Run all queries in a single batch process and return list of raw outputs (one per query)."""
+
+    print("Start batch...")
+    cmd = [str(CONSOLE_EXE), "--batch", "--limit", str(limit)]
+    stdin_data = "\n".join(queries) + "\n"
+    try:
+        result = subprocess.run(
+            cmd,
+            input=stdin_data,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=300,
+            cwd=str(CONSOLE_DIR),
+        )
+    except subprocess.TimeoutExpired:
+        return [f"TIMEOUT (batch)" for _ in queries]
+    except Exception as e:
+        return [f"ERROR: {e}" for _ in queries]
+
+    print("Done running!")
+
+    # Split output by the delimiter - one block per query
+    blocks = result.stdout.split("===QUERY_END===")
+    outputs = []
+    for i in range(len(queries)):
+        if i < len(blocks):
+            outputs.append(blocks[i])
+        else:
+            outputs.append("")
+    if len(blocks) - 1 != len(queries):
+        print(f"WARNING: Expected {len(queries)} query blocks but got {len(blocks) - 1}")
+    return outputs
+
+
 def parse_results(output: str) -> list[dict]:
     """Parse the Rust Debug output format into structured results.
 
@@ -431,19 +468,22 @@ def main():
         print("Run: cd console && cargo build")
         sys.exit(1)
 
-    # Run all queries
+    # Run all queries in batch mode (single process, dictionary loaded once)
+    queries = [tc["query"] for tc in test_cases]
+    print(f"Running {len(queries)} queries in batch mode...")
+    batch_outputs = run_batch_queries(queries, limit=10)
+    print(f"Batch complete. Evaluating results...")
+
     eval_results = []
     for i, tc in enumerate(test_cases):
         query = tc["query"]
-        safe_print(f"  [{i+1}/{len(test_cases)}] Testing: {query}", end="")
-
-        raw_output = run_query(query, limit=10)
+        raw_output = batch_outputs[i]
         results = parse_results(raw_output)
         eval_result = evaluate_query(tc, results)
         eval_results.append(eval_result)
 
         status = "PASS" if eval_result["passed"] else "FAIL"
-        safe_print(f" -> {status}")
+        safe_print(f"  [{i+1}/{len(test_cases)}] {query} -> {status}")
 
     # Generate report
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
