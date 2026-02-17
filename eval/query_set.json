@@ -4236,7 +4236,7 @@
   },
   {
     "id": 300,
-    "query": "ji1 ging1",
+    "query": "ji5 ging1",
     "category": "multi_syllable",
     "description": "already",
     "expected_characters": [
@@ -4340,14 +4340,14 @@
   },
   {
     "id": 308,
-    "query": "gam1 nin2",
+    "query": "gam1 nin4",
     "category": "multi_syllable",
     "description": "this year",
     "expected_characters": [
       "今年"
     ],
     "expected_jyutping": [
-      "gam1 nin2"
+      "gam1 nin4"
     ],
     "accept_top_n": 3
   },
@@ -4682,41 +4682,39 @@
   },
   {
     "id": 334,
-    "query": "haa5 ci3",
+    "query": "haa6 ci3",
     "category": "multi_syllable",
     "description": "next time",
     "expected_characters": [
       "下次"
     ],
     "expected_jyutping": [
-      "haa5 ci3"
+      "haa6 ci3"
     ],
     "accept_top_n": 3
   },
   {
     "id": 335,
-    "query": "soeng5 min6",
+    "query": "soeng6 min6",
     "category": "multi_syllable",
     "description": "above/on top",
     "expected_characters": [
       "上面"
     ],
     "expected_jyutping": [
-      "soeng5 min6",
       "soeng6 min6"
     ],
     "accept_top_n": 3
   },
   {
     "id": 336,
-    "query": "haa5 min6",
+    "query": "haa6 min6",
     "category": "multi_syllable",
     "description": "below/underneath",
     "expected_characters": [
       "下面"
     ],
     "expected_jyutping": [
-      "haa5 min6",
       "haa6 min6"
     ],
     "accept_top_n": 3
@@ -4788,27 +4786,27 @@
   },
   {
     "id": 342,
-    "query": "jing1 man2",
+    "query": "jing1 man4",
     "category": "multi_syllable",
     "description": "English language",
     "expected_characters": [
       "英文"
     ],
     "expected_jyutping": [
-      "jing1 man2"
+      "jing1 man4"
     ],
     "accept_top_n": 1
   },
   {
     "id": 343,
-    "query": "zung1 man2",
+    "query": "zung1 man4",
     "category": "multi_syllable",
     "description": "Chinese language",
     "expected_characters": [
       "中文"
     ],
     "expected_jyutping": [
-      "zung1 man2"
+      "zung1 man4"
     ],
     "accept_top_n": 1
   },
@@ -5128,14 +5126,14 @@
   },
   {
     "id": 368,
-    "query": "jau4 guk2",
+    "query": "jau4 guk6",
     "category": "multi_syllable",
     "description": "post office",
     "expected_characters": [
       "郵局"
     ],
     "expected_jyutping": [
-      "jau4 guk2"
+      "jau4 guk6"
     ],
     "accept_top_n": 1
   },

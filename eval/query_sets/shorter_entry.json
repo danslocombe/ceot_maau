@@ -1,0 +1,227 @@
+[
+  {
+    "id": 800,
+    "query": "nei5 hou2",
+    "category": "shorter_entry",
+    "description": "hello - should prefer 你好 over 你好嘢/你好嗎",
+    "expected_characters": ["你好"],
+    "expected_jyutping": ["nei5 hou2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 801,
+    "query": "daai6 gaa1",
+    "category": "shorter_entry",
+    "description": "everyone - should prefer 大家 over 大家好",
+    "expected_characters": ["大家"],
+    "expected_jyutping": ["daai6 gaa1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 802,
+    "query": "gong2 je5",
+    "category": "shorter_entry",
+    "description": "talking - should prefer 講嘢 over 講嘢呀",
+    "expected_characters": ["講嘢"],
+    "expected_jyutping": ["gong2 je5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 803,
+    "query": "hoi1 sam1",
+    "category": "shorter_entry",
+    "description": "happy - should prefer 開心 over longer compounds",
+    "expected_characters": ["開心"],
+    "expected_jyutping": ["hoi1 sam1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 804,
+    "query": "m4 hou2",
+    "category": "shorter_entry",
+    "description": "don't - should prefer 唔好 over 唔好睇/唔好喐/唔好嘈",
+    "expected_characters": ["唔好"],
+    "expected_jyutping": ["m4 hou2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 805,
+    "query": "hou2 sik6",
+    "category": "shorter_entry",
+    "description": "tasty - should prefer 好食 over longer compounds",
+    "expected_characters": ["好食"],
+    "expected_jyutping": ["hou2 sik6"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 806,
+    "query": "maai5 je5",
+    "category": "shorter_entry",
+    "description": "shopping - should prefer 買嘢 over longer compounds",
+    "expected_characters": ["買嘢"],
+    "expected_jyutping": ["maai5 je5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 807,
+    "query": "lok6 jyu5",
+    "category": "shorter_entry",
+    "description": "to rain - should prefer 落雨 over 落雨溦/樂與怒",
+    "expected_characters": ["落雨"],
+    "expected_jyutping": ["lok6 jyu5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 808,
+    "query": "zing1 san4",
+    "category": "shorter_entry",
+    "description": "spirit/mind - should prefer 精神 over 精神病/精神學",
+    "expected_characters": ["精神"],
+    "expected_jyutping": ["zing1 san4"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 809,
+    "query": "bun2 dei6",
+    "category": "shorter_entry",
+    "description": "local - should prefer 本地 over 本地人/本地化",
+    "expected_characters": ["本地"],
+    "expected_jyutping": ["bun2 dei6"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 810,
+    "query": "gam1 jat6",
+    "category": "shorter_entry",
+    "description": "today - should prefer 今日 over 金日成",
+    "expected_characters": ["今日"],
+    "expected_jyutping": ["gam1 jat6"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 811,
+    "query": "cin4 min6",
+    "category": "shorter_entry",
+    "description": "in front - should prefer 前面 over longer compounds",
+    "expected_characters": ["前面"],
+    "expected_jyutping": ["cin4 min6"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 812,
+    "query": "hou2 do1",
+    "category": "shorter_entry",
+    "description": "many/much - should prefer 好多 over longer compounds",
+    "expected_characters": ["好多"],
+    "expected_jyutping": ["hou2 do1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 813,
+    "query": "jat1 hei2",
+    "category": "shorter_entry",
+    "description": "together - should prefer 一起 over 在一起",
+    "expected_characters": ["一起"],
+    "expected_jyutping": ["jat1 hei2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 814,
+    "query": "gam2 joeng2",
+    "category": "shorter_entry",
+    "description": "like this - should prefer 噉樣 over longer compounds",
+    "expected_characters": ["噉樣"],
+    "expected_jyutping": ["gam2 joeng2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 815,
+    "query": "siu3 waa2",
+    "category": "shorter_entry",
+    "description": "joke - should prefer 笑話 over 冷笑話/鬧笑話",
+    "expected_characters": ["笑話"],
+    "expected_jyutping": ["siu3 waa2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 816,
+    "query": "tung4 maai4",
+    "category": "shorter_entry",
+    "description": "and/together - should prefer 同埋",
+    "expected_characters": ["同埋"],
+    "expected_jyutping": ["tung4 maai4"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 817,
+    "query": "faan1 gung1",
+    "category": "shorter_entry",
+    "description": "go to work - should prefer 返工/番工 over longer compounds",
+    "expected_characters": ["返工", "番工", "翻工"],
+    "expected_jyutping": ["faan1 gung1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 818,
+    "query": "jau5 mou5",
+    "category": "shorter_entry",
+    "description": "yes or no - should prefer 有冇 over 冇有怕",
+    "expected_characters": ["有冇"],
+    "expected_jyutping": ["jau5 mou5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 819,
+    "query": "hou2 lek1",
+    "category": "shorter_entry",
+    "description": "very clever - should prefer 好叻 over longer compounds",
+    "expected_characters": ["好叻"],
+    "expected_jyutping": ["hou2 lek1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 830,
+    "query": "nei5",
+    "category": "shorter_entry_regression",
+    "description": "regression check: single-char 你 should still be at top",
+    "expected_characters": ["你"],
+    "expected_jyutping": ["nei5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 831,
+    "query": "m4",
+    "category": "shorter_entry_regression",
+    "description": "regression check: single-char 唔 should still be at top",
+    "expected_characters": ["唔"],
+    "expected_jyutping": ["m4"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 832,
+    "query": "hou2",
+    "category": "shorter_entry_regression",
+    "description": "regression check: single-char 好 should still be at top",
+    "expected_characters": ["好"],
+    "expected_jyutping": ["hou2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 833,
+    "query": "gam1",
+    "category": "shorter_entry_regression",
+    "description": "regression check: single-char 今 should still be at top",
+    "expected_characters": ["今"],
+    "expected_jyutping": ["gam1"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 834,
+    "query": "lok6",
+    "category": "shorter_entry_regression",
+    "description": "regression check: single-char results should still be at top",
+    "expected_characters": ["落", "樂"],
+    "expected_jyutping": ["lok6"],
+    "accept_top_n": 1
+  }
+]
