@@ -12,7 +12,8 @@
       "Bash(./target/debug/console.exe:*)",
       "Bash(python:*)",
       "Bash(./target/release/console.exe build:*)",
-      "Bash(./target/release/console.exe:*)"
+      "Bash(./target/release/console.exe:*)",
+      "Bash(python3:*)"
     ]
   }
 }

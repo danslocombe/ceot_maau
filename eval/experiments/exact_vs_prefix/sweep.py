@@ -9,8 +9,10 @@ For each (non_perfect, completion_k) pair:
   4. Collect metrics
   5. Restore original values
 
+No dictionary rebuild needed — these constants affect search, not the index.
+
 Usage:
-  python eval/sweep_params.py
+  python eval/experiments/exact_vs_prefix/sweep.py
 """
 
 import json
@@ -21,16 +23,17 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-SCRIPT_DIR = Path(__file__).parent
-PROJECT_DIR = SCRIPT_DIR.parent
+EXPERIMENT_DIR = Path(__file__).parent
+EVAL_DIR = EXPERIMENT_DIR.parent.parent       # eval/
+PROJECT_DIR = EVAL_DIR.parent                  # project root
+
 SEARCH_RS = PROJECT_DIR / "dictlib" / "src" / "search.rs"
 CONSOLE_DIR = PROJECT_DIR / "console"
-RESULTS_DIR = SCRIPT_DIR / "results"
-
+DICT_PATH = PROJECT_DIR / "full" / "full.jyp_dict"
 RELEASE_EXE = CONSOLE_DIR / "target" / "release" / "console.exe"
 
-# Import eval functions — we override the exe path for batch queries
-sys.path.insert(0, str(SCRIPT_DIR))
+# Import eval functions
+sys.path.insert(0, str(EVAL_DIR))
 import run_eval
 from run_eval import (
     parse_results, evaluate_query,
@@ -81,18 +84,15 @@ def build_console():
 
 def ensure_dictionary():
     """Check that the dictionary index exists. Returns True if found."""
-    dict_path = PROJECT_DIR / "full" / "full.jyp_dict"
-    if dict_path.exists():
+    if DICT_PATH.exists():
         return True
-    # Also check docs/ as a fallback copy source
     docs_path = PROJECT_DIR / "docs" / "full.jyp_dict"
     if docs_path.exists():
         import shutil
-        safe_print(f"Copying dictionary from {docs_path} to {dict_path}...")
-        shutil.copy2(docs_path, dict_path)
+        safe_print(f"Copying dictionary from {docs_path} to {DICT_PATH}...")
+        shutil.copy2(docs_path, DICT_PATH)
         return True
-    safe_print(f"ERROR: Dictionary not found at {dict_path} or {docs_path}")
-    safe_print("Run: cd console && cargo run --release build")
+    safe_print(f"ERROR: Dictionary not found at {DICT_PATH} or {docs_path}")
     return False
 
 
@@ -131,7 +131,7 @@ def run_batch_queries_release(queries, limit=10):
     return outputs
 
 
-def run_eval(test_cases):
+def do_eval(test_cases):
     """Run evaluation and return (eval_results, overall_metrics, category_metrics)."""
     queries = [tc["query"] for tc in test_cases]
     batch_outputs = run_batch_queries_release(queries, limit=10)
@@ -175,21 +175,16 @@ def main():
         sys.exit(1)
     safe_print(f"Initial build done in {time.time() - t0:.1f}s")
 
-    # Build dictionary if needed
+    # Ensure dictionary exists
     if not ensure_dictionary():
-        safe_print("Dictionary build failed!")
         sys.exit(1)
 
-    # Verify it works with a quick test
+    safe_print("Smoke test...")
     test_output = run_batch_queries_release(["ngo5"], limit=1)
-    if "===QUERY_END===" not in (test_output[0] if test_output else ""):
-        # Check if we got any results at all
-        results = parse_results(test_output[0] if test_output else "")
-        if not results:
-            safe_print(f"ERROR: Test query returned no results. Output: {test_output[0][:200]}")
-            safe_print("Check that the dictionary is built correctly.")
-            sys.exit(1)
-
+    results = parse_results(test_output[0] if test_output else "")
+    if not results:
+        safe_print(f"ERROR: Test query returned no results.")
+        sys.exit(1)
     safe_print("Smoke test passed.\n")
 
     results_log = []
@@ -221,11 +216,10 @@ def main():
             # Run eval
             safe_print("Evaluating...")
             t0 = time.time()
-            eval_results, overall, cat_metrics = run_eval(test_cases)
+            eval_results, overall, cat_metrics = do_eval(test_cases)
             eval_time = time.time() - t0
             safe_print(f"Evaluated in {eval_time:.1f}s")
 
-            # Extract exact_vs_prefix category specifically
             evp = cat_metrics.get("exact_vs_prefix", {})
 
             entry = {
@@ -244,7 +238,6 @@ def main():
                 "eval_time": eval_time,
             }
 
-            # Also capture per-category summary
             entry["categories"] = {}
             for cat, m in cat_metrics.items():
                 entry["categories"][cat] = {
@@ -276,9 +269,8 @@ def main():
         build_console()
         safe_print("Done.")
 
-    # Save results
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    sweep_path = RESULTS_DIR / "sweep_results.json"
+    # Save results to experiment folder
+    sweep_path = EXPERIMENT_DIR / "sweep_results.json"
     with open(sweep_path, "w", encoding="utf-8") as f:
         json.dump({
             "timestamp": datetime.now().isoformat(),
@@ -307,7 +299,6 @@ def main():
             f"{_fmt_pct(r['evp_p1']):>7} {_fmt_pct(r['evp_p3']):>7} {_fmt_mrr(r['evp_mrr']):>7}"
         )
 
-    # Find best overall MRR
     valid = [r for r in results_log if "error" not in r]
     if valid:
         best_overall = max(valid, key=lambda r: r["overall_mrr"])

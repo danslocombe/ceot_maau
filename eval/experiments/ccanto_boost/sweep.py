@@ -11,7 +11,7 @@ For each (CANTO_HIGH_FREQ_COST, CCANTO_DISCOUNT) pair:
   6. Restore original values
 
 Usage:
-  python eval/sweep_ccanto.py
+  python eval/experiments/ccanto_boost/sweep.py
 """
 
 import json
@@ -23,18 +23,21 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-SCRIPT_DIR = Path(__file__).parent
-PROJECT_DIR = SCRIPT_DIR.parent
+EXPERIMENT_DIR = Path(__file__).parent
+EVAL_DIR = EXPERIMENT_DIR.parent.parent       # eval/
+PROJECT_DIR = EVAL_DIR.parent                  # project root
+
 BUILDER_RS = PROJECT_DIR / "dictlib" / "src" / "builder.rs"
 CONSOLE_DIR = PROJECT_DIR / "console"
-RESULTS_DIR = SCRIPT_DIR / "results"
 DICT_PATH = PROJECT_DIR / "full" / "full.jyp_dict"
-DOCS_DICT_PATH = PROJECT_DIR / "docs" / "full.jyp_dict"
-
 RELEASE_EXE = CONSOLE_DIR / "target" / "release" / "console.exe"
 
+# Experiment-local dictionary: save the pre-sweep dictionary here so we can
+# restore it after the sweep without touching docs/full.jyp_dict.
+SAVED_DICT_PATH = EXPERIMENT_DIR / "pre_sweep.jyp_dict"
+
 # Import eval functions
-sys.path.insert(0, str(SCRIPT_DIR))
+sys.path.insert(0, str(EVAL_DIR))
 import run_eval
 from run_eval import (
     parse_results, evaluate_query,
@@ -97,11 +100,24 @@ def build_dictionary():
     if result.returncode != 0:
         safe_print(f"DICT BUILD FAILED:\n{result.stderr[-500:]}")
         return False
-    # Print key lines from build output
     for line in result.stdout.splitlines():
         if "Added" in line or "character cost overrides" in line or "Writing done" in line:
             safe_print(f"  {line}")
     return True
+
+
+def save_dictionary():
+    """Save the current dictionary to the experiment folder."""
+    if DICT_PATH.exists():
+        shutil.copy2(DICT_PATH, SAVED_DICT_PATH)
+        safe_print(f"Dictionary saved to {SAVED_DICT_PATH.name}")
+
+
+def restore_dictionary():
+    """Restore the pre-sweep dictionary from the experiment folder."""
+    if SAVED_DICT_PATH.exists():
+        shutil.copy2(SAVED_DICT_PATH, DICT_PATH)
+        safe_print(f"Dictionary restored from {SAVED_DICT_PATH.name}")
 
 
 def run_batch_queries_release(queries, limit=10):
@@ -167,8 +183,9 @@ def main():
     test_cases = load_query_sets()
     safe_print(f"Loaded {len(test_cases)} test cases")
 
-    # Save original source
+    # Save original source and dictionary
     original_source = read_builder_rs()
+    save_dictionary()
 
     results_log = []
 
@@ -219,7 +236,6 @@ def main():
 
             # Extract ccanto_boost category
             ccb = cat_metrics.get("ccanto_boost", {})
-            # Also get cantonese_vocab for comparison
             cv = cat_metrics.get("cantonese_vocab", {})
 
             entry = {
@@ -242,7 +258,6 @@ def main():
                 "eval_time": eval_time,
             }
 
-            # Per-category summary
             entry["categories"] = {}
             for cat, m in cat_metrics.items():
                 entry["categories"][cat] = {
@@ -264,25 +279,19 @@ def main():
                 )
 
     finally:
-        # Always restore original source
+        # Always restore original source and dictionary
         safe_print("\nRestoring original builder.rs...")
         write_builder_rs(original_source)
         safe_print("Restored.")
 
-        # Rebuild with original values
         safe_print("Rebuilding with original values (release)...")
         build_console()
-        safe_print("Rebuilding dictionary with original values...")
-        build_dictionary()
-        # Copy rebuilt dictionary to docs
-        if DICT_PATH.exists():
-            shutil.copy2(DICT_PATH, DOCS_DICT_PATH)
-            safe_print("Dictionary copied to docs/.")
+        safe_print("Restoring pre-sweep dictionary...")
+        restore_dictionary()
         safe_print("Done.")
 
-    # Save results
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    sweep_path = RESULTS_DIR / "sweep_ccanto_results.json"
+    # Save results to experiment folder
+    sweep_path = EXPERIMENT_DIR / "sweep_results.json"
     with open(sweep_path, "w", encoding="utf-8") as f:
         json.dump({
             "timestamp": datetime.now().isoformat(),
@@ -314,7 +323,6 @@ def main():
             f"{_fmt_pct(r['ccb_p1']):>7} {_fmt_pct(r['ccb_p3']):>7} {_fmt_mrr(r['ccb_mrr']):>7} {r['ccb_not_found']:>4}"
         )
 
-    # Find best
     valid = [r for r in results_log if "error" not in r]
     if valid:
         best_overall = max(valid, key=lambda r: r["overall_mrr"])
