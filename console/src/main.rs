@@ -73,7 +73,7 @@ fn main() {
         let mut data_writer = data_writer::DataWriter::new(&index_path);
         built_dictionary.serialize(&mut data_writer).unwrap();
         println!("Writing done!");
-        
+        return;
     }
 
     let compiled_dictionary = {

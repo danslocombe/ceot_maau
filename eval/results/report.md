@@ -1,1072 +1,3491 @@
 # Dictionary Ranking Evaluation Report
 
-Generated: 2026-02-16 01:51:23
+Generated: 2026-02-17 00:32:57
 
 ## Summary
 
-- **Total queries**: 650
-- **Passed**: 623 (95.8%)
-- **Failed**: 27 (4.2%)
+- **Total queries**: 690
+- **p@1**: 0%
+- **p@2**: 0%
+- **p@3**: 0%
+- **MRR**: 0.00
+- **Not found**: 690
 
 ## Category Results
 
-| Category | Total | Passed | Failed | Pass Rate |
-|----------|-------|--------|--------|-----------|
-| single_tone | 150 | 149 | 1 | 99% |
-| single_no_tone | 50 | 50 | 0 | 100% |
-| multi_syllable | 140 | 129 | 11 | 92% |
-| cantonese_vocab | 60 | 59 | 1 | 98% |
-| partial_prefix | 50 | 49 | 1 | 98% |
-| english | 70 | 69 | 1 | 99% |
-| character | 45 | 45 | 0 | 100% |
-| edge_case | 35 | 31 | 4 | 89% |
+| Category | Count | p@1 | p@2 | p@3 | MRR | Not Found |
+|----------|-------|-----|-----|-----|-----|-----------|
+| single_tone | 150 | 0% | 0% | 0% | 0.00 | 150 |
+| single_no_tone | 50 | 0% | 0% | 0% | 0.00 | 50 |
+| multi_syllable | 140 | 0% | 0% | 0% | 0.00 | 140 |
+| cantonese_vocab | 60 | 0% | 0% | 0% | 0.00 | 60 |
+| partial_prefix | 50 | 0% | 0% | 0% | 0.00 | 50 |
+| exact_vs_prefix | 90 | 0% | 0% | 0% | 0.00 | 90 |
+| english | 70 | 0% | 0% | 0% | 0.00 | 70 |
+| character | 45 | 0% | 0% | 0% | 0.00 | 45 |
+| edge_case | 35 | 0% | 0% | 0% | 0.00 | 35 |
+| **overall** | **690** | **0%** | **0%** | **0%** | **0.00** | **690** |
 
-## Failed Queries (27)
+## Queries Not at Position 1 (690)
 
-### #15: `mat1` (single_tone)
+### #1: `ngo5` (single_tone) - position: not found
+
+**Description**: I/me - most common pronoun
+
+### #2: `nei5` (single_tone) - position: not found
+
+**Description**: you - common pronoun
+
+### #3: `hai6` (single_tone) - position: not found
+
+**Description**: to be
+
+### #4: `lo3` (single_tone) - position: not found
+
+**Description**: Cantonese sentence particle
+
+### #5: `ge3` (single_tone) - position: not found
+
+**Description**: possessive/nominalizer particle
+
+### #6: `aa3` (single_tone) - position: not found
+
+**Description**: question particle / prefix
+
+### #7: `m4` (single_tone) - position: not found
+
+**Description**: not/negation
+
+### #8: `di1` (single_tone) - position: not found
+
+**Description**: some/a bit
+
+### #9: `go3` (single_tone) - position: not found
+
+**Description**: classifier/that
+
+### #10: `zou6` (single_tone) - position: not found
+
+**Description**: to do
+
+### #11: `jat1` (single_tone) - position: not found
+
+**Description**: one
+
+### #12: `gin3` (single_tone) - position: not found
+
+**Description**: to see
+
+### #13: `sik1` (single_tone) - position: not found
+
+**Description**: to eat / to know
+
+### #14: `hou2` (single_tone) - position: not found
+
+**Description**: good/very
+
+### #15: `mat1` (single_tone) - position: not found
 
 **Description**: what (mat not standard jyutping base)
 
-**Reason**: Expected one of ['乜'] but got ['貓', '伩', '么', '文', '嘜', '媽', '孖', '蚊', '𢺳', '咪'] (jyutping: ['maau1', 'man1', 'maa1', 'man1', 'mak1', 'maa1', 'maa1', 'man1', 'maan1', 'mai1'])
+### #16: `gam2` (single_tone) - position: not found
 
-**Top results:**
+**Description**: so/like that
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 貓 | maau1 | 30500 | 9000 | 21500 | 0 | Jyutping | CEDict |
-| 2 | 伩 | man1 | 30500 | 9000 | 21500 | 0 | Jyutping | CCanto |
-| 3 | 么 | maa1 | 34503 | 13003 | 21500 | 0 | Jyutping | CCanto |
-| 4 | 文 | man1 | 35059 | 13559 | 21500 | 0 | Jyutping | CCanto |
-| 5 | 嘜 | mak1 | 35500 | 14000 | 21500 | 0 | Jyutping | CEDict |
+### #17: `dou1` (single_tone) - position: not found
 
-### #44: `hou2 leng3` (multi_syllable)
+**Description**: all/also/arrive
+
+### #18: `lei4` (single_tone) - position: not found
+
+**Description**: to come (Cantonese)
+
+### #19: `heoi3` (single_tone) - position: not found
+
+**Description**: to go
+
+### #20: `waa6` (single_tone) - position: not found
+
+**Description**: to say/speak (Cantonese)
+
+### #21: `gong2` (single_tone) - position: not found
+
+**Description**: to speak/talk
+
+### #22: `tai2` (single_tone) - position: not found
+
+**Description**: to look/see
+
+### #23: `jam2` (single_tone) - position: not found
+
+**Description**: to drink
+
+### #24: `faan1` (single_tone) - position: not found
+
+**Description**: to return
+
+### #25: `zyu6` (single_tone) - position: not found
+
+**Description**: to live/reside
+
+### #26: `bin1` (single_tone) - position: not found
+
+**Description**: which/where
+
+### #27: `dim2` (single_tone) - position: not found
+
+**Description**: how
+
+### #28: `zoi3` (single_tone) - position: not found
+
+**Description**: again
+
+### #29: `daai6` (single_tone) - position: not found
+
+**Description**: big
+
+### #30: `siu2` (single_tone) - position: not found
+
+**Description**: small/few
+
+### #31: `ngo` (single_no_tone) - position: not found
+
+**Description**: I/me without tone
+
+### #32: `nei` (single_no_tone) - position: not found
+
+**Description**: you without tone
+
+### #33: `hai` (single_no_tone) - position: not found
+
+**Description**: to be without tone
+
+### #34: `hou` (single_no_tone) - position: not found
+
+**Description**: good without tone
+
+### #35: `gam` (single_no_tone) - position: not found
+
+**Description**: so/like that without tone
+
+### #36: `sik` (single_no_tone) - position: not found
+
+**Description**: eat/know without tone
+
+### #37: `dim` (single_no_tone) - position: not found
+
+**Description**: how/store without tone
+
+### #38: `lok` (single_no_tone) - position: not found
+
+**Description**: down/fall without tone
+
+### #39: `jau` (single_no_tone) - position: not found
+
+**Description**: have/again without tone
+
+### #40: `dou` (single_no_tone) - position: not found
+
+**Description**: all/also without tone
+
+### #41: `nei5 hou2` (multi_syllable) - position: not found
+
+**Description**: hello (you good)
+
+### #42: `m4 goi1` (multi_syllable) - position: not found
+
+**Description**: excuse me/thanks
+
+### #43: `do1 ze6` (multi_syllable) - position: not found
+
+**Description**: thank you
+
+### #44: `hou2 leng3` (multi_syllable) - position: not found
 
 **Description**: very pretty (may not exist as entry)
 
-**Reason**: No results returned
+### #45: `sik6 faan6` (multi_syllable) - position: not found
 
-### #50: `dak1 m4 dak1` (multi_syllable)
+**Description**: eat rice/have a meal
+
+### #46: `gong2 jyut6 jyu5` (multi_syllable) - position: not found
+
+**Description**: speak Cantonese (exact entry may not exist)
+
+### #47: `dim2 gaai2` (multi_syllable) - position: not found
+
+**Description**: how come/explain
+
+### #48: `m4 hou2` (multi_syllable) - position: not found
+
+**Description**: don't/not good
+
+### #49: `zoi3 gin3` (multi_syllable) - position: not found
+
+**Description**: goodbye
+
+### #50: `dak1 m4 dak1` (multi_syllable) - position: not found
 
 **Description**: OK or not OK (colloquial, may not be entry)
 
-**Reason**: No results returned
+### #51: `gei2 do1` (multi_syllable) - position: not found
 
-### #52: `sei2 m4 sei2` (multi_syllable)
+**Description**: how many/much
+
+### #52: `sei2 m4 sei2` (multi_syllable) - position: not found
 
 **Description**: dead or not (colloquial, may not be entry)
 
-**Reason**: No results returned
+### #53: `jat1 jat6` (multi_syllable) - position: not found
 
-### #300: `ji1 ging1` (multi_syllable)
+**Description**: one day
+
+### #54: `bat1 gwo3` (multi_syllable) - position: not found
+
+**Description**: however/but
+
+### #55: `ji4 gaa1` (multi_syllable) - position: not found
+
+**Description**: now
+
+### #56: `jyu4 gwo2` (multi_syllable) - position: not found
+
+**Description**: if
+
+### #57: `ting1 jat6` (multi_syllable) - position: not found
+
+**Description**: tomorrow
+
+### #58: `cam4 jat6` (multi_syllable) - position: not found
+
+**Description**: yesterday
+
+### #59: `gam1 jat6` (multi_syllable) - position: not found
+
+**Description**: today
+
+### #60: `hou2 ci5` (multi_syllable) - position: not found
+
+**Description**: seems like
+
+### #61: `leng3` (cantonese_vocab) - position: not found
+
+**Description**: pretty/beautiful (Canto)
+
+### #62: `mou5` (cantonese_vocab) - position: not found
+
+**Description**: don't have (Canto)
+
+### #63: `je5` (cantonese_vocab) - position: not found
+
+**Description**: thing/stuff (Canto)
+
+### #64: `gam3` (cantonese_vocab) - position: not found
+
+**Description**: so/like this (Canto)
+
+### #65: `saai3` (cantonese_vocab) - position: not found
+
+**Description**: all/completely (Canto)
+
+### #66: `maai4` (cantonese_vocab) - position: not found
+
+**Description**: to come close/also (Canto)
+
+### #67: `zek3` (cantonese_vocab) - position: not found
+
+**Description**: classifier for animals/one (Canto)
+
+### #68: `keoi5` (cantonese_vocab) - position: not found
+
+**Description**: he/she/it (Canto)
+
+### #69: `fan3` (cantonese_vocab) - position: not found
+
+**Description**: to sleep (Canto)
+
+### #70: `zan1` (cantonese_vocab) - position: not found
+
+**Description**: real/really (Canto)
+
+### #71: `ng` (partial_prefix) - position: not found
+
+**Description**: prefix for ng- syllables
+
+### #72: `ho` (partial_prefix) - position: not found
+
+**Description**: prefix for ho- syllables
+
+### #73: `ne` (partial_prefix) - position: not found
+
+**Description**: prefix for ne- syllables
+
+### #74: `ge` (partial_prefix) - position: not found
+
+**Description**: prefix for ge- syllables
+
+### #75: `si` (partial_prefix) - position: not found
+
+**Description**: prefix for si- syllables
+
+### #76: `gw` (partial_prefix) - position: not found
+
+**Description**: prefix for gw- syllables
+
+### #77: `zo` (partial_prefix) - position: not found
+
+**Description**: prefix for zo- syllables
+
+### #78: `ja` (partial_prefix) - position: not found
+
+**Description**: prefix for ja- syllables
+
+### #79: `heoi` (partial_prefix) - position: not found
+
+**Description**: prefix for heoi3 (go)
+
+### #80: `gon` (partial_prefix) - position: not found
+
+**Description**: prefix for gong
+
+### #81: `hello` (english) - position: not found
+
+**Description**: English greeting
+
+### #82: `water` (english) - position: not found
+
+**Description**: English water
+
+### #83: `eat` (english) - position: not found
+
+**Description**: English eat
+
+### #84: `good` (english) - position: not found
+
+**Description**: English good
+
+### #85: `person` (english) - position: not found
+
+**Description**: English person
+
+### #86: `house` (english) - position: not found
+
+**Description**: English house
+
+### #87: `money` (english) - position: not found
+
+**Description**: English money
+
+### #88: `big` (english) - position: not found
+
+**Description**: English big
+
+### #89: `see` (english) - position: not found
+
+**Description**: English see
+
+### #90: `beautiful` (english) - position: not found
+
+**Description**: English beautiful
+
+### #91: `咯` (character) - position: not found
+
+**Description**: lo particle character search
+
+### #92: `嘅` (character) - position: not found
+
+**Description**: ge possessive character search
+
+### #93: `食` (character) - position: not found
+
+**Description**: eat character search
+
+### #94: `好` (character) - position: not found
+
+**Description**: good character search
+
+### #95: `你好` (character) - position: not found
+
+**Description**: hello multi-char search
+
+### #96: `aa` (edge_case) - position: not found
+
+**Description**: very short input
+
+### #97: `m` (edge_case) - position: not found
+
+**Description**: single letter m
+
+### #98: `ng5` (edge_case) - position: not found
+
+**Description**: ng with tone - five
+
+### #99: `gwong2 dung1 waa2` (edge_case) - position: not found
+
+**Description**: Cantonese language (3 syllables)
+
+### #100: `jyut6 jyu5` (edge_case) - position: not found
+
+**Description**: Cantonese language
+
+### #101: `sam1` (single_tone) - position: not found
+
+**Description**: heart/mind
+
+### #102: `sei3` (single_tone) - position: not found
+
+**Description**: four
+
+### #103: `ng5` (single_tone) - position: not found
+
+**Description**: five
+
+### #104: `luk6` (single_tone) - position: not found
+
+**Description**: six/land
+
+### #105: `cat1` (single_tone) - position: not found
+
+**Description**: seven
+
+### #106: `baat3` (single_tone) - position: not found
+
+**Description**: eight
+
+### #107: `gau2` (single_tone) - position: not found
+
+**Description**: nine/dog
+
+### #108: `sap6` (single_tone) - position: not found
+
+**Description**: ten
+
+### #109: `jan4` (single_tone) - position: not found
+
+**Description**: person/people
+
+### #110: `neoi5` (single_tone) - position: not found
+
+**Description**: female/woman
+
+### #111: `naam4` (single_tone) - position: not found
+
+**Description**: male/south
+
+### #112: `gaa1` (single_tone) - position: not found
+
+**Description**: home/family
+
+### #113: `hok6` (single_tone) - position: not found
+
+**Description**: learn/study
+
+### #114: `nin4` (single_tone) - position: not found
+
+**Description**: year
+
+### #115: `jyut6` (single_tone) - position: not found
+
+**Description**: month/Cantonese
+
+### #116: `ming4` (single_tone) - position: not found
+
+**Description**: bright/clear
+
+### #117: `san1` (single_tone) - position: not found
+
+**Description**: new/body
+
+### #118: `loi4` (single_tone) - position: not found
+
+**Description**: come
+
+### #119: `tung4` (single_tone) - position: not found
+
+**Description**: same/with
+
+### #120: `gwong2` (single_tone) - position: not found
+
+**Description**: wide/Canton
+
+### #121: `zung1` (single_tone) - position: not found
+
+**Description**: middle/clock
+
+### #122: `seoi2` (single_tone) - position: not found
+
+**Description**: water
+
+### #123: `fo2` (single_tone) - position: not found
+
+**Description**: fire
+
+### #124: `saan1` (single_tone) - position: not found
+
+**Description**: mountain
+
+### #125: `tin1` (single_tone) - position: not found
+
+**Description**: sky/heaven/day
+
+### #126: `dei6` (single_tone) - position: not found
+
+**Description**: earth/ground
+
+### #127: `fung1` (single_tone) - position: not found
+
+**Description**: wind/style
+
+### #128: `jyu5` (single_tone) - position: not found
+
+**Description**: rain/language
+
+### #129: `faa1` (single_tone) - position: not found
+
+**Description**: flower
+
+### #130: `syu4` (single_tone) - position: not found
+
+**Description**: tree/book
+
+### #131: `muk6` (single_tone) - position: not found
+
+**Description**: wood/tree
+
+### #132: `gam1` (single_tone) - position: not found
+
+**Description**: gold/today
+
+### #133: `ngaan5` (single_tone) - position: not found
+
+**Description**: eye
+
+### #134: `hau2` (single_tone) - position: not found
+
+**Description**: mouth
+
+### #135: `sau2` (single_tone) - position: not found
+
+**Description**: hand
+
+### #136: `goek3` (single_tone) - position: not found
+
+**Description**: foot/leg
+
+### #137: `tau4` (single_tone) - position: not found
+
+**Description**: head
+
+### #138: `ji5` (single_tone) - position: not found
+
+**Description**: ear/two
+
+### #139: `ce1` (single_tone) - position: not found
+
+**Description**: car/vehicle
+
+### #140: `syun4` (single_tone) - position: not found
+
+**Description**: boat/ship
+
+### #141: `fei1` (single_tone) - position: not found
+
+**Description**: fly
+
+### #142: `maau1` (single_tone) - position: not found
+
+**Description**: cat
+
+### #143: `gau2` (single_tone) - position: not found
+
+**Description**: dog/nine
+
+### #144: `jyu2` (single_tone) - position: not found
+
+**Description**: fish
+
+### #145: `niu5` (single_tone) - position: not found
+
+**Description**: bird
+
+### #146: `baak6` (single_tone) - position: not found
+
+**Description**: white/hundred
+
+### #147: `hak1` (single_tone) - position: not found
+
+**Description**: black
+
+### #148: `hung4` (single_tone) - position: not found
+
+**Description**: red
+
+### #149: `wong4` (single_tone) - position: not found
+
+**Description**: yellow/surname
+
+### #150: `laam4` (single_tone) - position: not found
+
+**Description**: blue/basket
+
+### #151: `luk6` (single_tone) - position: not found
+
+**Description**: green/six
+
+### #152: `cin2` (single_tone) - position: not found
+
+**Description**: money
+
+### #153: `faan6` (single_tone) - position: not found
+
+**Description**: rice (cooked)
+
+### #154: `caa4` (single_tone) - position: not found
+
+**Description**: tea
+
+### #155: `zau2` (single_tone) - position: not found
+
+**Description**: wine/alcohol/run
+
+### #156: `tong4` (single_tone) - position: not found
+
+**Description**: sugar/hall
+
+### #157: `jit6` (single_tone) - position: not found
+
+**Description**: hot/heat
+
+### #158: `dung3` (single_tone) - position: not found
+
+**Description**: cold/freeze
+
+### #159: `faai3` (single_tone) - position: not found
+
+**Description**: fast/quick
+
+### #160: `maan6` (single_tone) - position: not found
+
+**Description**: slow/ten thousand
+
+### #161: `gou1` (single_tone) - position: not found
+
+**Description**: tall/high
+
+### #162: `dai1` (single_tone) - position: not found
+
+**Description**: low
+
+### #163: `coeng4` (single_tone) - position: not found
+
+**Description**: long/often
+
+### #164: `dyun2` (single_tone) - position: not found
+
+**Description**: short
+
+### #165: `fei4` (single_tone) - position: not found
+
+**Description**: fat
+
+### #166: `sau3` (single_tone) - position: not found
+
+**Description**: thin/slim
+
+### #167: `gau6` (single_tone) - position: not found
+
+**Description**: old (things)
+
+### #168: `cing1` (single_tone) - position: not found
+
+**Description**: clear/green
+
+### #169: `maai5` (single_tone) - position: not found
+
+**Description**: buy
+
+### #170: `maai6` (single_tone) - position: not found
+
+**Description**: sell
+
+### #171: `bei2` (single_tone) - position: not found
+
+**Description**: give/compare
+
+### #172: `wan2` (single_tone) - position: not found
+
+**Description**: find/look for
+
+### #173: `paau2` (single_tone) - position: not found
+
+**Description**: run
+
+### #174: `co5` (single_tone) - position: not found
+
+**Description**: sit
+
+### #175: `kei5` (single_tone) - position: not found
+
+**Description**: stand
+
+### #176: `se2` (single_tone) - position: not found
+
+**Description**: write
+
+### #177: `duk6` (single_tone) - position: not found
+
+**Description**: read/poison
+
+### #178: `sing1` (single_tone) - position: not found
+
+**Description**: star/surname
+
+### #179: `hoeng1` (single_tone) - position: not found
+
+**Description**: fragrant/Hong Kong
+
+### #180: `gong2` (single_tone) - position: not found
+
+**Description**: harbour/speak
+
+### #181: `si4` (single_tone) - position: not found
+
+**Description**: time/city
+
+### #182: `din6` (single_tone) - position: not found
+
+**Description**: electricity
+
+### #183: `waa2` (single_tone) - position: not found
+
+**Description**: picture/speech
+
+### #184: `cing4` (single_tone) - position: not found
+
+**Description**: feeling/situation
+
+### #185: `oi3` (single_tone) - position: not found
+
+**Description**: love
+
+### #186: `hei2` (single_tone) - position: not found
+
+**Description**: rise/begin
+
+### #187: `lok6` (single_tone) - position: not found
+
+**Description**: fall/down
+
+### #188: `hoi1` (single_tone) - position: not found
+
+**Description**: open/start
+
+### #189: `saan1` (single_tone) - position: not found
+
+**Description**: close/mountain
+
+### #190: `ceot1` (single_tone) - position: not found
+
+**Description**: go out/exit
+
+### #191: `jap6` (single_tone) - position: not found
+
+**Description**: enter
+
+### #192: `dak1` (single_tone) - position: not found
+
+**Description**: can/OK
+
+### #193: `jiu3` (single_tone) - position: not found
+
+**Description**: want/need
+
+### #194: `ho2` (single_tone) - position: not found
+
+**Description**: can/possible
+
+### #195: `wui5` (single_tone) - position: not found
+
+**Description**: will/can/meeting
+
+### #196: `zung6` (single_tone) - position: not found
+
+**Description**: still/yet
+
+### #197: `sing4` (single_tone) - position: not found
+
+**Description**: become/city
+
+### #198: `do1` (single_tone) - position: not found
+
+**Description**: many/much
+
+### #199: `siu2` (single_tone) - position: not found
+
+**Description**: few/small
+
+### #200: `cyun4` (single_tone) - position: not found
+
+**Description**: whole/complete
+
+### #201: `zing3` (single_tone) - position: not found
+
+**Description**: correct/just
+
+### #202: `cou4` (single_tone) - position: not found
+
+**Description**: noisy
+
+### #203: `gwai3` (single_tone) - position: not found
+
+**Description**: expensive/noble
+
+### #204: `peng4` (single_tone) - position: not found
+
+**Description**: cheap/flat
+
+### #205: `naan4` (single_tone) - position: not found
+
+**Description**: difficult
+
+### #206: `ji4` (single_tone) - position: not found
+
+**Description**: easy/and
+
+### #207: `gaan1` (single_tone) - position: not found
+
+**Description**: between/room
+
+### #208: `lou5` (single_tone) - position: not found
+
+**Description**: old (person)/guy
+
+### #209: `zai2` (single_tone) - position: not found
+
+**Description**: son/boy
+
+### #210: `mui1` (single_tone) - position: not found
+
+**Description**: younger sister
+
+### #211: `gwo3` (single_tone) - position: not found
+
+**Description**: pass/cross
+
+### #212: `wun6` (single_tone) - position: not found
+
+**Description**: change/exchange
+
+### #213: `dong1` (single_tone) - position: not found
+
+**Description**: should/east
+
+### #214: `zik1` (single_tone) - position: not found
+
+**Description**: immediately/job
+
+### #215: `bo1` (single_tone) - position: not found
+
+**Description**: ball/wave
+
+### #216: `paai4` (single_tone) - position: not found
+
+**Description**: brand/card
+
+### #217: `toi2` (single_tone) - position: not found
+
+**Description**: table/platform
+
+### #218: `ji6` (single_tone) - position: not found
+
+**Description**: two/word
+
+### #219: `saam1` (single_tone) - position: not found
+
+**Description**: three/shirt
+
+### #220: `ling4` (single_tone) - position: not found
+
+**Description**: zero/spirit
+
+### #221: `sam` (single_no_tone) - position: not found
+
+**Description**: heart without tone
+
+### #222: `sei` (single_no_tone) - position: not found
+
+**Description**: four/die without tone
+
+### #223: `jan` (single_no_tone) - position: not found
+
+**Description**: person without tone
+
+### #224: `gaa` (single_no_tone) - position: not found
+
+**Description**: home without tone
+
+### #225: `san` (single_no_tone) - position: not found
+
+**Description**: new/body without tone
+
+### #226: `fung` (single_no_tone) - position: not found
+
+**Description**: wind without tone
+
+### #227: `din` (single_no_tone) - position: not found
+
+**Description**: electricity without tone
+
+### #228: `ce` (single_no_tone) - position: not found
+
+**Description**: car without tone
+
+### #229: `sing` (single_no_tone) - position: not found
+
+**Description**: star/become without tone
+
+### #230: `ming` (single_no_tone) - position: not found
+
+**Description**: bright/name without tone
+
+### #231: `cin` (single_no_tone) - position: not found
+
+**Description**: money/thousand without tone
+
+### #232: `dung` (single_no_tone) - position: not found
+
+**Description**: east/cold without tone
+
+### #233: `wong` (single_no_tone) - position: not found
+
+**Description**: yellow/king without tone
+
+### #234: `hung` (single_no_tone) - position: not found
+
+**Description**: red/empty without tone
+
+### #235: `gou` (single_no_tone) - position: not found
+
+**Description**: tall/high without tone
+
+### #236: `dai` (single_no_tone) - position: not found
+
+**Description**: low/big without tone
+
+### #237: `hoi` (single_no_tone) - position: not found
+
+**Description**: open/sea without tone
+
+### #238: `faan` (single_no_tone) - position: not found
+
+**Description**: return/rice without tone
+
+### #239: `zau` (single_no_tone) - position: not found
+
+**Description**: wine/run without tone
+
+### #240: `bei` (single_no_tone) - position: not found
+
+**Description**: give/compare without tone
+
+### #241: `caa` (single_no_tone) - position: not found
+
+**Description**: tea without tone
+
+### #242: `gwai` (single_no_tone) - position: not found
+
+**Description**: expensive without tone
+
+### #243: `tau` (single_no_tone) - position: not found
+
+**Description**: head without tone
+
+### #244: `zou` (single_no_tone) - position: not found
+
+**Description**: do/morning without tone
+
+### #245: `fo` (single_no_tone) - position: not found
+
+**Description**: fire/goods without tone
+
+### #246: `bo` (single_no_tone) - position: not found
+
+**Description**: ball/wave without tone
+
+### #247: `tong` (single_no_tone) - position: not found
+
+**Description**: sugar/hall without tone
+
+### #248: `paai` (single_no_tone) - position: not found
+
+**Description**: card/row without tone
+
+### #249: `wui` (single_no_tone) - position: not found
+
+**Description**: will/meeting without tone
+
+### #250: `zung` (single_no_tone) - position: not found
+
+**Description**: middle/heavy without tone
+
+### #251: `zing` (single_no_tone) - position: not found
+
+**Description**: correct/spirit without tone
+
+### #252: `gwok` (single_no_tone) - position: not found
+
+**Description**: country without tone
+
+### #253: `tin` (single_no_tone) - position: not found
+
+**Description**: sky/field without tone
+
+### #254: `mou` (single_no_tone) - position: not found
+
+**Description**: don't have without tone
+
+### #255: `lei` (single_no_tone) - position: not found
+
+**Description**: come/inside without tone
+
+### #256: `heoi` (single_no_tone) - position: not found
+
+**Description**: go without tone
+
+### #257: `sai` (single_no_tone) - position: not found
+
+**Description**: small/wash without tone
+
+### #258: `gei` (single_no_tone) - position: not found
+
+**Description**: how many without tone
+
+### #259: `bat` (single_no_tone) - position: not found
+
+**Description**: pen/not without tone
+
+### #260: `keoi` (single_no_tone) - position: not found
+
+**Description**: he/she without tone
+
+### #261: `hoeng1 gong2` (multi_syllable) - position: not found
+
+**Description**: Hong Kong
+
+### #262: `zou2 san4` (multi_syllable) - position: not found
+
+**Description**: good morning
+
+### #263: `baai1 baai3` (multi_syllable) - position: not found
+
+**Description**: bye bye
+
+### #264: `sing1 kei4` (multi_syllable) - position: not found
+
+**Description**: week
+
+### #265: `dim2 sam1` (multi_syllable) - position: not found
+
+**Description**: dim sum
+
+### #266: `siu1 maai6` (multi_syllable) - position: not found
+
+**Description**: siu mai dumpling
+
+### #267: `coeng2 fan2` (multi_syllable) - position: not found
+
+**Description**: rice noodle rolls
+
+### #268: `faan1 gung1` (multi_syllable) - position: not found
+
+**Description**: go to work
+
+### #269: `fong3 gung1` (multi_syllable) - position: not found
+
+**Description**: get off work
+
+### #270: `sik6 faan6` (multi_syllable) - position: not found
+
+**Description**: eat rice/meal
+
+### #271: `jam2 caa4` (multi_syllable) - position: not found
+
+**Description**: drink tea/yum cha
+
+### #272: `gau2 lung4` (multi_syllable) - position: not found
+
+**Description**: Kowloon
+
+### #273: `dei6 tit3` (multi_syllable) - position: not found
+
+**Description**: MTR/subway
+
+### #274: `baa1 si2` (multi_syllable) - position: not found
+
+**Description**: bus
+
+### #275: `din6 waa2` (multi_syllable) - position: not found
+
+**Description**: telephone
+
+### #276: `din6 nou5` (multi_syllable) - position: not found
+
+**Description**: computer
+
+### #277: `hok6 haau6` (multi_syllable) - position: not found
+
+**Description**: school
+
+### #278: `ji1 jyun2` (multi_syllable) - position: not found
+
+**Description**: hospital
+
+### #279: `ging2 caat3` (multi_syllable) - position: not found
+
+**Description**: police
+
+### #280: `lou5 si1` (multi_syllable) - position: not found
+
+**Description**: teacher
+
+### #281: `pang4 jau5` (multi_syllable) - position: not found
+
+**Description**: friend
+
+### #282: `gung1 si1` (multi_syllable) - position: not found
+
+**Description**: company
+
+### #283: `hou2 sik6` (multi_syllable) - position: not found
+
+**Description**: delicious
+
+### #284: `hou2 waan2` (multi_syllable) - position: not found
+
+**Description**: fun
+
+### #285: `ji6 sap6` (multi_syllable) - position: not found
+
+**Description**: twenty
+
+### #286: `jat1 baak3` (multi_syllable) - position: not found
+
+**Description**: one hundred
+
+### #287: `jat1 cin1` (multi_syllable) - position: not found
+
+**Description**: one thousand
+
+### #288: `dim2 joeng2` (multi_syllable) - position: not found
+
+**Description**: how/what way
+
+### #289: `bin1 dou6` (multi_syllable) - position: not found
+
+**Description**: where
+
+### #290: `gei2 si4` (multi_syllable) - position: not found
+
+**Description**: when
+
+### #291: `mat1 je5` (multi_syllable) - position: not found
+
+**Description**: what thing
+
+### #292: `dim2 gaai2` (multi_syllable) - position: not found
+
+**Description**: why
+
+### #293: `bin1 go3` (multi_syllable) - position: not found
+
+**Description**: who/which one
+
+### #294: `gei2 noi6` (multi_syllable) - position: not found
+
+**Description**: how long (time)
+
+### #295: `sai3 lou6` (multi_syllable) - position: not found
+
+**Description**: child/kid
+
+### #296: `hoi1 sam1` (multi_syllable) - position: not found
+
+**Description**: happy
+
+### #297: `san1 fu2` (multi_syllable) - position: not found
+
+**Description**: hard/laborious
+
+### #298: `ho2 ji5` (multi_syllable) - position: not found
+
+**Description**: can/may
+
+### #299: `daan6 hai6` (multi_syllable) - position: not found
+
+**Description**: but/however
+
+### #300: `ji1 ging1` (multi_syllable) - position: not found
 
 **Description**: already
 
-**Reason**: Expected one of ['已經'] but got ['燕京', '一經', '燕京大學'] (jyutping: ['jin1 ging1', 'jat1 ging1', 'jin1 ging1 daai6 hok6'])
+### #301: `jyun4 loi4` (multi_syllable) - position: not found
 
-**Top results:**
+**Description**: originally
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 燕京 | jin1 ging1 | 25000 | 21000 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 一經 | jat1 ging1 | 39649 | 18149 | 21500 | 0 | Jyutping | CCanto |
-| 3 | 燕京大學 | jin1 ging1 daai6 hok6 | 87212 | 33212 | 4000 | 50000 | Jyutping | CEDict |
-| 4 | 燕京啤酒 | jin1 ging1 be1 zau2 | 89000 | 35000 | 4000 | 50000 | Jyutping | CEDict |
-| 5 | 醫療經驗 | ji1 liu4 ging1 jim6 | 95000 | 35000 | 0 | 60000 | Jyutping | CEDict |
+### #302: `gei1 wui6` (multi_syllable) - position: not found
 
-### #308: `gam1 nin2` (multi_syllable)
+**Description**: opportunity
+
+### #303: `man6 tai4` (multi_syllable) - position: not found
+
+**Description**: problem/question
+
+### #304: `zung1 ji3` (multi_syllable) - position: not found
+
+**Description**: like/prefer
+
+### #305: `gwaan1 hai6` (multi_syllable) - position: not found
+
+**Description**: relationship
+
+### #306: `si4 gaan3` (multi_syllable) - position: not found
+
+**Description**: time
+
+### #307: `zou2 san4` (multi_syllable) - position: not found
+
+**Description**: good morning
+
+### #308: `gam1 nin2` (multi_syllable) - position: not found
 
 **Description**: this year
 
-**Reason**: No results returned
+### #309: `ceot1 heoi3` (multi_syllable) - position: not found
 
-### #334: `haa5 ci3` (multi_syllable)
+**Description**: go out
+
+### #310: `faan1 lai4` (multi_syllable) - position: not found
+
+**Description**: come back
+
+### #311: `zou2 can1` (multi_syllable) - position: not found
+
+**Description**: breakfast
+
+### #312: `aan3 zau3` (multi_syllable) - position: not found
+
+**Description**: afternoon
+
+### #313: `maan5 faan6` (multi_syllable) - position: not found
+
+**Description**: dinner
+
+### #314: `daai6 hok6` (multi_syllable) - position: not found
+
+**Description**: university
+
+### #315: `zung1 hok6` (multi_syllable) - position: not found
+
+**Description**: secondary school
+
+### #316: `siu2 hok6` (multi_syllable) - position: not found
+
+**Description**: primary school
+
+### #317: `daa2 bo1` (multi_syllable) - position: not found
+
+**Description**: play ball
+
+### #318: `tai2 hei3` (multi_syllable) - position: not found
+
+**Description**: watch movie
+
+### #319: `maai5 je5` (multi_syllable) - position: not found
+
+**Description**: buy things/shop
+
+### #320: `zung1 gwok3` (multi_syllable) - position: not found
+
+**Description**: China
+
+### #321: `jing1 gwok3` (multi_syllable) - position: not found
+
+**Description**: England/UK
+
+### #322: `jat6 bun2` (multi_syllable) - position: not found
+
+**Description**: Japan
+
+### #323: `toi4 waan1` (multi_syllable) - position: not found
+
+**Description**: Taiwan
+
+### #324: `leng3 zai2` (multi_syllable) - position: not found
+
+**Description**: handsome boy
+
+### #325: `leng3 neoi5` (multi_syllable) - position: not found
+
+**Description**: pretty girl
+
+### #326: `lek1 zai2` (multi_syllable) - position: not found
+
+**Description**: clever boy
+
+### #327: `daai6 gaa1` (multi_syllable) - position: not found
+
+**Description**: everyone
+
+### #328: `zi6 gei2` (multi_syllable) - position: not found
+
+**Description**: oneself
+
+### #329: `keoi5 dei6` (multi_syllable) - position: not found
+
+**Description**: they/them
+
+### #330: `ngo5 dei6` (multi_syllable) - position: not found
+
+**Description**: we/us
+
+### #331: `m4 sai2` (multi_syllable) - position: not found
+
+**Description**: no need
+
+### #332: `m4 zi1` (multi_syllable) - position: not found
+
+**Description**: don't know
+
+### #333: `jau5 mou5` (multi_syllable) - position: not found
+
+**Description**: have or not
+
+### #334: `haa5 ci3` (multi_syllable) - position: not found
 
 **Description**: next time
 
-**Reason**: Expected one of ['下次'] but got ['沙蟹桌', '炒蝦拆蟹'] (jyutping: ['saa1 haai5 coek3', 'caau2 haa1 caak3 haai5'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 沙蟹桌 | saa1 haai5 coek3 | 93500 | 28000 | 25500 | 40000 | Jyutping | CCanto |
-| 2 | 炒蝦拆蟹 | caau2 haa1 caak3 haai5 | 158500 | 35000 | 25500 | 90000 | Jyutping | CCanto |
-
-### #335: `soeng5 min6` (multi_syllable)
+### #335: `soeng5 min6` (multi_syllable) - position: not found
 
 **Description**: above/on top
 
-**Reason**: Expected one of ['上面'] but got ['七情上面'] (jyutping: ['cat1 cing4 soeng5 min6'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 七情上面 | cat1 cing4 soeng5 min6 | 121745 | 31745 | 0 | 90000 | Jyutping | CCanto |
-
-### #336: `haa5 min6` (multi_syllable)
+### #336: `haa5 min6` (multi_syllable) - position: not found
 
 **Description**: below/underneath
 
-**Reason**: Expected one of ['下面'] but got ['厚面皮', '面皮厚'] (jyutping: ['hau5 min6 pei4', 'min6 pei4 hau5'])
+### #337: `jat1 ding6` (multi_syllable) - position: not found
 
-**Top results:**
+**Description**: definitely
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 厚面皮 | hau5 min6 pei4 | 68620 | 27120 | 21500 | 20000 | Jyutping | CCanto |
-| 2 | 面皮厚 | min6 pei4 hau5 | 86620 | 27120 | 21500 | 30000 | Jyutping | CCanto |
+### #338: `zoi3 gin3` (multi_syllable) - position: not found
 
-### #342: `jing1 man2` (multi_syllable)
+**Description**: goodbye
+
+### #339: `gam2 joeng2` (multi_syllable) - position: not found
+
+**Description**: like this
+
+### #340: `sou3 hok6` (multi_syllable) - position: not found
+
+**Description**: mathematics
+
+### #341: `lik6 si2` (multi_syllable) - position: not found
+
+**Description**: history
+
+### #342: `jing1 man2` (multi_syllable) - position: not found
 
 **Description**: English language
 
-**Reason**: Expected one of ['英文'] but got ['英文堂'] (jyutping: ['jing1 man2 tong4'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 英文堂 | jing1 man2 tong4 | 47559 | 27559 | 0 | 20000 | Jyutping | CCanto |
-
-### #343: `zung1 man2` (multi_syllable)
+### #343: `zung1 man2` (multi_syllable) - position: not found
 
 **Description**: Chinese language
 
-**Reason**: Expected one of ['中文'] but got ['繁體中文'] (jyutping: ['faan4 tai2 zung1 man2'])
+### #344: `tau4 faat3` (multi_syllable) - position: not found
 
-**Top results:**
+**Description**: hair (head)
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 繁體中文 | faan4 tai2 zung1 man2 | 122724 | 32724 | 0 | 90000 | Jyutping | CCanto |
+### #345: `hoi2 sin1` (multi_syllable) - position: not found
 
-### #368: `jau4 guk2` (multi_syllable)
+**Description**: seafood
+
+### #346: `gaa1 fei1` (multi_syllable) - position: not found
+
+**Description**: coffee
+
+### #347: `naai5 caa4` (multi_syllable) - position: not found
+
+**Description**: milk tea
+
+### #348: `gai1 daan2` (multi_syllable) - position: not found
+
+**Description**: chicken egg
+
+### #349: `ngau4 juk6` (multi_syllable) - position: not found
+
+**Description**: beef
+
+### #350: `zyu1 juk6` (multi_syllable) - position: not found
+
+**Description**: pork
+
+### #351: `gai1 juk6` (multi_syllable) - position: not found
+
+**Description**: chicken meat
+
+### #352: `sang1 jat6` (multi_syllable) - position: not found
+
+**Description**: birthday
+
+### #353: `san1 nin4` (multi_syllable) - position: not found
+
+**Description**: new year
+
+### #354: `sing3 daan3` (multi_syllable) - position: not found
+
+**Description**: Christmas
+
+### #355: `tin1 hei3` (multi_syllable) - position: not found
+
+**Description**: weather
+
+### #356: `lok6 jyu5` (multi_syllable) - position: not found
+
+**Description**: raining
+
+### #357: `ceoi1 fung1` (multi_syllable) - position: not found
+
+**Description**: blow wind
+
+### #358: `tai2 syu1` (multi_syllable) - position: not found
+
+**Description**: read book
+
+### #359: `fan3 gaau3` (multi_syllable) - position: not found
+
+**Description**: sleep
+
+### #360: `sai2 min6` (multi_syllable) - position: not found
+
+**Description**: wash face
+
+### #361: `cung1 loeng4` (multi_syllable) - position: not found
+
+**Description**: take shower
+
+### #362: `tai2 ji1 sang1` (multi_syllable) - position: not found
+
+**Description**: see a doctor
+
+### #363: `haang4 gaai1` (multi_syllable) - position: not found
+
+**Description**: walk the street/go shopping
+
+### #364: `daa2 din6 waa2` (multi_syllable) - position: not found
+
+**Description**: make phone call
+
+### #365: `zou6 je5` (multi_syllable) - position: not found
+
+**Description**: do things
+
+### #366: `gung1 jyun2` (multi_syllable) - position: not found
+
+**Description**: park/garden
+
+### #367: `caai1 gwun2` (multi_syllable) - position: not found
+
+**Description**: restaurant
+
+### #368: `jau4 guk2` (multi_syllable) - position: not found
 
 **Description**: post office
 
-**Reason**: Expected one of ['郵局'] but got ['油管'] (jyutping: ['jau4 gun2'])
+### #369: `gei1 coeng4` (multi_syllable) - position: not found
 
-**Top results:**
+**Description**: airport
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 油管 | jau4 gun2 | 42500 | 21000 | 21500 | 0 | Jyutping | CCanto |
-| 2 | 古人 | gu2 jan4 | 69640 | 18640 | 43000 | 0 | Jyutping | CEDict |
-| 3 | 游泳館 | jau4 wing6 gun2 | 79500 | 28000 | 21500 | 30000 | Jyutping | CEDict |
-| 4 | 輸油管 | syu1 jau4 gun2 | 89500 | 28000 | 21500 | 40000 | Jyutping | CEDict |
-| 5 | 古人類 | gu2 jan4 leoi6 | 96640 | 25640 | 43000 | 20000 | Jyutping | CEDict |
+### #370: `fo2 ce1` (multi_syllable) - position: not found
 
-### #401: `gwaai3` (cantonese_vocab)
+**Description**: train
+
+### #371: `jau5 jat6` (multi_syllable) - position: not found
+
+**Description**: one day (someday)
+
+### #372: `cin4 min6` (multi_syllable) - position: not found
+
+**Description**: in front/ahead
+
+### #373: `hau6 min6` (multi_syllable) - position: not found
+
+**Description**: behind/at the back
+
+### #374: `zo2 min6` (multi_syllable) - position: not found
+
+**Description**: left side
+
+### #375: `jau6 min6` (multi_syllable) - position: not found
+
+**Description**: right side
+
+### #376: `fei1 gei1` (multi_syllable) - position: not found
+
+**Description**: airplane
+
+### #377: `siu2 sam1` (multi_syllable) - position: not found
+
+**Description**: be careful
+
+### #378: `m4 gam2` (multi_syllable) - position: not found
+
+**Description**: dare not
+
+### #379: `hou2 do1` (multi_syllable) - position: not found
+
+**Description**: a lot/many
+
+### #380: `hou2 siu2` (multi_syllable) - position: not found
+
+**Description**: very few
+
+### #381: `laa1` (cantonese_vocab) - position: not found
+
+**Description**: sentence particle (Canto)
+
+### #382: `laa3` (cantonese_vocab) - position: not found
+
+**Description**: assertion particle (Canto)
+
+### #383: `wo3` (cantonese_vocab) - position: not found
+
+**Description**: surprise particle (Canto)
+
+### #384: `wo5` (cantonese_vocab) - position: not found
+
+**Description**: emphatic particle (Canto)
+
+### #385: `gaa3` (cantonese_vocab) - position: not found
+
+**Description**: assertive particle (Canto)
+
+### #386: `me1` (cantonese_vocab) - position: not found
+
+**Description**: question particle/carry on back (Canto)
+
+### #387: `ze1` (cantonese_vocab) - position: not found
+
+**Description**: only particle (Canto)
+
+### #388: `lo2` (cantonese_vocab) - position: not found
+
+**Description**: take/get (Canto)
+
+### #389: `aai3` (cantonese_vocab) - position: not found
+
+**Description**: shout/yell (Canto)
+
+### #390: `gaau2` (cantonese_vocab) - position: not found
+
+**Description**: mess up/do (Canto)
+
+### #391: `lek1` (cantonese_vocab) - position: not found
+
+**Description**: clever/capable (Canto)
+
+### #392: `naa2` (cantonese_vocab) - position: not found
+
+**Description**: female (Canto)
+
+### #393: `lou5` (cantonese_vocab) - position: not found
+
+**Description**: guy/fellow (Canto)
+
+### #394: `bik1` (cantonese_vocab) - position: not found
+
+**Description**: force/squeeze (Canto)
+
+### #395: `king1` (cantonese_vocab) - position: not found
+
+**Description**: chat (Canto)
+
+### #396: `cou4` (cantonese_vocab) - position: not found
+
+**Description**: noisy (Canto)
+
+### #397: `dau2` (cantonese_vocab) - position: not found
+
+**Description**: fight/compete (Canto)
+
+### #398: `go2` (cantonese_vocab) - position: not found
+
+**Description**: that (Canto)
+
+### #399: `pek3` (cantonese_vocab) - position: not found
+
+**Description**: chop/slash (Canto)
+
+### #400: `caat3` (cantonese_vocab) - position: not found
+
+**Description**: scrub/brush (Canto)
+
+### #401: `gwaai3` (cantonese_vocab) - position: not found
 
 **Description**: well-behaved (Canto)
 
-**Reason**: Expected one of ['乖'] but got ['夬', '怪', '解', '介', '刮'] (jyutping: ['gwaai3', 'gwaai3', 'gaai3', 'gaai3', 'gwaat3'])
+### #402: `haam4` (cantonese_vocab) - position: not found
 
-**Top results:**
+**Description**: salty (Canto)
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 夬 | gwaai3 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 2 | 怪 | gwaai3 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 3 | 解 | gaai3 | 35374 | 13874 | 21500 | 0 | Jyutping | CCanto |
-| 4 | 介 | gaai3 | 35500 | 14000 | 21500 | 0 | Jyutping | CEDict |
-| 5 | 刮 | gwaat3 | 35500 | 14000 | 21500 | 0 | Jyutping | CEDict |
+### #403: `laang5` (cantonese_vocab) - position: not found
 
-### #440: `baa` (partial_prefix)
+**Description**: cold (Canto)
+
+### #404: `song2` (cantonese_vocab) - position: not found
+
+**Description**: comfortable (Canto)
+
+### #405: `dung3` (cantonese_vocab) - position: not found
+
+**Description**: cold/frozen (Canto)
+
+### #406: `gwaai1` (cantonese_vocab) - position: not found
+
+**Description**: well-behaved/obedient
+
+### #407: `ngaam1` (cantonese_vocab) - position: not found
+
+**Description**: correct/right (Canto)
+
+### #408: `gwai6` (cantonese_vocab) - position: not found
+
+**Description**: tired (Canto)
+
+### #409: `saai1` (cantonese_vocab) - position: not found
+
+**Description**: waste (Canto)
+
+### #410: `daap3` (cantonese_vocab) - position: not found
+
+**Description**: take (transport) (Canto)
+
+### #411: `gu2` (cantonese_vocab) - position: not found
+
+**Description**: guess/estimate (Canto)
+
+### #412: `gai2` (cantonese_vocab) - position: not found
+
+**Description**: chat/talk (Canto)
+
+### #413: `duk1` (cantonese_vocab) - position: not found
+
+**Description**: poke/prod (Canto)
+
+### #414: `paau4` (cantonese_vocab) - position: not found
+
+**Description**: plane/shave (Canto)
+
+### #415: `lok6 heoi3` (cantonese_vocab) - position: not found
+
+**Description**: go down
+
+### #416: `jat1 cai4` (cantonese_vocab) - position: not found
+
+**Description**: together
+
+### #417: `m4 hai6` (cantonese_vocab) - position: not found
+
+**Description**: is not
+
+### #418: `jau5 liu2` (cantonese_vocab) - position: not found
+
+**Description**: has substance/capable
+
+### #419: `sai2 cin2` (cantonese_vocab) - position: not found
+
+**Description**: spend money
+
+### #420: `haang4 wan6` (cantonese_vocab) - position: not found
+
+**Description**: lucky/in luck
+
+### #421: `gwo3 hoi2` (cantonese_vocab) - position: not found
+
+**Description**: cross the sea/go to HK island
+
+### #422: `hoi1 gung1` (cantonese_vocab) - position: not found
+
+**Description**: start work
+
+### #423: `zyun2 tau4` (cantonese_vocab) - position: not found
+
+**Description**: turn around/later
+
+### #424: `jat1 zan6` (cantonese_vocab) - position: not found
+
+**Description**: a moment
+
+### #425: `ap1` (cantonese_vocab) - position: not found
+
+**Description**: talk nonsense (Canto)
+
+### #426: `zaa3` (cantonese_vocab) - position: not found
+
+**Description**: only (Canto particle)
+
+### #427: `lai4` (cantonese_vocab) - position: not found
+
+**Description**: come (Canto)
+
+### #428: `maa3` (cantonese_vocab) - position: not found
+
+**Description**: particle (Canto)
+
+### #429: `gau6` (cantonese_vocab) - position: not found
+
+**Description**: lump/piece (Canto)
+
+### #430: `zo2` (cantonese_vocab) - position: not found
+
+**Description**: aspect particle (done) (Canto)
+
+### #431: `lou` (partial_prefix) - position: not found
+
+**Description**: prefix for lou- syllables
+
+### #432: `gin` (partial_prefix) - position: not found
+
+**Description**: prefix for gin- syllables
+
+### #433: `faa` (partial_prefix) - position: not found
+
+**Description**: prefix for faa- syllables
+
+### #434: `sin` (partial_prefix) - position: not found
+
+**Description**: prefix for sin- syllables
+
+### #435: `bei` (partial_prefix) - position: not found
+
+**Description**: prefix for bei- syllables
+
+### #436: `daa` (partial_prefix) - position: not found
+
+**Description**: prefix for daa- syllables
+
+### #437: `wai` (partial_prefix) - position: not found
+
+**Description**: prefix for wai- syllables
+
+### #438: `cung` (partial_prefix) - position: not found
+
+**Description**: prefix for cung- syllables
+
+### #439: `maa` (partial_prefix) - position: not found
+
+**Description**: prefix for maa- syllables
+
+### #440: `baa` (partial_prefix) - position: not found
 
 **Description**: prefix for baa- syllables
 
-**Reason**: Expected one of ['巴', '爸', '吧'] but got ['壩', '包', '板', '班', '勹'] (jyutping: ['baa3', 'baau1', 'baan2', 'baan1', 'baau1'])
+### #441: `tin` (partial_prefix) - position: not found
 
-**Top results:**
+**Description**: prefix for tin- syllables
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 壩 | baa3 | 9000 | 9000 | 0 | 0 | Jyutping | CEDict |
-| 2 | 包 | baau1 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 3 | 板 | baan2 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 4 | 班 | baan1 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 5 | 勹 | baau1 | 13000 | 9000 | 4000 | 0 | Jyutping | CCanto |
+### #442: `ming` (partial_prefix) - position: not found
 
-### #521: `sun` (english)
+**Description**: prefix for ming- syllables
+
+### #443: `syu` (partial_prefix) - position: not found
+
+**Description**: prefix for syu- syllables
+
+### #444: `hei` (partial_prefix) - position: not found
+
+**Description**: prefix for hei- syllables
+
+### #445: `gei` (partial_prefix) - position: not found
+
+**Description**: prefix for gei- syllables
+
+### #446: `jyu` (partial_prefix) - position: not found
+
+**Description**: prefix for jyu- syllables
+
+### #447: `hok` (partial_prefix) - position: not found
+
+**Description**: prefix for hok- syllables
+
+### #448: `din` (partial_prefix) - position: not found
+
+**Description**: prefix for din- syllables
+
+### #449: `zoi` (partial_prefix) - position: not found
+
+**Description**: prefix for zoi- syllables
+
+### #450: `sik` (partial_prefix) - position: not found
+
+**Description**: prefix for sik- syllables
+
+### #451: `toi` (partial_prefix) - position: not found
+
+**Description**: prefix for toi- syllables
+
+### #452: `hou` (partial_prefix) - position: not found
+
+**Description**: prefix for hou- syllables
+
+### #453: `gwai` (partial_prefix) - position: not found
+
+**Description**: prefix for gwai- syllables
+
+### #454: `seoi` (partial_prefix) - position: not found
+
+**Description**: prefix for seoi- syllables
+
+### #455: `gung` (partial_prefix) - position: not found
+
+**Description**: prefix for gung- syllables
+
+### #456: `fei` (partial_prefix) - position: not found
+
+**Description**: prefix for fei- syllables
+
+### #457: `ceoi` (partial_prefix) - position: not found
+
+**Description**: prefix for ceoi- syllables
+
+### #458: `ngau` (partial_prefix) - position: not found
+
+**Description**: prefix for ngau- syllables
+
+### #459: `zing` (partial_prefix) - position: not found
+
+**Description**: prefix for zing- syllables
+
+### #460: `gwok` (partial_prefix) - position: not found
+
+**Description**: prefix for gwok- syllables
+
+### #461: `gaai` (partial_prefix) - position: not found
+
+**Description**: prefix for gaai- syllables
+
+### #462: `lok` (partial_prefix) - position: not found
+
+**Description**: prefix for lok- syllables
+
+### #463: `bou` (partial_prefix) - position: not found
+
+**Description**: prefix for bou- syllables
+
+### #464: `jing` (partial_prefix) - position: not found
+
+**Description**: prefix for jing- syllables
+
+### #465: `pou` (partial_prefix) - position: not found
+
+**Description**: prefix for pou- syllables
+
+### #466: `cin` (partial_prefix) - position: not found
+
+**Description**: prefix for cin- syllables
+
+### #467: `keoi` (partial_prefix) - position: not found
+
+**Description**: prefix for keoi- syllables
+
+### #468: `lai` (partial_prefix) - position: not found
+
+**Description**: prefix for lai- syllables
+
+### #469: `mou` (partial_prefix) - position: not found
+
+**Description**: prefix for mou- syllables
+
+### #470: `fan` (partial_prefix) - position: not found
+
+**Description**: prefix for fan- syllables
+
+### #471: `mother` (english) - position: not found
+
+**Description**: English mother
+
+### #472: `father` (english) - position: not found
+
+**Description**: English father
+
+### #473: `brother` (english) - position: not found
+
+**Description**: English brother
+
+### #474: `sister` (english) - position: not found
+
+**Description**: English sister
+
+### #475: `rice` (english) - position: not found
+
+**Description**: English rice
+
+### #476: `fish` (english) - position: not found
+
+**Description**: English fish
+
+### #477: `chicken` (english) - position: not found
+
+**Description**: English chicken
+
+### #478: `tea` (english) - position: not found
+
+**Description**: English tea
+
+### #479: `coffee` (english) - position: not found
+
+**Description**: English coffee
+
+### #480: `red` (english) - position: not found
+
+**Description**: English red
+
+### #481: `blue` (english) - position: not found
+
+**Description**: English blue
+
+### #482: `green` (english) - position: not found
+
+**Description**: English green
+
+### #483: `black` (english) - position: not found
+
+**Description**: English black
+
+### #484: `white` (english) - position: not found
+
+**Description**: English white
+
+### #485: `hand` (english) - position: not found
+
+**Description**: English hand
+
+### #486: `head` (english) - position: not found
+
+**Description**: English head
+
+### #487: `mouth` (english) - position: not found
+
+**Description**: English mouth
+
+### #488: `walk` (english) - position: not found
+
+**Description**: English walk
+
+### #489: `sleep` (english) - position: not found
+
+**Description**: English sleep
+
+### #490: `buy` (english) - position: not found
+
+**Description**: English buy
+
+### #491: `sell` (english) - position: not found
+
+**Description**: English sell
+
+### #492: `give` (english) - position: not found
+
+**Description**: English give
+
+### #493: `read` (english) - position: not found
+
+**Description**: English read
+
+### #494: `write` (english) - position: not found
+
+**Description**: English write
+
+### #495: `hot` (english) - position: not found
+
+**Description**: English hot
+
+### #496: `cold` (english) - position: not found
+
+**Description**: English cold
+
+### #497: `fast` (english) - position: not found
+
+**Description**: English fast
+
+### #498: `slow` (english) - position: not found
+
+**Description**: English slow
+
+### #499: `new` (english) - position: not found
+
+**Description**: English new
+
+### #500: `old` (english) - position: not found
+
+**Description**: English old
+
+### #501: `happy` (english) - position: not found
+
+**Description**: English happy
+
+### #502: `school` (english) - position: not found
+
+**Description**: English school
+
+### #503: `hospital` (english) - position: not found
+
+**Description**: English hospital
+
+### #504: `morning` (english) - position: not found
+
+**Description**: English morning
+
+### #505: `night` (english) - position: not found
+
+**Description**: English night
+
+### #506: `year` (english) - position: not found
+
+**Description**: English year
+
+### #507: `month` (english) - position: not found
+
+**Description**: English month
+
+### #508: `week` (english) - position: not found
+
+**Description**: English week
+
+### #509: `friend` (english) - position: not found
+
+**Description**: English friend
+
+### #510: `child` (english) - position: not found
+
+**Description**: English child
+
+### #511: `teacher` (english) - position: not found
+
+**Description**: English teacher
+
+### #512: `student` (english) - position: not found
+
+**Description**: English student
+
+### #513: `doctor` (english) - position: not found
+
+**Description**: English doctor
+
+### #514: `car` (english) - position: not found
+
+**Description**: English car
+
+### #515: `food` (english) - position: not found
+
+**Description**: English food
+
+### #516: `book` (english) - position: not found
+
+**Description**: English book
+
+### #517: `love` (english) - position: not found
+
+**Description**: English love
+
+### #518: `work` (english) - position: not found
+
+**Description**: English work
+
+### #519: `rain` (english) - position: not found
+
+**Description**: English rain
+
+### #520: `wind` (english) - position: not found
+
+**Description**: English wind
+
+### #521: `sun` (english) - position: not found
 
 **Description**: English sun
 
-**Reason**: Expected one of ['日', '太陽'] but got ['娀', '崇', '悚', '慫', '聳'] (jyutping: ['sung1', 'sung4', 'sung2', 'sung2', 'sung2'])
+### #522: `moon` (english) - position: not found
 
-**Top results:**
+**Description**: English moon
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 娀 | sung1 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 崇 | sung4 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
-| 3 | 悚 | sung2 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
-| 4 | 慫 | sung2 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
-| 5 | 聳 | sung2 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
+### #523: `flower` (english) - position: not found
 
-### #588: `hai6 m4 hai6` (edge_case)
+**Description**: English flower
+
+### #524: `mountain` (english) - position: not found
+
+**Description**: English mountain
+
+### #525: `river` (english) - position: not found
+
+**Description**: English river
+
+### #526: `road` (english) - position: not found
+
+**Description**: English road
+
+### #527: `telephone` (english) - position: not found
+
+**Description**: English telephone
+
+### #528: `police` (english) - position: not found
+
+**Description**: English police
+
+### #529: `thank` (english) - position: not found
+
+**Description**: English thank
+
+### #530: `sorry` (english) - position: not found
+
+**Description**: English sorry
+
+### #531: `人` (character) - position: not found
+
+**Description**: person char search
+
+### #532: `大` (character) - position: not found
+
+**Description**: big char search
+
+### #533: `小` (character) - position: not found
+
+**Description**: small char search
+
+### #534: `天` (character) - position: not found
+
+**Description**: sky char search
+
+### #535: `地` (character) - position: not found
+
+**Description**: earth char search
+
+### #536: `水` (character) - position: not found
+
+**Description**: water char search
+
+### #537: `火` (character) - position: not found
+
+**Description**: fire char search
+
+### #538: `山` (character) - position: not found
+
+**Description**: mountain char search
+
+### #539: `日` (character) - position: not found
+
+**Description**: day/sun char search
+
+### #540: `月` (character) - position: not found
+
+**Description**: moon/month char search
+
+### #541: `手` (character) - position: not found
+
+**Description**: hand char search
+
+### #542: `口` (character) - position: not found
+
+**Description**: mouth char search
+
+### #543: `心` (character) - position: not found
+
+**Description**: heart char search
+
+### #544: `目` (character) - position: not found
+
+**Description**: eye char search
+
+### #545: `車` (character) - position: not found
+
+**Description**: car char search
+
+### #546: `馬` (character) - position: not found
+
+**Description**: horse char search
+
+### #547: `花` (character) - position: not found
+
+**Description**: flower char search
+
+### #548: `魚` (character) - position: not found
+
+**Description**: fish char search
+
+### #549: `鳥` (character) - position: not found
+
+**Description**: bird char search
+
+### #550: `學校` (character) - position: not found
+
+**Description**: school multi-char
+
+### #551: `醫院` (character) - position: not found
+
+**Description**: hospital multi-char
+
+### #552: `巴士` (character) - position: not found
+
+**Description**: bus multi-char
+
+### #553: `地鐵` (character) - position: not found
+
+**Description**: MTR multi-char
+
+### #554: `電話` (character) - position: not found
+
+**Description**: telephone multi-char
+
+### #555: `電腦` (character) - position: not found
+
+**Description**: computer multi-char
+
+### #556: `警察` (character) - position: not found
+
+**Description**: police multi-char
+
+### #557: `老師` (character) - position: not found
+
+**Description**: teacher multi-char
+
+### #558: `中國` (character) - position: not found
+
+**Description**: China multi-char
+
+### #559: `香港` (character) - position: not found
+
+**Description**: Hong Kong multi-char
+
+### #560: `朋友` (character) - position: not found
+
+**Description**: friend multi-char
+
+### #561: `唔該` (character) - position: not found
+
+**Description**: excuse me multi-char
+
+### #562: `多謝` (character) - position: not found
+
+**Description**: thank you multi-char
+
+### #563: `飛機` (character) - position: not found
+
+**Description**: airplane multi-char
+
+### #564: `公司` (character) - position: not found
+
+**Description**: company multi-char
+
+### #565: `時間` (character) - position: not found
+
+**Description**: time multi-char
+
+### #566: `開心` (character) - position: not found
+
+**Description**: happy multi-char
+
+### #567: `今日` (character) - position: not found
+
+**Description**: today multi-char
+
+### #568: `明天` (character) - position: not found
+
+**Description**: tomorrow multi-char
+
+### #569: `生日` (character) - position: not found
+
+**Description**: birthday multi-char
+
+### #570: `新年` (character) - position: not found
+
+**Description**: new year multi-char
+
+### #571: `Nei5` (edge_case) - position: not found
+
+**Description**: mixed case capital N
+
+### #572: `HOU2` (edge_case) - position: not found
+
+**Description**: all caps
+
+### #573: `s` (edge_case) - position: not found
+
+**Description**: single consonant s
+
+### #574: `g` (edge_case) - position: not found
+
+**Description**: single consonant g
+
+### #575: `l` (edge_case) - position: not found
+
+**Description**: single consonant l
+
+### #576: `go` (edge_case) - position: not found
+
+**Description**: ambiguous 'go'
+
+### #577: `ga` (edge_case) - position: not found
+
+**Description**: ambiguous 'ga'
+
+### #578: `la` (edge_case) - position: not found
+
+**Description**: ambiguous 'la'
+
+### #579: `gam1` (edge_case) - position: not found
+
+**Description**: gam tone 1 vs 2 vs 3
+
+### #580: `gam2` (edge_case) - position: not found
+
+**Description**: gam tone 2 - so/like that
+
+### #581: `gam3` (edge_case) - position: not found
+
+**Description**: gam tone 3 - so/thus
+
+### #582: `si1` (edge_case) - position: not found
+
+**Description**: si tone 1 - silk/private
+
+### #583: `si6` (edge_case) - position: not found
+
+**Description**: si tone 6 - is/matter
+
+### #584: `ngaang6` (edge_case) - position: not found
+
+**Description**: uncommon syllable ngaang
+
+### #585: `gwik1` (edge_case) - position: not found
+
+**Description**: uncommon syllable gwik
+
+### #586: `zoeng1` (edge_case) - position: not found
+
+**Description**: common but many homophones
+
+### #587: `jau5 mou5` (edge_case) - position: not found
+
+**Description**: have or not question
+
+### #588: `hai6 m4 hai6` (edge_case) - position: not found
 
 **Description**: yes or no question (3 syllable)
 
-**Reason**: No results returned
-
-### #589: `hou2 m4 hou2` (edge_case)
+### #589: `hou2 m4 hou2` (edge_case) - position: not found
 
 **Description**: good or not (3 syllable)
 
-**Reason**: No results returned
+### #590: `jat1 go3 jan4` (edge_case) - position: not found
 
-### #592: `saam1 go3` (edge_case)
+**Description**: one person (3 syllable)
+
+### #591: `jat1 di1` (edge_case) - position: not found
+
+**Description**: a bit/some
+
+### #592: `saam1 go3` (edge_case) - position: not found
 
 **Description**: three (classifier)
 
-**Reason**: Expected one of ['三個'] but got ['三角', '衫腳', '三教'] (jyutping: ['saam1 gok3', 'saam1 goek3', 'saam1 gaau3'])
+### #593: `gaa1 jan4` (edge_case) - position: not found
 
-**Top results:**
+**Description**: family member
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 三角 | saam1 gok3 | 24455 | 20455 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 衫腳 | saam1 goek3 | 27500 | 21000 | 6500 | 0 | Jyutping | CCanto |
-| 3 | 三教 | saam1 gaau3 | 41786 | 20286 | 21500 | 0 | Jyutping | CEDict |
-| 4 | 三價 | saam1 gaa3 | 41955 | 20455 | 21500 | 0 | Jyutping | CEDict |
-| 5 | 三國 | saam1 gwok3 | 41955 | 20455 | 21500 | 0 | Jyutping | CEDict |
+### #594: `daai6 gaa1` (edge_case) - position: not found
 
-### #600: `hou2 do1 ze6` (edge_case)
+**Description**: everyone
+
+### #595: `aa1` (edge_case) - position: not found
+
+**Description**: exclamation particle tone 1
+
+### #596: `aa4` (edge_case) - position: not found
+
+**Description**: question particle tone 4
+
+### #597: `sap6 ji6` (edge_case) - position: not found
+
+**Description**: twelve
+
+### #598: `baat3 jyut6` (edge_case) - position: not found
+
+**Description**: August
+
+### #599: `sing1 kei4 jat1` (edge_case) - position: not found
+
+**Description**: Monday
+
+### #600: `hou2 do1 ze6` (edge_case) - position: not found
 
 **Description**: thank you very much
 
-**Reason**: Expected one of ['好多謝'] but got ['好得滯', '人多好做作', '可選擇丟棄', '多謝你咁好介紹', '好漢做事好漢當'] (jyutping: ['hou2 dak1 zai6', 'jan4 do1 hou2 zou6 zok3', 'ho2 syun2 zaak6 diu1 hei3', 'do1 ze6 nei5 gam3 hou2 gaai3 siu6', 'hou2 hon3 zou6 si6 hou2 hon3 dong1'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 好得滯 | hou2 dak1 zai6 | 68878 | 25878 | 43000 | 0 | Jyutping | CCanto |
-| 2 | 人多好做作 | jan4 do1 hou2 zou6 zok3 | 146163 | 36663 | 21500 | 80000 | Jyutping | CCanto |
-| 3 | 可選擇丟棄 | ho2 syun2 zaak6 diu1 hei3 | 183089 | 40589 | 64500 | 70000 | Jyutping | CEDict |
-| 4 | 多謝你咁好介紹 | do1 ze6 nei5 gam3 hou2 gaai3 siu6 | 228761 | 52761 | 0 | 160000 | Jyutping | CCanto |
-| 5 | 好漢做事好漢當 | hou2 hon3 zou6 si6 hou2 hon3 dong1 | 279264 | 53264 | 28000 | 190000 | Jyutping | CEDict |
-
-### #601: `ge` (exact_vs_prefix)
+### #601: `ge` (exact_vs_prefix) - position: not found
 
 **Description**: ge (exact) should beat gei (prefix) - currently fails: gei1/機 at 11500 beats ge2/嘅 at 14000
 
-**Reason**: Expected one of ['嘅'] but got ['機'] (jyutping: ['gei1'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 機 | gei1 | 13000 | 9000 | 4000 | 0 | Jyutping | CCanto |
-| 2 | 嘅 | ge2 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
-| 3 | 痂 | ge1 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
-| 4 | 其 | gei1 | 17174 | 13174 | 4000 | 0 | Jyutping | CCanto |
-| 5 | 己 | gei2 | 17648 | 13648 | 4000 | 0 | Jyutping | CEDict |
-
-### #602: `do` (exact_vs_prefix)
+### #602: `do` (exact_vs_prefix) - position: not found
 
 **Description**: do (exact) should beat dou (prefix) - currently fails: dou6/道 at 10391 beats do1/多 at 12995
 
-**Reason**: Expected one of ['多'] but got ['道'] (jyutping: ['dou6'])
+### #603: `mo` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: mo (exact) should beat mou (prefix) - currently fails: mou6/霧 at 11500 beats mo5/冇 at 12000
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 道 | dou6 | 11891 | 7891 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 多 | do1 | 12995 | 12995 | 0 | 0 | Jyutping | CEDict |
-| 3 | 刀 | dou1 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 4 | 島 | dou2 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 5 | 哆 | do1 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+### #604: `to` (exact_vs_prefix) - position: not found
 
-### #606: `co` (exact_vs_prefix)
+**Description**: to (exact) should beat tou (prefix) - currently fails: tou4/圖 at 11500 beats to1/他 at 11797
+
+### #605: `di` (exact_vs_prefix) - position: not found
+
+**Description**: di exact matches should occupy top 2 before any dim/dip/diu prefix matches
+
+### #606: `co` (exact_vs_prefix) - position: not found
 
 **Description**: co (exact) should beat cou/coi/cong (prefix) - currently all prefix matches win
 
-**Reason**: Expected one of ['初', '搓'] but got ['草'] (jyutping: ['cou2'])
+### #607: `do1` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: do1 exact should beat dou1 prefix - currently fails: dou1/刀 at 11500 beats do1/多 at 12995
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 草 | cou2 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 菜 | coi3 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 3 | 艸 | cou2 | 13000 | 9000 | 4000 | 0 | Jyutping | CCanto |
-| 4 | 初 | co1 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 5 | 剉 | co3 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-
-### #608: `do6` (exact_vs_prefix)
+### #608: `do6` (exact_vs_prefix) - position: not found
 
 **Description**: do6 exact should beat dou6 prefix - currently fails: dou6/道 at 10391 beats do6/墮 at 14000
 
-**Reason**: Expected one of ['墮'] but got ['道'] (jyutping: ['dou6'])
-
-**Top results:**
-
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 道 | dou6 | 11891 | 7891 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 墮 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 3 | 惰 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 4 | 隋 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
-| 5 | 馱 | do6 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
-
-### #609: `do3` (exact_vs_prefix)
+### #609: `do3` (exact_vs_prefix) - position: not found
 
 **Description**: do3 exact should beat dou3 prefix
 
-**Reason**: Expected one of ['剁'] but got ['道'] (jyutping: ['dou3'])
+### #610: `si` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: si (exact) should beat sik/sin/sing (prefix) - currently passes
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 道 | dou3 | 11891 | 7891 | 4000 | 0 | Jyutping | CCanto |
-| 2 | 剁 | do3 | 14000 | 14000 | 0 | 0 | Jyutping | CCanto |
-| 3 | 到 | dou3 | 16300 | 12300 | 4000 | 0 | Jyutping | CEDict |
-| 4 | 妒 | dou3 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
-| 5 | 斁 | dou3 | 18000 | 14000 | 4000 | 0 | Jyutping | CEDict |
+### #611: `go` (exact_vs_prefix) - position: not found
 
-### #631: `lo ge` (exact_vs_prefix)
+**Description**: go (exact) should beat gok/gon/gou (prefix) - currently passes
+
+### #612: `lo` (exact_vs_prefix) - position: not found
+
+**Description**: lo (exact) should beat lou/lok/long (prefix) - currently passes
+
+### #613: `se` (exact_vs_prefix) - position: not found
+
+**Description**: se (exact) should beat sei/sek/seon (prefix) - currently passes
+
+### #614: `bo` (exact_vs_prefix) - position: not found
+
+**Description**: bo (exact) should beat bou/bok/bong (prefix) - currently passes
+
+### #615: `zo` (exact_vs_prefix) - position: not found
+
+**Description**: zo (exact) should beat zou/zok/zoi (prefix) - currently passes
+
+### #616: `fo` (exact_vs_prefix) - position: not found
+
+**Description**: fo (exact) should beat fok/fong (prefix) - currently passes
+
+### #617: `so` (exact_vs_prefix) - position: not found
+
+**Description**: so (exact) should beat sou/sok/song (prefix) - currently passes
+
+### #618: `no` (exact_vs_prefix) - position: not found
+
+**Description**: no (exact) should beat noi/nok (prefix) - currently passes
+
+### #619: `ge3` (exact_vs_prefix) - position: not found
+
+**Description**: ge3 exact should beat gei3 prefix - tone helps filter, currently passes
+
+### #620: `ge2` (exact_vs_prefix) - position: not found
+
+**Description**: ge2 exact should beat gei2 prefix
+
+### #621: `mo5` (exact_vs_prefix) - position: not found
+
+**Description**: mo5 exact should beat mou5 prefix - currently passes with tone
+
+### #622: `di1` (exact_vs_prefix) - position: not found
+
+**Description**: di1 exact should beat dim1/dik1 prefix
+
+### #623: `to1` (exact_vs_prefix) - position: not found
+
+**Description**: to1 exact should beat tou1/tok1 prefix - currently passes with tone
+
+### #624: `se1` (exact_vs_prefix) - position: not found
+
+**Description**: se1 exact should beat sei1/sek1/seon1 prefix
+
+### #625: `da` (exact_vs_prefix) - position: not found
+
+**Description**: da - no common exact syllable, all are prefix (dau/daai/daan). Prefix matches are fine here.
+
+### #626: `ba` (exact_vs_prefix) - position: not found
+
+**Description**: ba - no common exact syllable, prefix matches (baa/baai/baat) expected
+
+### #627: `ga` (exact_vs_prefix) - position: not found
+
+**Description**: ga - no exact syllable, prefix matches (gaa/gaai/gaam) expected
+
+### #628: `ge do` (exact_vs_prefix) - position: not found
+
+**Description**: Multi-syllable: currently ge→gei prefix wins, returning 基多/gei1 do1 instead of exact ge+do compound
+
+### #629: `si go` (exact_vs_prefix) - position: not found
+
+**Description**: Multi-syllable: both si and go have exact syllables, 詩歌 uses both exactly
+
+### #630: `do di` (exact_vs_prefix) - position: not found
+
+**Description**: Multi-syllable: do+di should match exact syllables, not dou+dim
+
+### #631: `lo ge` (exact_vs_prefix) - position: not found
 
 **Description**: Multi-syllable: ge→gei prefix match causes 裸機/lo2 gei1 instead of exact lo+ge
 
-**Reason**: Expected one of ['裸機', '鑼機'] but got ['圈', '宿', '壽'] (jyutping: ['hyun1', 'sau3', 'sau6'])
+### #632: `zo ge` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: Multi-syllable: ge→gei prefix match causes 座機/zo6 gei1 instead of exact zo+ge
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 圈 | hyun1 | 23500 | 9000 | 14500 | 0 | English | CEDict |
-| 2 | 宿 | sau3 | 24300 | 14000 | 10300 | 0 | English | CEDict |
-| 3 | 壽 | sau6 | 24300 | 14000 | 10300 | 0 | English | CCanto |
-| 4 | 卑 | bei1 | 24600 | 14000 | 10600 | 0 | English | CCanto |
-| 5 | 蠨 | siu1 | 24800 | 14000 | 10800 | 0 | English | CEDict |
+### #633: `so` (exact_vs_prefix) - position: not found
 
-### #645: `mo ge` (exact_vs_prefix)
+**Description**: so exact should beat sou/sok/song prefix - verify 所 stays on top
+
+### #634: `zo2` (exact_vs_prefix) - position: not found
+
+**Description**: zo2 exact should beat zou2/zoi2 prefix
+
+### #635: `bo1` (exact_vs_prefix) - position: not found
+
+**Description**: bo1 exact should beat bou1/bok1 prefix
+
+### #636: `fo1` (exact_vs_prefix) - position: not found
+
+**Description**: fo1 exact should beat fok1/fong1 prefix
+
+### #637: `go3` (exact_vs_prefix) - position: not found
+
+**Description**: go3 exact should beat gok3/gon3/gong3 prefix - currently fails: gok3/角 at 11500 beats go3/嗰 at 12000
+
+### #638: `lo3` (exact_vs_prefix) - position: not found
+
+**Description**: lo3 exact should beat lok3/long3/lou3 prefix
+
+### #639: `si6` (exact_vs_prefix) - position: not found
+
+**Description**: si6 exact should beat sik6/sin6 prefix
+
+### #640: `si1` (exact_vs_prefix) - position: not found
+
+**Description**: si1 exact should beat sik1/sin1/sing1 prefix
+
+### #641: `go1` (exact_vs_prefix) - position: not found
+
+**Description**: go1 exact should beat gon1/gou1/gok1 prefix
+
+### #642: `lo4` (exact_vs_prefix) - position: not found
+
+**Description**: lo4 exact should beat lou4/lok4/long4 prefix
+
+### #643: `se4` (exact_vs_prefix) - position: not found
+
+**Description**: se4 exact should beat sei4/sek4/seon4 prefix
+
+### #644: `do di` (exact_vs_prefix) - position: not found
+
+**Description**: Multi-syllable with tone: exact do1 + exact di1 should beat dou+dim combos
+
+### #645: `mo ge` (exact_vs_prefix) - position: not found
 
 **Description**: Multi-syllable: ge→gei prefix match causes 磨嘰/mo4 gei1
 
-**Reason**: Expected one of ['磨嘰'] but got ['月', '猴', '姨'] (jyutping: ['jyut6', 'hau4', 'ji4'])
+### #646: `so do` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: Multi-syllable: both so and do have exact syllables, 所多/so2 do1 should match
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 月 | jyut6 | 21390 | 8690 | 12700 | 0 | English | CEDict |
-| 2 | 猴 | hau4 | 22700 | 9000 | 13700 | 0 | English | CCanto |
-| 3 | 姨 | ji4 | 23900 | 14000 | 9900 | 0 | English | CCanto |
-| 4 | 夙 | suk1 | 24600 | 14000 | 10600 | 0 | English | CCanto |
-| 5 | 去 | heoi2 | 24707 | 13007 | 11700 | 0 | English | CCanto |
-
-### #647: `do2` (exact_vs_prefix)
+### #647: `do2` (exact_vs_prefix) - position: not found
 
 **Description**: do2 exact should beat dou2 prefix - currently fails: dou2/島 at 11500
 
-**Reason**: Expected one of None but got ['島'] (jyutping: ['dou2'])
+### #648: `mo1` (exact_vs_prefix) - position: not found
 
-**Top results:**
+**Description**: mo1 exact should beat mou1 prefix
 
-| # | Characters | Jyutping | Total Cost | Static | Term Match | Unmatched | Type | Source |
-|---|-----------|----------|------------|--------|------------|-----------|------|--------|
-| 1 | 島 | dou2 | 13000 | 9000 | 4000 | 0 | Jyutping | CEDict |
-| 2 | 嚲 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 3 | 垛 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 4 | 埵 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
-| 5 | 朵 | do2 | 14000 | 14000 | 0 | 0 | Jyutping | CEDict |
+### #649: `co1` (exact_vs_prefix) - position: not found
+
+**Description**: co1 exact should beat cou1/coi1/cong1 prefix
+
+### #650: `no5` (exact_vs_prefix) - position: not found
+
+**Description**: no5 exact should beat noi5/nok5 prefix
+
+### #2001: `ho2` (exact_vs_prefix) - position: not found
+
+**Description**: ho2 exact (可/好) should beat hou2/hoi2 prefix
+
+### #2002: `ho4` (exact_vs_prefix) - position: not found
+
+**Description**: ho4 exact (何/河) should beat hou4/hoi4/hok4 prefix
+
+### #2003: `ho1` (exact_vs_prefix) - position: not found
+
+**Description**: ho1 exact (呵) should beat hou1/hoi1/hok1 prefix
+
+### #2004: `ho` (exact_vs_prefix) - position: not found
+
+**Description**: ho (no tone) exact should beat hou/hoi/hok prefix
+
+### #2005: `wo4` (exact_vs_prefix) - position: not found
+
+**Description**: wo4 exact (和/禾) should beat wong4/wok4 prefix
+
+### #2006: `wo1` (exact_vs_prefix) - position: not found
+
+**Description**: wo1 exact (窩/倭) should beat wok1/wong1 prefix
+
+### #2007: `wo6` (exact_vs_prefix) - position: not found
+
+**Description**: wo6 exact (禍) should beat wok6/wong6 prefix
+
+### #2008: `po3` (exact_vs_prefix) - position: not found
+
+**Description**: po3 exact (破) should beat pou3/pok3 prefix
+
+### #2009: `po4` (exact_vs_prefix) - position: not found
+
+**Description**: po4 exact (婆) should beat pou4/pong4 prefix
+
+### #2010: `po2` (exact_vs_prefix) - position: not found
+
+**Description**: po2 exact (頗) should beat pou2 prefix
+
+### #2011: `ze1` (exact_vs_prefix) - position: not found
+
+**Description**: ze1 exact (遮) should beat zek1/zeng1 prefix
+
+### #2012: `ze2` (exact_vs_prefix) - position: not found
+
+**Description**: ze2 exact (者/姐) should beat zek2/zeng2 prefix
+
+### #2013: `ze3` (exact_vs_prefix) - position: not found
+
+**Description**: ze3 exact (借/蔗) should beat zek3/zeng3 prefix
+
+### #2014: `ze6` (exact_vs_prefix) - position: not found
+
+**Description**: ze6 exact (謝) should beat zek6/zeng6 prefix
+
+### #2015: `ce1` (exact_vs_prefix) - position: not found
+
+**Description**: ce1 exact (車) should beat ceoi1/cek1 prefix
+
+### #2016: `ce4` (exact_vs_prefix) - position: not found
+
+**Description**: ce4 exact (斜/邪) should beat ceoi4 prefix
+
+### #2017: `me1` (exact_vs_prefix) - position: not found
+
+**Description**: me1 exact (咩) should beat mei1 prefix - common Cantonese particle
+
+### #2018: `ne1` (exact_vs_prefix) - position: not found
+
+**Description**: ne1 exact (呢) should beat nei1 prefix - common particle
+
+### #2019: `le` (exact_vs_prefix) - position: not found
+
+**Description**: le exact should beat lei/leoi/leon prefix
+
+### #2020: `be1` (exact_vs_prefix) - position: not found
+
+**Description**: be1 exact (啤) should beat bei1/beng1 prefix
+
+### #2021: `fe1` (exact_vs_prefix) - position: not found
+
+**Description**: fe1 exact (啡) should beat fei1 prefix
+
+### #2022: `ke2` (exact_vs_prefix) - position: not found
+
+**Description**: ke2 exact (茄) should beat kei2/keoi2 prefix
+
+### #2023: `zi1` (exact_vs_prefix) - position: not found
+
+**Description**: zi1 exact (之/知/姿/資) should beat zik1/zin1/zing1 prefix
+
+### #2024: `zi2` (exact_vs_prefix) - position: not found
+
+**Description**: zi2 exact (子/只/紙/指) should beat zik2/zin2 prefix
+
+### #2025: `zi6` (exact_vs_prefix) - position: not found
+
+**Description**: zi6 exact (字/自) should beat zik6 prefix
+
+### #2026: `ci1` (exact_vs_prefix) - position: not found
+
+**Description**: ci1 exact (雌) should beat cik1/cin1/cing1 prefix
+
+### #2027: `ci4` (exact_vs_prefix) - position: not found
+
+**Description**: ci4 exact (慈/匙/詞) should beat cik4/cin4/cing4 prefix
+
+### #2028: `ci5` (exact_vs_prefix) - position: not found
+
+**Description**: ci5 exact (似) should beat cin5 prefix
+
+### #2029: `gu1` (exact_vs_prefix) - position: not found
+
+**Description**: gu1 exact (姑/菇/沽) should beat guk1/gun1/gung1 prefix
+
+### #2030: `gu2` (exact_vs_prefix) - position: not found
+
+**Description**: gu2 exact (古/股/估) should beat guk2/gun2/gung2 prefix
+
+### #2031: `gu3` (exact_vs_prefix) - position: not found
+
+**Description**: gu3 exact (固/故/顧) should beat guk3/gung3 prefix
+
+### #2032: `fu1` (exact_vs_prefix) - position: not found
+
+**Description**: fu1 exact (夫/膚) should beat fuk1/fun1/fung1 prefix
+
+### #2033: `fu2` (exact_vs_prefix) - position: not found
+
+**Description**: fu2 exact (苦/府/虎) should beat fuk2/fun2/fung2 prefix
+
+### #2034: `fu3` (exact_vs_prefix) - position: not found
+
+**Description**: fu3 exact (副/富/庫) should beat fuk3/fung3 prefix
+
+### #2035: `fu6` (exact_vs_prefix) - position: not found
+
+**Description**: fu6 exact (付/負/附) should beat fuk6 prefix
+
+### #2036: `wu1` (exact_vs_prefix) - position: not found
+
+**Description**: wu1 exact (烏/污) should beat wui1/wun1 prefix
+
+### #2037: `wu4` (exact_vs_prefix) - position: not found
+
+**Description**: wu4 exact (湖/胡/狐) should beat wui4/wun4 prefix
+
+### #2038: `wu6` (exact_vs_prefix) - position: not found
+
+**Description**: wu6 exact (互/戶/護) should beat wui6/wun6 prefix
+
+### #2039: `de1` (exact_vs_prefix) - position: not found
+
+**Description**: de1 exact (爹) should beat dei1/dek1/deng1 prefix
+
+### #2040: `ke4` (exact_vs_prefix) - position: not found
+
+**Description**: ke4 exact (騎) should beat kei4/keoi4 prefix
 
 ## Pattern Analysis
 
 ### Source Distribution in Top Results
 
-- CCanto as top result: 167
-- CEDict as top result: 477
-
-### Failure Patterns
-
-- Failures where top result has term_match_cost > 0 (partial/fuzzy match winning): 16
-- Failures where top result has static_cost > 15000 (high base cost): 9
-- Failures where CEDict partial match beats CCanto exact match: 10
-
-### Cost Distribution in Failures
-
-| Query | Expected | Got | Got Total Cost | Got Static | Got Source |
-|-------|----------|-----|----------------|------------|-----------|
-| `mat1` | 乜 | 貓 | 30500 | 9000 | CEDict |
-| `ji1 ging1` | 已經 | 燕京 | 25000 | 21000 | CEDict |
-| `haa5 ci3` | 下次 | 沙蟹桌 | 93500 | 28000 | CCanto |
-| `soeng5 min6` | 上面 | 七情上面 | 121745 | 31745 | CCanto |
-| `haa5 min6` | 下面 | 厚面皮 | 68620 | 27120 | CCanto |
-| `jing1 man2` | 英文 | 英文堂 | 47559 | 27559 | CCanto |
-| `zung1 man2` | 中文 | 繁體中文 | 122724 | 32724 | CCanto |
-| `jau4 guk2` | 郵局 | 油管 | 42500 | 21000 | CCanto |
-| `gwaai3` | 乖 | 夬 | 14000 | 14000 | CEDict |
-| `baa` | 巴, 爸, 吧 | 壩 | 9000 | 9000 | CEDict |
-| `sun` | 日, 太陽 | 娀 | 18000 | 14000 | CEDict |
-| `saam1 go3` | 三個 | 三角 | 24455 | 20455 | CEDict |
-| `hou2 do1 ze6` | 好多謝 | 好得滯 | 68878 | 25878 | CCanto |
-| `ge` | 嘅 | 機 | 13000 | 9000 | CCanto |
-| `do` | 多 | 道 | 11891 | 7891 | CEDict |
-| `co` | 初, 搓 | 草 | 13000 | 9000 | CEDict |
-| `do6` | 墮 | 道 | 11891 | 7891 | CEDict |
-| `do3` | 剁 | 道 | 11891 | 7891 | CCanto |
-| `lo ge` | 裸機, 鑼機 | 圈 | 23500 | 9000 | CEDict |
-| `mo ge` | 磨嘰 | 月 | 21390 | 8690 | CEDict |
-| `do2` |  | 島 | 13000 | 9000 | CEDict |
+- CCanto as top result: 0
+- CEDict as top result: 0
 
 ## All Results
 
-| # | Query | Status | Top Char | Top JP | Total Cost | Source |
-|---|-------|--------|----------|--------|------------|--------|
-| 1 | `ngo5` | PASS | 我 | ngo5 | 11740 | CEDict |
-| 2 | `nei5` | PASS | 你 | nei5 | 12614 | CEDict |
-| 3 | `hai6` | PASS | 係 | hai6 | 12000 | CCanto |
-| 4 | `lo3` | PASS | 摞 | lo3 | 14000 | CEDict |
-| 5 | `ge3` | PASS | 嘅 | ge3 | 14000 | CCanto |
-| 6 | `aa3` | PASS | 鴨 | aap3 | 13000 | CEDict |
-| 7 | `m4` | PASS | 唔 | m4 | 12000 | CCanto |
-| 8 | `di1` | PASS | 的 | di1 | 10195 | CCanto |
-| 9 | `go3` | PASS | 嗰 | go3 | 12000 | CCanto |
-| 10 | `zou6` | PASS | 做 | zou6 | 14000 | CEDict |
-| 11 | `jat1` | PASS | 一 | jat1 | 11149 | CEDict |
-| 12 | `gin3` | PASS | 勁 | ging3 | 13000 | CEDict |
-| 13 | `sik1` | PASS | 色 | sik1 | 9000 | CEDict |
-| 14 | `hou2` | PASS | 好 | hou2 | 13152 | CEDict |
-| 15 | `mat1` | FAIL | 貓 | maau1 | 30500 | CEDict |
-| 16 | `gam2` | PASS | 咁 | gam2 | 12000 | CCanto |
-| 17 | `dou1` | PASS | 刀 | dou1 | 9000 | CEDict |
-| 18 | `lei4` | PASS | 梨 | lei4 | 9000 | CEDict |
-| 19 | `heoi3` | PASS | 去 | heoi3 | 13007 | CEDict |
-| 20 | `waa6` | PASS | 話 | waa6 | 9000 | CEDict |
-| 21 | `gong2` | PASS | 港 | gong2 | 9000 | CEDict |
-| 22 | `tai2` | PASS | 睇 | tai2 | 12000 | CCanto |
-| 23 | `jam2` | PASS | 飲 | jam2 | 14000 | CEDict |
-| 24 | `faan1` | PASS | 番 | faan1 | 12000 | CCanto |
-| 25 | `zyu6` | PASS | 住 | zyu6 | 14000 | CEDict |
-| 26 | `bin1` | PASS | 邊 | bin1 | 11000 | CCanto |
-| 27 | `dim2` | PASS | 點 | dim2 | 14000 | CEDict |
-| 28 | `zoi3` | PASS | 再 | zoi3 | 13982 | CEDict |
-| 29 | `daai6` | PASS | 大 | daai6 | 12212 | CEDict |
-| 30 | `siu2` | PASS | 小 | siu2 | 13154 | CEDict |
-| 31 | `ngo` | PASS | 鵝 | ngo4 | 9000 | CEDict |
-| 32 | `nei` | PASS | 你 | nei5 | 12614 | CEDict |
-| 33 | `hai` | PASS | 係 | hai6 | 12000 | CCanto |
-| 34 | `hou` | PASS | 號 | hou6 | 9000 | CEDict |
-| 35 | `gam` | PASS | 咁 | gam2 | 12000 | CCanto |
-| 36 | `sik` | PASS | 色 | sik1 | 9000 | CEDict |
-| 37 | `dim` | PASS | 店 | dim3 | 9000 | CEDict |
-| 38 | `lok` | PASS | 樂 | lok6 | 14000 | CEDict |
-| 39 | `jau` | PASS | 有 | jau5 | 11687 | CEDict |
-| 40 | `dou` | PASS | 道 | dou6 | 7891 | CEDict |
-| 41 | `nei5 hou2` | PASS | 你好 | nei5 hou2 | 18766 | CEDict |
-| 42 | `m4 goi1` | PASS | 唔該 | m4 goi1 | 21000 | CCanto |
-| 43 | `do1 ze6` | PASS | 多謝 | do1 ze6 | 19995 | CEDict |
-| 44 | `hou2 leng3` | FAIL | - | - | - | - |
-| 45 | `sik6 faan6` | PASS | 食飯 | sik6 faan6 | 21000 | CCanto |
-| 46 | `gong2 jyut6 jyu5` | PASS | 廣州撐粵語行動 | gwong2 zau1 caang1 jyut6 jyu5 hang4 dung6 | 256396 | CCanto |
-| 47 | `dim2 gaai2` | PASS | 點解 | dim2 gaai2 | 20874 | CCanto |
-| 48 | `m4 hou2` | PASS | 唔好 | m4 hou2 | 20152 | CCanto |
-| 49 | `zoi3 gin3` | PASS | 再建 | zoi3 gin3 | 20971 | CEDict |
-| 50 | `dak1 m4 dak1` | FAIL | - | - | - | - |
-| 51 | `gei2 do1` | PASS | 幾多 | gei2 do1 | 19995 | CCanto |
-| 52 | `sei2 m4 sei2` | FAIL | - | - | - | - |
-| 53 | `jat1 jat6` | PASS | 一日 | jat1 jat6 | 17425 | CCanto |
-| 54 | `bat1 gwo3` | PASS | 不過 | bat1 gwo3 | 18459 | CEDict |
-| 55 | `ji4 gaa1` | PASS | 而家 | ji4 gaa1 | 18636 | CCanto |
-| 56 | `jyu4 gwo2` | PASS | 如果 | jyu4 gwo2 | 19729 | CEDict |
-| 57 | `ting1 jat6` | PASS | 聽日 | ting1 jat6 | 20276 | CCanto |
-| 58 | `cam4 jat6` | PASS | 噚日 | cam4 jat6 | 20276 | CCanto |
-| 59 | `gam1 jat6` | PASS | 今日 | gam1 jat6 | 20276 | CEDict |
-| 60 | `hou2 ci5` | PASS | 好似 | hou2 ci5 | 20152 | CEDict |
-| 61 | `leng3` | PASS | 靚 | leng3 | 14000 | CCanto |
-| 62 | `mou5` | PASS | 冇 | mou5 | 12000 | CCanto |
-| 63 | `je5` | PASS | 嘢 | je5 | 12000 | CCanto |
-| 64 | `gam3` | PASS | 咁 | gam3 | 12000 | CCanto |
-| 65 | `saai3` | PASS | 曬 | saai3 | 12000 | CCanto |
-| 66 | `maai4` | PASS | 埋 | maai4 | 14000 | CEDict |
-| 67 | `zek3` | PASS | 只 | zek3 | 13259 | CCanto |
-| 68 | `keoi5` | PASS | 佢 | keoi5 | 12000 | CCanto |
-| 69 | `fan3` | PASS | 瞓 | fan3 | 12000 | CCanto |
-| 70 | `zan1` | PASS | 真 | zan1 | 13882 | CEDict |
-| 71 | `ng` | PASS | 唔 | ng4 | 12000 | CCanto |
-| 72 | `ho` | PASS | 河 | ho4 | 9000 | CEDict |
-| 73 | `ne` | PASS | 呢 | ne1 | 14000 | CEDict |
-| 74 | `ge` | PASS | 機 | gei1 | 13000 | CCanto |
-| 75 | `si` | PASS | 事 | si6 | 7960 | CCanto |
-| 76 | `gw` | PASS | 國 | gwok3 | 15500 | CEDict |
-| 77 | `zo` | PASS | 座 | zo6 | 9000 | CEDict |
-| 78 | `ja` | PASS | 人 | jan4 | 10640 | CEDict |
-| 79 | `heoi` | PASS | 佢 | heoi5 | 12000 | CCanto |
-| 80 | `gon` | PASS | 杆 | gon1 | 9000 | CEDict |
-| 81 | `hello` | PASS | 喂 | wai3 | 19000 | CEDict |
-| 82 | `water` | PASS | 水 | seoi2 | 18880 | CEDict |
-| 83 | `eat` | PASS | 座 | zo6 | 19100 | CEDict |
-| 84 | `good` | PASS | 貨 | fo3 | 14000 | CEDict |
-| 85 | `person` | PASS | 人 | jan4 | 11640 | CEDict |
-| 86 | `house` | PASS | 房 | fong2 | 14000 | CEDict |
-| 87 | `money` | PASS | 角 | gok3 | 17400 | CEDict |
-| 88 | `big` | PASS | 渠 | keoi4 | 14000 | CEDict |
-| 89 | `see` | PASS | 大 | daai6 | 17212 | CEDict |
-| 90 | `beautiful` | PASS | 美 | mei5 | 18576 | CEDict |
-| 91 | `咯` | PASS | 咯 | gok3 | 14000 | CEDict |
-| 92 | `嘅` | PASS | 嘅 | koi3 | 14000 | CCanto |
-| 93 | `食` | PASS | 食 | sik6 | 14000 | CEDict |
-| 94 | `好` | PASS | 好 | hou2 | 13152 | CEDict |
-| 95 | `你好` | PASS | 你好 | nei5 hou2 | 18766 | CEDict |
-| 96 | `aa` | PASS | 呵 | aa6 | 12000 | CCanto |
-| 97 | `m` | PASS | 唔 | m4 | 12000 | CCanto |
-| 98 | `ng5` | PASS | 五 | ng5 | 14000 | CEDict |
-| 99 | `gwong2 dung1 waa2` | PASS | 廣東話 | gwong2 dung1 waa2 | 28000 | CEDict |
-| 100 | `jyut6 jyu5` | PASS | 粵語 | jyut6 jyu5 | 21000 | CEDict |
-| 101 | `sam1` | PASS | 心 | sam1 | 8201 | CEDict |
-| 102 | `sei3` | PASS | 四 | sei3 | 13953 | CEDict |
-| 103 | `ng5` | PASS | 五 | ng5 | 14000 | CEDict |
-| 104 | `luk6` | PASS | 角 | luk6 | 9000 | CCanto |
-| 105 | `cat1` | PASS | 漆 | cat1 | 9000 | CEDict |
-| 106 | `baat3` | PASS | 八 | baat3 | 14000 | CEDict |
-| 107 | `gau2` | PASS | 狗 | gau2 | 9000 | CEDict |
-| 108 | `sap6` | PASS | 十 | sap6 | 13347 | CEDict |
-| 109 | `jan4` | PASS | 人 | jan4 | 6640 | CEDict |
-| 110 | `neoi5` | PASS | 女 | neoi5 | 13951 | CEDict |
-| 111 | `naam4` | PASS | 男 | naam4 | 9000 | CCanto |
-| 112 | `gaa1` | PASS | 家 | gaa1 | 7939 | CEDict |
-| 113 | `hok6` | PASS | 學 | hok6 | 14000 | CEDict |
-| 114 | `nin4` | PASS | 年 | nin4 | 7772 | CEDict |
-| 115 | `jyut6` | PASS | 月 | jyut6 | 8690 | CEDict |
-| 116 | `ming4` | PASS | 明 | ming4 | 13436 | CEDict |
-| 117 | `san1` | PASS | 新 | san1 | 13636 | CEDict |
-| 118 | `loi4` | PASS | 來 | loi4 | 14000 | CEDict |
-| 119 | `tung4` | PASS | 銅 | tung4 | 9000 | CEDict |
-| 120 | `gwong2` | PASS | 廣 | gwong2 | 14000 | CEDict |
-| 121 | `zung1` | PASS | 鐘 | zung1 | 9000 | CEDict |
-| 122 | `seoi2` | PASS | 水 | seoi2 | 13880 | CEDict |
-| 123 | `fo2` | PASS | 棵 | fo2 | 14000 | CEDict |
-| 124 | `saan1` | PASS | 山 | saan1 | 9000 | CEDict |
-| 125 | `tin1` | PASS | 天 | tin1 | 13133 | CEDict |
-| 126 | `dei6` | PASS | 地 | dei6 | 7296 | CEDict |
-| 127 | `fung1` | PASS | 風 | fung1 | 9000 | CEDict |
-| 128 | `jyu5` | PASS | 雨 | jyu5 | 9000 | CEDict |
-| 129 | `faa1` | PASS | 花 | faa1 | 9000 | CEDict |
-| 130 | `syu4` | PASS | 船 | syun4 | 13000 | CEDict |
-| 131 | `muk6` | PASS | 目 | muk6 | 13975 | CCanto |
-| 132 | `gam1` | PASS | 今 | gam1 | 14000 | CEDict |
-| 133 | `ngaan5` | PASS | 眼 | ngaan5 | 9000 | CEDict |
-| 134 | `hau2` | PASS | 口 | hau2 | 13915 | CEDict |
-| 135 | `sau2` | PASS | 手 | sau2 | 8536 | CEDict |
-| 136 | `goek3` | PASS | 腳 | goek3 | 9000 | CEDict |
-| 137 | `tau4` | PASS | 頭 | tau4 | 9000 | CEDict |
-| 138 | `ji5` | PASS | 以 | ji5 | 12358 | CEDict |
-| 139 | `ce1` | PASS | 車 | ce1 | 9000 | CEDict |
-| 140 | `syun4` | PASS | 船 | syun4 | 9000 | CEDict |
-| 141 | `fei1` | PASS | 妃 | fei1 | 14000 | CEDict |
-| 142 | `maau1` | PASS | 貓 | maau1 | 9000 | CEDict |
-| 143 | `gau2` | PASS | 狗 | gau2 | 9000 | CEDict |
-| 144 | `jyu2` | PASS | 魚 | jyu2 | 9000 | CEDict |
-| 145 | `niu5` | PASS | 鳥 | niu5 | 9000 | CEDict |
-| 146 | `baak6` | PASS | 僰 | baak6 | 14000 | CEDict |
-| 147 | `hak1` | PASS | 可 | hak1 | 12589 | CCanto |
-| 148 | `hung4` | PASS | 洪 | hung4 | 14000 | CEDict |
-| 149 | `wong4` | PASS | 凰 | wong4 | 14000 | CEDict |
-| 150 | `laam4` | PASS | 婪 | laam4 | 14000 | CEDict |
-| 151 | `luk6` | PASS | 角 | luk6 | 9000 | CCanto |
-| 152 | `cin2` | PASS | 錢 | cin2 | 9000 | CEDict |
-| 153 | `faan6` | PASS | 飯 | faan6 | 9000 | CEDict |
-| 154 | `caa4` | PASS | 茶 | caa4 | 9000 | CEDict |
-| 155 | `zau2` | PASS | 酒 | zau2 | 9000 | CEDict |
-| 156 | `tong4` | PASS | 堂 | tong4 | 9000 | CEDict |
-| 157 | `jit6` | PASS | 嚙 | jit6 | 14000 | CEDict |
-| 158 | `dung3` | PASS | 棟 | dung3 | 12000 | CCanto |
-| 159 | `faai3` | PASS | 傀 | faai3 | 14000 | CEDict |
-| 160 | `maan6` | PASS | 幔 | maan6 | 14000 | CEDict |
-| 161 | `gou1` | PASS | 膏 | gou1 | 9000 | CEDict |
-| 162 | `dai1` | PASS | 低 | dai1 | 14000 | CEDict |
-| 163 | `coeng4` | PASS | 牆 | coeng4 | 9000 | CEDict |
-| 164 | `dyun2` | PASS | 短 | dyun2 | 14000 | CEDict |
-| 165 | `fei4` | PASS | 肥 | fei4 | 14000 | CEDict |
-| 166 | `sau3` | PASS | 秀 | sau3 | 9000 | CEDict |
-| 167 | `gau6` | PASS | 柩 | gau6 | 14000 | CEDict |
-| 168 | `cing1` | PASS | 秤 | cing1 | 9000 | CCanto |
-| 169 | `maai5` | PASS | 買 | maai5 | 14000 | CEDict |
-| 170 | `maai6` | PASS | 勱 | maai6 | 14000 | CEDict |
-| 171 | `bei2` | PASS | 比 | bei2 | 13871 | CEDict |
-| 172 | `wan2` | PASS | 穩 | wan2 | 14000 | CEDict |
-| 173 | `paau2` | PASS | 跑 | paau2 | 14000 | CEDict |
-| 174 | `co5` | PASS | 坐 | co5 | 14000 | CEDict |
-| 175 | `kei5` | PASS | 徛 | kei5 | 14000 | CCanto |
-| 176 | `se2` | PASS | 寫 | se2 | 14000 | CEDict |
-| 177 | `duk6` | PASS | 毒 | duk6 | 12000 | CCanto |
-| 178 | `sing1` | PASS | 勝 | sing1 | 14000 | CEDict |
-| 179 | `hoeng1` | PASS | 香 | hoeng1 | 9000 | CEDict |
-| 180 | `gong2` | PASS | 港 | gong2 | 9000 | CEDict |
-| 181 | `si4` | PASS | 塒 | si4 | 14000 | CEDict |
-| 182 | `din6` | PASS | 佃 | din6 | 14000 | CEDict |
-| 183 | `waa2` | PASS | 剮 | waa2 | 14000 | CCanto |
-| 184 | `cing4` | PASS | 成 | cing4 | 12960 | CCanto |
-| 185 | `oi3` | PASS | 僾 | oi3 | 14000 | CEDict |
-| 186 | `hei2` | PASS | 起 | hei2 | 13121 | CEDict |
-| 187 | `lok6` | PASS | 樂 | lok6 | 14000 | CEDict |
-| 188 | `hoi1` | PASS | 開 | hoi1 | 14000 | CCanto |
-| 189 | `saan1` | PASS | 山 | saan1 | 9000 | CEDict |
-| 190 | `ceot1` | PASS | 出 | ceot1 | 12545 | CEDict |
-| 191 | `jap6` | PASS | 廿 | jap6 | 14000 | CCanto |
-| 192 | `dak1` | PASS | 得 | dak1 | 12726 | CEDict |
-| 193 | `jiu3` | PASS | 要 | jiu3 | 12474 | CEDict |
-| 194 | `ho2` | PASS | 可 | ho2 | 12589 | CEDict |
-| 195 | `wui5` | PASS | 會 | wui5 | 14000 | CCanto |
-| 196 | `zung6` | PASS | 重 | zung6 | 13528 | CCanto |
-| 197 | `sing4` | PASS | 城 | sing4 | 9000 | CEDict |
-| 198 | `do1` | PASS | 多 | do1 | 12995 | CEDict |
-| 199 | `siu2` | PASS | 小 | siu2 | 13154 | CEDict |
-| 200 | `cyun4` | PASS | 全 | cyun4 | 13451 | CEDict |
-| 201 | `zing3` | PASS | 正 | zing3 | 13479 | CEDict |
-| 202 | `cou4` | PASS | 嘈 | cou4 | 14000 | CEDict |
-| 203 | `gwai3` | PASS | 季 | gwai3 | 14000 | CEDict |
-| 204 | `peng4` | PASS | 平 | peng4 | 13919 | CCanto |
-| 205 | `naan4` | PASS | 難 | naan4 | 14000 | CEDict |
-| 206 | `ji4` | PASS | 而 | ji4 | 12697 | CEDict |
-| 207 | `gaan1` | PASS | 奸 | gaan1 | 14000 | CEDict |
-| 208 | `lou5` | PASS | 佬 | lou5 | 12000 | CCanto |
-| 209 | `zai2` | PASS | 仔 | zai2 | 14000 | CEDict |
-| 210 | `mui1` | PASS | 咪 | mui1 | 14000 | CCanto |
-| 211 | `gwo3` | PASS | 國 | gwok3 | 13000 | CEDict |
-| 212 | `wun6` | PASS | 喚 | wun6 | 14000 | CEDict |
-| 213 | `dong1` | PASS | 當 | dong1 | 14000 | CEDict |
-| 214 | `zik1` | PASS | 即 | zik1 | 14000 | CEDict |
-| 215 | `bo1` | PASS | 坡 | bo1 | 9000 | CEDict |
-| 216 | `paai4` | PASS | 牌 | paai4 | 9000 | CEDict |
-| 217 | `toi2` | PASS | 呔 | toi2 | 14000 | CCanto |
-| 218 | `ji6` | PASS | 二 | ji6 | 13583 | CEDict |
-| 219 | `saam1` | PASS | 三 | saam1 | 13455 | CEDict |
-| 220 | `ling4` | PASS | 鈴 | ling4 | 9000 | CEDict |
-| 221 | `sam` | PASS | 心 | sam1 | 8201 | CEDict |
-| 222 | `sei` | PASS | 四 | sei3 | 13953 | CEDict |
-| 223 | `jan` | PASS | 人 | jan4 | 6640 | CEDict |
-| 224 | `gaa` | PASS | 家 | gaa1 | 7939 | CEDict |
-| 225 | `san` | PASS | 神 | san4 | 8955 | CEDict |
-| 226 | `fung` | PASS | 縫 | fung4 | 9000 | CEDict |
-| 227 | `din` | PASS | 佃 | din6 | 14000 | CEDict |
-| 228 | `ce` | PASS | 車 | ce1 | 9000 | CEDict |
-| 229 | `sing` | PASS | 性 | sing3 | 8436 | CEDict |
-| 230 | `ming` | PASS | 明 | ming4 | 13436 | CEDict |
-| 231 | `cin` | PASS | 錢 | cin2 | 9000 | CEDict |
-| 232 | `dung` | PASS | 洞 | dung6 | 9000 | CEDict |
-| 233 | `wong` | PASS | 凰 | wong4 | 14000 | CEDict |
-| 234 | `hung` | PASS | 孔 | hung2 | 9000 | CEDict |
-| 235 | `gou` | PASS | 膏 | gou1 | 9000 | CEDict |
-| 236 | `dai` | PASS | 睇 | dai6 | 12000 | CCanto |
-| 237 | `hoi` | PASS | 海 | hoi2 | 8829 | CEDict |
-| 238 | `faan` | PASS | 飯 | faan6 | 9000 | CEDict |
-| 239 | `zau` | PASS | 酒 | zau2 | 9000 | CEDict |
-| 240 | `bei` | PASS | 碑 | bei1 | 9000 | CEDict |
-| 241 | `caa` | PASS | 茶 | caa4 | 9000 | CEDict |
-| 242 | `gwai` | PASS | 季 | gwai3 | 14000 | CEDict |
-| 243 | `tau` | PASS | 頭 | tau4 | 9000 | CEDict |
-| 244 | `zou` | PASS | 做 | zou6 | 14000 | CEDict |
-| 245 | `fo` | PASS | 科 | fo1 | 9000 | CEDict |
-| 246 | `bo` | PASS | 坡 | bo1 | 9000 | CEDict |
-| 247 | `tong` | PASS | 堂 | tong4 | 9000 | CEDict |
-| 248 | `paai` | PASS | 牌 | paai4 | 9000 | CEDict |
-| 249 | `wui` | PASS | 會 | wui2 | 9000 | CCanto |
-| 250 | `zung` | PASS | 鐘 | zung1 | 9000 | CEDict |
-| 251 | `zing` | PASS | 井 | zing2 | 11000 | CCanto |
-| 252 | `gwok` | PASS | 國 | gwok3 | 9000 | CEDict |
-| 253 | `tin` | PASS | 田 | tin4 | 9000 | CEDict |
-| 254 | `mou` | PASS | 霧 | mou6 | 9000 | CEDict |
-| 255 | `lei` | PASS | 梨 | lei4 | 9000 | CEDict |
-| 256 | `heoi` | PASS | 佢 | heoi5 | 12000 | CCanto |
-| 257 | `sai` | PASS | 些 | sai3 | 13180 | CCanto |
-| 258 | `gei` | PASS | 機 | gei1 | 9000 | CCanto |
-| 259 | `bat` | PASS | 筆 | bat1 | 9000 | CEDict |
-| 260 | `keoi` | PASS | 區 | keoi1 | 9000 | CEDict |
-| 261 | `hoeng1 gong2` | PASS | 香港 | hoeng1 gong2 | 21000 | CEDict |
-| 262 | `zou2 san4` | PASS | 早晨 | zou2 san4 | 16000 | CEDict |
-| 263 | `baai1 baai3` | PASS | 拜拜 | baai1 baai3 | 21000 | CEDict |
-| 264 | `sing1 kei4` | PASS | 星期 | sing1 kei4 | 16000 | CEDict |
-| 265 | `dim2 sam1` | PASS | 點心 | dim2 sam1 | 20201 | CEDict |
-| 266 | `siu1 maai6` | PASS | 燒賣 | siu1 maai6 | 21000 | CEDict |
-| 267 | `coeng2 fan2` | PASS | 腸粉 | coeng2 fan2 | 21000 | CEDict |
-| 268 | `faan1 gung1` | PASS | 番工 | faan1 gung1 | 20412 | CCanto |
-| 269 | `fong3 gung1` | PASS | 放工 | fong3 gung1 | 20412 | CEDict |
-| 270 | `sik6 faan6` | PASS | 食飯 | sik6 faan6 | 21000 | CCanto |
-| 271 | `jam2 caa4` | PASS | 飲茶 | jam2 caa4 | 19000 | CEDict |
-| 272 | `gau2 lung4` | PASS | 九龍 | gau2 lung4 | 21000 | CEDict |
-| 273 | `dei6 tit3` | PASS | 地鐵 | dei6 tit3 | 19296 | CEDict |
-| 274 | `baa1 si2` | PASS | 巴士 | baa1 si2 | 21000 | CEDict |
-| 275 | `din6 waa2` | PASS | 電話 | din6 waa2 | 16000 | CEDict |
-| 276 | `din6 nou5` | PASS | 電腦 | din6 nou5 | 16000 | CEDict |
-| 277 | `hok6 haau6` | PASS | 學校 | hok6 haau6 | 16000 | CEDict |
-| 278 | `ji1 jyun2` | PASS | 醫院 | ji1 jyun2 | 16000 | CEDict |
-| 279 | `ging2 caat3` | PASS | 警察 | ging2 caat3 | 16000 | CEDict |
-| 280 | `lou5 si1` | PASS | 老師 | lou5 si1 | 15765 | CEDict |
-| 281 | `pang4 jau5` | PASS | 朋友 | pang4 jau5 | 16000 | CEDict |
-| 282 | `gung1 si1` | PASS | 公司 | gung1 si1 | 15409 | CEDict |
-| 283 | `hou2 sik6` | PASS | 好食 | hou2 sik6 | 20152 | CCanto |
-| 284 | `hou2 waan2` | PASS | 好玩 | hou2 waan2 | 20152 | CEDict |
-| 285 | `ji6 sap6` | PASS | 二十 | ji6 sap6 | 19930 | CEDict |
-| 286 | `jat1 baak3` | PASS | 一百 | jat1 baak3 | 18149 | CCanto |
-| 287 | `jat1 cin1` | PASS | 一千 | jat1 cin1 | 18149 | CCanto |
-| 288 | `dim2 joeng2` | PASS | 点样 | dim2 joeng2 | 19652 | CCanto |
-| 289 | `bin1 dou6` | PASS | 焉道 | bin1 dou6 | 19891 | CCanto |
-| 290 | `gei2 si4` | PASS | 幾時 | gei2 si4 | 21000 | CEDict |
-| 291 | `mat1 je5` | PASS | 乜嘢 | mat1 je5 | 19000 | CEDict |
-| 292 | `dim2 gaai2` | PASS | 點解 | dim2 gaai2 | 20874 | CCanto |
-| 293 | `bin1 go3` | PASS | 邊个 | bin1 go3 | 19083 | CCanto |
-| 294 | `gei2 noi6` | PASS | 幾耐 | gei2 noi6 | 21000 | CCanto |
-| 295 | `sai3 lou6` | PASS | 細路 | sai3 lou6 | 21000 | CCanto |
-| 296 | `hoi1 sam1` | PASS | 開心 | hoi1 sam1 | 20201 | CEDict |
-| 297 | `san1 fu2` | PASS | 辛苦 | san1 fu2 | 21000 | CEDict |
-| 298 | `ho2 ji5` | PASS | 可以 | ho2 ji5 | 17947 | CEDict |
-| 299 | `daan6 hai6` | PASS | 但係 | daan6 hai6 | 20247 | CCanto |
-| 300 | `ji1 ging1` | FAIL | 燕京 | jin1 ging1 | 25000 | CEDict |
-| 301 | `jyun4 loi4` | PASS | 原來 | jyun4 loi4 | 20837 | CEDict |
-| 302 | `gei1 wui6` | PASS | 機會 | gei1 wui6 | 16000 | CEDict |
-| 303 | `man6 tai4` | PASS | 問題 | man6 tai4 | 16000 | CEDict |
-| 304 | `zung1 ji3` | PASS | 中意 | zung1 ji3 | 18451 | CEDict |
-| 305 | `gwaan1 hai6` | PASS | 關係 | gwaan1 hai6 | 16000 | CEDict |
-| 306 | `si4 gaan3` | PASS | 時間 | si4 gaan3 | 16000 | CEDict |
-| 307 | `zou2 san4` | PASS | 早晨 | zou2 san4 | 16000 | CEDict |
-| 308 | `gam1 nin2` | FAIL | - | - | - | - |
-| 309 | `ceot1 heoi3` | PASS | 出去 | ceot1 heoi3 | 18552 | CEDict |
-| 310 | `faan1 lai4` | PASS | 返來 | faan1 lai4 | 21000 | CCanto |
-| 311 | `zou2 can1` | PASS | 早餐 | zou2 caan1 | 37500 | CEDict |
-| 312 | `aan3 zau3` | PASS | 晏晝 | aan3 zau3 | 21000 | CCanto |
-| 313 | `maan5 faan6` | PASS | 晚飯 | maan5 faan6 | 16000 | CEDict |
-| 314 | `daai6 hok6` | PASS | 大學 | daai6 hok6 | 14212 | CEDict |
-| 315 | `zung1 hok6` | PASS | 中學 | zung1 hok6 | 14165 | CEDict |
-| 316 | `siu2 hok6` | PASS | 小學 | siu2 hok6 | 20154 | CEDict |
-| 317 | `daa2 bo1` | PASS | 打啵 | daa2 bo1 | 20946 | CEDict |
-| 318 | `tai2 hei3` | PASS | 睇戲 | tai2 hei3 | 21000 | CCanto |
-| 319 | `maai5 je5` | PASS | 買嘢 | maai5 je5 | 21000 | CCanto |
-| 320 | `zung1 gwok3` | PASS | 中國 | zung1 gwok3 | 19165 | CEDict |
-| 321 | `jing1 gwok3` | PASS | 英國 | jing1 gwok3 | 26000 | CEDict |
-| 322 | `jat6 bun2` | PASS | 日本 | jat6 bun2 | 19487 | CEDict |
-| 323 | `toi4 waan1` | PASS | 台灣 | toi4 waan1 | 21000 | CEDict |
-| 324 | `leng3 zai2` | PASS | 靚仔 | leng3 zai2 | 21000 | CEDict |
-| 325 | `leng3 neoi5` | PASS | 靚女 | leng3 neoi5 | 20951 | CEDict |
-| 326 | `lek1 zai2` | PASS | 叻仔 | lek1 zai2 | 21000 | CCanto |
-| 327 | `daai6 gaa1` | PASS | 大家 | daai6 gaa1 | 18151 | CEDict |
-| 328 | `zi6 gei2` | PASS | 自己 | zi6 gei2 | 19404 | CEDict |
-| 329 | `keoi5 dei6` | PASS | 佢地 | keoi5 dei6 | 19296 | CCanto |
-| 330 | `ngo5 dei6` | PASS | 我地 | ngo5 dei6 | 17036 | CCanto |
-| 331 | `m4 sai2` | PASS | 唔使 | m4 sai2 | 20416 | CCanto |
-| 332 | `m4 zi1` | PASS | 唔知 | m4 zi1 | 20448 | CCanto |
-| 333 | `jau5 mou5` | PASS | 有冇 | jau5 mou5 | 18687 | CCanto |
-| 334 | `haa5 ci3` | FAIL | 沙蟹桌 | saa1 haai5 coek3 | 93500 | CCanto |
-| 335 | `soeng5 min6` | FAIL | 七情上面 | cat1 cing4 soeng5 min6 | 121745 | CCanto |
-| 336 | `haa5 min6` | FAIL | 厚面皮 | hau5 min6 pei4 | 68620 | CCanto |
-| 337 | `jat1 ding6` | PASS | 一定 | jat1 ding6 | 17275 | CEDict |
-| 338 | `zoi3 gin3` | PASS | 再建 | zoi3 gin3 | 20971 | CEDict |
-| 339 | `gam2 joeng2` | PASS | 噉樣 | gam2 joeng2 | 21000 | CCanto |
-| 340 | `sou3 hok6` | PASS | 數學 | sou3 hok6 | 21000 | CEDict |
-| 341 | `lik6 si2` | PASS | 歷史 | lik6 si2 | 16000 | CEDict |
-| 342 | `jing1 man2` | FAIL | 英文堂 | jing1 man2 tong4 | 47559 | CCanto |
-| 343 | `zung1 man2` | FAIL | 繁體中文 | faan4 tai2 zung1 man2 | 122724 | CCanto |
-| 344 | `tau4 faat3` | PASS | 頭髮 | tau4 faat3 | 21000 | CEDict |
-| 345 | `hoi2 sin1` | PASS | 海鮮 | hoi2 sin1 | 20829 | CEDict |
-| 346 | `gaa1 fei1` | PASS | 噶霏 | gaa1 fei1 | 21000 | CEDict |
-| 347 | `naai5 caa4` | PASS | 奶茶 | naai5 caa4 | 21000 | CEDict |
-| 348 | `gai1 daan2` | PASS | 雞蛋 | gai1 daan2 | 16000 | CEDict |
-| 349 | `ngau4 juk6` | PASS | 牛肉 | ngau4 juk6 | 21000 | CEDict |
-| 350 | `zyu1 juk6` | PASS | 珠玉 | zyu1 juk6 | 21000 | CEDict |
-| 351 | `gai1 juk6` | PASS | 雞肉 | gai1 juk6 | 21000 | CEDict |
-| 352 | `sang1 jat6` | PASS | 生日 | saang1 jat6 | 35423 | CEDict |
-| 353 | `san1 nin4` | PASS | 新年 | san1 nin4 | 14408 | CEDict |
-| 354 | `sing3 daan3` | PASS | 聖誕 | sing3 daan3 | 26000 | CEDict |
-| 355 | `tin1 hei3` | PASS | 天氣 | tin1 hei3 | 20133 | CEDict |
-| 356 | `lok6 jyu5` | PASS | 落雨 | lok6 jyu5 | 21000 | CCanto |
-| 357 | `ceoi1 fung1` | PASS | 吹風 | ceoi1 fung1 | 21000 | CCanto |
-| 358 | `tai2 syu1` | PASS | 體書 | tai2 syu1 | 21000 | CEDict |
-| 359 | `fan3 gaau3` | PASS | 瞓覺 | fan3 gaau3 | 19000 | CEDict |
-| 360 | `sai2 min6` | PASS | 洗面 | sai2 min6 | 20120 | CEDict |
-| 361 | `cung1 loeng4` | PASS | 沖涼 | cung1 loeng4 | 21000 | CEDict |
-| 362 | `tai2 ji1 sang1` | PASS | 睇醫生 | tai2 ji1 sang1 | 26647 | CCanto |
-| 363 | `haang4 gaai1` | PASS | 行街 | haang4 gaai1 | 19896 | CCanto |
-| 364 | `daa2 din6 waa2` | PASS | 打電話 | daa2 din6 waa2 | 27946 | CEDict |
-| 365 | `zou6 je5` | PASS | 做嘢 | zou6 je5 | 21000 | CCanto |
-| 366 | `gung1 jyun2` | PASS | 公園 | gung1 jyun2 | 15409 | CEDict |
-| 367 | `caai1 gwun2` | PASS | 差館 | caai1 gun2 | 42500 | CCanto |
-| 368 | `jau4 guk2` | FAIL | 油管 | jau4 gun2 | 42500 | CCanto |
-| 369 | `gei1 coeng4` | PASS | 機場 | gei1 coeng4 | 16000 | CEDict |
-| 370 | `fo2 ce1` | PASS | 火車 | fo2 ce1 | 16000 | CEDict |
-| 371 | `jau5 jat6` | PASS | 有日 | jau5 jat6 | 17963 | CCanto |
-| 372 | `cin4 min6` | PASS | 前面 | cin4 min6 | 19349 | CEDict |
-| 373 | `hau6 min6` | PASS | 後面 | hau6 min6 | 20120 | CEDict |
-| 374 | `zo2 min6` | PASS | 左面 | zo2 min6 | 20120 | CEDict |
-| 375 | `jau6 min6` | PASS | 右面 | jau6 min6 | 20120 | CCanto |
-| 376 | `fei1 gei1` | PASS | 飛機 | fei1 gei1 | 16000 | CEDict |
-| 377 | `siu2 sam1` | PASS | 小心 | siu2 sam1 | 19355 | CEDict |
-| 378 | `m4 gam2` | PASS | 唔敢 | m4 gam2 | 21000 | CCanto |
-| 379 | `hou2 do1` | PASS | 好多 | hou2 do1 | 19147 | CEDict |
-| 380 | `hou2 siu2` | PASS | 好少 | hou2 siu2 | 20115 | CCanto |
-| 381 | `laa1` | PASS | 了 | laa1 | 11509 | CCanto |
-| 382 | `laa3` | PASS | 喇 | laa3 | 14000 | CEDict |
-| 383 | `wo3` | PASS | 喎 | wo3 | 14000 | CCanto |
-| 384 | `wo5` | PASS | 喎 | wo5 | 14000 | CCanto |
-| 385 | `gaa3` | PASS | 覺 | gaau3 | 13000 | CEDict |
-| 386 | `me1` | PASS | 孭 | me1 | 12000 | CCanto |
-| 387 | `ze1` | PASS | 啫 | ze1 | 12000 | CCanto |
-| 388 | `lo2` | PASS | 蓏 | lo2 | 14000 | CEDict |
-| 389 | `aai3` | PASS | 隘 | aai3 | 14000 | CEDict |
-| 390 | `gaau2` | PASS | 搞 | gaau2 | 12000 | CCanto |
-| 391 | `lek1` | PASS | 叻 | lek1 | 14000 | CCanto |
-| 392 | `naa2` | PASS | 乸 | naa2 | 12000 | CEDict |
-| 393 | `lou5` | PASS | 佬 | lou5 | 12000 | CCanto |
-| 394 | `bik1` | PASS | 壁 | bik1 | 14000 | CEDict |
-| 395 | `king1` | PASS | 傾 | king1 | 14000 | CEDict |
-| 396 | `cou4` | PASS | 嘈 | cou4 | 14000 | CEDict |
-| 397 | `dau2` | PASS | 豆 | dau2 | 9000 | CEDict |
-| 398 | `go2` | PASS | 嗰 | go2 | 12000 | CCanto |
-| 399 | `pek3` | PASS | 劈 | pek3 | 14000 | CEDict |
-| 400 | `caat3` | PASS | 刷 | caat3 | 14000 | CEDict |
-| 401 | `gwaai3` | FAIL | 夬 | gwaai3 | 14000 | CEDict |
-| 402 | `haam4` | PASS | 函 | haam4 | 14000 | CEDict |
-| 403 | `laang5` | PASS | 冷 | laang5 | 14000 | CEDict |
-| 404 | `song2` | PASS | 爽 | song2 | 12000 | CCanto |
-| 405 | `dung3` | PASS | 棟 | dung3 | 12000 | CCanto |
-| 406 | `gwaai1` | PASS | 乖 | gwaai1 | 14000 | CEDict |
-| 407 | `ngaam1` | PASS | 啱 | ngaam1 | 12000 | CCanto |
-| 408 | `gwai6` | PASS | 櫃 | gwai6 | 14000 | CEDict |
-| 409 | `saai1` | PASS | 嘥 | saai1 | 12000 | CCanto |
-| 410 | `daap3` | PASS | 搭 | daap3 | 14000 | CEDict |
-| 411 | `gu2` | PASS | 鼓 | gu2 | 9000 | CEDict |
-| 412 | `gai2` | PASS | 偈 | gai2 | 14000 | CCanto |
-| 413 | `duk1` | PASS | 篤 | duk1 | 12000 | CCanto |
-| 414 | `paau4` | PASS | 刨 | paau4 | 14000 | CEDict |
-| 415 | `lok6 heoi3` | PASS | 落去 | lok6 heoi3 | 20007 | CCanto |
-| 416 | `jat1 cai4` | PASS | 一齊 | jat1 cai4 | 18149 | CEDict |
-| 417 | `m4 hai6` | PASS | 唔係 | m4 hai6 | 21000 | CCanto |
-| 418 | `jau5 liu2` | PASS | 有料 | jau5 liu2 | 16687 | CCanto |
-| 419 | `sai2 cin2` | PASS | 洗錢 | sai2 cin2 | 19000 | CCanto |
-| 420 | `haang4 wan6` | PASS | 行運 | haang4 wan6 | 19896 | CCanto |
-| 421 | `gwo3 hoi2` | PASS | 過海 | gwo3 hoi2 | 20829 | CCanto |
-| 422 | `hoi1 gung1` | PASS | 開工 | hoi1 gung1 | 20412 | CEDict |
-| 423 | `zyun2 tau4` | PASS | 轉頭 | zyun2 tau4 | 19000 | CCanto |
-| 424 | `jat1 zan6` | PASS | 一陣 | jat1 zan6 | 18149 | CEDict |
-| 425 | `ap1` | PASS | 噏 | ap1 | 12000 | CCanto |
-| 426 | `zaa3` | PASS | 咋 | zaa3 | 12000 | CCanto |
-| 427 | `lai4` | PASS | 嚟 | lai4 | 12000 | CCanto |
-| 428 | `maa3` | PASS | 嗎 | maa3 | 14000 | CEDict |
-| 429 | `gau6` | PASS | 柩 | gau6 | 14000 | CEDict |
-| 430 | `zo2` | PASS | 座 | zo2 | 9000 | CCanto |
-| 431 | `lou` | PASS | 路 | lou6 | 9000 | CEDict |
-| 432 | `gin` | PASS | 勁 | ging3 | 13000 | CEDict |
-| 433 | `faa` | PASS | 花 | faa1 | 9000 | CEDict |
-| 434 | `sin` | PASS | 線 | sin3 | 9000 | CEDict |
-| 435 | `bei` | PASS | 碑 | bei1 | 9000 | CEDict |
-| 436 | `daa` | PASS | 單 | daan1 | 13000 | CEDict |
-| 437 | `wai` | PASS | 胃 | wai6 | 9000 | CEDict |
-| 438 | `cung` | PASS | 松 | cung4 | 9000 | CEDict |
-| 439 | `maa` | PASS | 罵 | maa6 | 9000 | CEDict |
-| 440 | `baa` | FAIL | 壩 | baa3 | 9000 | CEDict |
-| 441 | `tin` | PASS | 田 | tin4 | 9000 | CEDict |
-| 442 | `ming` | PASS | 明 | ming4 | 13436 | CEDict |
-| 443 | `syu` | PASS | 書 | syu1 | 9000 | CEDict |
-| 444 | `hei` | PASS | 器 | hei3 | 9000 | CEDict |
-| 445 | `gei` | PASS | 機 | gei1 | 9000 | CCanto |
-| 446 | `jyu` | PASS | 雨 | jyu5 | 9000 | CEDict |
-| 447 | `hok` | PASS | 殼 | hok3 | 12000 | CCanto |
-| 448 | `din` | PASS | 佃 | din6 | 14000 | CEDict |
-| 449 | `zoi` | PASS | 在 | zoi6 | 11567 | CEDict |
-| 450 | `sik` | PASS | 色 | sik1 | 9000 | CEDict |
-| 451 | `toi` | PASS | 能 | toi4 | 12672 | CCanto |
-| 452 | `hou` | PASS | 號 | hou6 | 9000 | CEDict |
-| 453 | `gwai` | PASS | 季 | gwai3 | 14000 | CEDict |
-| 454 | `seoi` | PASS | 水 | seoi2 | 13880 | CEDict |
-| 455 | `gung` | PASS | 弓 | gung1 | 9000 | CEDict |
-| 456 | `fei` | PASS | 匪 | fei2 | 14000 | CEDict |
-| 457 | `ceoi` | PASS | 脆 | ceoi3 | 12000 | CCanto |
-| 458 | `ngau` | PASS | 牛 | ngau4 | 11000 | CCanto |
-| 459 | `zing` | PASS | 井 | zing2 | 11000 | CCanto |
-| 460 | `gwok` | PASS | 國 | gwok3 | 9000 | CEDict |
-| 461 | `gaai` | PASS | 街 | gaai1 | 9000 | CEDict |
-| 462 | `lok` | PASS | 樂 | lok6 | 14000 | CEDict |
-| 463 | `bou` | PASS | 報 | bou3 | 9000 | CEDict |
-| 464 | `jing` | PASS | 蠅 | jing4 | 9000 | CEDict |
-| 465 | `pou` | PASS | 匍 | pou4 | 14000 | CEDict |
-| 466 | `cin` | PASS | 錢 | cin2 | 9000 | CEDict |
-| 467 | `keoi` | PASS | 區 | keoi1 | 9000 | CEDict |
-| 468 | `lai` | PASS | 禮 | lai5 | 9000 | CEDict |
-| 469 | `mou` | PASS | 霧 | mou6 | 9000 | CEDict |
-| 470 | `fan` | PASS | 墳 | fan4 | 9000 | CEDict |
-| 471 | `mother` | PASS | 姨 | ji4 | 19000 | CEDict |
-| 472 | `father` | PASS | 伯 | baak3 | 19000 | CEDict |
-| 473 | `brother` | PASS | 兄 | hing1 | 19600 | CEDict |
-| 474 | `sister` | PASS | 甥 | sang1 | 19000 | CEDict |
-| 475 | `rice` | PASS | 米 | mai5 | 14000 | CEDict |
-| 476 | `fish` | PASS | 魚 | jyu2 | 14000 | CEDict |
-| 477 | `chicken` | PASS | 雞 | gai1 | 19400 | CEDict |
-| 478 | `tea` | PASS | 班 | baan1 | 14000 | CEDict |
-| 479 | `coffee` | PASS | 咖 | gaa3 | 19000 | CEDict |
-| 480 | `red` | PASS | 丹 | daan1 | 19000 | CEDict |
-| 481 | `blue` | PASS | 滄 | cong1 | 19000 | CEDict |
-| 482 | `green` | PASS | 碧 | bik1 | 19000 | CEDict |
-| 483 | `black` | PASS | 淄 | zi1 | 19000 | CEDict |
-| 484 | `white` | PASS | 白 | baak6 | 19000 | CEDict |
-| 485 | `hand` | PASS | 手 | sau2 | 13536 | CEDict |
-| 486 | `head` | PASS | 頭 | tau4 | 14000 | CEDict |
-| 487 | `mouth` | PASS | 嘴 | zeoi2 | 14000 | CEDict |
-| 488 | `walk` | PASS | 行 | hang4 | 18196 | CEDict |
-| 489 | `sleep` | PASS | 覺 | gaau3 | 14700 | CEDict |
-| 490 | `buy` | PASS | 糴 | dek6 | 19000 | CCanto |
-| 491 | `sell` | PASS | 售 | sau6 | 19300 | CEDict |
-| 492 | `give` | PASS | 生 | saang1 | 18947 | CEDict |
-| 493 | `read` | PASS | 念 | nim6 | 14300 | CEDict |
-| 494 | `write` | PASS | 筆 | bat1 | 16500 | CEDict |
-| 495 | `hot` | PASS | 喝 | hot3 | 14000 | CEDict |
-| 496 | `cold` | PASS | 冷 | laang5 | 19000 | CEDict |
-| 497 | `fast` | PASS | 鎖 | so2 | 18700 | CCanto |
-| 498 | `slow` | PASS | 徐 | ceoi4 | 19000 | CEDict |
-| 499 | `new` | PASS | 新 | san1 | 18636 | CEDict |
-| 500 | `old` | PASS | 店 | dim3 | 14500 | CEDict |
-| 501 | `happy` | PASS | 氹 | tam5 | 17900 | CCanto |
-| 502 | `school` | PASS | 校 | haau3 | 14000 | CCanto |
-| 503 | `hospital` | PASS | 醫院 | ji1 jyun2 | 21000 | CEDict |
-| 504 | `morning` | PASS | 晨 | san4 | 19000 | CEDict |
-| 505 | `night` | PASS | 夜 | je6 | 19000 | CEDict |
-| 506 | `year` | PASS | 年 | nin4 | 12772 | CEDict |
-| 507 | `month` | PASS | 正 | zing3 | 19079 | CEDict |
-| 508 | `week` | PASS | 週 | zau1 | 19000 | CCanto |
-| 509 | `friend` | PASS | 友 | jau5 | 19000 | CEDict |
-| 510 | `child` | PASS | 兒 | ji4 | 19000 | CEDict |
-| 511 | `teacher` | PASS | 師 | si1 | 19000 | CEDict |
-| 512 | `student` | PASS | 李 | lei5 | 19000 | CCanto |
-| 513 | `doctor` | PASS | 醫生 | ji1 sang1 | 19647 | CEDict |
-| 514 | `car` | PASS | 車 | ce1 | 14000 | CEDict |
-| 515 | `food` | PASS | 飯 | faan6 | 14000 | CCanto |
-| 516 | `book` | PASS | 書 | syu1 | 14000 | CEDict |
-| 517 | `love` | PASS | 嫣 | jin1 | 19000 | CEDict |
-| 518 | `work` | PASS | 作 | zok3 | 17876 | CEDict |
-| 519 | `rain` | PASS | 雨 | jyu5 | 14000 | CEDict |
-| 520 | `wind` | PASS | 窗 | coeng1 | 14000 | CEDict |
-| 521 | `sun` | FAIL | 娀 | sung1 | 18000 | CEDict |
-| 522 | `moon` | PASS | 月 | jyut6 | 13690 | CEDict |
-| 523 | `flower` | PASS | 花 | faa1 | 14000 | CEDict |
-| 524 | `mountain` | PASS | 山 | saan1 | 14000 | CEDict |
-| 525 | `river` | PASS | 江 | gong1 | 14000 | CEDict |
-| 526 | `road` | PASS | 道 | dou6 | 12891 | CEDict |
-| 527 | `telephone` | PASS | 電話 | din6 waa2 | 21000 | CEDict |
-| 528 | `police` | PASS | 警察 | ging2 caat3 | 21000 | CEDict |
-| 529 | `thank` | PASS | 謝 | ze6 | 19300 | CEDict |
-| 530 | `sorry` | PASS | 惋 | jyun2 | 24000 | CCanto |
-| 531 | `人` | PASS | 人 | jan4 | 6640 | CEDict |
-| 532 | `大` | PASS | 大 | daai6 | 12212 | CEDict |
-| 533 | `小` | PASS | 小 | siu2 | 13154 | CEDict |
-| 534 | `天` | PASS | 天 | tin1 | 13133 | CEDict |
-| 535 | `地` | PASS | 地 | dei6 | 7296 | CEDict |
-| 536 | `水` | PASS | 水 | seoi2 | 13880 | CEDict |
-| 537 | `火` | PASS | 火 | fo2 | 14000 | CEDict |
-| 538 | `山` | PASS | 山 | saan1 | 9000 | CEDict |
-| 539 | `日` | PASS | 日 | jat6 | 13276 | CEDict |
-| 540 | `月` | PASS | 月 | jyut6 | 8690 | CEDict |
-| 541 | `手` | PASS | 手 | sau2 | 8536 | CEDict |
-| 542 | `口` | PASS | 口 | hau2 | 13915 | CEDict |
-| 543 | `心` | PASS | 心 | sam1 | 8201 | CEDict |
-| 544 | `目` | PASS | 目的 | muk6 dik1 | 12170 | CEDict |
-| 545 | `車` | PASS | 車 | ce1 | 9000 | CEDict |
-| 546 | `馬` | PASS | 馬 | maa5 | 9000 | CEDict |
-| 547 | `花` | PASS | 花 | faa1 | 9000 | CEDict |
-| 548 | `魚` | PASS | 魚 | jyu2 | 9000 | CEDict |
-| 549 | `鳥` | PASS | 鳥 | niu5 | 9000 | CEDict |
-| 550 | `學校` | PASS | 學校 | hok6 haau6 | 16000 | CEDict |
-| 551 | `醫院` | PASS | 醫院 | ji1 jyun2 | 16000 | CEDict |
-| 552 | `巴士` | PASS | 巴士 | baa1 si2 | 21000 | CEDict |
-| 553 | `地鐵` | PASS | 地鐵 | dei6 tit3 | 19296 | CEDict |
-| 554 | `電話` | PASS | 電話 | din6 waa2 | 16000 | CEDict |
-| 555 | `電腦` | PASS | 電腦 | din6 nou5 | 16000 | CEDict |
-| 556 | `警察` | PASS | 警察 | ging2 caat3 | 16000 | CEDict |
-| 557 | `老師` | PASS | 老師 | lou5 si1 | 15765 | CEDict |
-| 558 | `中國` | PASS | 中國 | zung1 gwok3 | 19165 | CEDict |
-| 559 | `香港` | PASS | 香港 | hoeng1 gong2 | 21000 | CEDict |
-| 560 | `朋友` | PASS | 朋友 | pang4 jau5 | 16000 | CEDict |
-| 561 | `唔該` | PASS | 唔該 | m4 goi1 | 21000 | CCanto |
-| 562 | `多謝` | PASS | 多謝 | do1 ze6 | 19995 | CEDict |
-| 563 | `飛機` | PASS | 飛機 | fei1 gei1 | 16000 | CEDict |
-| 564 | `公司` | PASS | 公司 | gung1 si1 | 15409 | CEDict |
-| 565 | `時間` | PASS | 時間 | si4 gaan3 | 16000 | CEDict |
-| 566 | `開心` | PASS | 開心 | hoi1 sam1 | 20201 | CEDict |
-| 567 | `今日` | PASS | 今日 | gam1 jat6 | 20276 | CEDict |
-| 568 | `明天` | PASS | 天明 | tin1 ming4 | 19569 | CEDict |
-| 569 | `生日` | PASS | 生日 | saang1 jat6 | 13923 | CEDict |
-| 570 | `新年` | PASS | 新年 | san1 nin4 | 14408 | CEDict |
-| 571 | `Nei5` | PASS | 你 | nei5 | 12614 | CEDict |
-| 572 | `HOU2` | PASS | 好 | hou2 | 13152 | CEDict |
-| 573 | `s` | PASS | 所 | so2 | 11913 | CEDict |
-| 574 | `g` | PASS | 歌 | go1 | 13000 | CEDict |
-| 575 | `l` | PASS | 鑼 | lo4 | 13000 | CEDict |
-| 576 | `go` | PASS | 歌 | go1 | 9000 | CEDict |
-| 577 | `ga` | PASS | 家 | gaa1 | 11939 | CEDict |
-| 578 | `la` | PASS | 林 | lam4 | 13000 | CEDict |
-| 579 | `gam1` | PASS | 今 | gam1 | 14000 | CEDict |
-| 580 | `gam2` | PASS | 咁 | gam2 | 12000 | CCanto |
-| 581 | `gam3` | PASS | 咁 | gam3 | 12000 | CCanto |
-| 582 | `si1` | PASS | 絲 | si1 | 9000 | CEDict |
-| 583 | `si6` | PASS | 事 | si6 | 7960 | CCanto |
-| 584 | `ngaang6` | PASS | 硬 | ngaang6 | 14000 | CEDict |
-| 585 | `gwik1` | PASS | 郤 | gwik1 | 14000 | CEDict |
-| 586 | `zoeng1` | PASS | 將 | zoeng1 | 14000 | CEDict |
-| 587 | `jau5 mou5` | PASS | 有冇 | jau5 mou5 | 18687 | CCanto |
-| 588 | `hai6 m4 hai6` | FAIL | - | - | - | - |
-| 589 | `hou2 m4 hou2` | FAIL | - | - | - | - |
-| 590 | `jat1 go3 jan4` | PASS | 一個人 | jat1 go3 jan4 | 22789 | CEDict |
-| 591 | `jat1 di1` | PASS | 一啲 | jat1 di1 | 18149 | CCanto |
-| 592 | `saam1 go3` | FAIL | 三角 | saam1 gok3 | 24455 | CEDict |
-| 593 | `gaa1 jan4` | PASS | 家人 | gaa1 jan4 | 17579 | CEDict |
-| 594 | `daai6 gaa1` | PASS | 大家 | daai6 gaa1 | 18151 | CEDict |
-| 595 | `aa1` | PASS | 丫 | aa1 | 14000 | CEDict |
-| 596 | `aa4` | PASS | 啊 | aa4 | 14000 | CCanto |
-| 597 | `sap6 ji6` | PASS | 十二 | sap6 ji6 | 19930 | CEDict |
-| 598 | `baat3 jyut6` | PASS | 八月 | baat3 jyut6 | 20690 | CEDict |
-| 599 | `sing1 kei4 jat1` | PASS | 星期一 | sing1 kei4 jat1 | 25149 | CEDict |
-| 600 | `hou2 do1 ze6` | FAIL | 好得滯 | hou2 dak1 zai6 | 68878 | CCanto |
-| 601 | `ge` | FAIL | 機 | gei1 | 13000 | CCanto |
-| 602 | `do` | FAIL | 道 | dou6 | 11891 | CEDict |
-| 603 | `mo` | PASS | 冇 | mo5 | 12000 | CCanto |
-| 604 | `to` | PASS | 他 | to1 | 11797 | CCanto |
-| 605 | `di` | PASS | 的 | di1 | 10195 | CCanto |
-| 606 | `co` | FAIL | 草 | cou2 | 13000 | CEDict |
-| 607 | `do1` | PASS | 多 | do1 | 12995 | CEDict |
-| 608 | `do6` | FAIL | 道 | dou6 | 11891 | CEDict |
-| 609 | `do3` | FAIL | 道 | dou3 | 11891 | CCanto |
-| 610 | `si` | PASS | 事 | si6 | 7960 | CCanto |
-| 611 | `go` | PASS | 歌 | go1 | 9000 | CEDict |
-| 612 | `lo` | PASS | 鑼 | lo4 | 9000 | CEDict |
-| 613 | `se` | PASS | 蛇 | se4 | 9000 | CEDict |
-| 614 | `bo` | PASS | 坡 | bo1 | 9000 | CEDict |
-| 615 | `zo` | PASS | 座 | zo6 | 9000 | CEDict |
-| 616 | `fo` | PASS | 科 | fo1 | 9000 | CEDict |
-| 617 | `so` | PASS | 所 | so2 | 7913 | CEDict |
-| 618 | `no` | PASS | 那 | no5 | 12713 | CCanto |
-| 619 | `ge3` | PASS | 嘅 | ge3 | 14000 | CCanto |
-| 620 | `ge2` | PASS | 嘅 | ge2 | 14000 | CCanto |
-| 621 | `mo5` | PASS | 冇 | mo5 | 12000 | CCanto |
-| 622 | `di1` | PASS | 的 | di1 | 10195 | CCanto |
-| 623 | `to1` | PASS | 他 | to1 | 11797 | CCanto |
-| 624 | `se1` | PASS | 些 | se1 | 13180 | CEDict |
-| 625 | `da` | PASS | 豆 | dau2 | 13000 | CEDict |
-| 626 | `ba` | PASS | 壩 | baa3 | 13000 | CEDict |
-| 627 | `ga` | PASS | 家 | gaa1 | 11939 | CEDict |
-| 628 | `ge do` | PASS | 基多 | gei1 do1 | 23995 | CEDict |
-| 629 | `si go` | PASS | 詩歌 | si1 go1 | 16000 | CEDict |
-| 630 | `do di` | PASS | 多啲 | do1 di1 | 19995 | CCanto |
-| 631 | `lo ge` | FAIL | 圈 | hyun1 | 23500 | CEDict |
-| 632 | `zo ge` | PASS | 芝 | zi1 | 25000 | CEDict |
-| 633 | `so` | PASS | 所 | so2 | 7913 | CEDict |
-| 634 | `zo2` | PASS | 座 | zo2 | 9000 | CCanto |
-| 635 | `bo1` | PASS | 坡 | bo1 | 9000 | CEDict |
-| 636 | `fo1` | PASS | 科 | fo1 | 9000 | CEDict |
-| 637 | `go3` | PASS | 嗰 | go3 | 12000 | CCanto |
-| 638 | `lo3` | PASS | 摞 | lo3 | 14000 | CEDict |
-| 639 | `si6` | PASS | 事 | si6 | 7960 | CCanto |
-| 640 | `si1` | PASS | 絲 | si1 | 9000 | CEDict |
-| 641 | `go1` | PASS | 歌 | go1 | 9000 | CEDict |
-| 642 | `lo4` | PASS | 鑼 | lo4 | 9000 | CEDict |
-| 643 | `se4` | PASS | 蛇 | se4 | 9000 | CEDict |
-| 644 | `do di` | PASS | 多啲 | do1 di1 | 19995 | CCanto |
-| 645 | `mo ge` | FAIL | 月 | jyut6 | 21390 | CEDict |
-| 646 | `so do` | PASS | 所多 | so2 do1 | 18908 | CEDict |
-| 647 | `do2` | FAIL | 島 | dou2 | 13000 | CEDict |
-| 648 | `mo1` | PASS | 么 | mo1 | 13003 | CCanto |
-| 649 | `co1` | PASS | 初 | co1 | 14000 | CEDict |
-| 650 | `no5` | PASS | 那 | no5 | 12713 | CCanto |
+| # | Query | Position | Top Char | Top JP | Total Cost | Source |
+|---|-------|----------|----------|--------|------------|--------|
+| 1 | `ngo5` | - | - | - | - | - |
+| 2 | `nei5` | - | - | - | - | - |
+| 3 | `hai6` | - | - | - | - | - |
+| 4 | `lo3` | - | - | - | - | - |
+| 5 | `ge3` | - | - | - | - | - |
+| 6 | `aa3` | - | - | - | - | - |
+| 7 | `m4` | - | - | - | - | - |
+| 8 | `di1` | - | - | - | - | - |
+| 9 | `go3` | - | - | - | - | - |
+| 10 | `zou6` | - | - | - | - | - |
+| 11 | `jat1` | - | - | - | - | - |
+| 12 | `gin3` | - | - | - | - | - |
+| 13 | `sik1` | - | - | - | - | - |
+| 14 | `hou2` | - | - | - | - | - |
+| 15 | `mat1` | - | - | - | - | - |
+| 16 | `gam2` | - | - | - | - | - |
+| 17 | `dou1` | - | - | - | - | - |
+| 18 | `lei4` | - | - | - | - | - |
+| 19 | `heoi3` | - | - | - | - | - |
+| 20 | `waa6` | - | - | - | - | - |
+| 21 | `gong2` | - | - | - | - | - |
+| 22 | `tai2` | - | - | - | - | - |
+| 23 | `jam2` | - | - | - | - | - |
+| 24 | `faan1` | - | - | - | - | - |
+| 25 | `zyu6` | - | - | - | - | - |
+| 26 | `bin1` | - | - | - | - | - |
+| 27 | `dim2` | - | - | - | - | - |
+| 28 | `zoi3` | - | - | - | - | - |
+| 29 | `daai6` | - | - | - | - | - |
+| 30 | `siu2` | - | - | - | - | - |
+| 31 | `ngo` | - | - | - | - | - |
+| 32 | `nei` | - | - | - | - | - |
+| 33 | `hai` | - | - | - | - | - |
+| 34 | `hou` | - | - | - | - | - |
+| 35 | `gam` | - | - | - | - | - |
+| 36 | `sik` | - | - | - | - | - |
+| 37 | `dim` | - | - | - | - | - |
+| 38 | `lok` | - | - | - | - | - |
+| 39 | `jau` | - | - | - | - | - |
+| 40 | `dou` | - | - | - | - | - |
+| 41 | `nei5 hou2` | - | - | - | - | - |
+| 42 | `m4 goi1` | - | - | - | - | - |
+| 43 | `do1 ze6` | - | - | - | - | - |
+| 44 | `hou2 leng3` | - | - | - | - | - |
+| 45 | `sik6 faan6` | - | - | - | - | - |
+| 46 | `gong2 jyut6 jyu5` | - | - | - | - | - |
+| 47 | `dim2 gaai2` | - | - | - | - | - |
+| 48 | `m4 hou2` | - | - | - | - | - |
+| 49 | `zoi3 gin3` | - | - | - | - | - |
+| 50 | `dak1 m4 dak1` | - | - | - | - | - |
+| 51 | `gei2 do1` | - | - | - | - | - |
+| 52 | `sei2 m4 sei2` | - | - | - | - | - |
+| 53 | `jat1 jat6` | - | - | - | - | - |
+| 54 | `bat1 gwo3` | - | - | - | - | - |
+| 55 | `ji4 gaa1` | - | - | - | - | - |
+| 56 | `jyu4 gwo2` | - | - | - | - | - |
+| 57 | `ting1 jat6` | - | - | - | - | - |
+| 58 | `cam4 jat6` | - | - | - | - | - |
+| 59 | `gam1 jat6` | - | - | - | - | - |
+| 60 | `hou2 ci5` | - | - | - | - | - |
+| 61 | `leng3` | - | - | - | - | - |
+| 62 | `mou5` | - | - | - | - | - |
+| 63 | `je5` | - | - | - | - | - |
+| 64 | `gam3` | - | - | - | - | - |
+| 65 | `saai3` | - | - | - | - | - |
+| 66 | `maai4` | - | - | - | - | - |
+| 67 | `zek3` | - | - | - | - | - |
+| 68 | `keoi5` | - | - | - | - | - |
+| 69 | `fan3` | - | - | - | - | - |
+| 70 | `zan1` | - | - | - | - | - |
+| 71 | `ng` | - | - | - | - | - |
+| 72 | `ho` | - | - | - | - | - |
+| 73 | `ne` | - | - | - | - | - |
+| 74 | `ge` | - | - | - | - | - |
+| 75 | `si` | - | - | - | - | - |
+| 76 | `gw` | - | - | - | - | - |
+| 77 | `zo` | - | - | - | - | - |
+| 78 | `ja` | - | - | - | - | - |
+| 79 | `heoi` | - | - | - | - | - |
+| 80 | `gon` | - | - | - | - | - |
+| 81 | `hello` | - | - | - | - | - |
+| 82 | `water` | - | - | - | - | - |
+| 83 | `eat` | - | - | - | - | - |
+| 84 | `good` | - | - | - | - | - |
+| 85 | `person` | - | - | - | - | - |
+| 86 | `house` | - | - | - | - | - |
+| 87 | `money` | - | - | - | - | - |
+| 88 | `big` | - | - | - | - | - |
+| 89 | `see` | - | - | - | - | - |
+| 90 | `beautiful` | - | - | - | - | - |
+| 91 | `咯` | - | - | - | - | - |
+| 92 | `嘅` | - | - | - | - | - |
+| 93 | `食` | - | - | - | - | - |
+| 94 | `好` | - | - | - | - | - |
+| 95 | `你好` | - | - | - | - | - |
+| 96 | `aa` | - | - | - | - | - |
+| 97 | `m` | - | - | - | - | - |
+| 98 | `ng5` | - | - | - | - | - |
+| 99 | `gwong2 dung1 waa2` | - | - | - | - | - |
+| 100 | `jyut6 jyu5` | - | - | - | - | - |
+| 101 | `sam1` | - | - | - | - | - |
+| 102 | `sei3` | - | - | - | - | - |
+| 103 | `ng5` | - | - | - | - | - |
+| 104 | `luk6` | - | - | - | - | - |
+| 105 | `cat1` | - | - | - | - | - |
+| 106 | `baat3` | - | - | - | - | - |
+| 107 | `gau2` | - | - | - | - | - |
+| 108 | `sap6` | - | - | - | - | - |
+| 109 | `jan4` | - | - | - | - | - |
+| 110 | `neoi5` | - | - | - | - | - |
+| 111 | `naam4` | - | - | - | - | - |
+| 112 | `gaa1` | - | - | - | - | - |
+| 113 | `hok6` | - | - | - | - | - |
+| 114 | `nin4` | - | - | - | - | - |
+| 115 | `jyut6` | - | - | - | - | - |
+| 116 | `ming4` | - | - | - | - | - |
+| 117 | `san1` | - | - | - | - | - |
+| 118 | `loi4` | - | - | - | - | - |
+| 119 | `tung4` | - | - | - | - | - |
+| 120 | `gwong2` | - | - | - | - | - |
+| 121 | `zung1` | - | - | - | - | - |
+| 122 | `seoi2` | - | - | - | - | - |
+| 123 | `fo2` | - | - | - | - | - |
+| 124 | `saan1` | - | - | - | - | - |
+| 125 | `tin1` | - | - | - | - | - |
+| 126 | `dei6` | - | - | - | - | - |
+| 127 | `fung1` | - | - | - | - | - |
+| 128 | `jyu5` | - | - | - | - | - |
+| 129 | `faa1` | - | - | - | - | - |
+| 130 | `syu4` | - | - | - | - | - |
+| 131 | `muk6` | - | - | - | - | - |
+| 132 | `gam1` | - | - | - | - | - |
+| 133 | `ngaan5` | - | - | - | - | - |
+| 134 | `hau2` | - | - | - | - | - |
+| 135 | `sau2` | - | - | - | - | - |
+| 136 | `goek3` | - | - | - | - | - |
+| 137 | `tau4` | - | - | - | - | - |
+| 138 | `ji5` | - | - | - | - | - |
+| 139 | `ce1` | - | - | - | - | - |
+| 140 | `syun4` | - | - | - | - | - |
+| 141 | `fei1` | - | - | - | - | - |
+| 142 | `maau1` | - | - | - | - | - |
+| 143 | `gau2` | - | - | - | - | - |
+| 144 | `jyu2` | - | - | - | - | - |
+| 145 | `niu5` | - | - | - | - | - |
+| 146 | `baak6` | - | - | - | - | - |
+| 147 | `hak1` | - | - | - | - | - |
+| 148 | `hung4` | - | - | - | - | - |
+| 149 | `wong4` | - | - | - | - | - |
+| 150 | `laam4` | - | - | - | - | - |
+| 151 | `luk6` | - | - | - | - | - |
+| 152 | `cin2` | - | - | - | - | - |
+| 153 | `faan6` | - | - | - | - | - |
+| 154 | `caa4` | - | - | - | - | - |
+| 155 | `zau2` | - | - | - | - | - |
+| 156 | `tong4` | - | - | - | - | - |
+| 157 | `jit6` | - | - | - | - | - |
+| 158 | `dung3` | - | - | - | - | - |
+| 159 | `faai3` | - | - | - | - | - |
+| 160 | `maan6` | - | - | - | - | - |
+| 161 | `gou1` | - | - | - | - | - |
+| 162 | `dai1` | - | - | - | - | - |
+| 163 | `coeng4` | - | - | - | - | - |
+| 164 | `dyun2` | - | - | - | - | - |
+| 165 | `fei4` | - | - | - | - | - |
+| 166 | `sau3` | - | - | - | - | - |
+| 167 | `gau6` | - | - | - | - | - |
+| 168 | `cing1` | - | - | - | - | - |
+| 169 | `maai5` | - | - | - | - | - |
+| 170 | `maai6` | - | - | - | - | - |
+| 171 | `bei2` | - | - | - | - | - |
+| 172 | `wan2` | - | - | - | - | - |
+| 173 | `paau2` | - | - | - | - | - |
+| 174 | `co5` | - | - | - | - | - |
+| 175 | `kei5` | - | - | - | - | - |
+| 176 | `se2` | - | - | - | - | - |
+| 177 | `duk6` | - | - | - | - | - |
+| 178 | `sing1` | - | - | - | - | - |
+| 179 | `hoeng1` | - | - | - | - | - |
+| 180 | `gong2` | - | - | - | - | - |
+| 181 | `si4` | - | - | - | - | - |
+| 182 | `din6` | - | - | - | - | - |
+| 183 | `waa2` | - | - | - | - | - |
+| 184 | `cing4` | - | - | - | - | - |
+| 185 | `oi3` | - | - | - | - | - |
+| 186 | `hei2` | - | - | - | - | - |
+| 187 | `lok6` | - | - | - | - | - |
+| 188 | `hoi1` | - | - | - | - | - |
+| 189 | `saan1` | - | - | - | - | - |
+| 190 | `ceot1` | - | - | - | - | - |
+| 191 | `jap6` | - | - | - | - | - |
+| 192 | `dak1` | - | - | - | - | - |
+| 193 | `jiu3` | - | - | - | - | - |
+| 194 | `ho2` | - | - | - | - | - |
+| 195 | `wui5` | - | - | - | - | - |
+| 196 | `zung6` | - | - | - | - | - |
+| 197 | `sing4` | - | - | - | - | - |
+| 198 | `do1` | - | - | - | - | - |
+| 199 | `siu2` | - | - | - | - | - |
+| 200 | `cyun4` | - | - | - | - | - |
+| 201 | `zing3` | - | - | - | - | - |
+| 202 | `cou4` | - | - | - | - | - |
+| 203 | `gwai3` | - | - | - | - | - |
+| 204 | `peng4` | - | - | - | - | - |
+| 205 | `naan4` | - | - | - | - | - |
+| 206 | `ji4` | - | - | - | - | - |
+| 207 | `gaan1` | - | - | - | - | - |
+| 208 | `lou5` | - | - | - | - | - |
+| 209 | `zai2` | - | - | - | - | - |
+| 210 | `mui1` | - | - | - | - | - |
+| 211 | `gwo3` | - | - | - | - | - |
+| 212 | `wun6` | - | - | - | - | - |
+| 213 | `dong1` | - | - | - | - | - |
+| 214 | `zik1` | - | - | - | - | - |
+| 215 | `bo1` | - | - | - | - | - |
+| 216 | `paai4` | - | - | - | - | - |
+| 217 | `toi2` | - | - | - | - | - |
+| 218 | `ji6` | - | - | - | - | - |
+| 219 | `saam1` | - | - | - | - | - |
+| 220 | `ling4` | - | - | - | - | - |
+| 221 | `sam` | - | - | - | - | - |
+| 222 | `sei` | - | - | - | - | - |
+| 223 | `jan` | - | - | - | - | - |
+| 224 | `gaa` | - | - | - | - | - |
+| 225 | `san` | - | - | - | - | - |
+| 226 | `fung` | - | - | - | - | - |
+| 227 | `din` | - | - | - | - | - |
+| 228 | `ce` | - | - | - | - | - |
+| 229 | `sing` | - | - | - | - | - |
+| 230 | `ming` | - | - | - | - | - |
+| 231 | `cin` | - | - | - | - | - |
+| 232 | `dung` | - | - | - | - | - |
+| 233 | `wong` | - | - | - | - | - |
+| 234 | `hung` | - | - | - | - | - |
+| 235 | `gou` | - | - | - | - | - |
+| 236 | `dai` | - | - | - | - | - |
+| 237 | `hoi` | - | - | - | - | - |
+| 238 | `faan` | - | - | - | - | - |
+| 239 | `zau` | - | - | - | - | - |
+| 240 | `bei` | - | - | - | - | - |
+| 241 | `caa` | - | - | - | - | - |
+| 242 | `gwai` | - | - | - | - | - |
+| 243 | `tau` | - | - | - | - | - |
+| 244 | `zou` | - | - | - | - | - |
+| 245 | `fo` | - | - | - | - | - |
+| 246 | `bo` | - | - | - | - | - |
+| 247 | `tong` | - | - | - | - | - |
+| 248 | `paai` | - | - | - | - | - |
+| 249 | `wui` | - | - | - | - | - |
+| 250 | `zung` | - | - | - | - | - |
+| 251 | `zing` | - | - | - | - | - |
+| 252 | `gwok` | - | - | - | - | - |
+| 253 | `tin` | - | - | - | - | - |
+| 254 | `mou` | - | - | - | - | - |
+| 255 | `lei` | - | - | - | - | - |
+| 256 | `heoi` | - | - | - | - | - |
+| 257 | `sai` | - | - | - | - | - |
+| 258 | `gei` | - | - | - | - | - |
+| 259 | `bat` | - | - | - | - | - |
+| 260 | `keoi` | - | - | - | - | - |
+| 261 | `hoeng1 gong2` | - | - | - | - | - |
+| 262 | `zou2 san4` | - | - | - | - | - |
+| 263 | `baai1 baai3` | - | - | - | - | - |
+| 264 | `sing1 kei4` | - | - | - | - | - |
+| 265 | `dim2 sam1` | - | - | - | - | - |
+| 266 | `siu1 maai6` | - | - | - | - | - |
+| 267 | `coeng2 fan2` | - | - | - | - | - |
+| 268 | `faan1 gung1` | - | - | - | - | - |
+| 269 | `fong3 gung1` | - | - | - | - | - |
+| 270 | `sik6 faan6` | - | - | - | - | - |
+| 271 | `jam2 caa4` | - | - | - | - | - |
+| 272 | `gau2 lung4` | - | - | - | - | - |
+| 273 | `dei6 tit3` | - | - | - | - | - |
+| 274 | `baa1 si2` | - | - | - | - | - |
+| 275 | `din6 waa2` | - | - | - | - | - |
+| 276 | `din6 nou5` | - | - | - | - | - |
+| 277 | `hok6 haau6` | - | - | - | - | - |
+| 278 | `ji1 jyun2` | - | - | - | - | - |
+| 279 | `ging2 caat3` | - | - | - | - | - |
+| 280 | `lou5 si1` | - | - | - | - | - |
+| 281 | `pang4 jau5` | - | - | - | - | - |
+| 282 | `gung1 si1` | - | - | - | - | - |
+| 283 | `hou2 sik6` | - | - | - | - | - |
+| 284 | `hou2 waan2` | - | - | - | - | - |
+| 285 | `ji6 sap6` | - | - | - | - | - |
+| 286 | `jat1 baak3` | - | - | - | - | - |
+| 287 | `jat1 cin1` | - | - | - | - | - |
+| 288 | `dim2 joeng2` | - | - | - | - | - |
+| 289 | `bin1 dou6` | - | - | - | - | - |
+| 290 | `gei2 si4` | - | - | - | - | - |
+| 291 | `mat1 je5` | - | - | - | - | - |
+| 292 | `dim2 gaai2` | - | - | - | - | - |
+| 293 | `bin1 go3` | - | - | - | - | - |
+| 294 | `gei2 noi6` | - | - | - | - | - |
+| 295 | `sai3 lou6` | - | - | - | - | - |
+| 296 | `hoi1 sam1` | - | - | - | - | - |
+| 297 | `san1 fu2` | - | - | - | - | - |
+| 298 | `ho2 ji5` | - | - | - | - | - |
+| 299 | `daan6 hai6` | - | - | - | - | - |
+| 300 | `ji1 ging1` | - | - | - | - | - |
+| 301 | `jyun4 loi4` | - | - | - | - | - |
+| 302 | `gei1 wui6` | - | - | - | - | - |
+| 303 | `man6 tai4` | - | - | - | - | - |
+| 304 | `zung1 ji3` | - | - | - | - | - |
+| 305 | `gwaan1 hai6` | - | - | - | - | - |
+| 306 | `si4 gaan3` | - | - | - | - | - |
+| 307 | `zou2 san4` | - | - | - | - | - |
+| 308 | `gam1 nin2` | - | - | - | - | - |
+| 309 | `ceot1 heoi3` | - | - | - | - | - |
+| 310 | `faan1 lai4` | - | - | - | - | - |
+| 311 | `zou2 can1` | - | - | - | - | - |
+| 312 | `aan3 zau3` | - | - | - | - | - |
+| 313 | `maan5 faan6` | - | - | - | - | - |
+| 314 | `daai6 hok6` | - | - | - | - | - |
+| 315 | `zung1 hok6` | - | - | - | - | - |
+| 316 | `siu2 hok6` | - | - | - | - | - |
+| 317 | `daa2 bo1` | - | - | - | - | - |
+| 318 | `tai2 hei3` | - | - | - | - | - |
+| 319 | `maai5 je5` | - | - | - | - | - |
+| 320 | `zung1 gwok3` | - | - | - | - | - |
+| 321 | `jing1 gwok3` | - | - | - | - | - |
+| 322 | `jat6 bun2` | - | - | - | - | - |
+| 323 | `toi4 waan1` | - | - | - | - | - |
+| 324 | `leng3 zai2` | - | - | - | - | - |
+| 325 | `leng3 neoi5` | - | - | - | - | - |
+| 326 | `lek1 zai2` | - | - | - | - | - |
+| 327 | `daai6 gaa1` | - | - | - | - | - |
+| 328 | `zi6 gei2` | - | - | - | - | - |
+| 329 | `keoi5 dei6` | - | - | - | - | - |
+| 330 | `ngo5 dei6` | - | - | - | - | - |
+| 331 | `m4 sai2` | - | - | - | - | - |
+| 332 | `m4 zi1` | - | - | - | - | - |
+| 333 | `jau5 mou5` | - | - | - | - | - |
+| 334 | `haa5 ci3` | - | - | - | - | - |
+| 335 | `soeng5 min6` | - | - | - | - | - |
+| 336 | `haa5 min6` | - | - | - | - | - |
+| 337 | `jat1 ding6` | - | - | - | - | - |
+| 338 | `zoi3 gin3` | - | - | - | - | - |
+| 339 | `gam2 joeng2` | - | - | - | - | - |
+| 340 | `sou3 hok6` | - | - | - | - | - |
+| 341 | `lik6 si2` | - | - | - | - | - |
+| 342 | `jing1 man2` | - | - | - | - | - |
+| 343 | `zung1 man2` | - | - | - | - | - |
+| 344 | `tau4 faat3` | - | - | - | - | - |
+| 345 | `hoi2 sin1` | - | - | - | - | - |
+| 346 | `gaa1 fei1` | - | - | - | - | - |
+| 347 | `naai5 caa4` | - | - | - | - | - |
+| 348 | `gai1 daan2` | - | - | - | - | - |
+| 349 | `ngau4 juk6` | - | - | - | - | - |
+| 350 | `zyu1 juk6` | - | - | - | - | - |
+| 351 | `gai1 juk6` | - | - | - | - | - |
+| 352 | `sang1 jat6` | - | - | - | - | - |
+| 353 | `san1 nin4` | - | - | - | - | - |
+| 354 | `sing3 daan3` | - | - | - | - | - |
+| 355 | `tin1 hei3` | - | - | - | - | - |
+| 356 | `lok6 jyu5` | - | - | - | - | - |
+| 357 | `ceoi1 fung1` | - | - | - | - | - |
+| 358 | `tai2 syu1` | - | - | - | - | - |
+| 359 | `fan3 gaau3` | - | - | - | - | - |
+| 360 | `sai2 min6` | - | - | - | - | - |
+| 361 | `cung1 loeng4` | - | - | - | - | - |
+| 362 | `tai2 ji1 sang1` | - | - | - | - | - |
+| 363 | `haang4 gaai1` | - | - | - | - | - |
+| 364 | `daa2 din6 waa2` | - | - | - | - | - |
+| 365 | `zou6 je5` | - | - | - | - | - |
+| 366 | `gung1 jyun2` | - | - | - | - | - |
+| 367 | `caai1 gwun2` | - | - | - | - | - |
+| 368 | `jau4 guk2` | - | - | - | - | - |
+| 369 | `gei1 coeng4` | - | - | - | - | - |
+| 370 | `fo2 ce1` | - | - | - | - | - |
+| 371 | `jau5 jat6` | - | - | - | - | - |
+| 372 | `cin4 min6` | - | - | - | - | - |
+| 373 | `hau6 min6` | - | - | - | - | - |
+| 374 | `zo2 min6` | - | - | - | - | - |
+| 375 | `jau6 min6` | - | - | - | - | - |
+| 376 | `fei1 gei1` | - | - | - | - | - |
+| 377 | `siu2 sam1` | - | - | - | - | - |
+| 378 | `m4 gam2` | - | - | - | - | - |
+| 379 | `hou2 do1` | - | - | - | - | - |
+| 380 | `hou2 siu2` | - | - | - | - | - |
+| 381 | `laa1` | - | - | - | - | - |
+| 382 | `laa3` | - | - | - | - | - |
+| 383 | `wo3` | - | - | - | - | - |
+| 384 | `wo5` | - | - | - | - | - |
+| 385 | `gaa3` | - | - | - | - | - |
+| 386 | `me1` | - | - | - | - | - |
+| 387 | `ze1` | - | - | - | - | - |
+| 388 | `lo2` | - | - | - | - | - |
+| 389 | `aai3` | - | - | - | - | - |
+| 390 | `gaau2` | - | - | - | - | - |
+| 391 | `lek1` | - | - | - | - | - |
+| 392 | `naa2` | - | - | - | - | - |
+| 393 | `lou5` | - | - | - | - | - |
+| 394 | `bik1` | - | - | - | - | - |
+| 395 | `king1` | - | - | - | - | - |
+| 396 | `cou4` | - | - | - | - | - |
+| 397 | `dau2` | - | - | - | - | - |
+| 398 | `go2` | - | - | - | - | - |
+| 399 | `pek3` | - | - | - | - | - |
+| 400 | `caat3` | - | - | - | - | - |
+| 401 | `gwaai3` | - | - | - | - | - |
+| 402 | `haam4` | - | - | - | - | - |
+| 403 | `laang5` | - | - | - | - | - |
+| 404 | `song2` | - | - | - | - | - |
+| 405 | `dung3` | - | - | - | - | - |
+| 406 | `gwaai1` | - | - | - | - | - |
+| 407 | `ngaam1` | - | - | - | - | - |
+| 408 | `gwai6` | - | - | - | - | - |
+| 409 | `saai1` | - | - | - | - | - |
+| 410 | `daap3` | - | - | - | - | - |
+| 411 | `gu2` | - | - | - | - | - |
+| 412 | `gai2` | - | - | - | - | - |
+| 413 | `duk1` | - | - | - | - | - |
+| 414 | `paau4` | - | - | - | - | - |
+| 415 | `lok6 heoi3` | - | - | - | - | - |
+| 416 | `jat1 cai4` | - | - | - | - | - |
+| 417 | `m4 hai6` | - | - | - | - | - |
+| 418 | `jau5 liu2` | - | - | - | - | - |
+| 419 | `sai2 cin2` | - | - | - | - | - |
+| 420 | `haang4 wan6` | - | - | - | - | - |
+| 421 | `gwo3 hoi2` | - | - | - | - | - |
+| 422 | `hoi1 gung1` | - | - | - | - | - |
+| 423 | `zyun2 tau4` | - | - | - | - | - |
+| 424 | `jat1 zan6` | - | - | - | - | - |
+| 425 | `ap1` | - | - | - | - | - |
+| 426 | `zaa3` | - | - | - | - | - |
+| 427 | `lai4` | - | - | - | - | - |
+| 428 | `maa3` | - | - | - | - | - |
+| 429 | `gau6` | - | - | - | - | - |
+| 430 | `zo2` | - | - | - | - | - |
+| 431 | `lou` | - | - | - | - | - |
+| 432 | `gin` | - | - | - | - | - |
+| 433 | `faa` | - | - | - | - | - |
+| 434 | `sin` | - | - | - | - | - |
+| 435 | `bei` | - | - | - | - | - |
+| 436 | `daa` | - | - | - | - | - |
+| 437 | `wai` | - | - | - | - | - |
+| 438 | `cung` | - | - | - | - | - |
+| 439 | `maa` | - | - | - | - | - |
+| 440 | `baa` | - | - | - | - | - |
+| 441 | `tin` | - | - | - | - | - |
+| 442 | `ming` | - | - | - | - | - |
+| 443 | `syu` | - | - | - | - | - |
+| 444 | `hei` | - | - | - | - | - |
+| 445 | `gei` | - | - | - | - | - |
+| 446 | `jyu` | - | - | - | - | - |
+| 447 | `hok` | - | - | - | - | - |
+| 448 | `din` | - | - | - | - | - |
+| 449 | `zoi` | - | - | - | - | - |
+| 450 | `sik` | - | - | - | - | - |
+| 451 | `toi` | - | - | - | - | - |
+| 452 | `hou` | - | - | - | - | - |
+| 453 | `gwai` | - | - | - | - | - |
+| 454 | `seoi` | - | - | - | - | - |
+| 455 | `gung` | - | - | - | - | - |
+| 456 | `fei` | - | - | - | - | - |
+| 457 | `ceoi` | - | - | - | - | - |
+| 458 | `ngau` | - | - | - | - | - |
+| 459 | `zing` | - | - | - | - | - |
+| 460 | `gwok` | - | - | - | - | - |
+| 461 | `gaai` | - | - | - | - | - |
+| 462 | `lok` | - | - | - | - | - |
+| 463 | `bou` | - | - | - | - | - |
+| 464 | `jing` | - | - | - | - | - |
+| 465 | `pou` | - | - | - | - | - |
+| 466 | `cin` | - | - | - | - | - |
+| 467 | `keoi` | - | - | - | - | - |
+| 468 | `lai` | - | - | - | - | - |
+| 469 | `mou` | - | - | - | - | - |
+| 470 | `fan` | - | - | - | - | - |
+| 471 | `mother` | - | - | - | - | - |
+| 472 | `father` | - | - | - | - | - |
+| 473 | `brother` | - | - | - | - | - |
+| 474 | `sister` | - | - | - | - | - |
+| 475 | `rice` | - | - | - | - | - |
+| 476 | `fish` | - | - | - | - | - |
+| 477 | `chicken` | - | - | - | - | - |
+| 478 | `tea` | - | - | - | - | - |
+| 479 | `coffee` | - | - | - | - | - |
+| 480 | `red` | - | - | - | - | - |
+| 481 | `blue` | - | - | - | - | - |
+| 482 | `green` | - | - | - | - | - |
+| 483 | `black` | - | - | - | - | - |
+| 484 | `white` | - | - | - | - | - |
+| 485 | `hand` | - | - | - | - | - |
+| 486 | `head` | - | - | - | - | - |
+| 487 | `mouth` | - | - | - | - | - |
+| 488 | `walk` | - | - | - | - | - |
+| 489 | `sleep` | - | - | - | - | - |
+| 490 | `buy` | - | - | - | - | - |
+| 491 | `sell` | - | - | - | - | - |
+| 492 | `give` | - | - | - | - | - |
+| 493 | `read` | - | - | - | - | - |
+| 494 | `write` | - | - | - | - | - |
+| 495 | `hot` | - | - | - | - | - |
+| 496 | `cold` | - | - | - | - | - |
+| 497 | `fast` | - | - | - | - | - |
+| 498 | `slow` | - | - | - | - | - |
+| 499 | `new` | - | - | - | - | - |
+| 500 | `old` | - | - | - | - | - |
+| 501 | `happy` | - | - | - | - | - |
+| 502 | `school` | - | - | - | - | - |
+| 503 | `hospital` | - | - | - | - | - |
+| 504 | `morning` | - | - | - | - | - |
+| 505 | `night` | - | - | - | - | - |
+| 506 | `year` | - | - | - | - | - |
+| 507 | `month` | - | - | - | - | - |
+| 508 | `week` | - | - | - | - | - |
+| 509 | `friend` | - | - | - | - | - |
+| 510 | `child` | - | - | - | - | - |
+| 511 | `teacher` | - | - | - | - | - |
+| 512 | `student` | - | - | - | - | - |
+| 513 | `doctor` | - | - | - | - | - |
+| 514 | `car` | - | - | - | - | - |
+| 515 | `food` | - | - | - | - | - |
+| 516 | `book` | - | - | - | - | - |
+| 517 | `love` | - | - | - | - | - |
+| 518 | `work` | - | - | - | - | - |
+| 519 | `rain` | - | - | - | - | - |
+| 520 | `wind` | - | - | - | - | - |
+| 521 | `sun` | - | - | - | - | - |
+| 522 | `moon` | - | - | - | - | - |
+| 523 | `flower` | - | - | - | - | - |
+| 524 | `mountain` | - | - | - | - | - |
+| 525 | `river` | - | - | - | - | - |
+| 526 | `road` | - | - | - | - | - |
+| 527 | `telephone` | - | - | - | - | - |
+| 528 | `police` | - | - | - | - | - |
+| 529 | `thank` | - | - | - | - | - |
+| 530 | `sorry` | - | - | - | - | - |
+| 531 | `人` | - | - | - | - | - |
+| 532 | `大` | - | - | - | - | - |
+| 533 | `小` | - | - | - | - | - |
+| 534 | `天` | - | - | - | - | - |
+| 535 | `地` | - | - | - | - | - |
+| 536 | `水` | - | - | - | - | - |
+| 537 | `火` | - | - | - | - | - |
+| 538 | `山` | - | - | - | - | - |
+| 539 | `日` | - | - | - | - | - |
+| 540 | `月` | - | - | - | - | - |
+| 541 | `手` | - | - | - | - | - |
+| 542 | `口` | - | - | - | - | - |
+| 543 | `心` | - | - | - | - | - |
+| 544 | `目` | - | - | - | - | - |
+| 545 | `車` | - | - | - | - | - |
+| 546 | `馬` | - | - | - | - | - |
+| 547 | `花` | - | - | - | - | - |
+| 548 | `魚` | - | - | - | - | - |
+| 549 | `鳥` | - | - | - | - | - |
+| 550 | `學校` | - | - | - | - | - |
+| 551 | `醫院` | - | - | - | - | - |
+| 552 | `巴士` | - | - | - | - | - |
+| 553 | `地鐵` | - | - | - | - | - |
+| 554 | `電話` | - | - | - | - | - |
+| 555 | `電腦` | - | - | - | - | - |
+| 556 | `警察` | - | - | - | - | - |
+| 557 | `老師` | - | - | - | - | - |
+| 558 | `中國` | - | - | - | - | - |
+| 559 | `香港` | - | - | - | - | - |
+| 560 | `朋友` | - | - | - | - | - |
+| 561 | `唔該` | - | - | - | - | - |
+| 562 | `多謝` | - | - | - | - | - |
+| 563 | `飛機` | - | - | - | - | - |
+| 564 | `公司` | - | - | - | - | - |
+| 565 | `時間` | - | - | - | - | - |
+| 566 | `開心` | - | - | - | - | - |
+| 567 | `今日` | - | - | - | - | - |
+| 568 | `明天` | - | - | - | - | - |
+| 569 | `生日` | - | - | - | - | - |
+| 570 | `新年` | - | - | - | - | - |
+| 571 | `Nei5` | - | - | - | - | - |
+| 572 | `HOU2` | - | - | - | - | - |
+| 573 | `s` | - | - | - | - | - |
+| 574 | `g` | - | - | - | - | - |
+| 575 | `l` | - | - | - | - | - |
+| 576 | `go` | - | - | - | - | - |
+| 577 | `ga` | - | - | - | - | - |
+| 578 | `la` | - | - | - | - | - |
+| 579 | `gam1` | - | - | - | - | - |
+| 580 | `gam2` | - | - | - | - | - |
+| 581 | `gam3` | - | - | - | - | - |
+| 582 | `si1` | - | - | - | - | - |
+| 583 | `si6` | - | - | - | - | - |
+| 584 | `ngaang6` | - | - | - | - | - |
+| 585 | `gwik1` | - | - | - | - | - |
+| 586 | `zoeng1` | - | - | - | - | - |
+| 587 | `jau5 mou5` | - | - | - | - | - |
+| 588 | `hai6 m4 hai6` | - | - | - | - | - |
+| 589 | `hou2 m4 hou2` | - | - | - | - | - |
+| 590 | `jat1 go3 jan4` | - | - | - | - | - |
+| 591 | `jat1 di1` | - | - | - | - | - |
+| 592 | `saam1 go3` | - | - | - | - | - |
+| 593 | `gaa1 jan4` | - | - | - | - | - |
+| 594 | `daai6 gaa1` | - | - | - | - | - |
+| 595 | `aa1` | - | - | - | - | - |
+| 596 | `aa4` | - | - | - | - | - |
+| 597 | `sap6 ji6` | - | - | - | - | - |
+| 598 | `baat3 jyut6` | - | - | - | - | - |
+| 599 | `sing1 kei4 jat1` | - | - | - | - | - |
+| 600 | `hou2 do1 ze6` | - | - | - | - | - |
+| 601 | `ge` | - | - | - | - | - |
+| 602 | `do` | - | - | - | - | - |
+| 603 | `mo` | - | - | - | - | - |
+| 604 | `to` | - | - | - | - | - |
+| 605 | `di` | - | - | - | - | - |
+| 606 | `co` | - | - | - | - | - |
+| 607 | `do1` | - | - | - | - | - |
+| 608 | `do6` | - | - | - | - | - |
+| 609 | `do3` | - | - | - | - | - |
+| 610 | `si` | - | - | - | - | - |
+| 611 | `go` | - | - | - | - | - |
+| 612 | `lo` | - | - | - | - | - |
+| 613 | `se` | - | - | - | - | - |
+| 614 | `bo` | - | - | - | - | - |
+| 615 | `zo` | - | - | - | - | - |
+| 616 | `fo` | - | - | - | - | - |
+| 617 | `so` | - | - | - | - | - |
+| 618 | `no` | - | - | - | - | - |
+| 619 | `ge3` | - | - | - | - | - |
+| 620 | `ge2` | - | - | - | - | - |
+| 621 | `mo5` | - | - | - | - | - |
+| 622 | `di1` | - | - | - | - | - |
+| 623 | `to1` | - | - | - | - | - |
+| 624 | `se1` | - | - | - | - | - |
+| 625 | `da` | - | - | - | - | - |
+| 626 | `ba` | - | - | - | - | - |
+| 627 | `ga` | - | - | - | - | - |
+| 628 | `ge do` | - | - | - | - | - |
+| 629 | `si go` | - | - | - | - | - |
+| 630 | `do di` | - | - | - | - | - |
+| 631 | `lo ge` | - | - | - | - | - |
+| 632 | `zo ge` | - | - | - | - | - |
+| 633 | `so` | - | - | - | - | - |
+| 634 | `zo2` | - | - | - | - | - |
+| 635 | `bo1` | - | - | - | - | - |
+| 636 | `fo1` | - | - | - | - | - |
+| 637 | `go3` | - | - | - | - | - |
+| 638 | `lo3` | - | - | - | - | - |
+| 639 | `si6` | - | - | - | - | - |
+| 640 | `si1` | - | - | - | - | - |
+| 641 | `go1` | - | - | - | - | - |
+| 642 | `lo4` | - | - | - | - | - |
+| 643 | `se4` | - | - | - | - | - |
+| 644 | `do di` | - | - | - | - | - |
+| 645 | `mo ge` | - | - | - | - | - |
+| 646 | `so do` | - | - | - | - | - |
+| 647 | `do2` | - | - | - | - | - |
+| 648 | `mo1` | - | - | - | - | - |
+| 649 | `co1` | - | - | - | - | - |
+| 650 | `no5` | - | - | - | - | - |
+| 2001 | `ho2` | - | - | - | - | - |
+| 2002 | `ho4` | - | - | - | - | - |
+| 2003 | `ho1` | - | - | - | - | - |
+| 2004 | `ho` | - | - | - | - | - |
+| 2005 | `wo4` | - | - | - | - | - |
+| 2006 | `wo1` | - | - | - | - | - |
+| 2007 | `wo6` | - | - | - | - | - |
+| 2008 | `po3` | - | - | - | - | - |
+| 2009 | `po4` | - | - | - | - | - |
+| 2010 | `po2` | - | - | - | - | - |
+| 2011 | `ze1` | - | - | - | - | - |
+| 2012 | `ze2` | - | - | - | - | - |
+| 2013 | `ze3` | - | - | - | - | - |
+| 2014 | `ze6` | - | - | - | - | - |
+| 2015 | `ce1` | - | - | - | - | - |
+| 2016 | `ce4` | - | - | - | - | - |
+| 2017 | `me1` | - | - | - | - | - |
+| 2018 | `ne1` | - | - | - | - | - |
+| 2019 | `le` | - | - | - | - | - |
+| 2020 | `be1` | - | - | - | - | - |
+| 2021 | `fe1` | - | - | - | - | - |
+| 2022 | `ke2` | - | - | - | - | - |
+| 2023 | `zi1` | - | - | - | - | - |
+| 2024 | `zi2` | - | - | - | - | - |
+| 2025 | `zi6` | - | - | - | - | - |
+| 2026 | `ci1` | - | - | - | - | - |
+| 2027 | `ci4` | - | - | - | - | - |
+| 2028 | `ci5` | - | - | - | - | - |
+| 2029 | `gu1` | - | - | - | - | - |
+| 2030 | `gu2` | - | - | - | - | - |
+| 2031 | `gu3` | - | - | - | - | - |
+| 2032 | `fu1` | - | - | - | - | - |
+| 2033 | `fu2` | - | - | - | - | - |
+| 2034 | `fu3` | - | - | - | - | - |
+| 2035 | `fu6` | - | - | - | - | - |
+| 2036 | `wu1` | - | - | - | - | - |
+| 2037 | `wu4` | - | - | - | - | - |
+| 2038 | `wu6` | - | - | - | - | - |
+| 2039 | `de1` | - | - | - | - | - |
+| 2040 | `ke4` | - | - | - | - | - |
