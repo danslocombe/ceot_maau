@@ -1,0 +1,272 @@
+[
+  {
+    "id": 3001,
+    "query": "keoi5",
+    "category": "ccanto_boost",
+    "description": "佢 (he/she/it) - core Cantonese pronoun",
+    "expected_characters": ["佢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3002,
+    "query": "ge3",
+    "category": "ccanto_boost",
+    "description": "嘅 (possessive particle) - most common Cantonese particle",
+    "expected_characters": ["嘅"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3003,
+    "query": "hai6",
+    "category": "ccanto_boost",
+    "description": "係 (to be) - Cantonese copula",
+    "expected_characters": ["係"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3004,
+    "query": "mou5",
+    "category": "ccanto_boost",
+    "description": "冇 (don't have) - negation of 有",
+    "expected_characters": ["冇"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3005,
+    "query": "hai2",
+    "category": "ccanto_boost",
+    "description": "喺度 (at/here) - Cantonese locative (no standalone 喺 entry)",
+    "expected_characters": ["喺度"],
+    "accept_top_n": 3,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3006,
+    "query": "gam3",
+    "category": "ccanto_boost",
+    "description": "咁 (so/such) - Cantonese adverb",
+    "expected_characters": ["咁"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3007,
+    "query": "go2",
+    "category": "ccanto_boost",
+    "description": "嗰 (that) - Cantonese demonstrative",
+    "expected_characters": ["嗰"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3008,
+    "query": "di1",
+    "category": "ccanto_boost",
+    "description": "啲 (some/a bit) - Cantonese quantifier",
+    "expected_characters": ["啲"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier1"]
+  },
+  {
+    "id": 3009,
+    "query": "je5",
+    "category": "ccanto_boost",
+    "description": "嘢 (thing/stuff) - Cantonese noun",
+    "expected_characters": ["嘢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3010,
+    "query": "gam2",
+    "category": "ccanto_boost",
+    "description": "噉 (like this) - Cantonese demonstrative adverb",
+    "expected_characters": ["噉"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3011,
+    "query": "lo2",
+    "category": "ccanto_boost",
+    "description": "攞 (to take) - Cantonese verb",
+    "expected_characters": ["攞"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3012,
+    "query": "lai4",
+    "category": "ccanto_boost",
+    "description": "嚟 (to come) - Cantonese verb",
+    "expected_characters": ["嚟"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3013,
+    "query": "wan2",
+    "category": "ccanto_boost",
+    "description": "搵 (to find) - Cantonese verb",
+    "expected_characters": ["搵", "揾"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3014,
+    "query": "bei2",
+    "category": "ccanto_boost",
+    "description": "畀 (to give) - Cantonese verb",
+    "expected_characters": ["畀"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3015,
+    "query": "tai2",
+    "category": "ccanto_boost",
+    "description": "睇 (to look/see) - Cantonese verb",
+    "expected_characters": ["睇"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "tier2"]
+  },
+  {
+    "id": 3016,
+    "query": "m4 hou2",
+    "category": "ccanto_boost",
+    "description": "唔好 (don't) - Cantonese negation",
+    "expected_characters": ["唔好"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3017,
+    "query": "dim2 gaai2",
+    "category": "ccanto_boost",
+    "description": "點解 (why) - Cantonese question word",
+    "expected_characters": ["點解"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3018,
+    "query": "mat1 je5",
+    "category": "ccanto_boost",
+    "description": "乜嘢 (what) - Cantonese question word",
+    "expected_characters": ["乜嘢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3019,
+    "query": "keoi5 dei6",
+    "category": "ccanto_boost",
+    "description": "佢哋/佢地 (they) - Cantonese pronoun",
+    "expected_characters": ["佢哋", "佢地"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi", "tier1"]
+  },
+  {
+    "id": 3020,
+    "query": "ngo5 dei6",
+    "category": "ccanto_boost",
+    "description": "我哋/我地 (we) - Cantonese pronoun",
+    "expected_characters": ["我哋", "我地"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi", "tier1"]
+  },
+  {
+    "id": 3021,
+    "query": "jau5 mou5",
+    "category": "ccanto_boost",
+    "description": "有冇 (do you have) - Cantonese question pattern",
+    "expected_characters": ["有冇"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3022,
+    "query": "m4 sai2",
+    "category": "ccanto_boost",
+    "description": "唔使 (no need) - Cantonese expression",
+    "expected_characters": ["唔使"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3023,
+    "query": "bin1 go3",
+    "category": "ccanto_boost",
+    "description": "邊個 (which one/who) - Cantonese question word",
+    "expected_characters": ["邊個", "邊个"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3024,
+    "query": "gwaai1",
+    "category": "ccanto_boost",
+    "description": "乖 (well-behaved) - Cantonese adjective",
+    "expected_characters": ["乖"],
+    "accept_top_n": 3,
+    "tags": ["ccanto"]
+  },
+  {
+    "id": 3025,
+    "query": "lek1",
+    "category": "ccanto_boost",
+    "description": "叻 (clever/capable) - Cantonese adjective",
+    "expected_characters": ["叻"],
+    "accept_top_n": 1,
+    "tags": ["ccanto"]
+  },
+  {
+    "id": 3026,
+    "query": "leng3",
+    "category": "ccanto_boost",
+    "description": "靚 (pretty/beautiful) - Cantonese adjective",
+    "expected_characters": ["靚"],
+    "accept_top_n": 1,
+    "tags": ["ccanto"]
+  },
+  {
+    "id": 3027,
+    "query": "maai5 je5",
+    "category": "ccanto_boost",
+    "description": "買嘢 (buy things) - common Cantonese phrase",
+    "expected_characters": ["買嘢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3028,
+    "query": "zou6 je5",
+    "category": "ccanto_boost",
+    "description": "做嘢 (do things/work) - common Cantonese phrase",
+    "expected_characters": ["做嘢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3029,
+    "query": "sik6 je5",
+    "category": "ccanto_boost",
+    "description": "食嘢 (eat things/eat) - common Cantonese phrase",
+    "expected_characters": ["食嘢"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  },
+  {
+    "id": 3030,
+    "query": "tai2 hei3",
+    "category": "ccanto_boost",
+    "description": "睇戲 (watch a movie) - common Cantonese phrase",
+    "expected_characters": ["睇戲"],
+    "accept_top_n": 1,
+    "tags": ["ccanto", "multi"]
+  }
+]

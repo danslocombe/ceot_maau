@@ -11,6 +11,34 @@ pub struct Builder
 pub const MAX_STATIC_COST_F : f32 = 7_000.0;
 pub const MAX_STATIC_COST   : u32 = 7_000;
 
+/// Per-character cost override for high-frequency Cantonese-specific characters
+/// that have no Mandarin equivalent and no entry in the frequency file.
+pub const CANTO_HIGH_FREQ_COST: u32 = 1_000;
+
+/// Flat cost discount applied to all CCanto-sourced entries.
+pub const CCANTO_DISCOUNT: u32 = 0;
+
+/// Tier 1: Extremely common Cantonese function words/particles/pronouns
+const CANTO_TIER1_CHARS: &[char] = &[
+    '嘅', // ge3 - possessive particle
+    '佢', // keoi5 - he/she/it
+    '係', // hai6 - to be
+    '冇', // mou5 - don't have
+    '喺', // hai2 - at/in
+    '咁', // gam3 - so/such
+    '嗰', // go2 - that
+    '啲', // di1 - some/a bit
+];
+
+/// Tier 2: Common Cantonese verbs and content words
+const CANTO_TIER2_CHARS: &[char] = &[
+    '嘢', // je5 - thing/stuff
+    '噉', // gam2 - like this
+    '攞', // lo2 - to take
+    '嚟', // lai4 - to come
+    '揾', // wan2 - to find
+];
+
 impl Builder {
     pub fn parse_ccanto(&mut self, path : &str, trad_to_frequency : &TraditionalToFrequencies)
     {
@@ -69,6 +97,7 @@ impl Builder {
                 cost += trad_to_frequency.get_or_default(c).cost;
             }
             cost += cost_heuristic(&definitions.inner);
+            cost = cost.saturating_sub(CCANTO_DISCOUNT);
 
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
@@ -383,5 +412,66 @@ impl TraditionalToFrequencies
         Self {
             inner,
         }
+    }
+
+    /// For traditional characters missing from the frequency file, fall back to
+    /// the simplified form's frequency data if available. The trad→simp mapping
+    /// is extracted from the dictionary file (first two columns: Traditional Simplified).
+    pub fn add_simplified_fallbacks(&mut self, dict_path: &str)
+    {
+        let data = std::fs::read_to_string(dict_path).unwrap();
+        let mut fallback_count = 0;
+        for line in data.lines()
+        {
+            if line.is_empty() || line.starts_with('#') {
+                continue;
+            }
+
+            let (traditional, rest) = match line.split_once(' ') {
+                Some(x) => x,
+                None => continue,
+            };
+            let (simplified, _rest) = match rest.split_once(' ') {
+                Some(x) => x,
+                None => continue,
+            };
+
+            for (trad_char, simp_char) in traditional.chars().zip(simplified.chars())
+            {
+                if trad_char != simp_char
+                    && !self.inner.contains_key(&trad_char)
+                {
+                    if let Some(simp_data) = self.inner.get(&simp_char).copied() {
+                        self.inner.insert(trad_char, simp_data);
+                        fallback_count += 1;
+                    }
+                }
+            }
+        }
+        println!("Added {} simplified→traditional frequency fallbacks from {}", fallback_count, dict_path);
+    }
+
+    /// Insert cost overrides for Cantonese-specific characters that have no
+    /// Mandarin equivalent and are missing from the frequency file.
+    pub fn add_cantonese_overrides(&mut self)
+    {
+        let tier2_cost = CANTO_HIGH_FREQ_COST + 1_000;
+        let mut count = 0;
+
+        for &c in CANTO_TIER1_CHARS {
+            self.inner.insert(c, FrequencyData {
+                count: 1, frequency: 0.0, cost: CANTO_HIGH_FREQ_COST, index: 10_001,
+            });
+            count += 1;
+        }
+
+        for &c in CANTO_TIER2_CHARS {
+            self.inner.insert(c, FrequencyData {
+                count: 1, frequency: 0.0, cost: tier2_cost, index: 10_002,
+            });
+            count += 1;
+        }
+
+        println!("Added {} Cantonese character cost overrides (tier1={}, tier2={})", count, CANTO_HIGH_FREQ_COST, tier2_cost);
     }
 }

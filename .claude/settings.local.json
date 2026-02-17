@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c:*)",
+      "Bash(python eval/run_eval.py:*)",
+      "Bash(python -X utf8 -c:*)",
+      "WebSearch",
+      "WebFetch(domain:cantoneseeveryday.wordpress.com)",
+      "Bash(done)",
+      "Bash(cargo build:*)",
+      "Bash(python -X utf8 eval/run_eval.py:*)",
+      "Bash(./target/debug/console.exe:*)",
+      "Bash(python:*)",
+      "Bash(./target/release/console.exe build:*)",
+      "Bash(./target/release/console.exe:*)"
+    ]
+  }
+}

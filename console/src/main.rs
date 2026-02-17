@@ -44,7 +44,15 @@ fn main() {
     {
         println!("Building...");
         let mut builder = dictlib::builder::Builder::default();
-        let trad_to_frequency = dictlib::builder::TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
+        let mut trad_to_frequency = dictlib::builder::TraditionalToFrequencies::parse(&format!("{}/frequencies.txt", data_path));
+
+        // Use trad→simp mappings from both dictionary files to fill in frequency
+        // data for traditional characters whose simplified form is in the freq file
+        trad_to_frequency.add_simplified_fallbacks(&format!("{}/cedict_ts.u8", data_path));
+        trad_to_frequency.add_simplified_fallbacks(&format!("{}/cccanto-webdist.txt", data_path));
+
+        // Override costs for Cantonese-specific characters with no Mandarin equivalent
+        trad_to_frequency.add_cantonese_overrides();
 
         // Cedict is
         // Traditional / Pinyin / English Definition.
