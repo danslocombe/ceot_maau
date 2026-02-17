@@ -35,6 +35,13 @@ impl CompiledDictionary {
                         // At least highlight the tone
                         spans.push((start + target_string.len() - 1, start + target_string.len()));
                     }
+                    else if query_term.tone.is_some() {
+                        // Tone mismatch — highlight the base part only (not the tone digit)
+                        let q = &query_term.string_no_tone;
+                        if let Some(idx) = string_indexof_linear_ignorecase(q, target_string.as_bytes()) {
+                            spans.push((start + idx, start + idx + q.len()));
+                        }
+                    }
                 }
 
                 start += target_string.len();
@@ -181,9 +188,10 @@ pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &Qu
                 continue;
             }
 
+            let mut tone_penalty: u32 = 0;
             if let Some(tone) = query_match.tone {
                 if (tone != entry_jyutping.tone) {
-                    continue;
+                    tone_penalty = JYUTPING_TONE_MISMATCH_PENALTY;
                 }
             }
 
@@ -199,7 +207,7 @@ pub fn get_jyutping_best_match(entry: &CompiledDictionaryEntry, query_terms: &Qu
             cloned.inner.push(JyutpingMatchPathElem {
                 target_jyutping: *entry_jyutping,
                 target_index: i as u32,
-                cost: term_match_cost,
+                cost: term_match_cost + tone_penalty,
             });
 
             queue.push(cloned);

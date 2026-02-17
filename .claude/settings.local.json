@@ -13,7 +13,9 @@
       "Bash(python:*)",
       "Bash(./target/release/console.exe build:*)",
       "Bash(./target/release/console.exe:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(grep:*)",
+      "Bash(cargo test:*)"
     ]
   }
 }

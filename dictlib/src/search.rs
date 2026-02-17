@@ -15,6 +15,7 @@ pub const JYUTPING_NON_PERFECT_MATCH: u32 = 6_000;
 pub const JYUTPING_PARTIAL_MATCH_PENALTY_K : u32 = 12_000;
 pub const JYUTPING_COMPLETION_PENALTY_K : u32 = 4_000;
 pub const JYUTPING_PREFIX_LEVENSHTEIN_PENALTY_K: u32 = 20_000;
+pub const JYUTPING_TONE_MISMATCH_PENALTY: u32 = 16_000;
 
 pub const ENGLISH_BASE_PENALTY: u32 = 5_000;
 pub const NON_ASCII_MATCH_IN_ENGLISH_PENALTY: u32 = 8_000;
@@ -311,6 +312,11 @@ impl CompiledDictionary {
 
             for (i, entry_jyutping) in entry.jyutping.iter().enumerate()
             {
+                // Skip positions already claimed by a previous query term
+                if (entry_jyutping_matches.contains(i)) {
+                    continue;
+                }
+
                 if (jyutping_term.matches.contains(entry_jyutping.base as usize))
                 {
                     let mut term_match_cost = 0;
@@ -323,11 +329,17 @@ impl CompiledDictionary {
                     }
 
                     let mut term_match = false;
+                    let mut tone_penalty: u32 = 0;
                     if let Some(t) = jyutping_term.tone
                     {
                         if t == entry_jyutping.tone
                         {
                             term_match = true;
+                        }
+                        else
+                        {
+                            term_match = true;
+                            tone_penalty = JYUTPING_TONE_MISMATCH_PENALTY;
                         }
                     }
                     else
@@ -337,13 +349,14 @@ impl CompiledDictionary {
 
                     if (term_match)
                     {
+                        let total_cost = term_match_cost + tone_penalty;
                         let mut should_update = best_term_match.is_none();
                         if let Some((_, existing_best_cost)) = best_term_match {
-                            should_update = term_match_cost < existing_best_cost;
+                            should_update = total_cost < existing_best_cost;
                         }
 
                         if (should_update) {
-                            best_term_match = Some((i, term_match_cost));
+                            best_term_match = Some((i, total_cost));
                         }
                     }
                 }

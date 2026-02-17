@@ -1074,9 +1074,15 @@
     "category": "partial_prefix",
     "description": "prefix for ja- syllables",
     "expected_characters": [
+      "人",
+      "一",
+      "有",
       "也"
     ],
     "expected_jyutping": [
+      "jan4",
+      "jat1",
+      "jau5",
       "jaa5"
     ],
     "accept_top_n": 5
@@ -1085,11 +1091,13 @@
     "id": 79,
     "query": "heoi",
     "category": "partial_prefix",
-    "description": "prefix for heoi3 (go)",
+    "description": "prefix for heoi- syllables",
     "expected_characters": [
+      "佢",
       "去"
     ],
     "expected_jyutping": [
+      "heoi5",
       "heoi3"
     ],
     "accept_top_n": 5
@@ -1098,16 +1106,18 @@
     "id": 80,
     "query": "gon",
     "category": "partial_prefix",
-    "description": "prefix for gong",
+    "description": "prefix for gon- syllables",
     "expected_characters": [
-      "講",
-      "港",
-      "工"
+      "杆",
+      "肝",
+      "乾",
+      "干"
     ],
     "expected_jyutping": [
-      "gong2",
-      "gong2",
-      "gong1"
+      "gon1",
+      "gon1",
+      "gon1",
+      "gon1"
     ],
     "accept_top_n": 5
   },
@@ -6028,11 +6038,13 @@
     "category": "partial_prefix",
     "description": "prefix for bei- syllables",
     "expected_characters": [
+      "碑",
       "比",
       "俾",
       "被"
     ],
     "expected_jyutping": [
+      "bei1",
       "bei2",
       "bei6"
     ],
@@ -6044,12 +6056,13 @@
     "category": "partial_prefix",
     "description": "prefix for daa- syllables",
     "expected_characters": [
-      "大",
-      "打"
+      "打",
+      "大"
     ],
     "expected_jyutping": [
-      "daai6",
-      "daa2"
+      "daa1",
+      "daa2",
+      "daai6"
     ],
     "accept_top_n": 5
   },
@@ -6091,14 +6104,16 @@
     "category": "partial_prefix",
     "description": "prefix for maa- syllables",
     "expected_characters": [
-      "媽",
+      "罵",
       "馬",
-      "麻"
+      "麻",
+      "媽"
     ],
     "expected_jyutping": [
-      "maa1",
+      "maa6",
       "maa5",
-      "maa4"
+      "maa4",
+      "maa1"
     ],
     "accept_top_n": 5
   },
@@ -6108,14 +6123,17 @@
     "category": "partial_prefix",
     "description": "prefix for baa- syllables",
     "expected_characters": [
+      "壩",
+      "把",
+      "吧",
       "巴",
-      "爸",
-      "吧"
+      "爸"
     ],
     "expected_jyutping": [
-      "baa1",
-      "baa4",
-      "baa6"
+      "baa3",
+      "baa2",
+      "baa6",
+      "baa1"
     ],
     "accept_top_n": 5
   },
@@ -6226,9 +6244,11 @@
     "category": "partial_prefix",
     "description": "prefix for hok- syllables",
     "expected_characters": [
+      "殼",
       "學"
     ],
     "expected_jyutping": [
+      "hok3",
       "hok6"
     ],
     "accept_top_n": 5
@@ -6369,11 +6389,14 @@
     "category": "partial_prefix",
     "description": "prefix for fei- syllables",
     "expected_characters": [
+      "匪",
+      "妃",
       "飛",
       "非",
       "肥"
     ],
     "expected_jyutping": [
+      "fei2",
       "fei1",
       "fei4"
     ],
@@ -6385,10 +6408,12 @@
     "category": "partial_prefix",
     "description": "prefix for ceoi- syllables",
     "expected_characters": [
-      "吹",
-      "催"
+      "脆",
+      "催",
+      "吹"
     ],
     "expected_jyutping": [
+      "ceoi3",
       "ceoi1"
     ],
     "accept_top_n": 5

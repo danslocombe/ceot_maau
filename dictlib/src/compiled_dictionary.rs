@@ -525,7 +525,7 @@ impl DisplayDictionaryEntry
 #[cfg(test)]
 pub mod tests {
     use crate::Stopwatch;
-    use crate::search::{JYUTPING_NON_PERFECT_MATCH, JYUTPING_COMPLETION_PENALTY_K, JYUTPING_PARTIAL_MATCH_PENALTY_K, JyutpingQueryTerm, MatchType, QueryTerms};
+    use crate::search::{JYUTPING_NON_PERFECT_MATCH, JYUTPING_COMPLETION_PENALTY_K, JYUTPING_PARTIAL_MATCH_PENALTY_K, JYUTPING_TONE_MISMATCH_PENALTY, JyutpingQueryTerm, MatchType, QueryTerms};
 
     use super::*;
 
@@ -1222,5 +1222,252 @@ pub mod tests {
         assert_eq!(0, res.matches[0].match_obj.cost_info.total());
         assert_eq!(1, res.matches[0].matched_spans.len());
         assert_eq!((0, 8), res.matches[0].matched_spans[0]);
+    }
+
+    // =========================================================================
+    // Tone-fuzzy matching tests
+    // =========================================================================
+
+    #[test]
+    fn test_tone_fuzzy_mismatch_accepted() {
+        let dict = create_test_dict();
+
+        // Query "lou3" against 老師 (lou5 si1) — tone 3 vs entry tone 5
+        let results = dict.search("lou3", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0, "Tone-mismatched query should still find results");
+        assert_eq!(results[0].match_obj.entry_id, 0); // 老師
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
+
+        // Should include tone mismatch penalty in term_match_cost
+        assert!(results[0].match_obj.cost_info.term_match_cost >= JYUTPING_TONE_MISMATCH_PENALTY,
+            "Term match cost {} should include tone mismatch penalty {}",
+            results[0].match_obj.cost_info.term_match_cost, JYUTPING_TONE_MISMATCH_PENALTY);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_exact_tone_zero_penalty() {
+        let dict = create_test_dict();
+
+        // Query "lou5" — exact tone match against 老師 (lou5 si1)
+        let results = dict.search("lou5", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0);
+        assert_eq!(results[0].match_obj.entry_id, 0);
+
+        // Exact tone match should have zero term_match_cost
+        assert_eq!(results[0].match_obj.cost_info.term_match_cost, 0);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_no_tone_zero_penalty() {
+        let dict = create_test_dict();
+
+        // Query "lou" — no tone specified
+        let results = dict.search("lou", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0);
+        assert_eq!(results[0].match_obj.entry_id, 0);
+
+        // No-tone query should have zero term_match_cost
+        assert_eq!(results[0].match_obj.cost_info.term_match_cost, 0);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_multi_syllable_double_penalty() {
+        let dict = create_test_dict();
+
+        // Query "lou3 si2" — both tones wrong for 老師 (lou5 si1)
+        let results = dict.search("lou3 si2", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0);
+        assert_eq!(results[0].match_obj.entry_id, 0);
+
+        // Both syllables have tone mismatch
+        assert_eq!(results[0].match_obj.cost_info.term_match_cost,
+            2 * JYUTPING_TONE_MISMATCH_PENALTY);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_one_exact_one_mismatch() {
+        let dict = create_test_dict();
+
+        // Query "lou5 si2" — first tone exact, second wrong for 老師 (lou5 si1)
+        let results = dict.search("lou5 si2", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() > 0);
+        assert_eq!(results[0].match_obj.entry_id, 0);
+
+        // Only one syllable has tone mismatch
+        assert_eq!(results[0].match_obj.cost_info.term_match_cost,
+            JYUTPING_TONE_MISMATCH_PENALTY);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_exact_beats_mismatch_in_ranking() {
+        // Two single-syllable entries with same base but different tones
+        let character_store = CharacterStore {
+            characters: vec!['甲', '乙'],
+        };
+
+        let jyutping_store = JyutpingStore {
+            base_strings: vec!["lou".to_string()],
+        };
+
+        let entries = vec![
+            CompiledDictionaryEntry {
+                characters: vec![0], // 甲 with lou5
+                jyutping: vec![Jyutping { base: 0, tone: 5 }],
+                english_start: 0,
+                english_end: 0,
+                cost: 100,
+                flags: FLAG_SOURCE_CEDICT,
+            },
+            CompiledDictionaryEntry {
+                characters: vec![1], // 乙 with lou3
+                jyutping: vec![Jyutping { base: 0, tone: 3 }],
+                english_start: 0,
+                english_end: 0,
+                cost: 100,
+                flags: FLAG_SOURCE_CEDICT,
+            },
+        ];
+
+        let english_data = b"".to_vec();
+        let english_data_starts = vec![0];
+
+        let dict = CompiledDictionary {
+            character_store,
+            jyutping_store,
+            entries,
+            english_data,
+            english_data_starts,
+        };
+
+        // Query "lou5" should rank exact-tone entry first
+        let results = dict.search("lou5", 8, Box::new(TestStopwatch)).matches;
+        assert!(results.len() >= 2);
+        assert_eq!(results[0].match_obj.entry_id, 0, "Exact tone match should rank first");
+        assert_eq!(results[1].match_obj.entry_id, 1, "Tone mismatch should rank second");
+
+        // Verify costs
+        assert_eq!(results[0].match_obj.cost_info.term_match_cost, 0);
+        assert_eq!(results[1].match_obj.cost_info.term_match_cost, JYUTPING_TONE_MISMATCH_PENALTY);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_no_position_double_match() {
+        // Entry with "hok6 saang1". Query "hok1 hok6" — two terms want the same
+        // base "hok" which only exists at position 0. With double-match prevention,
+        // only one can claim position 0, the other fails → no match.
+        let character_store = CharacterStore {
+            characters: vec!['學', '生'],
+        };
+
+        let jyutping_store = JyutpingStore {
+            base_strings: vec!["hok".to_string(), "saang".to_string()],
+        };
+
+        let entries = vec![
+            CompiledDictionaryEntry {
+                characters: vec![0, 1],
+                jyutping: vec![
+                    Jyutping { base: 0, tone: 6 }, // hok6
+                    Jyutping { base: 1, tone: 1 }, // saang1
+                ],
+                english_start: 0,
+                english_end: 0,
+                cost: 100,
+                flags: FLAG_SOURCE_CEDICT,
+            },
+        ];
+
+        let english_data = b"".to_vec();
+        let english_data_starts = vec![0];
+
+        let dict = CompiledDictionary {
+            character_store,
+            jyutping_store,
+            entries,
+            english_data,
+            english_data_starts,
+        };
+
+        // "hok1 hok6" — both terms want base "hok" at position 0
+        // Second term can't also claim position 0 → should not match
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![
+                JyutpingQueryTerm::create("hok1", &dict.jyutping_store),
+                JyutpingQueryTerm::create("hok6", &dict.jyutping_store),
+            ],
+            traditional_terms: vec![],
+        };
+
+        let result = dict.matches_jyutping_term(&dict.entries[0], &query_terms);
+        assert!(result.is_none(),
+            "Two query terms should not both match the same entry position");
+    }
+
+    #[test]
+    fn test_tone_fuzzy_span_highlights_base_only() {
+        let dict = create_test_dict();
+        let entry = &dict.entries[0]; // 老師 (lou5 si1)
+
+        // Query "lou3" — tone mismatch, span should highlight "lou" not "lou5"
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![JyutpingQueryTerm::create("lou3", &dict.jyutping_store)],
+            traditional_terms: vec![],
+        };
+
+        let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
+        assert_eq!(spans.len(), 1);
+
+        let display = dict.get_diplay_entry(0);
+        let (start, end) = spans[0];
+        let matched_text = &display.jyutping[start..end];
+
+        // Tone mismatch: highlight only the base "lou", not the tone digit
+        assert_eq!(matched_text, "lou",
+            "Tone mismatch should highlight base only, got '{}'", matched_text);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_exact_tone_span_includes_tone() {
+        let dict = create_test_dict();
+        let entry = &dict.entries[0]; // 老師 (lou5 si1)
+
+        // Query "lou5" — exact tone match, span should include tone digit
+        let query_terms = QueryTerms {
+            jyutping_terms: vec![JyutpingQueryTerm::create("lou5", &dict.jyutping_store)],
+            traditional_terms: vec![],
+        };
+
+        let spans = dict.get_jyutping_matched_spans(entry, &query_terms);
+        assert_eq!(spans.len(), 1);
+
+        let display = dict.get_diplay_entry(0);
+        let (start, end) = spans[0];
+        let matched_text = &display.jyutping[start..end];
+
+        // Exact tone match: highlight includes tone digit
+        assert_eq!(matched_text, "lou5",
+            "Exact tone should highlight base+tone, got '{}'", matched_text);
+    }
+
+    #[test]
+    fn test_tone_fuzzy_integration_search_with_wrong_tone() {
+        let dict = create_test_dict();
+
+        // Full search integration: "lou3 si2" should find 老師 despite both tones wrong
+        let result = dict.search("lou3 si2", 8, Box::new(TestStopwatch));
+        let results = &result.matches;
+
+        assert!(results.len() > 0, "Should find results with wrong tones");
+        assert_eq!(results[0].match_obj.entry_id, 0);
+        assert!(matches!(results[0].match_obj.match_type, MatchType::Jyutping));
+
+        // Verify spans highlight base portions only (not tone digits)
+        let display = dict.get_diplay_entry(0); // "lou5 si1"
+        for (start, end) in &results[0].matched_spans {
+            let text = &display.jyutping[*start..*end];
+            // Should be "lou" or "si", not "lou5" or "si1"
+            assert!(!text.chars().last().unwrap().is_ascii_digit(),
+                "Tone-mismatched span '{}' should not end with tone digit", text);
+        }
     }
 }

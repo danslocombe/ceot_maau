@@ -1,0 +1,119 @@
+[
+  {
+    "id": 800,
+    "query": "jing1 man2",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: man2 for man4 (英文)",
+    "expected_characters": ["英文"],
+    "expected_jyutping": ["jing1 man4"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 801,
+    "query": "zung1 man2",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: man2 for man4 (中文)",
+    "expected_characters": ["中文"],
+    "expected_jyutping": ["zung1 man4"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 802,
+    "query": "soeng5 min6",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: soeng5 for soeng6 (上面)",
+    "expected_characters": ["上面"],
+    "expected_jyutping": ["soeng6 min6"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 803,
+    "query": "haa5 min6",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: haa5 for haa6 (下面)",
+    "expected_characters": ["下面"],
+    "expected_jyutping": ["haa6 min6"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 804,
+    "query": "haa5 ci3",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: haa5 for haa6 (下次)",
+    "expected_characters": ["下次"],
+    "expected_jyutping": ["haa6 ci3"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 805,
+    "query": "gam1 nin2",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: nin2 for nin4 (今年)",
+    "expected_characters": ["今年"],
+    "expected_jyutping": ["gam1 nin4"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 806,
+    "query": "ji1 ging1",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: ji1 for ji5 (已經)",
+    "expected_characters": ["已經"],
+    "expected_jyutping": ["ji5 ging1"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 807,
+    "query": "jau4 guk2",
+    "category": "tone_fuzzy",
+    "description": "Common tone variant: guk2 for guk6 (郵局)",
+    "expected_characters": ["郵局"],
+    "expected_jyutping": ["jau4 guk6"],
+    "accept_top_n": 3
+  },
+  {
+    "id": 810,
+    "query": "nei5 hou2",
+    "category": "tone_fuzzy_regression",
+    "description": "Exact tone — should still be p@1",
+    "expected_characters": ["你好"],
+    "expected_jyutping": ["nei5 hou2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 811,
+    "query": "m4 hou2",
+    "category": "tone_fuzzy_regression",
+    "description": "Exact tone — should still be p@1",
+    "expected_characters": ["唔好"],
+    "expected_jyutping": ["m4 hou2"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 812,
+    "query": "sik6 faan6",
+    "category": "tone_fuzzy_regression",
+    "description": "Exact tone — should still be p@1",
+    "expected_characters": ["食飯"],
+    "expected_jyutping": ["sik6 faan6"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 815,
+    "query": "nei5",
+    "category": "tone_fuzzy_negative",
+    "description": "Exact tone query — should not be beaten by nei4 entries",
+    "expected_characters": ["你"],
+    "expected_jyutping": ["nei5"],
+    "accept_top_n": 1
+  },
+  {
+    "id": 816,
+    "query": "gam1",
+    "category": "tone_fuzzy_negative",
+    "description": "Exact tone query — should not be beaten by gam2 entries",
+    "expected_characters": ["今"],
+    "expected_jyutping": ["gam1"],
+    "accept_top_n": 1
+  }
+]
