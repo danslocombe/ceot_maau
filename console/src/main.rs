@@ -138,22 +138,16 @@ fn main() {
                 continue;
             }
 
-            // Catch panics so one bad query doesn't kill the whole batch
-            let result = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
-                println!("=====================");
-                println!("Query: {}", query);
-                println!("\n");
+            println!("=====================");
+            println!("Query: {}", query);
+            println!("\n");
 
-                let stopwatch = Box::new(NativeStopwatch::new());
-                let result = compiled_dictionary.search(&query, limit, stopwatch);
+            let stopwatch = Box::new(NativeStopwatch::new());
+            let result = compiled_dictionary.search(&query, limit, stopwatch);
 
-                for m in result.matches {
-                    let display = compiled_dictionary.get_diplay_entry(m.match_obj.entry_id);
-                    println!("(Match {:?})\n{:#?}", m, display);
-                }
-            }));
-            if result.is_err() {
-                eprintln!("PANIC on query: {}", query);
+            for m in result.matches {
+                let display = compiled_dictionary.get_diplay_entry(m.match_obj.entry_id);
+                println!("(Match {:?})\n{:#?}", m, display);
             }
             println!("===QUERY_END===");
         }
