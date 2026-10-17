@@ -183,6 +183,19 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 	padding-left: 1rem;
 }
 
+.classifier {
+	color: #4d4d4d;
+}
+
+.classifier .character-link {
+	color: inherit;
+}
+
+.classifier-jyutping {
+	color: #9092d9;
+	font-size: 0.85em;
+}
+
 .ce-dict {
 	font-size: 12px;
 	color: #4d4d4d;
