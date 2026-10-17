@@ -56,11 +56,6 @@ Copy-Item -Path "web_client\dist\*" -Destination "docs\" -Recurse -Force
 Write-Host "Build output copied to docs directory!" -ForegroundColor Green
 Write-Host ""
 
-Write-Host "Removing duplicate files..."
-Remove-Item -Path "docs\*.txt"
-Remove-Item -Path "docs\*.u8"
-Write-Host "Done"
-
 Write-Host "Docs directory contents:" -ForegroundColor Cyan
 Get-ChildItem -Path "docs" | ForEach-Object { Write-Host "  - $($_.Name)" -ForegroundColor Gray }
 Write-Host ""

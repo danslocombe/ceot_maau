@@ -53,11 +53,6 @@ impl CompiledDictionary {
                 all_jyutping_words.insert(word.to_owned());
             }
 
-            for c in entry.traditional.chars()
-            {
-                all_characters.insert(c);
-            }
-
             for classifier in &entry.classifiers_traditional_characters {
                 all_characters.insert(*classifier);
 
@@ -124,6 +119,12 @@ impl CompiledDictionary {
             }
             let english_end = english_data_starts.len();
 
+            assert!(
+                entry.classifiers_traditional_characters.len() <= u8::MAX as usize,
+                "{} has too many classifiers to pack into a u8",
+                entry.traditional
+            );
+
             let classifier_start = classifier_data.len() as u32;
             let mut classifier_count : u8 = 0;
             for classifier in &entry.classifiers_traditional_characters {
@@ -151,7 +152,7 @@ impl CompiledDictionary {
         english_data_starts.push(english_data.len() as u32);
 
         let with_classifiers = dict.entries.iter().filter(|e| !e.classifiers_traditional_characters.is_empty()).count();
-        println!("Entries with classifiers: {}", with_classifiers);
+        debug_log!("Entries with classifiers: {}", with_classifiers);
 
         Self {
             character_store,
@@ -253,6 +254,12 @@ impl CompiledDictionary {
         for _ in 0..classifier_count {
             classifier_data.push(reader.read_u32());
         }
+
+        debug_assert_eq!(
+            classifier_start as usize,
+            classifier_data.len(),
+            "per-entry classifier counts do not match the classifier blob"
+        );
 
         Self {
             character_store,
@@ -396,6 +403,16 @@ impl CompiledDictionary {
         writer.write_u64(0)?;
 
         Ok(())
+    }
+
+    /// Unpack a classifier from `classifier_data`: the traditional character
+    /// and its Cantonese reading. A reading with `tone == 0` means the source
+    /// had none for that character.
+    pub fn classifier_at(&self, index: usize) -> (char, Jyutping) {
+        let packed = self.classifier_data[index];
+        let character = self.character_store.characters[((packed >> 16) as u16) as usize];
+        let jyutping = Jyutping::unpack((packed & 0xFFFF) as u16);
+        (character, jyutping)
     }
 
     pub fn get_display_entry(&self, i: usize) -> DisplayDictionaryEntry {
@@ -566,8 +583,9 @@ pub const FREQUENCY_DISCOUNT_SHIFT: u32 = 3;
 /// a tone digit (e.g. "go3"). A few classifiers are absent from the readings
 /// table, so they are filled in here.
 fn classifier_jyutping(classifier : char, trad_to_jyutping : &TraditionalToJyutping) -> Option<String> {
-    let key = classifier.to_string();
-    if let Some(set) = trad_to_jyutping.inner.get(&key) {
+    let mut buf = [0u8; 4];
+    let key = classifier.encode_utf8(&mut buf);
+    if let Some(set) = trad_to_jyutping.inner.get(key) {
         if let Some(first) = set.inner.first() {
             return Some(first.clone());
         }
@@ -644,9 +662,7 @@ impl DisplayDictionaryEntry
 
         let mut classifiers = Vec::with_capacity(entry.classifier_count as usize);
         for i in entry.classifier_start..entry.classifier_start + entry.classifier_count as u32 {
-            let packed = dict.classifier_data[i as usize];
-            let c = dict.character_store.characters[((packed >> 16) as u16) as usize];
-            let j = Jyutping::unpack((packed & 0xFFFF) as u16);
+            let (c, j) = dict.classifier_at(i as usize);
             if j.tone == 0 {
                 classifiers.push(c.to_string());
             } else {

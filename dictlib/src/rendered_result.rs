@@ -88,15 +88,13 @@ impl RenderedResult {
 
         let classifiers = (entry.classifier_start..entry.classifier_start + entry.classifier_count as u32)
             .map(|i| {
-                let packed = dict.classifier_data[i as usize];
-                let character = dict.character_store.characters[((packed >> 16) as u16) as usize].to_string();
-                let jyutping = Jyutping::unpack((packed & 0xFFFF) as u16);
+                let (character, jyutping) = dict.classifier_at(i as usize);
                 let jyutping = if jyutping.tone == 0 {
                     String::new()
                 } else {
                     dict.jyutping_store.get_string(jyutping)
                 };
-                RenderedClassifier { character, jyutping }
+                RenderedClassifier { character: character.to_string(), jyutping }
             })
             .collect();
 
