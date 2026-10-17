@@ -119,7 +119,7 @@ impl Builder {
                 traditional: traditional.to_owned(),
                 jyutping: jyutping.to_owned(),
                 english_sets: definitions,
-                classifiers,
+                classifiers_traditional_characters: classifiers,
                 source: EntrySource::CCanto,
                 cost,
                 attested: false,
@@ -203,7 +203,7 @@ impl Builder {
                 traditional: traditional.to_owned(),
                 jyutping: String::default(),
                 english_sets: definitions,
-                classifiers,
+                classifiers_traditional_characters: classifiers,
                 source: EntrySource::CEDict,
                 cost,
                 attested: false,
@@ -344,15 +344,24 @@ fn split_classifier_column(line : &str) -> (&str, &str) {
     }
 }
 
-fn parse_classifiers(column : &str) -> Vec<String> {
+/// Parse the trailing tab column produced by `tools/process_*.py`. Every
+/// classifier must be exactly one traditional character; the compiled format
+/// stores a single character index per classifier, so anything else is a data
+/// bug and fails loudly rather than being silently truncated.
+fn parse_classifiers(column : &str) -> Vec<char> {
     column.split(',')
         .map(|c| c.trim())
         .filter(|c| !c.is_empty())
-        .map(|c| c.to_owned())
+        .map(|token| {
+            let mut chars = token.chars();
+            let c = chars.next().expect("empty classifier");
+            assert!(chars.next().is_none(), "classifier '{}' is not a single character", token);
+            c
+        })
         .collect()
 }
 
-fn no_classifier_penalty(classifiers : &[String]) -> u32 {
+fn no_classifier_penalty(classifiers : &[char]) -> u32 {
     if classifiers.is_empty() { NO_CLASSIFIER_COST } else { 0 }
 }
 
@@ -400,9 +409,10 @@ pub struct DictionaryEntry
     pub traditional: String,
     pub jyutping: String,
     pub english_sets: StringVecSet,
-    /// Measure-word / classifier characters pulled out of the source's `CL:`
-    /// (CEDict) or `M:` (CC-Canto) notation. Traditional characters.
-    pub classifiers: Vec<String>,
+
+    // (Measure words) Each classifier is a single traditional character.
+    pub classifiers_traditional_characters: Vec<char>,
+
     pub source: EntrySource,
     /// Whether the word appears in a curated Cantonese dictionary (words.hk).
     pub attested: bool,
@@ -712,7 +722,7 @@ mod tests
             traditional: traditional.to_owned(),
             jyutping: String::default(),
             english_sets: StringVecSet::default(),
-            classifiers: Vec::new(),
+            classifiers_traditional_characters: Vec::new(),
             source: EntrySource::CEDict,
             cost: frequency_cost,
             attested: false,

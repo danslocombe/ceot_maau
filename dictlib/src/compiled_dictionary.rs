@@ -17,19 +17,21 @@ pub struct CompiledDictionary
     pub english_data: Vec<u8>,
     pub english_data_starts: Vec<u32>,
 
-    /// Measure-word / classifier characters, flattened. Each u32 packs a
-    /// `character_store` index in the high 16 bits and a `Jyutping` (base +
-    /// tone 0-6, see `Jyutping::pack`) in the low 16 bits. Entries address a
-    /// slice via `classifier_start` / `classifier_count`.
+    // Packed Measure-word / classifier characters.
+    // Each u32 packs a `character_store` index in the high 16 bits and a `Jyutping` (base +
+    // tone 0-6) in the low 16 bits.
     pub classifier_data: Vec<u32>,
 }
 
 pub const FILE_HEADER: &[u8] = b"jyp_dict";
 pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
 pub const CLASSIFIER_BLOB_HEADER: &[u8] = b"cl_data_";
-// v10 appends a per-entry classifier count and a trailing classifier blob
-// (measure words lifted out of the definitions). Older indexes lack the
-// section entirely, so the version is bumped rather than silently misread.
+
+// Changelog:
+//
+// = v10 =
+// Append a per-entry classifier count and a trailing classifier blob
+// (measure words lifted out of the definitions).
 pub const CURRENT_VERSION: u32 = 10;
 
 impl CompiledDictionary {
@@ -56,14 +58,10 @@ impl CompiledDictionary {
                 all_characters.insert(c);
             }
 
-            // Classifiers are stored as (character, reading) pairs. Pull the
-            // character into the store and its reading base into the jyutping
-            // store so the compiled entry can reference both by index.
-            for classifier in &entry.classifiers {
-                for c in classifier.chars() {
-                    all_characters.insert(c);
-                }
-                if let Some(jyutping) = classifier_jyutping(classifier, trad_to_jyutping) {
+            for classifier in &entry.classifiers_traditional_characters {
+                all_characters.insert(*classifier);
+
+                if let Some(jyutping) = classifier_jyutping(*classifier, trad_to_jyutping) {
                     all_jyutping_words.insert(jyutping_base(&jyutping).to_owned());
                 }
             }
@@ -128,11 +126,10 @@ impl CompiledDictionary {
 
             let classifier_start = classifier_data.len() as u32;
             let mut classifier_count : u8 = 0;
-            for classifier in &entry.classifiers {
-                let c = classifier.chars().next().expect("empty classifier");
-                let char_index = character_store.char_to_index(c)
-                    .unwrap_or_else(|| panic!("Could not find classifier character {}", c));
-                let jyutping = classifier_jyutping(classifier, trad_to_jyutping)
+            for classifier in &entry.classifiers_traditional_characters {
+                let char_index = character_store.char_to_index(*classifier)
+                    .unwrap_or_else(|| panic!("Could not find classifier character {}", classifier));
+                let jyutping = classifier_jyutping(*classifier, trad_to_jyutping)
                     .and_then(|j| jyutping_store.get(&j))
                     .unwrap_or(Jyutping { base: 0, tone: 0 });
                 classifier_data.push(((char_index as u32) << 16) | jyutping.pack() as u32);
@@ -153,7 +150,7 @@ impl CompiledDictionary {
 
         english_data_starts.push(english_data.len() as u32);
 
-        let with_classifiers = dict.entries.iter().filter(|e| !e.classifiers.is_empty()).count();
+        let with_classifiers = dict.entries.iter().filter(|e| !e.classifiers_traditional_characters.is_empty()).count();
         println!("Entries with classifiers: {}", with_classifiers);
 
         Self {
@@ -568,17 +565,18 @@ pub const FREQUENCY_DISCOUNT_SHIFT: u32 = 3;
 /// The Cantonese reading for a classifier character, as a jyutping string with
 /// a tone digit (e.g. "go3"). A few classifiers are absent from the readings
 /// table, so they are filled in here.
-fn classifier_jyutping(classifier : &str, trad_to_jyutping : &TraditionalToJyutping) -> Option<String> {
-    if let Some(set) = trad_to_jyutping.inner.get(classifier) {
+fn classifier_jyutping(classifier : char, trad_to_jyutping : &TraditionalToJyutping) -> Option<String> {
+    let key = classifier.to_string();
+    if let Some(set) = trad_to_jyutping.inner.get(&key) {
         if let Some(first) = set.inner.first() {
             return Some(first.clone());
         }
     }
 
     match classifier {
-        "瓣" => Some("baan6".to_owned()),
-        "紮" => Some("zaat3".to_owned()),
-        "齣" => Some("ceot1".to_owned()),
+        '瓣' => Some("baan6".to_owned()),
+        '紮' => Some("zaat3".to_owned()),
+        '齣' => Some("ceot1".to_owned()),
         _ => None,
     }
 }
