@@ -37,6 +37,8 @@ IN = sys.argv[1] if len(sys.argv) > 1 else 'full/cccanto-webdist.txt'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'full/cccanto-webdist.processed.txt'
 READINGS = 'full/cccedict-canto-readings-150923.txt'
 CEDICT = 'full/cedict_ts.u8'
+CORRECTIONS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           'cccanto_corrections.tsv')
 
 CJK = r'\u3400-\u9fff'
 # A classifier token: CJK char, latin pinyin (tone marks and/or a tone digit),
@@ -184,11 +186,30 @@ def _add_token(char, pinyin, sink, readings, cl_counts, unresolved):
     sink.append(traditional)
 
 
+def load_corrections(path):
+    """Explicit drop list of `(traditional, jyutping)` pairs that are obviously
+    wrong: duplicate entries carrying a reading the character never has. Kept
+    small and reviewable; see tools/cccanto_corrections.tsv."""
+    out = set()
+    if not os.path.exists(path):
+        return out
+    with open(path, encoding='utf-8') as f:
+        for i, line in enumerate(f):
+            if i == 0 or not line.strip():
+                continue
+            parts = line.rstrip('\n').split('\t')
+            if len(parts) >= 2:
+                out.add((parts[0], parts[1]))
+    return out
+
+
 def main():
     readings = build_readings_map(READINGS)
     cl_counts = build_cedict_classifiers(CEDICT)
+    corrections = load_corrections(CORRECTIONS)
 
     n_lines = n_with = n_cls = 0
+    dropped = 0
     distinct = set()
     unresolved = set()
     with open(IN, encoding='utf-8') as f, \
@@ -209,6 +230,14 @@ def main():
             n_lines += 1
             head = line[:rb + 1]
             rest = line[rb + 1:]
+
+            traditional = line.split(' ', 1)[0]
+            js = rest.find('{')
+            je = rest.find('}', js)
+            jyutping = rest[js + 1:je].strip() if js != -1 and je != -1 else ''
+            if (traditional, jyutping) in corrections:
+                dropped += 1
+                continue
 
             hash_pos = rest.find('#')
             if hash_pos != -1:
@@ -233,7 +262,7 @@ def main():
 
             g.write(head + kept_region + comment + '\t' + ','.join(cls) + '\n')
 
-    print(f'lines={n_lines} with_classifiers={n_with} '
+    print(f'lines={n_lines} dropped={dropped} with_classifiers={n_with} '
           f'classifier_tokens={n_cls} distinct_classifiers={len(distinct)}')
     if unresolved:
         print('unresolved simplified characters (kept as-is): '
