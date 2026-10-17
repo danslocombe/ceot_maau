@@ -16,6 +16,10 @@ var debug = url_params.get('debug') === '1';
 var currentQuery = "";
 var currentMaxResults = 12;
 
+// Set just before a click on a character/jyutping link so that navigation is
+// pushed onto the history stack (typing only replaces the current entry).
+var pendingHistoryPush = false;
+
 const current_index_filename = "full.jyp_dict";
 
 loadDictionary(current_index_filename)
@@ -29,7 +33,11 @@ loadDictionary(current_index_filename)
     textfield.setAttribute("placeholder", "lou5 si1, teacher, 老師, ...");
     textfield.focus();
 
-    const input_function = prefix => {
+    const input_function = (prefix, options = {}) => {
+        const { fromHistory = false } = options;
+        const push = pendingHistoryPush;
+        pendingHistoryPush = false;
+
         resultsfield.innerHTML = "";
 
         if (prefix.length > 0) {
@@ -43,10 +51,14 @@ loadDictionary(current_index_filename)
             render(results_string);
             explanation.hidden = true;
 
-            // Update URL query parameter
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('q', prefix);
-            window.history.replaceState({}, '', newUrl);
+            // Update URL query parameter. Typing replaces the current entry so
+            // we don't spam history; clicking a character/jyutping link pushes
+            // a new one so Back returns to the previous query.
+            if (!fromHistory) {
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.set('q', prefix);
+                updateHistory(newUrl, prefix, push);
+            }
         }
         else {
             textfield.setAttribute("placeholder", "lou5 si1, teacher, 老師, ...");
@@ -55,13 +67,33 @@ loadDictionary(current_index_filename)
             currentMaxResults = 12;
 
             // Remove query parameter when search is empty
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.delete('q');
-            window.history.replaceState({}, '', newUrl);
+            if (!fromHistory) {
+                const newUrl = new URL(window.location);
+                newUrl.searchParams.delete('q');
+                updateHistory(newUrl, "", push);
+            }
+        }
+    };
+
+    const updateHistory = (newUrl, prefix, push) => {
+        const state = { q: prefix };
+        if (push) {
+            window.history.pushState(state, '', newUrl);
+        } else {
+            window.history.replaceState(state, '', newUrl);
         }
     };
 
     textfield.addEventListener('input', (e) => input_function(e.target.value));
+
+    // Back/forward should restore the query that was in the URL.
+    window.addEventListener('popstate', () => {
+        const params = new URLSearchParams(window.location.search);
+        const restored = params.get('q') || "";
+        pendingHistoryPush = false;
+        textfield.value = restored;
+        input_function(restored, { fromHistory: true });
+    });
 
     if (query)
     {
@@ -101,6 +133,17 @@ function render(results_string) {
     const results = search_result.results;
 
     if (results.length === 0) {
+        const card = document.createElement("ul");
+        card.setAttribute("class", "card");
+
+        const empty = document.createElement("li");
+        empty.setAttribute("class", "card-item no-results");
+        empty.innerText = currentQuery
+            ? `No results for "${currentQuery}"`
+            : "No results";
+        card.appendChild(empty);
+
+        resultsfield.appendChild(card);
         return;
     }
 
@@ -225,8 +268,11 @@ function createCharacterLink(char) {
     link.href = '#';
     link.className = 'character-link';
     link.textContent = char;
+    link.title = `Search for ${char}`;
+    link.setAttribute('aria-label', `Search for ${char}`);
     link.onclick = (e) => {
         e.preventDefault();
+        pendingHistoryPush = true;
         textfield.value = char;
         textfield.dispatchEvent(new Event('input'));
     };
@@ -238,8 +284,11 @@ function createJyutpingLink(searchTerm) {
     const link = document.createElement('a');
     link.href = '#';
     link.className = 'jyutping-link';
+    link.title = `Search for ${searchTerm}`;
+    link.setAttribute('aria-label', `Search for ${searchTerm}`);
     link.onclick = (e) => {
         e.preventDefault();
+        pendingHistoryPush = true;
         textfield.value = searchTerm;
         textfield.dispatchEvent(new Event('input'));
     };
