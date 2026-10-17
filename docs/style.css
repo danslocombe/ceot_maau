@@ -185,6 +185,7 @@ a, .card .legend .word, .card-item .item-title .asterisk {
 
 .classifiers {
 	margin-top: 0.15rem;
+	margin-bottom: 0.5rem;
 	font-size: 0.8rem;
 	font-weight: 400;
 	color: #4d4d4d;
