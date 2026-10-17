@@ -56,12 +56,12 @@ fn main() {
 
         // Cedict is
         // Traditional / Pinyin / English Definition.
-        builder.parse_cedict(&format!("{}/cedict_ts.u8", data_path), &trad_to_frequency);
+        builder.parse_cedict(&format!("{}/cedict_ts.processed.u8", data_path), &trad_to_frequency);
 
         let trad_to_jyutping = dictlib::builder::TraditionalToJyutping::parse(&format!("{}/cccedict-canto-readings-150923.txt", data_path));
         builder.annotate(&trad_to_jyutping);
 
-        builder.parse_ccanto(&format!("{}/cccanto-webdist.txt", data_path), &trad_to_frequency);
+        builder.parse_ccanto(&format!("{}/cccanto-webdist.processed.txt", data_path), &trad_to_frequency);
 
         if print_debug {
             println!("Data\n{:#?}", builder);

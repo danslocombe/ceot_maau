@@ -4,3 +4,15 @@ full/wordshk-*.csv.gz
 full/wordshk-headwords*.txt
 full/lihkg-freq.tsv
 full/kaikki-*.jsonl.gz
+
+# Processed dictionary dumps (see tools/process_cedict.py and
+# tools/process_cccanto.py). Regenerate with tools/process_dictionaries.sh or
+# the first step of build_for_github_pages.ps1.
+full/*.processed.u8
+full/*.processed.txt
+test/*.processed.u8
+test/*.processed.txt
+
+# Python bytecode from the transform scripts
+__pycache__/
+*.pyc

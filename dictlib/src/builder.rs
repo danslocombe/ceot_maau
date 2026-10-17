@@ -62,7 +62,12 @@ impl Builder {
             }
 
             // Expect form
-            // Traditional Simplified [pinyin] {jyutping} /Definition0/Definition1/../
+            // Traditional Simplified [pinyin] {jyutping} /Definition0/Definition1/../<TAB>classifier,classifier
+            //
+            // Measure-word material has already been pulled out of the
+            // definitions into the trailing tab column by tools/process_cccanto.py.
+
+            let (line, classifier_column) = split_classifier_column(line);
 
             let (traditional, rest) = line.split_once(' ').unwrap();
             let (_simplified, rest) = rest.split_once(' ').unwrap();
@@ -97,6 +102,8 @@ impl Builder {
                 definitions.add_clone(def);
             }
 
+            let classifiers = parse_classifiers(classifier_column);
+
             // Use frequency-based cost (same as CEDict) so CCanto entries
             // are directly comparable in ranking
             let mut cost = 0u32;
@@ -105,12 +112,14 @@ impl Builder {
             }
             let frequency_cost = cost;
             cost += cost_heuristic(&definitions.inner);
+            cost += no_classifier_penalty(&classifiers);
             cost = cost.saturating_sub(CCANTO_DISCOUNT);
 
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
                 jyutping: jyutping.to_owned(),
                 english_sets: definitions,
+                classifiers,
                 source: EntrySource::CCanto,
                 cost,
                 attested: false,
@@ -144,7 +153,12 @@ impl Builder {
                 continue;
             }
             // Expect form
-            // Traditional Simplified [pinyin] /Definition0/Definition1/../
+            // Traditional Simplified [pinyin] /Definition0/Definition1/../<TAB>classifier,classifier
+            //
+            // Measure-word material has already been pulled out of the
+            // definitions into the trailing tab column by tools/process_cedict.py.
+
+            let (line, classifier_column) = split_classifier_column(line);
 
             let (traditional, rest) = line.split_once(' ').unwrap();
 
@@ -173,6 +187,8 @@ impl Builder {
                 definitions.add_clone(def);
             }
 
+            let classifiers = parse_classifiers(classifier_column);
+
             let mut cost = 0;
             for c in traditional.chars() {
                 cost += trad_to_frequency.get_or_default(c).cost;
@@ -180,12 +196,14 @@ impl Builder {
 
             let frequency_cost = cost;
             cost += cost_heuristic(&definitions.inner);
+            cost += no_classifier_penalty(&classifiers);
 
             //println!("{} - {:?}", traditional, definitions);
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
                 jyutping: String::default(),
                 english_sets: definitions,
+                classifiers,
                 source: EntrySource::CEDict,
                 cost,
                 attested: false,
@@ -304,13 +322,40 @@ enum Heuristic
 
 const HEURISTICS : &[(Heuristic, u32)] = &[
     (Heuristic::ContainsTerms(&["abbr."]), 5_000),
-    (Heuristic::DoesNotContainTerms(&["M:", "CL:"]), 5_000),
     (Heuristic::ContainsTerms(&["Surname", "surname"]), 2_000),
     (Heuristic::DoesNotContainTerms(&["(Cantonese)"]), 2_000),
     (Heuristic::ContainsTerms(&["Confucius"]), 5_000),
     (Heuristic::ContainsTerms(&["Dynasty", "Dynasties"]), 5_000),
     (Heuristic::ContainsTerms(&["(Buddhism)"]), 5_000),
 ];
+
+/// Entries with no classifier information are demoted slightly. This replaces
+/// the old `DoesNotContainTerms(["M:", "CL:"])` heuristic: the measure words now
+/// live in their own column (see `tools/transform_*.py`) instead of inside the
+/// definitions, so we test the column directly.
+const NO_CLASSIFIER_COST : u32 = 5_000;
+
+/// Split an entry line into (entry, classifier column). The transform scripts
+/// append a tab-separated column; files without it yield "".
+fn split_classifier_column(line : &str) -> (&str, &str) {
+    match line.split_once('\t') {
+        Some((entry, classifiers)) => (entry, classifiers),
+        None => (line, ""),
+    }
+}
+
+fn parse_classifiers(column : &str) -> Vec<String> {
+    column.split(',')
+        .map(|c| c.trim())
+        .filter(|c| !c.is_empty())
+        .map(|c| c.to_owned())
+        .collect()
+}
+
+fn no_classifier_penalty(classifiers : &[String]) -> u32 {
+    if classifiers.is_empty() { NO_CLASSIFIER_COST } else { 0 }
+}
+
 
 fn cost_heuristic(english_definitions: &[String]) -> u32
 {
@@ -355,6 +400,9 @@ pub struct DictionaryEntry
     pub traditional: String,
     pub jyutping: String,
     pub english_sets: StringVecSet,
+    /// Measure-word / classifier characters pulled out of the source's `CL:`
+    /// (CEDict) or `M:` (CC-Canto) notation. Traditional characters.
+    pub classifiers: Vec<String>,
     pub source: EntrySource,
     /// Whether the word appears in a curated Cantonese dictionary (words.hk).
     pub attested: bool,
@@ -664,6 +712,7 @@ mod tests
             traditional: traditional.to_owned(),
             jyutping: String::default(),
             english_sets: StringVecSet::default(),
+            classifiers: Vec::new(),
             source: EntrySource::CEDict,
             cost: frequency_cost,
             attested: false,

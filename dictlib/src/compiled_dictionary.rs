@@ -119,6 +119,9 @@ impl CompiledDictionary {
 
         english_data_starts.push(english_data.len() as u32);
 
+        let with_classifiers = dict.entries.iter().filter(|e| !e.classifiers.is_empty()).count();
+        println!("Entries with classifiers: {}", with_classifiers);
+
         Self {
             character_store,
             jyutping_store,
