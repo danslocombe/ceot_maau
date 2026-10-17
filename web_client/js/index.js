@@ -194,6 +194,29 @@ function render(results_string) {
             const jyutpingNodes = makeJyutpingClickable(result.rendered_entry.jyutping);
             title_jyutping.appendChild(jyutpingNodes);
             jyutping_elem.appendChild(title_jyutping);
+
+            // Measure words / classifiers, e.g. "CL: zek3 隻, tiu4 條"
+            const classifiers = result.rendered_entry.classifiers || [];
+            if (classifiers.length > 0) {
+                let classifier_elem = document.createElement("div");
+                classifier_elem.setAttribute("class", "classifiers");
+                classifier_elem.appendChild(document.createTextNode("CL: "));
+
+                for (let i = 0; i < classifiers.length; i++) {
+                    if (i > 0) {
+                        classifier_elem.appendChild(document.createTextNode(", "));
+                    }
+                    if (classifiers[i].jyutping) {
+                        const jyutping_link = createJyutpingLink(classifiers[i].jyutping);
+                        jyutping_link.textContent = classifiers[i].jyutping;
+                        classifier_elem.appendChild(jyutping_link);
+                        classifier_elem.appendChild(document.createTextNode(" "));
+                    }
+                    classifier_elem.appendChild(createCharacterLink(classifiers[i].character));
+                }
+
+                jyutping_elem.appendChild(classifier_elem);
+            }
         }
 
         title.appendChild(jyutping_elem);
@@ -215,34 +238,6 @@ function render(results_string) {
             similar_elem.appendChild(english_elem);
 
             card.appendChild(similar_elem);
-        }
-
-        const classifiers = result.rendered_entry.classifiers || [];
-        if (classifiers.length > 0) {
-            let classifier_elem = document.createElement("li");
-            classifier_elem.setAttribute("class", "card-item");
-
-            let classifier_span = document.createElement("span");
-            classifier_span.setAttribute("class", "item-english indent classifier");
-
-            classifier_span.appendChild(document.createTextNode(
-                classifiers.length > 1 ? "Classifiers: " : "Classifier: "));
-
-            for (let i = 0; i < classifiers.length; i++) {
-                if (i > 0) {
-                    classifier_span.appendChild(document.createTextNode(", "));
-                }
-                classifier_span.appendChild(createCharacterLink(classifiers[i].character));
-                if (classifiers[i].jyutping) {
-                    let jyutping_span = document.createElement("span");
-                    jyutping_span.setAttribute("class", "classifier-jyutping");
-                    jyutping_span.innerText = " " + classifiers[i].jyutping;
-                    classifier_span.appendChild(jyutping_span);
-                }
-            }
-
-            classifier_elem.appendChild(classifier_span);
-            card.appendChild(classifier_elem);
         }
 
         let source_elem = document.createElement("p");
