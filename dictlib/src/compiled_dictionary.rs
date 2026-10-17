@@ -32,7 +32,13 @@ pub const CLASSIFIER_BLOB_HEADER: &[u8] = b"cl_data_";
 // = v10 =
 // Append a per-entry classifier count and a trailing classifier blob
 // (measure words lifted out of the definitions).
-pub const CURRENT_VERSION: u32 = 10;
+//
+// = v11 =
+// Content-only bump: the readings annotation changed (only attested
+// (traditional, pinyin) pairs get a reading) but the layout did not. The client
+// keys its IndexedDB/HTTP caches on this value, so it must change for a rebuilt
+// index to reach returning visitors -- otherwise they keep the cached copy.
+pub const CURRENT_VERSION: u32 = 11;
 
 impl CompiledDictionary {
     pub fn from_builder(mut dict : Builder, trad_to_jyutping : &TraditionalToJyutping) -> Self {

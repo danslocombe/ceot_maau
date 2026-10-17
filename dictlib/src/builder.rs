@@ -25,6 +25,21 @@ pub const CANTO_HIGH_FREQ_COST: u32 = 1_000;
 /// Flat cost discount applied to all CCanto-sourced entries.
 pub const CCANTO_DISCOUNT: u32 = 0;
 
+/// Normalise pinyin for matching: drop spaces, lowercase, unify the u-umlaut
+/// spellings (CEDict writes `lu:4`, the readings table `lv4`), and fold the
+/// neutral tone (5) onto the 4th so `mian4`/`mian5` agree. Unlike the
+/// `ge3`/`ge4` case, none of these changes make genuinely different readings
+/// collide.
+fn normalize_pinyin(pinyin : &str) -> String {
+    pinyin.chars()
+        .filter(|c| !c.is_whitespace())
+        .collect::<String>()
+        .to_lowercase()
+        .replace("u:", "ü")
+        .replace('v', "ü")
+        .replace('5', "4")
+}
+
 /// Tier 1: Extremely common Cantonese function words/particles/pronouns
 const CANTO_TIER1_CHARS: &[char] = &[
     '嘅', // ge3 - possessive particle
@@ -117,6 +132,7 @@ impl Builder {
 
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
+                pinyin: String::default(),
                 jyutping: jyutping.to_owned(),
                 english_sets: definitions,
                 classifiers_traditional_characters: classifiers,
@@ -133,8 +149,16 @@ impl Builder {
 
     pub fn annotate(&mut self, trad_to_jyutping: &TraditionalToJyutping) {
         for e in &mut self.entries {
-            if let Some(j) = trad_to_jyutping.inner.get(&e.traditional) {
-                e.jyutping = j.inner[0].to_owned();
+            // CC-Canto entries carry their own jyutping (pinyin is empty).
+            if e.pinyin.is_empty() {
+                continue;
+            }
+            // Only assign a reading the readings table actually attests for
+            // this exact (traditional, pinyin); otherwise leave it empty so the
+            // entry stays out of jyutping search.
+            let key = (e.traditional.clone(), normalize_pinyin(&e.pinyin));
+            if let Some(j) = trad_to_jyutping.by_key.get(&key) {
+                e.jyutping = j.clone();
             }
         }
     }
@@ -168,6 +192,7 @@ impl Builder {
             assert_eq!(rest.chars().next().unwrap(), '[');
 
             let pinyin_end = rest.find(']').unwrap();
+            let pinyin = normalize_pinyin(&rest[1..pinyin_end]);
 
             let mut english = &rest[pinyin_end+2..];
 
@@ -201,6 +226,7 @@ impl Builder {
             //println!("{} - {:?}", traditional, definitions);
             self.entries.push(DictionaryEntry {
                 traditional: traditional.to_owned(),
+                pinyin,
                 jyutping: String::default(),
                 english_sets: definitions,
                 classifiers_traditional_characters: classifiers,
@@ -407,6 +433,8 @@ pub struct DictionaryEntry
 {
     pub cost: u32,
     pub traditional: String,
+    /// Mandarin pinyin, normalised, for CEDict entries. Empty for CC-Canto.
+    pub pinyin: String,
     pub jyutping: String,
     pub english_sets: StringVecSet,
 
@@ -496,6 +524,9 @@ pub struct TraditionalToJyutping
 {
     pub inner : BTreeMap<String, StringVecSet>,
     pub reverse : BTreeMap<String, StringVecSet>,
+    /// (traditional, normalised pinyin) -> jyutping. This is the key the
+    /// readings file actually provides; `inner` collapses it by character.
+    pub by_key : BTreeMap<(String, String), String>,
 }
 
 impl TraditionalToJyutping
@@ -544,6 +575,8 @@ impl TraditionalToJyutping
             assert_eq!(jyutping_with_brackets.chars().next().unwrap(), '{');
 
             let jyutping = jyutping_with_brackets[1..jyutping_with_brackets.len() - 1].to_owned();
+            let pinyin = &rest[1..pinyin_end];
+            map.by_key.insert((traditional.to_owned(), normalize_pinyin(pinyin)), jyutping.clone());
             //println!("{} - {}", traditional, jyutping);
             map.add(traditional, &jyutping);
         }
@@ -720,6 +753,7 @@ mod tests
     {
         DictionaryEntry {
             traditional: traditional.to_owned(),
+            pinyin: String::default(),
             jyutping: String::default(),
             english_sets: StringVecSet::default(),
             classifiers_traditional_characters: Vec::new(),
