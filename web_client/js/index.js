@@ -49,7 +49,7 @@ loadDictionary(current_index_filename)
             window.history.replaceState({}, '', newUrl);
         }
         else {
-            textfield.setAttribute("placeholder", "");
+            textfield.setAttribute("placeholder", "lou5 si1, teacher, 老師, ...");
             explanation.hidden = false;
             currentQuery = "";
             currentMaxResults = 12;
@@ -68,7 +68,13 @@ loadDictionary(current_index_filename)
         input_function(query);
         textfield.value = query;
     }
-});
+  })
+  .catch(err => {
+    console.error("Failed to initialise the dictionary:", err);
+    textfield.removeAttribute("disabled");
+    textfield.setAttribute("placeholder", "Failed to load dictionary - check the console");
+    textfield.focus();
+  });
 
 // Get colouring classes for different translation sources
 function get_class_by_source(source) {
@@ -85,10 +91,16 @@ function get_class_by_source(source) {
 
 // Render a search result
 function render(results_string) {
-    const search_result = JSON.parse(results_string)
+    let search_result;
+    try {
+        search_result = JSON.parse(results_string);
+    } catch (err) {
+        console.error("Failed to parse search results:", err);
+        return;
+    }
     const results = search_result.results;
 
-    if (results.length == 0) {
+    if (results.length === 0) {
         return;
     }
 
@@ -168,7 +180,7 @@ function render(results_string) {
         {
             source_elem.innerText = "(Sourced from CEDict)";
         }
-        else if (source == "CCanto")
+        else if (source === "CCanto")
         {
             source_elem.innerText = "(Sourced from CC-Canto)";
         }
