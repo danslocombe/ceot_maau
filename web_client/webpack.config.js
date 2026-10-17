@@ -24,8 +24,11 @@ module.exports = {
       path.resolve(__dirname, "static")
     ]),
 
+    // Only the compiled index is needed at runtime. Copying all of ../full
+    // would also ship the source dictionaries and the licence-restricted
+    // words.hk/LIHKG inputs into dist/docs.
     new CopyPlugin([
-      path.resolve(__dirname, "../full")
+      { from: path.resolve(__dirname, "../full/full.jyp_dict"), to: "full.jyp_dict" }
     ]),
 
     new WasmPackPlugin({

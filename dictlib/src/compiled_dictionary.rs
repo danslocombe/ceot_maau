@@ -5,7 +5,7 @@ use std::io::Write;
 use serde::Serialize;
 
 use crate::EntrySource;
-use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, builder::Builder, builder::MAX_FREQUENCY_DISCOUNT_BAND, builder::FREQUENCY_DISCOUNT_STEP};
+use crate::{data_reader::DataReader, data_writer::DataWriter, jyutping_splitter::JyutpingSplitter, builder::Builder, builder::TraditionalToJyutping, builder::MAX_FREQUENCY_DISCOUNT_BAND, builder::FREQUENCY_DISCOUNT_STEP};
 
 #[derive(Debug)]
 pub struct CompiledDictionary
@@ -16,18 +16,24 @@ pub struct CompiledDictionary
     pub entries : Vec<CompiledDictionaryEntry>,
     pub english_data: Vec<u8>,
     pub english_data_starts: Vec<u32>,
+
+    /// Measure-word / classifier characters, flattened. Each u32 packs a
+    /// `character_store` index in the high 16 bits and a `Jyutping` (base +
+    /// tone 0-6, see `Jyutping::pack`) in the low 16 bits. Entries address a
+    /// slice via `classifier_start` / `classifier_count`.
+    pub classifier_data: Vec<u32>,
 }
 
 pub const FILE_HEADER: &[u8] = b"jyp_dict";
 pub const ENGLISH_BLOB_HEADER: &[u8] = b"en_data_";
-// v9 gives the top 5 bits of each entry's `flags` a meaning (whole-word
-// frequency band). The byte layout is unchanged, but an index built before v9
-// has zeros there and would silently score as "word never seen in the corpus",
-// so the version is bumped to force a rebuild rather than quietly mis-rank.
-pub const CURRENT_VERSION: u32 = 9;
+pub const CLASSIFIER_BLOB_HEADER: &[u8] = b"cl_data_";
+// v10 appends a per-entry classifier count and a trailing classifier blob
+// (measure words lifted out of the definitions). Older indexes lack the
+// section entirely, so the version is bumped rather than silently misread.
+pub const CURRENT_VERSION: u32 = 10;
 
 impl CompiledDictionary {
-    pub fn from_builder(mut dict : Builder) -> Self {
+    pub fn from_builder(mut dict : Builder, trad_to_jyutping : &TraditionalToJyutping) -> Self {
         let mut all_characters : BTreeSet<char> = BTreeSet::new();
         let mut all_jyutping_words : BTreeSet<String> = BTreeSet::new();
 
@@ -49,6 +55,18 @@ impl CompiledDictionary {
             {
                 all_characters.insert(c);
             }
+
+            // Classifiers are stored as (character, reading) pairs. Pull the
+            // character into the store and its reading base into the jyutping
+            // store so the compiled entry can reference both by index.
+            for classifier in &entry.classifiers {
+                for c in classifier.chars() {
+                    all_characters.insert(c);
+                }
+                if let Some(jyutping) = classifier_jyutping(classifier, trad_to_jyutping) {
+                    all_jyutping_words.insert(jyutping_base(&jyutping).to_owned());
+                }
+            }
         }
 
         let all_characters_list : Vec<char> = all_characters.into_iter().collect();
@@ -67,6 +85,7 @@ impl CompiledDictionary {
 
         let mut english_data = Vec::new();
         let mut english_data_starts = Vec::new();
+        let mut classifier_data : Vec<u32> = Vec::new();
 
         for entry in &dict.entries
         {
@@ -107,6 +126,19 @@ impl CompiledDictionary {
             }
             let english_end = english_data_starts.len();
 
+            let classifier_start = classifier_data.len() as u32;
+            let mut classifier_count : u8 = 0;
+            for classifier in &entry.classifiers {
+                let c = classifier.chars().next().expect("empty classifier");
+                let char_index = character_store.char_to_index(c)
+                    .unwrap_or_else(|| panic!("Could not find classifier character {}", c));
+                let jyutping = classifier_jyutping(classifier, trad_to_jyutping)
+                    .and_then(|j| jyutping_store.get(&j))
+                    .unwrap_or(Jyutping { base: 0, tone: 0 });
+                classifier_data.push(((char_index as u32) << 16) | jyutping.pack() as u32);
+                classifier_count += 1;
+            }
+
             entries.push(CompiledDictionaryEntry {
                 characters: char_indexes,
                 jyutping: mapped_jyutping,
@@ -114,6 +146,8 @@ impl CompiledDictionary {
                 english_end: english_end as u32,
                 cost: entry.cost,
                 flags,
+                classifier_start,
+                classifier_count,
             });
         }
 
@@ -128,6 +162,7 @@ impl CompiledDictionary {
             entries,
             english_data,
             english_data_starts,
+            classifier_data,
         }
     }
 
@@ -160,6 +195,7 @@ impl CompiledDictionary {
 
         let mut english_start = 0;
         let mut prev_cost = 0;
+        let mut classifier_start = 0;
         for _ in 0..entry_count {
             let mut entry = CompiledDictionaryEntry {
                 flags: reader.read_u8(),
@@ -185,6 +221,10 @@ impl CompiledDictionary {
             entry.cost = prev_cost + cost_delta;
             prev_cost = entry.cost;
 
+            entry.classifier_count = reader.read_u8();
+            entry.classifier_start = classifier_start;
+            classifier_start += entry.classifier_count as u32;
+
             entries.push(entry);
         }
 
@@ -207,12 +247,23 @@ impl CompiledDictionary {
             english_data_starts.push(start as u32);
         }
 
+        let classifier_header = reader.read_bytes_len(8);
+        debug_log!("classifier_header '{}'", std::str::from_utf8(classifier_header).expect("Not utf8"));
+        assert!(classifier_header == CLASSIFIER_BLOB_HEADER);
+
+        let classifier_count = reader.read_u32() as usize;
+        let mut classifier_data = Vec::with_capacity(classifier_count);
+        for _ in 0..classifier_count {
+            classifier_data.push(reader.read_u32());
+        }
+
         Self {
             character_store,
             jyutping_store,
             entries,
             english_data: english_blob.to_owned(),
             english_data_starts,
+            classifier_data,
         }
     }
 
@@ -292,6 +343,8 @@ impl CompiledDictionary {
                 let cost_delta = e.cost - prev_cost;
                 writer.write_vbyte(cost_delta as u64)?;
                 prev_cost = e.cost;
+
+                writer.write_u8(e.classifier_count)?;
             }
 
             let bytes = writer.write_len - start;
@@ -325,6 +378,21 @@ impl CompiledDictionary {
 
             let bytes = writer.write_len - start;
             println!("English starts bytes = {}", bytes);
+        }
+
+        writer.write_bytes(CLASSIFIER_BLOB_HEADER)?;
+
+        {
+            let start = writer.write_len;
+
+            println!("Writing classifier data, length = {}", self.classifier_data.len());
+            writer.write_u32(self.classifier_data.len() as u32)?;
+            for packed in &self.classifier_data {
+                writer.write_u32(*packed)?;
+            }
+
+            let bytes = writer.write_len - start;
+            println!("Classifier data bytes = {}", bytes);
         }
 
         // End padding
@@ -457,6 +525,10 @@ pub struct CompiledDictionaryEntry
     pub english_end : u32,
     pub cost : u32,
     pub flags: u8,
+    /// Index into `CompiledDictionary::classifier_data`.
+    pub classifier_start : u32,
+    /// Number of classifiers for this entry.
+    pub classifier_count : u8,
 }
 
 impl CompiledDictionaryEntry
@@ -493,6 +565,33 @@ pub const FLAG_ATTESTED: u8 = 0x4;
 pub const FREQUENCY_DISCOUNT_MASK: u8 = 0xF8;
 pub const FREQUENCY_DISCOUNT_SHIFT: u32 = 3;
 
+/// The Cantonese reading for a classifier character, as a jyutping string with
+/// a tone digit (e.g. "go3"). A few classifiers are absent from the readings
+/// table, so they are filled in here.
+fn classifier_jyutping(classifier : &str, trad_to_jyutping : &TraditionalToJyutping) -> Option<String> {
+    if let Some(set) = trad_to_jyutping.inner.get(classifier) {
+        if let Some(first) = set.inner.first() {
+            return Some(first.clone());
+        }
+    }
+
+    match classifier {
+        "瓣" => Some("baan6".to_owned()),
+        "紮" => Some("zaat3".to_owned()),
+        "齣" => Some("ceot1".to_owned()),
+        _ => None,
+    }
+}
+
+/// "go3" -> "go", the base string held in `JyutpingStore`.
+fn jyutping_base(jyutping : &str) -> &str {
+    if jyutping.as_bytes().last().map_or(false, |b| b.is_ascii_digit()) {
+        &jyutping[..jyutping.len() - 1]
+    } else {
+        jyutping
+    }
+}
+
 pub struct Result
 {
     entry_index : usize,
@@ -507,6 +606,8 @@ pub struct DisplayDictionaryEntry
     pub characters : String,
     pub jyutping : String,
     pub english_definitions : Vec<String>,
+    /// "個 go3" style strings, for console/debug output.
+    pub classifiers : Vec<String>,
     pub cost : u32,
     pub entry_source: EntrySource,
 }
@@ -543,10 +644,23 @@ impl DisplayDictionaryEntry
 
         let entry_source = entry.get_source();
 
+        let mut classifiers = Vec::with_capacity(entry.classifier_count as usize);
+        for i in entry.classifier_start..entry.classifier_start + entry.classifier_count as u32 {
+            let packed = dict.classifier_data[i as usize];
+            let c = dict.character_store.characters[((packed >> 16) as u16) as usize];
+            let j = Jyutping::unpack((packed & 0xFFFF) as u16);
+            if j.tone == 0 {
+                classifiers.push(c.to_string());
+            } else {
+                classifiers.push(format!("{} {}", c, dict.jyutping_store.get_string(j)));
+            }
+        }
+
         Self {
             characters,
             jyutping,
             english_definitions,
+            classifiers,
             cost : entry.cost,
             entry_source,
         }
@@ -619,6 +733,8 @@ pub mod tests {
                 english_end: 1,
                 cost: 100,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             },
             CompiledDictionaryEntry {
                 characters: vec![0, 2], // 學生 (學=index 0, 生=index 2)
@@ -630,6 +746,8 @@ pub mod tests {
                 english_end: 2,
                 cost: 100,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             },
         ];
 
@@ -642,6 +760,7 @@ pub mod tests {
             entries,
             english_data,
             english_data_starts,
+            classifier_data: Vec::new(),
         }
     }
 
@@ -1218,6 +1337,8 @@ pub mod tests {
                 english_end: 1,
                 cost: 0,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             }
         ];
 
@@ -1230,6 +1351,7 @@ pub mod tests {
             entries,
             english_data,
             english_data_starts,
+            classifier_data: Vec::new(),
         };
 
         // Should be exact match
@@ -1348,6 +1470,8 @@ pub mod tests {
                 english_end: 0,
                 cost: 100,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             },
             CompiledDictionaryEntry {
                 characters: vec![1], // 乙 with lou3
@@ -1356,6 +1480,8 @@ pub mod tests {
                 english_end: 0,
                 cost: 100,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             },
         ];
 
@@ -1368,6 +1494,7 @@ pub mod tests {
             entries,
             english_data,
             english_data_starts,
+            classifier_data: Vec::new(),
         };
 
         // Query "lou5" should rank exact-tone entry first
@@ -1405,6 +1532,8 @@ pub mod tests {
                 english_end: 0,
                 cost: 100,
                 flags: FLAG_SOURCE_CEDICT,
+                classifier_start: 0,
+                classifier_count: 0,
             },
         ];
 
@@ -1417,6 +1546,7 @@ pub mod tests {
             entries,
             english_data,
             english_data_starts,
+            classifier_data: Vec::new(),
         };
 
         // "hok1 hok6" — both terms want base "hok" at position 0

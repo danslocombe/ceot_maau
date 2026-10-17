@@ -217,6 +217,34 @@ function render(results_string) {
             card.appendChild(similar_elem);
         }
 
+        const classifiers = result.rendered_entry.classifiers || [];
+        if (classifiers.length > 0) {
+            let classifier_elem = document.createElement("li");
+            classifier_elem.setAttribute("class", "card-item");
+
+            let classifier_span = document.createElement("span");
+            classifier_span.setAttribute("class", "item-english indent classifier");
+
+            classifier_span.appendChild(document.createTextNode(
+                classifiers.length > 1 ? "Classifiers: " : "Classifier: "));
+
+            for (let i = 0; i < classifiers.length; i++) {
+                if (i > 0) {
+                    classifier_span.appendChild(document.createTextNode(", "));
+                }
+                classifier_span.appendChild(createCharacterLink(classifiers[i].character));
+                if (classifiers[i].jyutping) {
+                    let jyutping_span = document.createElement("span");
+                    jyutping_span.setAttribute("class", "classifier-jyutping");
+                    jyutping_span.innerText = " " + classifiers[i].jyutping;
+                    classifier_span.appendChild(jyutping_span);
+                }
+            }
+
+            classifier_elem.appendChild(classifier_span);
+            card.appendChild(classifier_elem);
+        }
+
         let source_elem = document.createElement("p");
         source_elem.setAttribute("class", "item-english " + source_class);
         if (source === "CEDict")

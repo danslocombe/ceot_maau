@@ -4,10 +4,20 @@ use crate::compiled_dictionary::*;
 use crate::search::*;
 
 #[derive(Debug, Serialize)]
+pub struct RenderedClassifier {
+    pub character: String,
+    /// Cantonese reading (e.g. "go3"), or empty when the classifier has no
+    /// reading in the source data.
+    pub jyutping: String,
+}
+
+#[derive(Debug, Serialize)]
 pub struct RenderedResult {
     pub characters: String,
     pub jyutping: String,
     pub english_definitions: Vec<String>,
+    /// Measure-word / classifier characters for this entry.
+    pub classifiers: Vec<RenderedClassifier>,
     pub cost: u32,
     pub entry_source: EntrySource,
 }
@@ -76,10 +86,25 @@ impl RenderedResult {
             build_english_definitions_with_highlights(entry, dict, &[])
         };
 
+        let classifiers = (entry.classifier_start..entry.classifier_start + entry.classifier_count as u32)
+            .map(|i| {
+                let packed = dict.classifier_data[i as usize];
+                let character = dict.character_store.characters[((packed >> 16) as u16) as usize].to_string();
+                let jyutping = Jyutping::unpack((packed & 0xFFFF) as u16);
+                let jyutping = if jyutping.tone == 0 {
+                    String::new()
+                } else {
+                    dict.jyutping_store.get_string(jyutping)
+                };
+                RenderedClassifier { character, jyutping }
+            })
+            .collect();
+
         Self {
             characters,
             jyutping,
             english_definitions,
+            classifiers,
             cost: entry.cost,
             entry_source: entry.get_source(),
         }
